@@ -1,10 +1,21 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import heroBg from "@assets/AIPivot_header_Image3_1766808576433.png";
 
 export function Hero() {
   return (
-    <section className="pt-[54px] pb-[26px]">
-      <div className="wrap">
+    <section className="relative pt-[54px] pb-[26px] overflow-hidden">
+      {/* Background Image Layer */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src={heroBg} 
+          alt="" 
+          className="w-full h-full object-cover opacity-20 dark:opacity-40" 
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
+      </div>
+
+      <div className="wrap relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-[1.25fr_0.75fr] gap-[22px] items-stretch">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -35,7 +46,7 @@ export function Hero() {
                 { n: "Less admin", t: "Agents create tasks, summaries, updates" },
                 { n: "Cleaner scope control", t: "Approvals + changes tracked end-to-end" }
               ].map((kpi, i) => (
-                <div key={i} className="p-3.5 rounded-2xl border border-[var(--border-color)] bg-[var(--card-base-bg)]">
+                <div key={i} className="p-3.5 rounded-2xl border border-[var(--border-color)] bg-[var(--card-base-bg)] backdrop-blur-sm">
                   <div className="text-lg font-extrabold text-foreground">{kpi.n}</div>
                   <div className="text-muted-foreground text-[13px] mt-1">{kpi.t}</div>
                 </div>
