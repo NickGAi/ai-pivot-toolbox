@@ -23,7 +23,7 @@ export function Hero() {
             transition={{ duration: 0.5 }}
           >
             <span className="pill mb-4">Replace the stack. Protect your margins.</span>
-            <h1 className="text-[clamp(34px,4.2vw,54px)] leading-[1.05] tracking-[-0.8px] font-bold mb-3 text-foreground">
+            <h1 className="text-[clamp(40px,5vw,64px)] leading-[1.05] tracking-[-1px] font-extrabold mb-4 text-foreground drop-shadow-sm">
               One system to run your agency—<br className="hidden sm:block"/>with AI that actually works.
             </h1>
             <p className="text-muted-foreground text-lg max-w-[62ch] mb-6">
