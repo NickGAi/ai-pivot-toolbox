@@ -4,7 +4,7 @@ import heroBg from "@assets/AIPivot_header_Image3_1766808576433.png";
 
 export function Hero() {
   return (
-    <section className="relative pt-[54px] pb-[26px] overflow-hidden">
+    <section className="relative pt-[220px] pb-[26px] overflow-hidden">
       {/* Background Image Layer */}
       <div className="absolute inset-0 z-0">
         <img 
