@@ -1,5 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
-import { Check } from "lucide-react";
+import { useState, useMemo } from "react";
 import { cn } from "@/lib/utils";
 
 const TOOLS = [
@@ -43,14 +42,6 @@ export function ROICalculator() {
     const weeklyCoordHours = (inputs.adminHours + inputs.meetHours) * inputs.teamSize;
     const annualCoord = weeklyCoordHours * inputs.hourlyRate * 52;
 
-    // Rework Estimate
-    // Logic from original: (admin+meet) * team * (rework/100) * rate * 52
-    // Wait, the original script logic was:
-    // weeklyTotalHours = (admin + meet) * team;
-    // weeklyReworkHours = weeklyTotalHours * (reworkPct / 100);
-    // annualRework = weeklyReworkHours * rate * 52;
-    // This assumes rework is a percentage of the coord time, which is a bit weird but we stick to the provided logic.
-    
     const weeklyTotalHours = (inputs.adminHours + inputs.meetHours) * inputs.teamSize;
     const weeklyReworkHours = weeklyTotalHours * (inputs.reworkPct / 100);
     const annualRework = weeklyReworkHours * inputs.hourlyRate * 52;
@@ -70,25 +61,25 @@ export function ROICalculator() {
       <div className="wrap">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-stretch">
           <div>
-            <h2 className="text-3xl font-bold mb-2.5">Agency ROI Calculator</h2>
-            <p className="text-muted mb-4">
+            <h2 className="text-3xl font-bold mb-2.5 text-foreground">Agency ROI Calculator</h2>
+            <p className="text-muted-foreground mb-4">
               Estimate what your agency loses to tool sprawl, context switching, and admin. Directional benchmark only.
             </p>
 
             <div className="card-base p-[18px]">
-              <div className="font-extrabold mb-2">Which tools are you currently using?</div>
+              <div className="font-extrabold mb-2 text-foreground">Which tools are you currently using?</div>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 mb-4">
                 {TOOLS.map(tool => (
                   <label 
                     key={tool} 
                     className={cn(
-                      "flex items-center gap-2.5 px-3 py-2.5 rounded-[14px] border bg-white/[0.03] cursor-pointer select-none transition-colors",
-                      selectedTools.has(tool) ? "border-[hsl(252,100%,68%)]/50 bg-[hsl(252,100%,68%)]/10" : "border-white/10"
+                      "flex items-center gap-2.5 px-3 py-2.5 rounded-[14px] border cursor-pointer select-none transition-colors",
+                      selectedTools.has(tool) ? "border-primary/50 bg-primary/10 text-primary" : "border-[var(--border-color)] bg-[var(--card-base-bg)] text-foreground"
                     )}
                   >
                     <input 
                       type="checkbox" 
-                      className="accent-[hsl(252,100%,68%)] w-4 h-4 rounded"
+                      className="accent-primary w-4 h-4 rounded"
                       checked={selectedTools.has(tool)}
                       onChange={() => toggleTool(tool)}
                     />
@@ -107,11 +98,11 @@ export function ROICalculator() {
                   { id: "reworkPct", label: "Rework from misalignment (%)", min: 0, step: 1 },
                 ].map(field => (
                   <div key={field.id}>
-                    <label htmlFor={field.id} className="block text-muted text-[13px] mb-1.5">{field.label}</label>
+                    <label htmlFor={field.id} className="block text-muted-foreground text-[13px] mb-1.5">{field.label}</label>
                     <input 
                       id={field.id}
                       type="number"
-                      className="w-full px-3 py-3 rounded-[14px] border border-white/12 bg-white/[0.03] text-foreground outline-none focus:border-[hsl(252,100%,68%)]/55 focus:shadow-[0_0_0_4px_rgba(124,92,255,0.15)] transition-all"
+                      className="w-full px-3 py-3 rounded-[14px] border border-[var(--border-color)] bg-[var(--card-base-bg)] text-foreground outline-none focus:border-primary/55 focus:shadow-[0_0_0_4px_rgba(124,92,255,0.15)] transition-all"
                       min={field.min}
                       step={field.step}
                       // @ts-ignore
@@ -123,25 +114,25 @@ export function ROICalculator() {
                 ))}
               </div>
 
-              <div className="mt-4 p-3.5 rounded-2xl border border-dashed border-white/20 bg-[hsl(186,83%,53%)]/[0.06]">
-                <div className="text-muted text-[13px]">Estimated annual waste</div>
-                <div className="text-[30px] font-black tracking-[-0.3px] my-1">{currency(results.total)}</div>
-                <div className="text-muted text-[13px] leading-relaxed">
+              <div className="mt-4 p-3.5 rounded-2xl border border-dashed border-[var(--border-color)] bg-secondary/10">
+                <div className="text-muted-foreground text-[13px]">Estimated annual waste</div>
+                <div className="text-[30px] font-black tracking-[-0.3px] my-1 text-foreground">{currency(results.total)}</div>
+                <div className="text-muted-foreground text-[13px] leading-relaxed">
                   SaaS: {currency(results.breakdown.saas)} ({results.breakdown.toolCount} tools) + 
                   Coordination: {currency(results.breakdown.coord)} + 
                   Rework: {currency(results.breakdown.rework)}
                 </div>
               </div>
 
-              <div className="text-[12px] text-muted/80 mt-2.5">
+              <div className="text-[12px] text-muted-foreground/80 mt-2.5">
                 Includes: annual SaaS cost + admin/meeting time + rework time estimate (as % of total time).
               </div>
             </div>
           </div>
 
           <div className="card-base p-[18px]">
-            <div className="font-black text-lg">What AIPivot replaces for agencies</div>
-            <p className="text-muted text-sm mt-2 mb-6">
+            <div className="font-black text-lg text-foreground">What AIPivot replaces for agencies</div>
+            <p className="text-muted-foreground text-sm mt-2 mb-6">
               Most agencies are stitched together with CRMs + PM tools + docs + chat + invoicing + dashboards.
               AIPivot consolidates the system and makes the data usable for AI.
             </p>
@@ -152,13 +143,13 @@ export function ROICalculator() {
                 { badge: "2", title: "Stop losing scope", desc: "SOWs + change requests + status updates linked to tasks and billing." },
                 { badge: "3", title: "Deploy coordination agents", desc: "Agents handle follow-ups, summaries, updates, and reporting." }
               ].map((step, i) => (
-                <div key={i} className="flex gap-3 items-start p-3.5 rounded-2xl border border-white/10 bg-white/[0.03]">
-                  <div className="w-[30px] h-[30px] shrink-0 rounded-xl flex items-center justify-center font-black bg-[rgba(124,92,255,0.22)] border border-[rgba(124,92,255,0.35)] text-foreground">
+                <div key={i} className="flex gap-3 items-start p-3.5 rounded-2xl border border-[var(--border-color)] bg-[var(--card-base-bg)]">
+                  <div className="w-[30px] h-[30px] shrink-0 rounded-xl flex items-center justify-center font-black bg-primary/20 border border-primary/35 text-foreground">
                     {step.badge}
                   </div>
                   <div>
-                    <div className="font-extrabold mb-0.5">{step.title}</div>
-                    <div className="text-muted text-[13px]">{step.desc}</div>
+                    <div className="font-extrabold mb-0.5 text-foreground">{step.title}</div>
+                    <div className="text-muted-foreground text-[13px]">{step.desc}</div>
                   </div>
                 </div>
               ))}
