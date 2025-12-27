@@ -1,0 +1,730 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AIPivot for Agencies | One System to Run Delivery + Sales + Ops</title>
+  <meta name="description" content="Replace your agency tool stack with one AI-ready operating system: CRM, projects, docs, approvals, invoicing, reporting, and AI agents that keep work moving." />
+  <meta property="og:title" content="AIPivot for Agencies" />
+  <meta property="og:description" content="One system for delivery + sales + operations. AI agents that actually work because your data is unified." />
+  <meta property="og:type" content="website" />
+  <style>
+    :root{
+      --bg:#070A12;
+      --card:#0D1222;
+      --muted:#AAB2C8;
+      --text:#EEF2FF;
+      --line:rgba(255,255,255,.10);
+      --accent:#7C5CFF;
+      --accent2:#22D3EE;
+      --good:#34D399;
+
+      --radius:18px;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --max:1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background:
+        radial-gradient(1200px 600px at 10% 0%, rgba(124,92,255,.20), transparent 60%),
+        radial-gradient(1000px 500px at 95% 10%, rgba(34,211,238,.16), transparent 55%),
+        linear-gradient(180deg, #050713, #070A12);
+      color:var(--text);
+      line-height:1.45;
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding: 0 20px;}
+    .topbar{
+      position:sticky; top:0; z-index:30;
+      backdrop-filter: blur(14px);
+      background: rgba(7,10,18,.65);
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:14px;
+    }
+    .brand{display:flex; gap:10px; align-items:center; font-weight:800; letter-spacing:.2px;}
+    .logo{
+      width:34px; height:34px; border-radius:12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 10px 26px rgba(124,92,255,.22);
+    }
+    .nav{display:flex; gap:16px; align-items:center; color:var(--muted); font-size:14px;}
+    .nav a{opacity:.9}
+    .nav a:hover{opacity:1; color:var(--text)}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:12px 16px;
+      border-radius: 14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color:var(--text);
+      font-weight:650;
+      gap:10px;
+      cursor:pointer;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.18);}
+    .btn.primary{
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color:#081021;
+      box-shadow: 0 18px 50px rgba(124,92,255,.22);
+    }
+    .btn.primary:hover{filter:saturate(1.05); transform: translateY(-1px);}
+    .btn.small{padding:9px 12px; border-radius: 12px; font-size: 14px;}
+    .pill{
+      display:inline-flex; gap:10px; align-items:center;
+      padding:8px 12px; border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .dot{width:8px; height:8px; border-radius:99px; background: var(--good); box-shadow: 0 0 0 4px rgba(52,211,153,.12);}
+    .hero{padding: 54px 0 26px;}
+    .grid-2{display:grid; grid-template-columns: 1.25fr .75fr; gap:22px; align-items:stretch;}
+    @media (max-width: 980px){ .grid-2{grid-template-columns:1fr;}}
+    h1{margin:14px 0 10px; font-size: clamp(34px, 4.2vw, 54px); line-height:1.05; letter-spacing:-.8px;}
+    .lead{color:var(--muted); font-size: 18px; max-width: 62ch;}
+    .hero-actions{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px;}
+    .mini{color:var(--muted); font-size: 13px; margin-top:10px;}
+    .card{
+      background: rgba(13,18,34,.72);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .card-pad{padding:18px;}
+    .section{padding: 36px 0;}
+    .section h2{font-size: 28px; margin: 0 0 10px;}
+    .section p{color:var(--muted); margin: 0 0 14px;}
+    .kpis{display:grid; grid-template-columns: repeat(3,1fr); gap:12px; margin-top:16px;}
+    @media (max-width: 820px){ .kpis{grid-template-columns:1fr;}}
+    .kpi{padding:14px; border-radius:16px; border:1px solid var(--line); background: rgba(255,255,255,.03);}
+    .kpi .n{font-size: 18px; font-weight:850;}
+    .kpi .t{color:var(--muted); font-size: 13px; margin-top:4px;}
+
+    label{display:block; color: var(--muted); font-size: 13px; margin-bottom:6px;}
+    input[type="number"], input[type="text"], select{
+      width:100%;
+      padding:12px 12px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      outline:none;
+    }
+    input:focus, select:focus{border-color: rgba(124,92,255,.55); box-shadow: 0 0 0 4px rgba(124,92,255,.15);}
+    .calc-grid{display:grid; grid-template-columns: 1fr 1fr; gap:14px;}
+    @media (max-width: 980px){ .calc-grid{grid-template-columns:1fr;}}
+    .tools{
+      display:grid;
+      grid-template-columns: repeat(3,1fr);
+      gap:10px;
+      margin-top:10px;
+    }
+    @media (max-width: 820px){ .tools{grid-template-columns:1fr 1fr;}}
+    .tool{
+      display:flex; align-items:center; gap:10px;
+      padding:10px 12px;
+      border-radius: 14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      cursor:pointer;
+      user-select:none;
+    }
+    .tool input{transform: scale(1.05);}
+    .result{
+      border-radius: 16px;
+      border:1px dashed rgba(255,255,255,.18);
+      background: rgba(34,211,238,.06);
+      padding:14px;
+      margin-top:12px;
+    }
+    .result .big{font-size: 30px; font-weight: 950; letter-spacing: -.3px;}
+    .result .sub{color: var(--muted); font-size: 13px; margin-top:2px;}
+    .muted{color:var(--muted)}
+    .cols-4{display:grid; grid-template-columns: repeat(4,1fr); gap:12px;}
+    @media (max-width: 980px){ .cols-4{grid-template-columns:1fr 1fr;}}
+    @media (max-width: 560px){ .cols-4{grid-template-columns:1fr;}}
+    .feature{padding:14px; border-radius:16px; border:1px solid var(--line); background: rgba(255,255,255,.03);}
+    .feature .h{font-weight:850; margin-bottom:4px;}
+    .feature .d{color:var(--muted); font-size: 13px;}
+
+    .split{display:grid; grid-template-columns: 1fr 1fr; gap:14px; align-items:stretch;}
+    @media (max-width: 980px){ .split{grid-template-columns:1fr;}}
+    .steps{display:grid; gap:10px;}
+    .step{
+      display:flex; gap:12px; align-items:flex-start;
+      padding:14px; border-radius: 16px;
+      border:1px solid var(--line); background: rgba(255,255,255,.03);
+    }
+    .badge{
+      width:30px; height:30px; border-radius: 12px;
+      display:flex; align-items:center; justify-content:center;
+      font-weight:900;
+      background: rgba(124,92,255,.22);
+      border: 1px solid rgba(124,92,255,.35);
+    }
+    .quotes{display:grid; grid-template-columns: repeat(3,1fr); gap:12px;}
+    @media (max-width: 980px){ .quotes{grid-template-columns:1fr;}}
+    blockquote{
+      margin:0; padding:14px;
+      border-radius: 16px; border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+    }
+    blockquote p{margin:0; color: var(--text); font-weight:650;}
+    blockquote footer{margin-top:10px; color: var(--muted); font-size: 13px;}
+
+    .faq{display:grid; gap:10px;}
+    details{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      border-radius: 16px;
+      padding: 12px 14px;
+    }
+    summary{cursor:pointer; font-weight:800;}
+    details p{margin:10px 0 0; color: var(--muted);}
+
+    .cta{padding: 40px 0 64px;}
+    .cta-inner{
+      padding: 18px;
+      background:
+        radial-gradient(800px 300px at 20% 0%, rgba(124,92,255,.30), transparent 55%),
+        radial-gradient(700px 280px at 90% 20%, rgba(34,211,238,.22), transparent 55%),
+        rgba(13,18,34,.72);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+    .footer{padding: 18px 0 30px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px;}
+    .footer .row{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;}
+    .tiny{font-size:12px; color: rgba(170,178,200,.8)}
+    .hr{height:1px; background: var(--line); margin: 14px 0;}
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <div class="topbar-inner">
+        <div class="brand">
+          <div class="logo" aria-hidden="true"></div>
+          <div>AIPivot</div>
+          <span class="pill"><span class="dot"></span> Built for agencies</span>
+        </div>
+        <nav class="nav" aria-label="Primary">
+          <a href="#roi">ROI</a>
+          <a href="#replace">Replace</a>
+          <a href="#how">How it works</a>
+          <a href="#agents">Agents</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+        <div style="display:flex; gap:10px; align-items:center;">
+          <a class="btn small" href="#demo">View demo</a>
+          <a class="btn primary small" href="#book">Book a call</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap">
+        <div class="grid-2">
+          <div>
+            <span class="pill">Replace the stack. Protect your margins.</span>
+            <h1>One system to run your agency—<br/>with AI that actually works.</h1>
+            <p class="lead">
+              AIPivot consolidates CRM, projects, docs, approvals, invoicing, and reporting into a single operating system.
+              Then AI agents automate the repetitive coordination that kills agency margin: follow-ups, meeting notes, scope updates, and client comms.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn primary" href="#book">Book a discovery call</a>
+              <a class="btn" href="#roi">Calculate agency ROI</a>
+            </div>
+            <div class="mini">For agencies delivering retainers, projects, or performance work—without the tool chaos.</div>
+
+            <div class="kpis">
+              <div class="kpi">
+                <div class="n">Fewer handoffs</div>
+                <div class="t">One workflow across sales → delivery → billing</div>
+              </div>
+              <div class="kpi">
+                <div class="n">Less admin</div>
+                <div class="t">Agents create tasks, summaries, updates</div>
+              </div>
+              <div class="kpi">
+                <div class="n">Cleaner scope control</div>
+                <div class="t">Approvals + changes tracked end-to-end</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT HERO CARD -->
+          <div class="card">
+            <div class="card-pad">
+              <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+                <div style="font-weight:900;">Agency OS modules</div>
+                <span class="pill">Plug in your branding</span>
+              </div>
+              <div class="hr"></div>
+
+              <div class="feature">
+                <div class="h">Client workspace</div>
+                <div class="d">One place for timelines, approvals, deliverables, and comms.</div>
+              </div>
+              <div style="height:10px"></div>
+
+              <div class="cols-4">
+                <div class="feature"><div class="h">CRM</div><div class="d">Leads, deals</div></div>
+                <div class="feature"><div class="h">Delivery</div><div class="d">Boards, tasks</div></div>
+                <div class="feature"><div class="h">Docs</div><div class="d">SOWs, SOPs</div></div>
+                <div class="feature"><div class="h">Billing</div><div class="d">Invoices</div></div>
+              </div>
+
+              <div style="height:14px"></div>
+              <a class="btn primary" href="#demo" style="width:100%;">Try a demo</a>
+              <div class="tiny" style="margin-top:8px;">
+                Replace demo link with your Loom, live sandbox, or product tour.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROI CALCULATOR -->
+    <section id="roi" class="section">
+      <div class="wrap">
+        <div class="split">
+          <div>
+            <h2>Agency ROI Calculator</h2>
+            <p>
+              Estimate what your agency loses to tool sprawl, context switching, and admin. Directional benchmark only.
+            </p>
+
+            <div class="card card-pad">
+              <div style="font-weight:900; margin-bottom:8px;">Which tools are you currently using?</div>
+              <div class="tools" id="toolList"></div>
+
+              <div style="height:12px"></div>
+
+              <div class="calc-grid">
+                <div>
+                  <label for="adminHours">Admin + coordination (hours/person/week)</label>
+                  <input id="adminHours" type="number" min="0" step="1" value="6" />
+                </div>
+                <div>
+                  <label for="meetHours">Internal meetings (hours/person/week)</label>
+                  <input id="meetHours" type="number" min="0" step="1" value="3" />
+                </div>
+                <div>
+                  <label for="team">Team size</label>
+                  <input id="team" type="number" min="1" step="1" value="8" />
+                </div>
+                <div>
+                  <label for="rate">Average loaded hourly cost (USD)</label>
+                  <input id="rate" type="number" min="0" step="1" value="65" />
+                </div>
+                <div>
+                  <label for="toolCost">Avg tool cost per user / month (USD)</label>
+                  <input id="toolCost" type="number" min="0" step="1" value="25" />
+                </div>
+                <div>
+                  <label for="reworkPct">Rework from misalignment (%)</label>
+                  <input id="reworkPct" type="number" min="0" step="1" value="8" />
+                </div>
+              </div>
+
+              <div class="result">
+                <div class="muted" style="font-size:13px;">Estimated annual waste</div>
+                <div class="big" id="waste">$0</div>
+                <div class="sub" id="formula"></div>
+              </div>
+
+              <div class="tiny" style="margin-top:10px;">
+                Includes: annual SaaS cost + admin/meeting time + rework time estimate (as % of total time).
+              </div>
+            </div>
+          </div>
+
+          <div class="card card-pad">
+            <div style="font-weight:950; font-size:18px;">What AIPivot replaces for agencies</div>
+            <p class="muted" style="margin-top:8px;">
+              Most agencies are stitched together with CRMs + PM tools + docs + chat + invoicing + dashboards.
+              AIPivot consolidates the system and makes the data usable for AI.
+            </p>
+
+            <div class="steps">
+              <div class="step">
+                <div class="badge">1</div>
+                <div>
+                  <div style="font-weight:900;">Unify client delivery</div>
+                  <div class="muted">Workstreams, approvals, deliverables, and comms in one client workspace.</div>
+                </div>
+              </div>
+              <div class="step">
+                <div class="badge">2</div>
+                <div>
+                  <div style="font-weight:900;">Stop losing scope</div>
+                  <div class="muted">SOWs + change requests + status updates linked to tasks and billing.</div>
+                </div>
+              </div>
+              <div class="step">
+                <div class="badge">3</div>
+                <div>
+                  <div style="font-weight:900;">Deploy coordination agents</div>
+                  <div class="muted">Agents handle follow-ups, summaries, updates, and reporting.</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="height:12px"></div>
+            <a class="btn" href="#agents" style="width:100%;">See the agency agent suite</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REPLACE SECTION -->
+    <section id="replace" class="section">
+      <div class="wrap">
+        <h2>Replace the agency tool stack</h2>
+        <p>Keep what you love, but stop paying the “integration tax” and losing time to context switching.</p>
+
+        <div class="cols-4">
+          <div class="feature">
+            <div class="h">CRM + pipeline</div>
+            <div class="d">Leads, deals, stages, follow-ups, proposals.</div>
+          </div>
+          <div class="feature">
+            <div class="h">Projects + delivery</div>
+            <div class="d">Boards, tasks, timelines, owners, dependencies.</div>
+          </div>
+          <div class="feature">
+            <div class="h">Docs + approvals</div>
+            <div class="d">SOWs, briefs, SOPs, client approvals, versioning.</div>
+          </div>
+          <div class="feature">
+            <div class="h">Invoicing + reporting</div>
+            <div class="d">Invoices, payment tracking, margin + KPI dashboards.</div>
+          </div>
+        </div>
+
+        <div style="height:14px"></div>
+
+        <div class="card card-pad">
+          <div style="font-weight:950;">Agency-native workflows included</div>
+          <div class="hr"></div>
+          <div class="cols-4">
+            <div class="feature"><div class="h">Retainers</div><div class="d">Recurring delivery + reporting</div></div>
+            <div class="feature"><div class="h">Projects</div><div class="d">Milestones + approvals</div></div>
+            <div class="feature"><div class="h">Change requests</div><div class="d">Scope control + billing hooks</div></div>
+            <div class="feature"><div class="h">Client comms</div><div class="d">Updates, notes, history</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how" class="section">
+      <div class="wrap">
+        <div class="split">
+          <div class="card card-pad">
+            <h2 style="margin-top:0;">How it works for agencies</h2>
+            <p>
+              AIPivot becomes the system of record for client work. That’s what makes agents accurate:
+              they can “see” the deal, scope, deliverables, last conversation, current blockers, and billing status.
+            </p>
+
+            <div class="hr"></div>
+            <div class="steps">
+              <div class="step">
+                <div class="badge">A</div>
+                <div>
+                  <div style="font-weight:900;">One client workspace</div>
+                  <div class="muted">Every client gets a single timeline: comms, tasks, docs, approvals, invoices.</div>
+                </div>
+              </div>
+              <div class="step">
+                <div class="badge">B</div>
+                <div>
+                  <div style="font-weight:900;">Structured delivery data</div>
+                  <div class="muted">Clean entities (clients, projects, deliverables) so reporting and AI are reliable.</div>
+                </div>
+              </div>
+              <div class="step">
+                <div class="badge">C</div>
+                <div>
+                  <div style="font-weight:900;">Agents automate coordination</div>
+                  <div class="muted">Meeting notes → action items, follow-ups, status updates, weekly reporting.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card card-pad">
+            <div style="font-weight:950; font-size:18px;">Outcomes agencies care about</div>
+            <div style="height:10px"></div>
+
+            <div class="steps">
+              <div class="step">
+                <div class="badge">↑</div>
+                <div>
+                  <div style="font-weight:900;">Higher margin per client</div>
+                  <div class="muted">Less rework, fewer misalignments, less admin overhead.</div>
+                </div>
+              </div>
+              <div class="step">
+                <div class="badge">↓</div>
+                <div>
+                  <div style="font-weight:900;">Less “where is that?”</div>
+                  <div class="muted">No more hunting across Slack/Docs/PM tools for context.</div>
+                </div>
+              </div>
+              <div class="step">
+                <div class="badge">≡</div>
+                <div>
+                  <div style="font-weight:900;">Consistent delivery cadence</div>
+                  <div class="muted">Templates + SOPs + automated weekly updates keep clients calm.</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="height:12px"></div>
+            <a class="btn primary" href="#book" style="width:100%;">Book a discovery call</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI AGENTS -->
+    <section id="agents" class="section">
+      <div class="wrap">
+        <h2>Agency AI agents</h2>
+        <p>These agents are designed around the coordination and documentation burden that wrecks delivery focus.</p>
+
+        <div class="cols-4">
+          <div class="feature">
+            <div class="h">Account Manager Agent</div>
+            <div class="d">Drafts weekly client updates, tracks sentiment, and flags renewal risk.</div>
+          </div>
+          <div class="feature">
+            <div class="h">Project Manager Agent</div>
+            <div class="d">Meeting notes → tasks, owners, due dates, and status summaries.</div>
+          </div>
+          <div class="feature">
+            <div class="h">Scope Guard Agent</div>
+            <div class="d">Detects scope creep signals and prompts change requests or approvals.</div>
+          </div>
+          <div class="feature">
+            <div class="h">Sales Follow-up Agent</div>
+            <div class="d">Pipeline nudges, next steps, and follow-ups that don’t fall through.</div>
+          </div>
+          <div class="feature">
+            <div class="h">Proposal + SOW Agent</div>
+            <div class="d">Builds SOW drafts from templates + prior wins + client context.</div>
+          </div>
+          <div class="feature">
+            <div class="h">Delivery QA Agent</div>
+            <div class="d">Checks deliverables against brief, acceptance criteria, and past feedback.</div>
+          </div>
+          <div class="feature">
+            <div class="h">Reporting Agent</div>
+            <div class="d">Weekly KPI snapshots and performance narratives for retainers.</div>
+          </div>
+          <div class="feature">
+            <div class="h">Ops Analyst Agent</div>
+            <div class="d">Finds bottlenecks across clients, workload, utilization, and margins.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section">
+      <div class="wrap">
+        <h2>FAQ</h2>
+        <p>Common questions agencies ask before consolidating their stack.</p>
+
+        <div class="faq">
+          <details>
+            <summary>Do we have to replace everything at once?</summary>
+            <p>No. Most agencies start with client workspaces + delivery + reporting, then migrate CRM and billing after v1 proves value.</p>
+          </details>
+          <details>
+            <summary>Will this work for retainers and projects?</summary>
+            <p>Yes. The platform supports both recurring (retainer) workflows and milestone-based project delivery, with approvals and scope tracking.</p>
+          </details>
+          <details>
+            <summary>Why will the AI be more accurate than “generic ChatGPT workflows”?</summary>
+            <p>Because AIPivot unifies your operational context (scope, tasks, comms, invoices) so agents retrieve the right facts before acting.</p>
+          </details>
+          <details>
+            <summary>Can clients access their workspace?</summary>
+            <p>Yes, with permissioning. Clients can view status, approve deliverables, and see relevant documents without exposing internal notes.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEMO / CTA -->
+    <section id="demo" class="cta">
+      <div class="wrap">
+        <div class="cta-inner">
+          <div>
+            <div style="font-weight:950; font-size:22px;">Want an agency system map in 30 minutes?</div>
+            <div class="muted" style="margin-top:6px;">
+              Share your current stack and delivery workflow. We’ll outline a practical v1: modules, data model, and agent rollout plan.
+            </div>
+          </div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <a id="book" class="btn primary"
+               href="mailto:hello@aipivot.com?subject=AIPivot%20Agency%20Discovery%20Call&body=Hi%20AIPivot%2C%0A%0AWe%20run%20an%20agency%20and%20want%20a%20system%20map.%0A%0ACurrent%20stack%3A%20%5Btools%5D%0ATeam%20size%3A%20%5Bn%5D%0AServices%3A%20%5BSEO%2Fads%2Fweb%2Fcreative%5D%0A%0AThanks!">
+              Book a discovery call
+            </a>
+            <a class="btn" href="#roi">Re-check ROI</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="row">
+        <div style="display:flex; gap:10px; align-items:center;">
+          <div class="logo" aria-hidden="true" style="width:28px; height:28px; border-radius:10px;"></div>
+          <div><strong>AIPivot</strong> <span class="tiny">© <span id="yr"></span> All rights reserved.</span></div>
+        </div>
+        <div class="tiny">
+          <a href="#roi">ROI</a> · <a href="#replace">Replace</a> · <a href="#agents">Agents</a> · <a href="#faq">FAQ</a>
+        </div>
+      </div>
+      <div class="hr"></div>
+      <div class="tiny">
+        Disclaimer: ROI calculator provides directional estimates only. Add Privacy Policy + Terms before launch.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // -----------------------------
+    // AGENCY ROI CALCULATOR
+    // -----------------------------
+    const tools = [
+      "ClickUp","Asana","Monday.com","Trello",
+      "HubSpot","Pipedrive","Salesforce",
+      "Slack","Google Workspace","Microsoft 365",
+      "Notion","Confluence",
+      "Zapier","Make.com",
+      "Harvest","Toggl","Clockify",
+      "Xero","QuickBooks",
+      "Figma","Miro"
+    ];
+
+    const toolList = document.getElementById("toolList");
+    const selected = new Set(["ClickUp","Slack","HubSpot","Notion"]); // defaults
+
+    function currency(n){
+      return n.toLocaleString(undefined, { style:"currency", currency:"USD", maximumFractionDigits:0 });
+    }
+
+    function renderTools(){
+      toolList.innerHTML = "";
+      tools.forEach(name=>{
+        const id = "t_" + name.replace(/\W/g,"_");
+        const row = document.createElement("label");
+        row.className = "tool";
+        row.setAttribute("for", id);
+
+        const cb = document.createElement("input");
+        cb.type = "checkbox";
+        cb.id = id;
+        cb.checked = selected.has(name);
+        cb.addEventListener("change", ()=>{
+          if(cb.checked) selected.add(name); else selected.delete(name);
+          calc();
+        });
+
+        const txt = document.createElement("div");
+        txt.textContent = name;
+
+        row.appendChild(cb);
+        row.appendChild(txt);
+        toolList.appendChild(row);
+      });
+    }
+
+    const elAdmin = document.getElementById("adminHours");
+    const elMeet  = document.getElementById("meetHours");
+    const elTeam  = document.getElementById("team");
+    const elRate  = document.getElementById("rate");
+    const elToolCost = document.getElementById("toolCost");
+    const elRework = document.getElementById("reworkPct");
+
+    const elWaste = document.getElementById("waste");
+    const elFormula = document.getElementById("formula");
+
+    function clampNum(v, min, fallback){
+      const n = Number(v);
+      if(Number.isFinite(n) && n >= min) return n;
+      return fallback;
+    }
+
+    function calc(){
+      const admin = clampNum(elAdmin.value, 0, 6);
+      const meet  = clampNum(elMeet.value, 0, 3);
+      const team  = clampNum(elTeam.value, 1, 8);
+      const rate  = clampNum(elRate.value, 0, 65);
+      const toolCost = clampNum(elToolCost.value, 0, 25);
+      const reworkPct = clampNum(elRework.value, 0, 8);
+
+      const toolCount = selected.size;
+
+      // annual SaaS
+      const annualSaaS = toolCount * toolCost * team * 12;
+
+      // annual coordination time
+      const weeklyCoordHours = (admin + meet) * team;
+      const annualCoord = weeklyCoordHours * rate * 52;
+
+      // rework estimate as % of total hours (admin+meet considered part of total time here)
+      const weeklyTotalHours = (admin + meet) * team;
+      const weeklyReworkHours = weeklyTotalHours * (reworkPct / 100);
+      const annualRework = weeklyReworkHours * rate * 52;
+
+      const total = annualSaaS + annualCoord + annualRework;
+
+      elWaste.textContent = currency(total);
+
+      elFormula.textContent =
+        `SaaS: ${currency(annualSaaS)} (${toolCount} tools × ${currency(toolCost)}/user/mo × ${team} × 12) + ` +
+        `Coordination: ${currency(annualCoord)} ((${admin}+${meet}) hrs/wk × ${team} × ${currency(rate)}/hr × 52) + ` +
+        `Rework: ${currency(annualRework)} (${reworkPct}% of coordination time)`;
+    }
+
+    [elAdmin, elMeet, elTeam, elRate, elToolCost, elRework].forEach(el => el.addEventListener("input", calc));
+    document.getElementById("yr").textContent = new Date().getFullYear();
+
+    renderTools();
+    calc();
+  </script>
+</body>
+</html>
