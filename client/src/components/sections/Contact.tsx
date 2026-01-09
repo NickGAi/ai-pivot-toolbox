@@ -99,7 +99,7 @@ export function Contact() {
                     </div>
                     <div>
                       <div className="text-sm text-muted-foreground">Call us</div>
-                      <div className="text-foreground font-medium">1300 542 635</div>
+                      <div className="text-foreground font-medium">0415 685 544</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
