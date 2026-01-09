@@ -26,7 +26,7 @@ export function Navbar() {
       scrolled ? "bg-background/90 backdrop-blur-lg border-b border-border" : "bg-transparent"
     )}>
       <div className="container-main">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center h-20">
           {/* Logo */}
           <a href="#" className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-cyan-400 flex items-center justify-center">
@@ -35,27 +35,30 @@ export function Navbar() {
             <span className="font-display font-bold text-xl text-foreground">AIPivot</span>
           </a>
           
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map(link => (
-              <a 
-                key={link.href}
-                href={link.href} 
-                className="text-muted-foreground hover:text-foreground transition-colors font-medium"
-              >
-                {link.label}
-              </a>
-            ))}
-          </nav>
-          
-          {/* Actions */}
-          <div className="flex items-center gap-4">
+          {/* Desktop Nav + Actions - Right aligned */}
+          <div className="hidden md:flex items-center gap-8 ml-auto">
+            <nav className="flex items-center gap-8">
+              {navLinks.map(link => (
+                <a 
+                  key={link.href}
+                  href={link.href} 
+                  className="text-muted-foreground hover:text-foreground transition-colors font-medium"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
             <ThemeToggle />
-            <a href="#contact" className="hidden sm:inline-flex btn btn-primary">
+            <a href="#contact" className="btn btn-primary">
               Free Consultation
             </a>
+          </div>
+
+          {/* Mobile Actions */}
+          <div className="flex items-center gap-4 ml-auto md:hidden">
+            <ThemeToggle />
             <button 
-              className="md:hidden p-2 text-foreground"
+              className="p-2 text-foreground"
               onClick={() => setMobileOpen(!mobileOpen)}
             >
               {mobileOpen ? <X size={24} /> : <Menu size={24} />}
