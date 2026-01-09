@@ -1,7 +1,69 @@
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, ArrowRight } from "lucide-react";
+import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 export function Contact() {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        toast({
+          title: "Success!",
+          description: data.message,
+        });
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          message: "",
+        });
+      } else {
+        toast({
+          title: "Error",
+          description: data.error || "Something went wrong. Please try again.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to submit form. Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
   return (
     <section id="contact" className="py-24">
       <div className="container-main">
@@ -61,23 +123,73 @@ export function Contact() {
                 </div>
               </div>
 
-              {/* CTA */}
-              <div className="flex flex-col justify-center">
-                <div className="bg-gradient-to-br from-primary/10 to-cyan-500/10 rounded-2xl p-8 text-center">
-                  <h4 className="text-xl font-bold text-foreground mb-3">
-                    Free AI Opportunity Analysis
-                  </h4>
-                  <p className="text-muted-foreground mb-6">
-                    Discover how AI can transform your real estate business in a 30-minute call
-                  </p>
-                  <a 
-                    href="mailto:hello@aipivot.com?subject=AI%20Consultation%20Request" 
-                    className="btn btn-primary w-full justify-center"
+              {/* Contact Form */}
+              <div>
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <input
+                        type="text"
+                        name="firstName"
+                        placeholder="First Name"
+                        value={formData.firstName}
+                        onChange={handleChange}
+                        required
+                        className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                      />
+                    </div>
+                    <div>
+                      <input
+                        type="text"
+                        name="lastName"
+                        placeholder="Last Name"
+                        value={formData.lastName}
+                        onChange={handleChange}
+                        required
+                        className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Email Address"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="tel"
+                      name="phone"
+                      placeholder="Phone Number (Optional)"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                    />
+                  </div>
+                  <div>
+                    <textarea
+                      name="message"
+                      placeholder="Tell us about your business needs (Optional)"
+                      value={formData.message}
+                      onChange={handleChange}
+                      rows={4}
+                      className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary resize-none"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="btn btn-primary w-full justify-center disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Book Free Consultation
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </a>
-                </div>
+                    {isSubmitting ? "Sending..." : "Book Free Consultation"}
+                    {!isSubmitting && <ArrowRight className="ml-2 w-5 h-5" />}
+                  </button>
+                </form>
               </div>
             </div>
           </motion.div>
