@@ -1,53 +1,89 @@
-import { Link } from "wouter";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { Menu, X } from "lucide-react";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const navLinks = [
+    { href: "#services", label: "Services" },
+    { href: "#method", label: "Method" },
+    { href: "#about", label: "About" },
+    { href: "#contact", label: "Contact" },
+  ];
+
   return (
     <header className={cn(
-      "sticky top-0 z-50 border-b border-transparent transition-all duration-200",
-      scrolled ? "bg-[var(--nav-bg)] backdrop-blur-md border-[var(--border-color)]" : "bg-transparent"
+      "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+      scrolled ? "bg-background/90 backdrop-blur-lg border-b border-border" : "bg-transparent"
     )}>
-      <div className="wrap">
-        <div className="flex items-center justify-between py-3.5 gap-3.5">
-          <div className="flex gap-2.5 items-center font-extrabold tracking-wide text-lg text-foreground">
-            <div 
-              className="w-[34px] h-[34px] rounded-xl bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--secondary))] shadow-[0_10px_26px_rgba(124,92,255,0.22)]" 
-              aria-hidden="true" 
-            />
-            <div>AIPivot</div>
-            <span className="hidden sm:inline-flex pill">
-              <span className="w-2 h-2 rounded-full bg-[#34D399] shadow-[0_0_0_4px_rgba(52,211,153,0.12)]"></span>
-              Built for agencies
-            </span>
-          </div>
+      <div className="container-main">
+        <div className="flex items-center justify-between h-20">
+          {/* Logo */}
+          <a href="#" className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-cyan-400 flex items-center justify-center">
+              <span className="text-primary-foreground font-bold text-lg">AI</span>
+            </div>
+            <span className="font-display font-bold text-xl text-foreground">AIPivot</span>
+          </a>
           
-          <nav className="hidden md:flex gap-6 items-center text-muted-foreground text-sm font-medium">
-            <a href="#roi" className="hover:text-foreground transition-colors">ROI</a>
-            <a href="#replace" className="hover:text-foreground transition-colors">Replace</a>
-            <a href="#how" className="hover:text-foreground transition-colors">How it works</a>
-            <a href="#agents" className="hover:text-foreground transition-colors">Agents</a>
-            <a href="#faq" className="hover:text-foreground transition-colors">FAQ</a>
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex items-center gap-8">
+            {navLinks.map(link => (
+              <a 
+                key={link.href}
+                href={link.href} 
+                className="text-muted-foreground hover:text-foreground transition-colors font-medium"
+              >
+                {link.label}
+              </a>
+            ))}
           </nav>
           
-          <div className="flex gap-2.5 items-center">
+          {/* Actions */}
+          <div className="flex items-center gap-4">
             <ThemeToggle />
-            <a className="btn btn-small hidden sm:flex" href="#demo">View demo</a>
-            <a className="btn btn-primary btn-small" href="#book">Book a call</a>
+            <a href="#contact" className="hidden sm:inline-flex btn btn-primary">
+              Free Consultation
+            </a>
+            <button 
+              className="md:hidden p-2 text-foreground"
+              onClick={() => setMobileOpen(!mobileOpen)}
+            >
+              {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
           </div>
         </div>
       </div>
+
+      {/* Mobile Menu */}
+      {mobileOpen && (
+        <div className="md:hidden bg-background border-t border-border">
+          <nav className="container-main py-4 flex flex-col gap-4">
+            {navLinks.map(link => (
+              <a 
+                key={link.href}
+                href={link.href} 
+                className="text-foreground font-medium py-2"
+                onClick={() => setMobileOpen(false)}
+              >
+                {link.label}
+              </a>
+            ))}
+            <a href="#contact" className="btn btn-primary mt-2" onClick={() => setMobileOpen(false)}>
+              Free Consultation
+            </a>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }
