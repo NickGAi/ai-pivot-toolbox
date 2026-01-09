@@ -45,7 +45,7 @@ export function Hero() {
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
               <a href="#contact" className="btn btn-primary text-lg px-8 py-4">
                 Free Consultation
                 <ArrowRight className="ml-2 w-5 h-5" />
@@ -54,6 +54,22 @@ export function Hero() {
                 <Play className="mr-2 w-5 h-5" />
                 See How It Works
               </a>
+            </div>
+
+            {/* Video Welcome */}
+            <div className="relative max-w-3xl mx-auto">
+              <div className="aspect-video rounded-2xl bg-card border border-border overflow-hidden relative group cursor-pointer hover:border-primary/50 transition-all duration-300">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-cyan-500/10" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-20 h-20 rounded-full bg-primary/90 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-primary/30">
+                    <Play className="w-8 h-8 text-primary-foreground ml-1" fill="currentColor" />
+                  </div>
+                </div>
+                <div className="absolute bottom-4 left-4 text-left">
+                  <p className="text-sm text-muted-foreground">Watch our</p>
+                  <p className="text-lg font-semibold text-foreground">Welcome Video</p>
+                </div>
+              </div>
             </div>
           </motion.div>
 
