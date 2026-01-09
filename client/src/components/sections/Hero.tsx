@@ -1,6 +1,16 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Play } from "lucide-react";
 
+const logosRow1 = [
+  "Ray White", "RE/MAX", "Keller Williams", "Century 21", "Coldwell Banker", 
+  "Harcourts", "LJ Hooker", "Savills", "Knight Frank", "Compass"
+];
+
+const logosRow2 = [
+  "Sotheby's", "McGrath", "Barry Plant", "Foxtons", "Bayleys", 
+  "Berkshire Hathaway", "eXp Realty", "PRD", "Raine & Horne", "Barfoot & Thompson"
+];
+
 export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
@@ -47,23 +57,44 @@ export function Hero() {
             </div>
           </motion.div>
 
-          {/* Stats */}
+          {/* Logo Marquee */}
           <motion.div 
-            className="grid grid-cols-3 gap-8 mt-20 pt-12 border-t border-border"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            className="mt-20 pt-12 border-t border-border"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            {[
-              { value: "500+", label: "Real Estate Clients" },
-              { value: "24/7", label: "AI Availability" },
-              { value: "10x", label: "Faster Response" },
-            ].map((stat, i) => (
-              <div key={i} className="text-center">
-                <div className="text-3xl sm:text-4xl font-bold text-foreground">{stat.value}</div>
-                <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
+            <p className="text-sm text-muted-foreground mb-8 uppercase tracking-wider">
+              Trusted by Leading Real Estate Brands
+            </p>
+            
+            {/* Row 1 - Moving Left */}
+            <div className="relative overflow-hidden mb-6">
+              <div className="flex animate-marquee-left whitespace-nowrap">
+                {[...logosRow1, ...logosRow1].map((logo, i) => (
+                  <div 
+                    key={i} 
+                    className="mx-8 text-xl font-bold text-white/70 hover:text-white transition-colors flex-shrink-0"
+                  >
+                    {logo}
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+
+            {/* Row 2 - Moving Right */}
+            <div className="relative overflow-hidden">
+              <div className="flex animate-marquee-right whitespace-nowrap">
+                {[...logosRow2, ...logosRow2].map((logo, i) => (
+                  <div 
+                    key={i} 
+                    className="mx-8 text-xl font-bold text-white/70 hover:text-white transition-colors flex-shrink-0"
+                  >
+                    {logo}
+                  </div>
+                ))}
+              </div>
+            </div>
           </motion.div>
         </div>
       </div>
