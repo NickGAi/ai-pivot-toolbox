@@ -20,7 +20,7 @@ const services = [
   {
     icon: BarChart3,
     title: "AI Analytics",
-    description: "Real-time insights into customer behavior, lead quality, and conversion rates for your real estate business."
+    description: "Real-time insights into customer behaviour, lead quality, and conversion rates for your real estate business."
   },
   {
     icon: Zap,

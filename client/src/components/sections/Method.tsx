@@ -23,8 +23,8 @@ const steps = [
   {
     icon: Rocket,
     step: "04",
-    title: "Launch & Optimize",
-    description: "Go live with continuous monitoring and optimization to maximize your results."
+    title: "Launch & Optimise",
+    description: "Go live with continuous monitoring and optimisation to maximise your results."
   }
 ];
 

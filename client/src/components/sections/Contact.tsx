@@ -16,7 +16,7 @@ export function Contact() {
               Ready to Transform Your Business?
             </h2>
             <p className="text-xl text-muted-foreground">
-              Book a free consultation to see how AI can revolutionize your real estate operations
+              Book a free consultation to see how AI can revolutionise your real estate operations
             </p>
           </motion.div>
 

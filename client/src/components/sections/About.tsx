@@ -24,7 +24,7 @@ export function About() {
               Why Choose <span className="gradient-text">AIPivot</span>?
             </h2>
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-              We specialize exclusively in AI solutions for the real estate industry. 
+              We specialise exclusively in AI solutions for the real estate industry. 
               Our team understands the unique challenges you face and builds solutions 
               that actually work in the real world.
             </p>
