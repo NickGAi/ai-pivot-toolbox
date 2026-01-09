@@ -36,7 +36,7 @@ const services = [
 
 export function Services() {
   return (
-    <section id="services" className="py-24 bg-card">
+    <section id="products" className="py-24 bg-card">
       <div className="container-main">
         <motion.div 
           className="text-center mb-16"
@@ -45,10 +45,10 @@ export function Services() {
           viewport={{ once: true }}
         >
           <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">
-            Our AI Solutions
+            Our Products
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Purpose-built AI tools designed specifically for the real estate industry
+            Purpose-built AI products designed specifically for the real estate industry
           </p>
         </motion.div>
 

@@ -14,10 +14,10 @@ export function Navbar() {
   }, []);
 
   const navLinks = [
-    { href: "#services", label: "Services" },
     { href: "#method", label: "Method" },
+    { href: "#products", label: "Products" },
+    { href: "#integrations", label: "Integrations" },
     { href: "#about", label: "About" },
-    { href: "#contact", label: "Contact" },
   ];
 
   return (

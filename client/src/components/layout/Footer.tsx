@@ -15,10 +15,10 @@ export function Footer() {
 
           {/* Links */}
           <nav className="flex items-center gap-8 text-muted-foreground">
-            <a href="#services" className="hover:text-foreground transition-colors">Services</a>
             <a href="#method" className="hover:text-foreground transition-colors">Method</a>
+            <a href="#products" className="hover:text-foreground transition-colors">Products</a>
+            <a href="#integrations" className="hover:text-foreground transition-colors">Integrations</a>
             <a href="#about" className="hover:text-foreground transition-colors">About</a>
-            <a href="#contact" className="hover:text-foreground transition-colors">Contact</a>
           </nav>
 
           {/* Copyright */}
