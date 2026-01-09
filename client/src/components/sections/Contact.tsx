@@ -108,7 +108,7 @@ export function Contact() {
                     </div>
                     <div>
                       <div className="text-sm text-muted-foreground">Email us</div>
-                      <div className="text-foreground font-medium">hello@aipivot.com</div>
+                      <div className="text-foreground font-medium">nick@aipivot.com.au</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
