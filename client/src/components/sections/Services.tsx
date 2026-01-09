@@ -10,7 +10,7 @@ const services = [
   {
     icon: Phone,
     title: "AI Phone Executive",
-    description: "Handle inbound and outbound calls effortlessly. Qualify leads, book appointments, and integrate with your CRM."
+    description: "Handle inbound and outbound calls effortlessly. Qualify leads, book appointments, integrate with your CRM, and best of all COLD CALLING."
   },
   {
     icon: MessageSquare,
