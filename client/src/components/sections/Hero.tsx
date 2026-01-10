@@ -35,7 +35,9 @@ export function Hero() {
 
             {/* Main Headline */}
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.1] mb-6">
-              <span className="text-foreground">Powering Real Estate with </span>
+              <span className="text-foreground">Powering </span>
+              <span className="gradient-text">Real Estate</span>
+              <span className="text-foreground"> with </span>
               <span className="gradient-text">AI Solutions</span>
             </h1>
 
