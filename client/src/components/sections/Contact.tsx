@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -67,7 +67,7 @@ export function Contact() {
   return (
     <section id="contact" className="py-24">
       <div className="container-main">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-xl mx-auto">
           <motion.div 
             className="text-center mb-12"
             initial={{ opacity: 0, y: 20 }}
@@ -88,110 +88,71 @@ export function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <div className="grid md:grid-cols-2 gap-12">
-              {/* Contact Info */}
-              <div>
-                <h3 className="text-2xl font-bold text-foreground mb-6">Get in Touch</h3>
-                <div className="space-y-6">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                      <Phone className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <div className="text-sm text-muted-foreground">Call us</div>
-                      <div className="text-foreground font-medium">0415 685 544</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                      <Mail className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <div className="text-sm text-muted-foreground">Email us</div>
-                      <div className="text-foreground font-medium">nick@aipivot.com.au</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                      <MapPin className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <div className="text-sm text-muted-foreground">Location</div>
-                      <div className="text-foreground font-medium">Australia-wide</div>
-                    </div>
-                  </div>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <input
+                    type="text"
+                    name="firstName"
+                    placeholder="First Name"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                  />
+                </div>
+                <div>
+                  <input
+                    type="text"
+                    name="lastName"
+                    placeholder="Last Name"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                  />
                 </div>
               </div>
-
-              {/* Contact Form */}
               <div>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <input
-                        type="text"
-                        name="firstName"
-                        placeholder="First Name"
-                        value={formData.firstName}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-                      />
-                    </div>
-                    <div>
-                      <input
-                        type="text"
-                        name="lastName"
-                        placeholder="Last Name"
-                        value={formData.lastName}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <input
-                      type="email"
-                      name="email"
-                      placeholder="Email Address"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-                    />
-                  </div>
-                  <div>
-                    <input
-                      type="tel"
-                      name="phone"
-                      placeholder="Phone Number (Optional)"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-                    />
-                  </div>
-                  <div>
-                    <textarea
-                      name="message"
-                      placeholder="Tell us about your business needs (Optional)"
-                      value={formData.message}
-                      onChange={handleChange}
-                      rows={4}
-                      className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary resize-none"
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="btn btn-primary w-full justify-center disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {isSubmitting ? "Sending..." : "Book Free Consultation"}
-                    {!isSubmitting && <ArrowRight className="ml-2 w-5 h-5" />}
-                  </button>
-                </form>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email Address"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                />
               </div>
-            </div>
+              <div>
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="Phone Number (Optional)"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                />
+              </div>
+              <div>
+                <textarea
+                  name="message"
+                  placeholder="Tell us about your business needs (Optional)"
+                  value={formData.message}
+                  onChange={handleChange}
+                  rows={4}
+                  className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary resize-none"
+                />
+              </div>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="btn btn-primary w-full justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isSubmitting ? "Sending..." : "Book Free Consultation"}
+                {!isSubmitting && <ArrowRight className="ml-2 w-5 h-5" />}
+              </button>
+            </form>
           </motion.div>
         </div>
       </div>
