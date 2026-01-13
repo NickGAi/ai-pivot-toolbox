@@ -53,6 +53,7 @@ interface ContactFormData {
   lastName: string;
   email: string;
   phone?: string | null;
+  preferredDate?: string | null;
   message?: string | null;
 }
 
@@ -60,16 +61,28 @@ export async function sendContactNotification(data: ContactFormData): Promise<vo
   try {
     const gmail = await getUncachableGmailClient();
     
-    const subject = `New Lead: ${data.firstName} ${data.lastName}`;
+    const formattedDate = data.preferredDate 
+      ? new Date(data.preferredDate).toLocaleString('en-AU', { 
+          weekday: 'long', 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit'
+        })
+      : 'Not specified';
+    
+    const subject = `Meeting Request: ${data.firstName} ${data.lastName}`;
     const htmlBody = `
-      <h2>New Contact Form Submission</h2>
+      <h2>New Meeting Request</h2>
       <p><strong>Name:</strong> ${data.firstName} ${data.lastName}</p>
       <p><strong>Email:</strong> ${data.email}</p>
       <p><strong>Phone:</strong> ${data.phone || 'Not provided'}</p>
-      <p><strong>Message:</strong></p>
-      <p>${data.message || 'No message provided'}</p>
+      <p><strong>Preferred Date/Time:</strong> ${formattedDate}</p>
+      <p><strong>About Their Business:</strong></p>
+      <p>${data.message || 'No details provided'}</p>
       <hr>
-      <p><em>This lead was captured from your AIPivot website.</em></p>
+      <p><em>This meeting request was submitted via your AIPivot website.</em></p>
     `;
     
     const emailLines = [

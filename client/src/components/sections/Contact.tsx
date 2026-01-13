@@ -11,6 +11,7 @@ export function Contact() {
     lastName: "",
     email: "",
     phone: "",
+    preferredDate: "",
     message: "",
   });
 
@@ -37,6 +38,7 @@ export function Contact() {
           lastName: "",
           email: "",
           phone: "",
+          preferredDate: "",
           message: "",
         });
       } else {
@@ -75,10 +77,10 @@ export function Contact() {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">
-              Ready to Transform Your Business?
+              Book a Meeting
             </h2>
             <p className="text-xl text-muted-foreground">
-              Book a free consultation to see how AI can revolutionise your real estate operations
+              Schedule a free consultation to see how AI can revolutionise your real estate operations
             </p>
           </motion.div>
 
@@ -128,8 +130,19 @@ export function Contact() {
                 <input
                   type="tel"
                   name="phone"
-                  placeholder="Phone Number (Optional)"
+                  placeholder="Phone Number"
                   value={formData.phone}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                />
+              </div>
+              <div>
+                <label className="block text-sm text-muted-foreground mb-2">Preferred Meeting Date & Time</label>
+                <input
+                  type="datetime-local"
+                  name="preferredDate"
+                  value={formData.preferredDate}
                   onChange={handleChange}
                   className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
                 />
@@ -137,10 +150,10 @@ export function Contact() {
               <div>
                 <textarea
                   name="message"
-                  placeholder="Tell us about your business needs (Optional)"
+                  placeholder="Tell us about your business (Optional)"
                   value={formData.message}
                   onChange={handleChange}
-                  rows={4}
+                  rows={3}
                   className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary resize-none"
                 />
               </div>
@@ -149,7 +162,7 @@ export function Contact() {
                 disabled={isSubmitting}
                 className="btn btn-primary w-full justify-center disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {isSubmitting ? "Sending..." : "Book Free Consultation"}
+                {isSubmitting ? "Sending..." : "Request Meeting"}
                 {!isSubmitting && <ArrowRight className="ml-2 w-5 h-5" />}
               </button>
             </form>

@@ -21,6 +21,7 @@ export async function registerRoutes(
           lastName: submission.lastName,
           email: submission.email,
           phone: submission.phone,
+          preferredDate: submission.preferredDate,
           message: submission.message,
         });
       } catch (emailError) {

@@ -9,6 +9,7 @@ export const contactSubmissions = pgTable("contact_submissions", {
   lastName: text("last_name").notNull(),
   email: text("email").notNull(),
   phone: text("phone"),
+  preferredDate: text("preferred_date"),
   message: text("message"),
   createdAt: timestamp("created_at").notNull().default(sql`now()`),
 });
@@ -20,6 +21,7 @@ export const insertContactSubmissionSchema = createInsertSchema(contactSubmissio
   email: z.string().email("Please provide a valid email address"),
   firstName: z.string().min(1, "First name is required"),
   lastName: z.string().min(1, "Last name is required"),
+  phone: z.string().min(1, "Phone number is required"),
 });
 
 export type InsertContactSubmission = z.infer<typeof insertContactSubmissionSchema>;
