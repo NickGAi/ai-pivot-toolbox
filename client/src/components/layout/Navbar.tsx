@@ -21,45 +21,60 @@ export function Navbar() {
   ];
 
   return (
-    <header className={cn(
-      "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-      scrolled ? "bg-background/90 backdrop-blur-lg border-b border-border" : "bg-transparent"
-    )}>
+    <header 
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        scrolled ? "bg-background/90 backdrop-blur-lg border-b border-border" : "bg-transparent"
+      )}
+      role="banner"
+    >
       <div className="container-main">
         <div className="flex items-center h-20">
-          {/* Logo */}
-          <a href="#" className="flex items-center gap-3">
+          <a 
+            href="#" 
+            className="flex items-center gap-3"
+            aria-label="AIPivot - AI Automation Agency Australia - Home"
+            itemScope
+            itemType="https://schema.org/Organization"
+          >
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-cyan-400 flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-lg">AI</span>
+              <span className="text-primary-foreground font-bold text-lg" aria-hidden="true">AI</span>
             </div>
-            <span className="font-display font-bold text-xl text-foreground">AIPivot</span>
+            <span className="font-display font-bold text-xl text-foreground" itemProp="name">AIPivot</span>
           </a>
           
-          {/* Desktop Nav + Actions - Right aligned */}
           <div className="hidden md:flex items-center gap-8 ml-auto">
-            <nav className="flex items-center gap-8">
+            <nav className="flex items-center gap-8" role="navigation" aria-label="Main navigation">
               {navLinks.map(link => (
                 <a 
                   key={link.href}
                   href={link.href} 
                   className="text-muted-foreground hover:text-foreground transition-colors font-medium"
+                  data-testid={`nav-link-${link.label.toLowerCase()}`}
                 >
                   {link.label}
                 </a>
               ))}
             </nav>
             <ThemeToggle />
-            <a href="#contact" className="btn btn-primary">
+            <a 
+              href="#contact" 
+              className="btn btn-primary"
+              data-testid="nav-cta-consultation"
+            >
               Free Consultation
             </a>
           </div>
 
-          {/* Mobile Actions */}
           <div className="flex items-center gap-4 ml-auto md:hidden">
             <ThemeToggle />
             <button 
               className="p-2 text-foreground"
               onClick={() => setMobileOpen(!mobileOpen)}
+              aria-expanded={mobileOpen}
+              aria-controls="mobile-menu"
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              data-testid="mobile-menu-toggle"
             >
               {mobileOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -67,10 +82,9 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="md:hidden bg-background border-t border-border">
-          <nav className="container-main py-4 flex flex-col gap-4">
+        <div id="mobile-menu" className="md:hidden bg-background border-t border-border">
+          <nav className="container-main py-4 flex flex-col gap-4" role="navigation" aria-label="Mobile navigation">
             {navLinks.map(link => (
               <a 
                 key={link.href}

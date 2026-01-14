@@ -12,7 +12,13 @@ const benefits = [
 
 export function About() {
   return (
-    <section id="about" className="py-24 bg-card">
+    <section 
+      id="about" 
+      className="py-24 bg-card"
+      aria-labelledby="about-heading"
+      itemScope
+      itemType="https://schema.org/AboutPage"
+    >
       <div className="container-main">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <motion.div
@@ -20,13 +26,13 @@ export function About() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
+            <h2 id="about-heading" className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
               Why Choose <span className="gradient-text">AIPivot</span>?
             </h2>
-            <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-              We specialise in AI solutions that drive real business results. 
-              Our team understands the unique challenges you face and builds solutions 
-              that actually work in the real world.
+            <p className="text-xl text-muted-foreground mb-8 leading-relaxed" itemProp="description">
+              Australia's enterprise AI automation specialists. We deliver compliance-ready AI solutions 
+              that reduce operational costs by 60-80%. Our team builds AI voice agents, invoice automation, 
+              and lead nurturing systems that drive measurable business results.
             </p>
             <div className="grid sm:grid-cols-2 gap-4">
               {benefits.map((benefit, i) => (

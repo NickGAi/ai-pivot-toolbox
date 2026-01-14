@@ -30,7 +30,11 @@ const steps = [
 
 export function Method() {
   return (
-    <section id="method" className="py-24">
+    <section 
+      id="method" 
+      className="py-24"
+      aria-labelledby="method-heading"
+    >
       <div className="container-main">
         <motion.div 
           className="text-center mb-16"
@@ -38,11 +42,11 @@ export function Method() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            Our Method
+          <h2 id="method-heading" className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+            AI Implementation Method
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            A proven process to transform your business operations with AI
+            A proven 4-step process to transform your business operations with AI in 6-12 weeks
           </p>
         </motion.div>
 

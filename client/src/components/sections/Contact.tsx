@@ -69,7 +69,13 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24">
+    <section 
+      id="contact" 
+      className="py-24"
+      aria-labelledby="contact-heading"
+      itemScope
+      itemType="https://schema.org/ContactPage"
+    >
       <div className="container-main">
         <div className="max-w-xl mx-auto">
           <motion.div 
@@ -78,11 +84,11 @@ export function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-              Book a Meeting
+            <h2 id="contact-heading" className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+              Book a Free Consultation
             </h2>
             <p className="text-xl text-muted-foreground">
-              Schedule a free consultation to see how AI can revolutionise your business operations
+              Schedule a meeting with our AI specialists to discuss how AI automation can reduce your operational costs by 60-80%
             </p>
           </motion.div>
 
