@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 
 const integrations = [
   "Salesforce", "HubSpot", "Zapier", "Google Calendar", "Outlook",
-  "Slack", "Microsoft Teams", "REA Group", "Domain", "PropertyMe",
-  "AgentBox", "VaultRE", "Console Cloud", "Rex", "MRI Software"
+  "Slack", "Microsoft Teams", "Xero", "MYOB", "Monday.com",
+  "Asana", "Zoho", "Freshworks", "Pipedrive", "ServiceNow"
 ];
 
 export function Integrations() {

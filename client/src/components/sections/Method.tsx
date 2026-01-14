@@ -6,19 +6,19 @@ const steps = [
     icon: Database,
     step: "01",
     title: "Data Integration",
-    description: "We connect to your existing systems and understand your unique real estate workflows and data."
+    description: "We connect to your existing systems and understand your unique business workflows and data."
   },
   {
     icon: Brain,
     step: "02",
     title: "AI Training",
-    description: "Your AI is trained on your specific properties, processes, and customer interaction patterns."
+    description: "Your AI is trained on your specific products, services, and customer interaction patterns."
   },
   {
     icon: Cog,
     step: "03",
     title: "Automation Setup",
-    description: "We configure intelligent automations that handle leads, inquiries, and scheduling 24/7."
+    description: "We configure intelligent automations that handle leads, enquiries, and scheduling 24/7."
   },
   {
     icon: Rocket,
@@ -42,7 +42,7 @@ export function Method() {
             Our Method
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            A proven process to transform your real estate operations with AI
+            A proven process to transform your business operations with AI
           </p>
         </motion.div>
 

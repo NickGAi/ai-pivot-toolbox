@@ -10,7 +10,7 @@ const services = [
   {
     icon: Phone,
     title: "AI Phone Executive",
-    description: "Handle inbound and outbound calls effortlessly. Qualify leads, book appointments, integrate with your CRM, and best of all COLD CALLING."
+    description: "Handle inbound and outbound calls effortlessly. Qualify leads, book appointments, integrate with your CRM, and cold calling."
   },
   {
     icon: MessageSquare,
@@ -20,12 +20,12 @@ const services = [
   {
     icon: BarChart3,
     title: "AI Analytics",
-    description: "Real-time insights into customer behaviour, lead quality, and conversion rates for your real estate business."
+    description: "Real-time insights into customer behaviour, lead quality, and conversion rates for your business."
   },
   {
     icon: Zap,
     title: "Workflow Automation",
-    description: "Automate repetitive tasks, property listings updates, and client communications across all platforms."
+    description: "Automate repetitive tasks, data updates, and client communications across all platforms."
   },
   {
     icon: Users,
@@ -48,7 +48,7 @@ export function Services() {
             Our Products
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Purpose-built AI products designed specifically for the real estate industry
+            Purpose-built AI products designed to grow your business
           </p>
         </motion.div>
 

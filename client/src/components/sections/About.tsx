@@ -24,7 +24,7 @@ export function About() {
               Why Choose <span className="gradient-text">AIPivot</span>?
             </h2>
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-              We specialise exclusively in AI solutions for the real estate industry. 
+              We specialise in AI solutions that drive real business results. 
               Our team understands the unique challenges you face and builds solutions 
               that actually work in the real world.
             </p>
@@ -49,7 +49,7 @@ export function About() {
                 <div className="text-center p-8">
                   <div className="text-8xl font-bold gradient-text mb-4">AI</div>
                   <div className="text-2xl font-bold text-foreground">Powered by Intelligence</div>
-                  <div className="text-muted-foreground mt-2">Built for Real Estate</div>
+                  <div className="text-muted-foreground mt-2">Built for Business</div>
                 </div>
               </div>
             </div>

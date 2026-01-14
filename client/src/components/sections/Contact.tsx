@@ -80,7 +80,7 @@ export function Contact() {
               Book a Meeting
             </h2>
             <p className="text-xl text-muted-foreground">
-              Schedule a free consultation to see how AI can revolutionise your real estate operations
+              Schedule a free consultation to see how AI can revolutionise your business operations
             </p>
           </motion.div>
 

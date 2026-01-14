@@ -2,13 +2,13 @@ import { motion } from "framer-motion";
 import { ArrowRight, Play } from "lucide-react";
 
 const logosRow1 = [
-  "Ray White", "RE/MAX", "Keller Williams", "Century 21", "Coldwell Banker", 
-  "Harcourts", "LJ Hooker", "Savills", "Knight Frank", "Compass"
+  "Real Estate", "Healthcare", "Professional Services", "Finance", "Retail",
+  "Manufacturing", "Hospitality", "Legal", "Education", "Technology"
 ];
 
 const logosRow2 = [
-  "Sotheby's", "McGrath", "Barry Plant", "Foxtons", "Bayleys", 
-  "Berkshire Hathaway", "eXp Realty", "PRD", "Raine & Horne", "Barfoot & Thompson"
+  "Consulting", "Insurance", "Logistics", "Construction", "Automotive",
+  "Telecommunications", "Accounting", "Marketing", "Recruitment", "Property Management"
 ];
 
 export function Hero() {
@@ -30,20 +30,20 @@ export function Hero() {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-8">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              Transforming Real Estate with AI
+              Transforming Businesses with AI
             </div>
 
             {/* Main Headline */}
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.1] mb-6">
               <span className="text-foreground">Powering </span>
-              <span className="gradient-text">Real Estate</span>
+              <span className="gradient-text">Businesses</span>
               <span className="text-foreground"> with </span>
               <span className="gradient-text">AI Solutions</span>
             </h1>
 
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
               AI solutions that wow your customers, grow your sales, slash your overheads, 
-              and transform the way you do business in real estate.
+              and transform the way you do business.
             </p>
 
             {/* CTA Buttons */}
@@ -67,7 +67,7 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <p className="text-sm text-muted-foreground mb-8 uppercase tracking-wider">
-              Trusted by Leading Real Estate Brands
+              Trusted Across Industries
             </p>
             
             {/* Row 1 - Moving Left */}
