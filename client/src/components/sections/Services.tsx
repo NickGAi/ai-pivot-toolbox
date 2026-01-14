@@ -44,7 +44,7 @@ export function Services() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
             Our Products
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -52,11 +52,11 @@ export function Services() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {services.map((service, i) => (
             <motion.div
               key={i}
-              className="p-8 rounded-2xl bg-background border border-border hover:border-primary/50 transition-all duration-300 group"
+              className="p-6 sm:p-8 rounded-2xl bg-background border border-border hover:border-primary/50 transition-all duration-300 group"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
