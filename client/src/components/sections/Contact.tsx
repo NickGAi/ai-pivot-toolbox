@@ -11,6 +11,7 @@ export function Contact() {
     lastName: "",
     email: "",
     phone: "",
+    industry: "",
     preferredDate: "",
     message: "",
   });
@@ -38,6 +39,7 @@ export function Contact() {
           lastName: "",
           email: "",
           phone: "",
+          industry: "",
           preferredDate: "",
           message: "",
         });
@@ -136,6 +138,27 @@ export function Contact() {
                   required
                   className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
                 />
+              </div>
+              <div>
+                <select
+                  name="industry"
+                  value={formData.industry}
+                  onChange={handleChange as any}
+                  className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                >
+                  <option value="">Select Your Industry</option>
+                  <option value="Real Estate">Real Estate</option>
+                  <option value="Healthcare">Healthcare</option>
+                  <option value="Professional Services">Professional Services</option>
+                  <option value="Finance">Finance</option>
+                  <option value="Retail">Retail</option>
+                  <option value="Manufacturing">Manufacturing</option>
+                  <option value="Hospitality">Hospitality</option>
+                  <option value="Legal">Legal</option>
+                  <option value="Education">Education</option>
+                  <option value="Technology">Technology</option>
+                  <option value="Other">Other</option>
+                </select>
               </div>
               <div>
                 <label className="block text-sm text-muted-foreground mb-2">Preferred Meeting Date & Time</label>

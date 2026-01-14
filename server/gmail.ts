@@ -52,6 +52,7 @@ interface ContactFormData {
   lastName: string;
   email: string;
   phone?: string | null;
+  industry?: string | null;
   preferredDate?: string | null;
   message?: string | null;
 }
@@ -71,12 +72,13 @@ export async function sendContactNotification(data: ContactFormData): Promise<vo
         })
       : 'Not specified';
     
-    const subject = `Meeting Request: ${data.firstName} ${data.lastName}`;
+    const subject = `Meeting Request: ${data.firstName} ${data.lastName}${data.industry ? ` (${data.industry})` : ''}`;
     const htmlBody = `
       <h2>New Meeting Request</h2>
       <p><strong>Name:</strong> ${data.firstName} ${data.lastName}</p>
       <p><strong>Email:</strong> ${data.email}</p>
       <p><strong>Phone:</strong> ${data.phone || 'Not provided'}</p>
+      <p><strong>Industry:</strong> ${data.industry || 'Not specified'}</p>
       <p><strong>Preferred Date/Time:</strong> ${formattedDate}</p>
       <p><strong>About Their Business:</strong></p>
       <p>${data.message || 'No details provided'}</p>

@@ -21,6 +21,7 @@ export async function registerRoutes(
           lastName: submission.lastName,
           email: submission.email,
           phone: submission.phone,
+          industry: submission.industry,
           preferredDate: submission.preferredDate,
           message: submission.message,
         });

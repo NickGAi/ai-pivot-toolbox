@@ -20,6 +20,7 @@ export class MemStorage implements IStorage {
       lastName: insertSubmission.lastName,
       email: insertSubmission.email,
       phone: insertSubmission.phone ?? null,
+      industry: insertSubmission.industry ?? null,
       preferredDate: insertSubmission.preferredDate ?? null,
       message: insertSubmission.message ?? null,
       createdAt: new Date(),
