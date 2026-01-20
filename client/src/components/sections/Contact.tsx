@@ -85,11 +85,31 @@ export function Contact() {
             viewport={{ once: true }}
           >
             <h2 id="contact-heading" className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-              Book a Free Consultation
+              Book Your Strategy Call
             </h2>
-            <p className="text-xl text-muted-foreground">
-              Schedule a meeting with our AI specialists to discuss how AI automation can reduce your operational costs by 60-80%
+            <p className="text-xl text-muted-foreground mb-6">
+              A 30-minute call to map out your automation opportunities
             </p>
+            <div className="bg-background/50 rounded-xl p-6 border border-border text-left max-w-md mx-auto" data-testid="contact-process-info">
+              <p className="text-sm font-semibold text-foreground mb-3">What happens on the call:</p>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li className="flex items-start gap-2" data-testid="call-step-0">
+                  <span className="text-primary mt-0.5">✓</span>
+                  <span>We review your current workflows and pain points</span>
+                </li>
+                <li className="flex items-start gap-2" data-testid="call-step-1">
+                  <span className="text-primary mt-0.5">✓</span>
+                  <span>You get a clear picture of what can be automated</span>
+                </li>
+                <li className="flex items-start gap-2" data-testid="call-step-2">
+                  <span className="text-primary mt-0.5">✓</span>
+                  <span>We provide a rough timeline and investment range</span>
+                </li>
+              </ul>
+              <p className="text-xs text-muted-foreground mt-4 pt-3 border-t border-border" data-testid="no-sell-guarantee">
+                No hard sell. If we're not a fit, we'll tell you.
+              </p>
+            </div>
           </motion.div>
 
           <motion.div

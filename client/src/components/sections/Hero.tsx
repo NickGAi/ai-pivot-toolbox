@@ -41,14 +41,16 @@ export function Hero() {
               className="text-4xl sm:text-5xl lg:text-7xl font-extrabold leading-[1.1] mb-6"
               itemProp="headline"
             >
-              <span className="text-foreground">Powering </span>
-              <span className="gradient-text">Businesses</span>
-              <span className="text-foreground"> with </span>
-              <span className="gradient-text">AI Solutions</span>
+              <span className="text-foreground">Turn </span>
+              <span className="gradient-text">Missed Calls</span>
+              <span className="text-foreground"> & </span>
+              <span className="gradient-text">Admin</span>
+              <span className="text-foreground"> Into </span>
+              <span className="gradient-text">Automated Systems</span>
             </h1>
 
             <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed px-4 sm:px-0" itemProp="text">
-              Enterprise-grade AI automation for Australian businesses. Reduce operational costs by 60-80% with AI voice agents, invoice automation, lead nurturing, and compliance-ready solutions.
+              What used to take staff hours now runs automatically. We deploy AI that handles your calls, follow-ups, and back-office tasks in under 60 days.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-4 sm:px-0">

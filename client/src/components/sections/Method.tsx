@@ -42,11 +42,17 @@ export function Method() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6">
+            Our Proven Framework
+          </div>
           <h2 id="method-heading" className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            AI Implementation Method
+            The AIPivot Deployment Framework
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            A proven 4-step process to transform your business operations with AI in 6-12 weeks
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-6">
+            We connect your existing systems, train AI on your real workflows, and deploy automations that handle calls, messages, and admin — without hiring staff.
+          </p>
+          <p className="text-lg text-primary font-medium">
+            Live in 6-8 weeks. Full ROI typically within 90 days.
           </p>
         </motion.div>
 
