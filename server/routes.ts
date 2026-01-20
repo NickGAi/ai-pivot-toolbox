@@ -5,6 +5,49 @@ import { insertContactSubmissionSchema } from "@shared/schema";
 import { fromError } from "zod-validation-error";
 import { sendContactNotification } from "./gmail";
 
+async function sendToGHL(data: {
+  firstName: string | null;
+  lastName: string | null;
+  email: string;
+  phone: string | null;
+  industry?: string | null;
+  businessName?: string;
+  message?: string | null;
+}) {
+  const webhookUrl = process.env.GHL_WEBHOOK_URL;
+  if (!webhookUrl) {
+    console.log("GHL_WEBHOOK_URL not configured, skipping GHL integration");
+    return;
+  }
+
+  try {
+    const response = await fetch(webhookUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        first_name: data.firstName || "",
+        last_name: data.lastName || "",
+        email: data.email,
+        phone: data.phone || "",
+        industry: data.industry || "",
+        company_name: data.businessName || "",
+        source: "AIPivot Website",
+        notes: data.message || "",
+      }),
+    });
+
+    if (!response.ok) {
+      console.error("GHL webhook failed:", response.status, await response.text());
+    } else {
+      console.log("Lead sent to GHL successfully");
+    }
+  } catch (error) {
+    console.error("Failed to send lead to GHL:", error);
+  }
+}
+
 export async function registerRoutes(
   httpServer: Server,
   app: Express
@@ -13,6 +56,21 @@ export async function registerRoutes(
     try {
       const validatedData = insertContactSubmissionSchema.parse(req.body);
       const submission = await storage.createContactSubmission(validatedData);
+      
+      // Send to GoHighLevel webhook
+      try {
+        await sendToGHL({
+          firstName: submission.firstName,
+          lastName: submission.lastName,
+          email: submission.email,
+          phone: submission.phone,
+          industry: submission.industry || undefined,
+          businessName: req.body.businessName,
+          message: submission.message,
+        });
+      } catch (ghlError) {
+        console.error("Failed to send to GHL:", ghlError);
+      }
       
       // Send email notification
       try {
@@ -27,7 +85,6 @@ export async function registerRoutes(
         });
       } catch (emailError) {
         console.error("Failed to send email notification:", emailError);
-        // Continue even if email fails - the submission is still saved
       }
       
       res.json({ 

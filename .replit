@@ -41,3 +41,8 @@ waitForPort = 5000
 [agent]
 mockupState = "FULLSTACK"
 integrations = ["google-mail:1.0.0"]
+
+[userenv]
+
+[userenv.shared]
+GHL_WEBHOOK_URL = "https://services.leadconnectorhq.com/hooks/Qb0L9yp7HnPhg9QhPGUM/webhook-trigger/0c05f8f9-3d2d-49c6-9a26-fe3d3214fec4"
