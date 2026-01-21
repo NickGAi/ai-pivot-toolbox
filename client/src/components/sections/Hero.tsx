@@ -14,12 +14,12 @@ const logosRow2 = [
 export function Hero() {
   return (
     <section 
-      className="relative min-h-screen flex items-center pt-20 overflow-hidden"
+      className="relative min-h-screen flex items-center pt-20"
       aria-labelledby="hero-heading"
       itemScope
       itemType="https://schema.org/WPHeader"
     >
-      <div className="absolute inset-0 z-0" aria-hidden="true">
+      <div className="absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
       </div>
@@ -38,16 +38,10 @@ export function Hero() {
 
             <h1 
               id="hero-heading" 
-              className="text-4xl sm:text-5xl lg:text-7xl font-extrabold leading-[1.1] mb-6 px-4 sm:px-0"
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4"
               itemProp="headline"
             >
-              <span className="text-foreground">Turn </span>
-              <span className="gradient-text whitespace-normal">Missed Calls</span>
-              <span className="text-foreground"> & </span>
-              <span className="gradient-text">Admin</span>
-              <span className="block sm:inline" />
-              <span className="text-foreground">Into </span>
-              <span className="gradient-text whitespace-normal">Automated Systems</span>
+              Turn <span className="gradient-text">Missed Calls</span> & <span className="gradient-text">Admin</span> Into <span className="gradient-text">Automated Systems</span>
             </h1>
 
             <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed px-4 sm:px-0" itemProp="text">
