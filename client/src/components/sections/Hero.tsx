@@ -38,15 +38,16 @@ export function Hero() {
 
             <h1 
               id="hero-heading" 
-              className="text-4xl sm:text-5xl lg:text-7xl font-extrabold leading-[1.1] mb-6 break-words"
+              className="text-4xl sm:text-5xl lg:text-7xl font-extrabold leading-[1.1] mb-6 px-4 sm:px-0"
               itemProp="headline"
             >
               <span className="text-foreground">Turn </span>
-              <span className="gradient-text">Missed Calls</span>
+              <span className="gradient-text whitespace-normal">Missed Calls</span>
               <span className="text-foreground"> & </span>
               <span className="gradient-text">Admin</span>
-              <span className="text-foreground"> Into </span>
-              <span className="gradient-text">Automated Systems</span>
+              <span className="block sm:inline" />
+              <span className="text-foreground">Into </span>
+              <span className="gradient-text whitespace-normal">Automated Systems</span>
             </h1>
 
             <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed px-4 sm:px-0" itemProp="text">
