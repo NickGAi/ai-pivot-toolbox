@@ -38,18 +38,19 @@ export function Hero() {
 
             <h1 
               id="hero-heading" 
-              className="text-4xl sm:text-5xl lg:text-7xl font-extrabold leading-[1.1] mb-6"
+              className="text-3xl sm:text-5xl lg:text-7xl font-extrabold leading-[1.15] mb-6 px-2 sm:px-0"
               itemProp="headline"
             >
               <span className="text-foreground">Turn </span>
               <span className="gradient-text">Missed Calls</span>
               <span className="text-foreground"> & </span>
               <span className="gradient-text">Admin</span>
+              <br className="sm:hidden" />
               <span className="text-foreground"> Into </span>
               <span className="gradient-text">Automated Systems</span>
             </h1>
 
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed px-4 sm:px-0" itemProp="text">
+            <p className="text-base sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed px-4 sm:px-0" itemProp="text">
               What used to take staff hours now runs automatically. We deploy AI that handles your calls, follow-ups, and back-office tasks in under 60 days.
             </p>
 
