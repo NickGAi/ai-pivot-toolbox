@@ -41,7 +41,7 @@ export function Hero() {
               className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4"
               itemProp="headline"
             >
-              We help growing businesses <span className="gradient-text">automate operations</span> with AI — so scale doesn't mean more work.
+              We help businesses <span className="gradient-text">automate with AI</span>...
             </h1>
 
             <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed px-4 sm:px-0" itemProp="text">
