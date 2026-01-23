@@ -37,10 +37,10 @@ export function Hero() {
 
             <h1 
               id="hero-heading" 
-              className="sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 pt-[10px] pb-[10px] text-[75px]"
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-4"
               itemProp="headline"
             >
-              We help businesses <span className="gradient-text">automate with AI</span>...
+              We Help Businesses <span className="gradient-text">Automate With AI</span>
             </h1>
 
             <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed px-4 sm:px-0" itemProp="text">
