@@ -23,7 +23,6 @@ export function Hero() {
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
       </div>
-
       <div className="container-main relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
@@ -38,7 +37,7 @@ export function Hero() {
 
             <h1 
               id="hero-heading" 
-              className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4"
+              className="sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 pt-[10px] pb-[10px] text-[80px]"
               itemProp="headline"
             >
               We help businesses <span className="gradient-text">automate with AI</span>...
