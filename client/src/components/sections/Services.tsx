@@ -14,7 +14,7 @@ const services = [
   },
   {
     icon: MessageSquare,
-    title: "AI Receptionist",
+    title: "AI Personal Assistant",
     description: "Automate appointment scheduling and customer calls. Sync with Google or Outlook calendars seamlessly."
   },
   {
