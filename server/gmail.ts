@@ -88,7 +88,7 @@ export async function sendContactNotification(data: ContactFormData): Promise<vo
     
     const emailLines = [
       'From: me',
-      'To: nick@aipivot.com.au',
+      'To: nick@aipivot.com.au, nick@nickgriffiths.com.au',
       `Subject: ${subject}`,
       'Content-Type: text/html; charset=utf-8',
       '',
