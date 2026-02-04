@@ -43,7 +43,7 @@ export function Hero() {
               We Help Businesses <span className="gradient-text">Automate With AI</span>
             </h1>
 
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed px-4 sm:px-0" itemProp="text">We can deploy AI that handles your lead generation, calls, sms, follow-ups, and back-office tasks in under 60 days.</p>
+            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed px-4 sm:px-0" itemProp="text">We can deploy AI that handles your marketing, lead generation, calls, sms, follow-ups, and back-office tasks in under 60 days.    Be the first... Stay ahead of your compitions</p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-4 sm:px-0">
               <a 
