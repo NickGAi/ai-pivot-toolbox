@@ -23,45 +23,45 @@ export function Hero() {
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
       </div>
-      <div className="container-main relative z-10">
+      <div className="container-main relative z-10 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-8" role="status">
+            <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs sm:text-sm font-medium mb-6 sm:mb-8" role="status">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" aria-hidden="true" />
               <span itemProp="description">Transforming Businesses with AI</span>
             </div>
 
             <h1 
               id="hero-heading" 
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-4"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 leading-tight"
               itemProp="headline"
             >
               We Help Businesses <span className="gradient-text">Automate With AI</span>
             </h1>
 
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed px-4 sm:px-0" itemProp="text">We can deploy AI that handles your marketing, lead generation, calls, sms, follow-ups, and back-office tasks in under 60 days.    Be the first... Stay ahead of your compitions</p>
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-6 sm:mb-8 md:mb-10 leading-relaxed" itemProp="text">We can deploy AI that handles your marketing, lead generation, calls, sms, follow-ups, and back-office tasks in under 60 days. Be the first... Stay ahead of your competition</p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-4 sm:px-0">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
               <a 
                 href="#contact" 
-                className="btn btn-primary text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto justify-center"
+                className="btn btn-primary text-sm sm:text-base md:text-lg px-5 sm:px-6 md:px-8 py-3 sm:py-4 w-full sm:w-auto justify-center"
                 data-testid="hero-cta-consultation"
                 aria-label="Request a free AI automation consultation"
               >
                 Free Consultation
-                <ArrowRight className="ml-2 w-5 h-5" aria-hidden="true" />
+                <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
               </a>
               <a 
                 href="#method" 
-                className="btn btn-outline text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto justify-center"
+                className="btn btn-outline text-sm sm:text-base md:text-lg px-5 sm:px-6 md:px-8 py-3 sm:py-4 w-full sm:w-auto justify-center"
                 data-testid="hero-cta-method"
                 aria-label="Learn about our AI implementation method"
               >
-                <Play className="mr-2 w-5 h-5" aria-hidden="true" />
+                <Play className="mr-2 w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
                 See How It Works
               </a>
             </div>
