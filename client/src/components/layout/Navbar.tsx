@@ -28,19 +28,19 @@ export function Navbar() {
       )}
       role="banner"
     >
-      <div className="container-main">
-        <div className="flex items-center h-20">
+      <div className="container-main px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 sm:h-20">
           <a 
             href="#" 
-            className="flex items-center gap-3"
+            className="flex items-center gap-2 sm:gap-3 flex-shrink-0"
             aria-label="AIPivot - AI Automation Agency Australia - Home"
             itemScope
             itemType="https://schema.org/Organization"
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-cyan-400 flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-lg" aria-hidden="true">AI</span>
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-gradient-to-br from-primary to-cyan-400 flex items-center justify-center">
+              <span className="text-primary-foreground font-bold text-base sm:text-lg" aria-hidden="true">AI</span>
             </div>
-            <span className="font-display font-bold text-xl text-foreground" itemProp="name">AIPivot</span>
+            <span className="font-display font-bold text-lg sm:text-xl text-foreground" itemProp="name">AIPivot</span>
           </a>
           
           <div className="hidden md:flex items-center gap-8 ml-auto">
@@ -66,7 +66,7 @@ export function Navbar() {
             </a>
           </div>
 
-          <div className="flex items-center gap-4 ml-auto md:hidden">
+          <div className="flex items-center gap-2 sm:gap-4 md:hidden">
             <ThemeToggle />
             <button 
               className="p-2 text-foreground"
