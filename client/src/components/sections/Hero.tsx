@@ -69,40 +69,55 @@ export function Hero() {
 
           {/* Logo Marquee */}
           <motion.div 
-            className="mt-12 sm:mt-20 pt-8 sm:pt-12 border-t border-border"
+            className="mt-12 sm:mt-20 pt-8 sm:pt-12 border-t border-border overflow-hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <p className="text-sm text-muted-foreground mb-8 uppercase tracking-wider">
+            <p className="text-sm text-muted-foreground mb-6 sm:mb-8 uppercase tracking-wider">
               Trusted Across Industries
             </p>
             
-            {/* Row 1 - Moving Left */}
-            <div className="relative overflow-hidden mb-6">
-              <div className="flex animate-marquee-left whitespace-nowrap">
-                {[...logosRow1, ...logosRow1].map((logo, i) => (
-                  <div 
-                    key={i} 
-                    className="mx-4 sm:mx-8 text-sm sm:text-xl font-bold text-white/70 hover:text-white transition-colors flex-shrink-0"
-                  >
-                    {logo}
-                  </div>
-                ))}
-              </div>
+            {/* Mobile: Wrapped grid */}
+            <div className="flex flex-wrap justify-center gap-3 sm:hidden">
+              {[...logosRow1, ...logosRow2.slice(0, 4)].map((logo, i) => (
+                <div 
+                  key={i} 
+                  className="text-xs font-bold text-white/70 px-2 py-1"
+                >
+                  {logo}
+                </div>
+              ))}
             </div>
 
-            {/* Row 2 - Moving Right */}
-            <div className="relative overflow-hidden">
-              <div className="flex animate-marquee-right whitespace-nowrap">
-                {[...logosRow2, ...logosRow2].map((logo, i) => (
-                  <div 
-                    key={i} 
-                    className="mx-4 sm:mx-8 text-sm sm:text-xl font-bold text-white/70 hover:text-white transition-colors flex-shrink-0"
-                  >
-                    {logo}
-                  </div>
-                ))}
+            {/* Desktop: Scrolling marquee */}
+            <div className="hidden sm:block">
+              {/* Row 1 - Moving Left */}
+              <div className="relative overflow-hidden mb-6">
+                <div className="flex animate-marquee-left whitespace-nowrap">
+                  {[...logosRow1, ...logosRow1].map((logo, i) => (
+                    <div 
+                      key={i} 
+                      className="mx-8 text-xl font-bold text-white/70 hover:text-white transition-colors flex-shrink-0"
+                    >
+                      {logo}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Row 2 - Moving Right */}
+              <div className="relative overflow-hidden">
+                <div className="flex animate-marquee-right whitespace-nowrap">
+                  {[...logosRow2, ...logosRow2].map((logo, i) => (
+                    <div 
+                      key={i} 
+                      className="mx-8 text-xl font-bold text-white/70 hover:text-white transition-colors flex-shrink-0"
+                    >
+                      {logo}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </motion.div>
