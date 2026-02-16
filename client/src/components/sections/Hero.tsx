@@ -40,7 +40,7 @@ export function Hero() {
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 leading-tight"
               itemProp="headline"
             >
-              We Help Businesses <span className="gradient-text">Automate With AI</span>
+              Automate your business with <span className="gradient-text">AI solutions that run 24/7</span>
             </h1>
 
             <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-6 sm:mb-8 md:mb-10 leading-relaxed" itemProp="text">We can deploy AI that handles your marketing, lead generation, calls, sms, follow-ups, and back-office tasks in under 60 days. Be the first... Stay ahead of your competition</p>
