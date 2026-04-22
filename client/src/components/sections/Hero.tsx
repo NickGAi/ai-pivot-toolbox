@@ -32,7 +32,7 @@ export function Hero() {
           >
             <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs sm:text-sm font-medium mb-6 sm:mb-8" role="status">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" aria-hidden="true" />
-              <span itemProp="description">Transforming Businesses with AI</span>
+              <span itemProp="description">AI Automation &amp; SEO Agency — Brisbane, Australia</span>
             </div>
 
             <h1 
@@ -43,7 +43,7 @@ export function Hero() {
               Automate your business with <span className="gradient-text">AI solutions that run 24/7</span>
             </h1>
 
-            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-6 sm:mb-8 md:mb-10 leading-relaxed" itemProp="text">We can deploy AI that handles your marketing, lead generation, calls, sms, follow-ups, and back-office tasks in under 60 days. Be the first... Stay ahead of your competition</p>
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-6 sm:mb-8 md:mb-10 leading-relaxed" itemProp="text">We build AI automation, AI-powered SEO, and custom software that grow your business around the clock — from getting found on Google and AI search, to converting leads and handling operations automatically.</p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
               <a 

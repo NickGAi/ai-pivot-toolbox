@@ -2,7 +2,7 @@
 
 ## Overview
 
-AIPivot is a marketing website for an AI automation agency based in Brisbane, Australia. The platform showcases enterprise AI automation services including AI voice agents, invoice automation, lead nurturing, and compliance-ready solutions. The website is designed for SEO/GEO optimization targeting Australian enterprise clients seeking AI automation implementation services.
+AIPivot is a marketing website for an AI SEO and automation agency based in Brisbane, Australia. The platform showcases a full suite of AI-powered services including: AI SEO, AIO (Answer Engine Optimisation), GEO (Generative Engine Optimisation), AI voice agents, workflow automation, website design, app/software development, and AI tools & integrations. The website is designed for SEO/AEO/GEO/LLM optimisation targeting Australian businesses seeking AI-powered growth.
 
 ## User Preferences
 
