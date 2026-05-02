@@ -5,156 +5,134 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body {
-    width: 100vw; height: 100vh;
-    overflow: hidden;
-    background: #0c0c14;
-  }
+  html, body { width: 100vw; height: 100vh; overflow: hidden; background: #080810; }
   .ad {
     width: 100vw; height: 100vh;
-    background: #0c0c14;
+    background: #080810;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 7vh 8vw;
+    padding: 6vh 7vw;
     position: relative;
+    overflow: hidden;
   }
-  .stripe {
+  .side-accent {
     position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 0.5vh;
-    background: linear-gradient(90deg, #0ea5e9, #06b6d4, transparent);
+    right: 0; top: 0; bottom: 0;
+    width: 0.6vw;
+    background: linear-gradient(180deg, #0ea5e9, #06b6d4, transparent);
   }
-  .glow {
-    position: absolute;
-    bottom: -5vh; right: -5vw;
-    width: 50vw; height: 50vh;
-    background: radial-gradient(circle, rgba(14,165,233,0.12) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 1.2vw;
-  }
+  .logo { display: flex; align-items: center; gap: 1.2vw; position: relative; z-index: 2; }
   .logo-mark {
-    width: 5.5vh; height: 5.5vh;
-    border-radius: 1.2vh;
+    width: 5vh; height: 5vh; border-radius: 1vh;
     background: linear-gradient(135deg, #0ea5e9, #06b6d4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    font-size: 2.2vh;
-    color: #fff;
-    flex-shrink: 0;
+    font-weight: 700; font-size: 2vh; color: #fff; flex-shrink: 0;
   }
   .logo-name {
     font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    font-size: 2.4vh;
-    color: #f8fafc;
-    letter-spacing: -0.02em;
+    font-weight: 700; font-size: 2.2vh; color: #f8fafc; letter-spacing: -0.02em;
   }
-  .middle {
-    display: flex;
-    flex-direction: column;
-    gap: 3vh;
-  }
-  .location-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 1vw;
+  .middle { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 2.5vh; }
+  .eyebrow {
     font-family: 'Inter', sans-serif;
-    font-size: 1.6vh;
-    font-weight: 500;
-    color: rgba(248,250,252,0.7);
-    letter-spacing: 0.04em;
-  }
-  .flag {
-    font-size: 2.2vh;
+    font-weight: 600;
+    font-size: clamp(10px, 1.45vh, 13px);
+    color: #0ea5e9;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
   }
   .headline {
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
-    font-size: 8.5vw;
-    line-height: 1.05;
+    font-size: clamp(24px, 6.8vw, 58px);
+    line-height: 1.0;
     color: #f8fafc;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
   }
-  .headline .blue {
-    color: #0ea5e9;
+  .body {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(13px, 1.85vh, 17px);
+    color: rgba(248,250,252,0.6);
+    line-height: 1.55;
+    max-width: 88%;
   }
-  .services {
+  .checklist { display: flex; flex-direction: column; gap: 1.3vh; }
+  .check-item {
     display: flex;
-    flex-direction: column;
-    gap: 1.2vh;
-  }
-  .service-line {
-    display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 1.5vw;
     font-family: 'Inter', sans-serif;
-    font-size: 1.9vh;
-    color: rgba(248,250,252,0.65);
+    font-size: clamp(12px, 1.7vh, 15px);
+    color: rgba(248,250,252,0.75);
+    line-height: 1.3;
   }
-  .tick {
+  .check {
     color: #06b6d4;
-    font-size: 1.9vh;
+    font-size: clamp(13px, 1.8vh, 16px);
     flex-shrink: 0;
+    margin-top: 0.05em;
+    font-weight: 700;
   }
+  .bottom { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 1.8vh; }
   .cta {
     display: inline-flex;
     align-items: center;
     gap: 1.5vw;
-    background: linear-gradient(135deg, #0ea5e9, #06b6d4);
+    background: #0ea5e9;
     color: #fff;
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
-    font-size: 2vh;
-    padding: 2.2vh 4.5vw;
-    border-radius: 1.2vh;
+    font-size: clamp(13px, 1.9vh, 17px);
+    padding: 2vh 4vw;
+    border-radius: 0.7vh;
     letter-spacing: -0.01em;
     align-self: flex-start;
   }
   .footer {
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .domain { font-family: 'Inter', sans-serif; font-size: clamp(10px, 1.5vh, 13px); color: rgba(248,250,252,0.25); }
+  .aus {
     font-family: 'Inter', sans-serif;
-    font-size: 1.6vh;
-    color: rgba(248,250,252,0.25);
-    letter-spacing: 0.04em;
+    font-size: clamp(10px, 1.4vh, 12px);
+    color: rgba(248,250,252,0.35);
   }
 </style>
 </head>
 <body>
 <div class="ad">
-  <div class="stripe"></div>
-  <div class="glow"></div>
+  <div class="side-accent"></div>
   <div class="logo">
     <div class="logo-mark">AI</div>
     <span class="logo-name">AIPivot</span>
   </div>
   <div class="middle">
-    <div class="location-badge">
-      <span class="flag">🇦🇺</span>
-      Brisbane-based. Australia-wide.
-    </div>
+    <div class="eyebrow">Australia's Most Effective AI Agency</div>
     <div class="headline">
-      Built for<br><span class="blue">Aussie</span><br>business.
+      We don't do<br>strategy decks.<br>We get results.
     </div>
-    <div class="services">
-      <div class="service-line"><span class="tick">✓</span> AI SEO &amp; AI Search</div>
-      <div class="service-line"><span class="tick">✓</span> Sales &amp; Lead Automation</div>
-      <div class="service-line"><span class="tick">✓</span> Websites &amp; Software</div>
+    <div class="body">
+      Real AI systems. Deployed in weeks. Running 24/7. Backed by a results guarantee.
     </div>
-    <div class="cta">
-      Free strategy call →
+    <div class="checklist">
+      <div class="check-item"><span class="check">✓</span> Rank on Google, ChatGPT &amp; Perplexity in 60 days</div>
+      <div class="check-item"><span class="check">✓</span> AI that follows up every lead in under 2 minutes</div>
+      <div class="check-item"><span class="check">✓</span> Websites &amp; software built for Australian businesses</div>
     </div>
   </div>
-  <div class="footer">aipivot.com.au</div>
+  <div class="bottom">
+    <div class="cta">Book Free Strategy Call →</div>
+    <div class="footer">
+      <span class="domain">aipivot.com.au</span>
+      <span class="aus">🇦🇺 Brisbane-based · Australia-wide</span>
+    </div>
+  </div>
 </div>
 </body>
 </html>

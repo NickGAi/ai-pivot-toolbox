@@ -5,98 +5,78 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body {
-    width: 100vw; height: 100vh;
-    overflow: hidden;
-    background: #08080f;
-  }
+  html, body { width: 100vw; height: 100vh; overflow: hidden; background: #0a0a0f; }
   .ad {
     width: 100vw; height: 100vh;
-    background: #08080f;
+    background: #0a0a0f;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 7vh 8vw;
+    padding: 6vh 7vw;
     position: relative;
+    overflow: hidden;
   }
-  .glow {
+  .top-bar {
     position: absolute;
-    top: -10vh; left: -10vw;
-    width: 60vw; height: 60vh;
-    background: radial-gradient(circle, rgba(14,165,233,0.18) 0%, transparent 70%);
+    top: 0; left: 0; right: 0;
+    height: 0.5vh;
+    background: #0ea5e9;
+  }
+  .noise {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
     pointer-events: none;
   }
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 1.2vw;
-  }
+  .logo { display: flex; align-items: center; gap: 1.2vw; position: relative; z-index: 2; }
   .logo-mark {
-    width: 5.5vh; height: 5.5vh;
-    border-radius: 1.2vh;
+    width: 5vh; height: 5vh;
+    border-radius: 1vh;
     background: linear-gradient(135deg, #0ea5e9, #06b6d4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    font-size: 2.2vh;
-    color: #fff;
-    flex-shrink: 0;
+    font-weight: 700; font-size: 2vh; color: #fff; flex-shrink: 0;
   }
   .logo-name {
     font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700; font-size: 2.2vh; color: #f8fafc; letter-spacing: -0.02em;
+  }
+  .middle { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 2.8vh; }
+  .question {
+    font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
-    font-size: 2.4vh;
+    font-size: clamp(28px, 7.5vw, 64px);
+    line-height: 1.0;
     color: #f8fafc;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
   }
-  .middle {
-    display: flex;
-    flex-direction: column;
-    gap: 3.5vh;
+  .question .highlight { color: #0ea5e9; }
+  .body {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(13px, 1.9vh, 18px);
+    color: rgba(248,250,252,0.65);
+    line-height: 1.55;
+    max-width: 88%;
   }
-  .eyebrow {
+  .guarantee {
     display: inline-flex;
     align-items: center;
     gap: 1vw;
-    font-family: 'Inter', sans-serif;
-    font-size: 1.6vh;
-    font-weight: 500;
+    background: rgba(14,165,233,0.12);
+    border: 1px solid rgba(14,165,233,0.3);
     color: #0ea5e9;
-    letter-spacing: 0.08em;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: clamp(11px, 1.55vh, 14px);
+    padding: 1.1vh 2.5vw;
+    border-radius: 0.6vh;
+    letter-spacing: 0.03em;
     text-transform: uppercase;
-  }
-  .dot {
-    width: 1vh; height: 1vh;
-    border-radius: 50%;
-    background: #0ea5e9;
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(0.85); }
-  }
-  .headline {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    font-size: 8.5vw;
-    line-height: 1.05;
-    color: #f8fafc;
-    letter-spacing: -0.03em;
-  }
-  .headline span {
-    color: #0ea5e9;
-  }
-  .benefit {
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    font-size: 2.2vh;
-    color: rgba(248,250,252,0.6);
-    line-height: 1.5;
+    align-self: flex-start;
   }
   .cta {
     display: inline-flex;
@@ -106,46 +86,54 @@
     color: #fff;
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
-    font-size: 2vh;
-    padding: 2.2vh 4.5vw;
-    border-radius: 1.2vh;
+    font-size: clamp(13px, 1.9vh, 17px);
+    padding: 2vh 4vw;
+    border-radius: 0.7vh;
     letter-spacing: -0.01em;
-    text-decoration: none;
     align-self: flex-start;
   }
-  .arrow {
-    font-size: 2.2vh;
-  }
   .footer {
+    position: relative; z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .domain {
     font-family: 'Inter', sans-serif;
-    font-size: 1.6vh;
-    color: rgba(248,250,252,0.3);
+    font-size: clamp(10px, 1.5vh, 13px);
+    color: rgba(248,250,252,0.25);
     letter-spacing: 0.04em;
   }
+  .stars {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(10px, 1.4vh, 12px);
+    color: rgba(248,250,252,0.4);
+  }
+  .star { color: #f59e0b; }
 </style>
 </head>
 <body>
 <div class="ad">
-  <div class="glow"></div>
+  <div class="top-bar"></div>
+  <div class="noise"></div>
   <div class="logo">
     <div class="logo-mark">AI</div>
     <span class="logo-name">AIPivot</span>
   </div>
   <div class="middle">
-    <div class="eyebrow">
-      <div class="dot"></div>
-      AI Automation Agency
+    <div class="question">
+      Are your<br>competitors<br>already on<br><span class="highlight">AI Search?</span>
     </div>
-    <div class="headline">
-      Still doing<br>it <span>manually?</span>
+    <div class="body">
+      While you're reading this, your rivals are being recommended by ChatGPT, Perplexity, and Google AI to your customers. We'll fix that in 60 days.
     </div>
-    <div class="benefit">Your competitors have AI following up every lead 24/7.</div>
-    <div class="cta">
-      Book a free strategy call
-      <span class="arrow">→</span>
-    </div>
+    <div class="guarantee">✓ Results guaranteed or we work for free</div>
+    <div class="cta">Claim Free AI Audit →</div>
   </div>
-  <div class="footer">aipivot.com.au</div>
+  <div class="footer">
+    <span class="domain">aipivot.com.au</span>
+    <span class="stars"><span class="star">★★★★★</span> &nbsp;Brisbane, Australia</span>
+  </div>
 </div>
 </body>
 </html>
