@@ -46,7 +46,7 @@ export function Method() {
             Our Proven Framework
           </div>
           <h2 id="method-heading" className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            The AIPivot Deployment Framework
+            The AI Pivot Toolbox Deployment Framework
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-6">
             We connect your existing systems, train AI on your real workflows, and deploy automations that handle calls, messages, and admin — without hiring staff.

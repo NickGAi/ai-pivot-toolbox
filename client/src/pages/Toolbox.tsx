@@ -140,9 +140,11 @@ export default function Toolbox() {
             <p className="text-lg text-muted-foreground leading-relaxed mb-6">
               Pick the AI tools your business needs. Add them to your cart, get a custom quote, and we'll have you live within days — not months.
             </p>
-            <div className="inline-flex flex-wrap items-center justify-center gap-x-6 gap-y-2 px-6 py-3 rounded-2xl bg-primary/10 border border-primary/20 text-sm">
+            <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-x-6 gap-y-1 px-6 py-3 rounded-2xl bg-primary/10 border border-primary/20 text-sm">
               <span className="text-primary font-semibold">Solo AI operator = no agency overhead</span>
+              <span className="hidden sm:inline text-muted-foreground">·</span>
               <span className="text-muted-foreground">40–60% below standard agency rates</span>
+              <span className="hidden sm:inline text-muted-foreground">·</span>
               <span className="text-muted-foreground">Same results. Direct access. Faster turnaround.</span>
             </div>
           </motion.div>
