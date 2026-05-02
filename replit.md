@@ -23,6 +23,18 @@ Marketing style: King Kong-style direct response — bold claims, specific timef
 | `/terms` | Terms of Service |
 | `/privacy` | Privacy Policy |
 | `/refund` | Refund Policy |
+| `/ai-automation-brisbane` | Location page — Brisbane, QLD |
+| `/ai-automation-sydney` | Location page — Sydney, NSW |
+| `/ai-automation-melbourne` | Location page — Melbourne, VIC |
+| `/ai-automation-perth` | Location page — Perth, WA |
+| `/ai-automation-adelaide` | Location page — Adelaide, SA |
+
+### Location Pages Architecture
+- Data: `client/src/data/locations.ts` — `LocationData` interface + 5 city objects + `getLocationBySlug()`
+- Template: `client/src/pages/LocationPage.tsx` — single reusable component
+- Routes registered in `client/src/App.tsx` via `locationSlugs` array
+- All 5 cities in `client/public/sitemap.xml`
+- Footer links to all 5 location pages for internal linking
 
 ## Key Components
 

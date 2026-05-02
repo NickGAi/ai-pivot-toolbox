@@ -9,6 +9,8 @@ import { CookieConsent } from "@/components/CookieConsent";
 import { CartProvider } from "@/context/CartContext";
 import { CartSidebar } from "@/components/cart/CartSidebar";
 import Home from "@/pages/Home";
+import LocationPage from "@/pages/LocationPage";
+import { getLocationBySlug } from "@/data/locations";
 
 const Terms = lazy(() => import("@/pages/Terms"));
 const Privacy = lazy(() => import("@/pages/Privacy"));
@@ -16,6 +18,20 @@ const Refund = lazy(() => import("@/pages/Refund"));
 const Toolbox = lazy(() => import("@/pages/Toolbox"));
 const Checkout = lazy(() => import("@/pages/Checkout"));
 const NotFound = lazy(() => import("@/pages/not-found"));
+
+const locationSlugs = [
+  "ai-automation-brisbane",
+  "ai-automation-sydney",
+  "ai-automation-melbourne",
+  "ai-automation-perth",
+  "ai-automation-adelaide",
+];
+
+function LocationRoute({ params }: { params: { slug: string } }) {
+  const location = getLocationBySlug(params.slug);
+  if (!location) return <NotFound />;
+  return <LocationPage location={location} />;
+}
 
 function Router() {
   return (
@@ -27,6 +43,17 @@ function Router() {
         <Route path="/terms" component={Terms} />
         <Route path="/privacy" component={Privacy} />
         <Route path="/refund" component={Refund} />
+        {locationSlugs.map(slug => (
+          <Route
+            key={slug}
+            path={`/${slug}`}
+            component={() => {
+              const location = getLocationBySlug(slug);
+              if (!location) return <NotFound />;
+              return <LocationPage location={location} />;
+            }}
+          />
+        ))}
         <Route component={NotFound} />
       </Switch>
     </Suspense>
