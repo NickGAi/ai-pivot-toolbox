@@ -1,0 +1,58 @@
+Here's a full audit and prioritized action plan to get aipivot.com.au ranking on Google. I'll group everything by impact so you can knock out the high-leverage fixes first.
+
+## What's working
+Your homepage is technically well set up: correct `lang="en-AU"`, indexable `robots` tag, a self-referencing canonical, OpenGraph tags, Organization JSON-LD with Australian address, a clear localized title ("AI Automation Agency Australia — Brisbane, Sydney, Melbourne"), and a strong meta description. Content is keyword-rich and the FAQ schema-friendly Q&A block is exactly the kind of thing AI Overviews and Perplexity cite. Google has indexed your homepage (your `site:aipivot.com.au` query returned the home result with a custom snippet).
+
+## Critical issues found
+The two biggest blockers right now:
+
+**1. You have no robots.txt and no sitemap.xml.** Both `/robots.txt` and `/sitemap.xml` return your SPA's 404 page ("404 Page Not Found — Did you forget to add the page to the router?"). That's why `site:aipivot.com.au` only shows one URL — Google can't efficiently discover the rest of your pages (Toolbox, Terms, Privacy, Refund, plus any service pages). This is the single highest-priority fix.
+
+**2. Only one indexed page.** A site with one URL almost never ranks for competitive terms like "AI automation agency Brisbane" — your competitors (aiautomationagency.com.au, aiautomationbrisbane.com.au, advancer.com.au, hyphn.com.au, digitux.com.au, hooraydigital.au) have dedicated location and service pages. You need a content architecture, not a single long homepage.
+
+## Priority 1 — Technical foundations (do this week)
+Create a real `robots.txt` at the root:
+```
+User-agent: *
+Allow: /
+Sitemap: https://aipivot.com.au/sitemap.xml
+```
+Generate and submit a real `sitemap.xml` listing every URL. Then verify the domain in Google Search Console (you already have a Google account open), submit the sitemap, and use "Request Indexing" on each key URL. Also verify in Bing Webmaster Tools (powers ChatGPT search). Confirm Google Analytics 4 is firing on the live domain, not just `aipivot.replit.app`. Speaking of — your `og:image` points to `https://aipivot.replit.app/opengraph.jpg`. Move that asset to `aipivot.com.au` so social/AI crawlers don't see a different domain.
+
+## Priority 2 — Build a real page architecture
+Right now everything is on one page with anchor links (`#method`, `#services`, `#contact`). Anchors don't rank as separate results. Create dedicated, indexable URLs:
+
+Service pages: `/ai-voice-agents`, `/ai-sales-executive`, `/workflow-automation`, `/ai-seo`, `/aeo-answer-engine-optimisation`, `/geo-generative-engine-optimisation`, `/website-design`, `/app-development`, `/ai-integrations`.
+
+Location pages (this is how your competitors are winning Brisbane/Sydney/Melbourne): `/ai-automation-brisbane`, `/ai-automation-sydney`, `/ai-automation-melbourne`, `/ai-automation-perth`, `/ai-automation-adelaide`. Each should have unique copy (not duplicated), local case studies, suburb mentions, and embedded Google Map.
+
+Industry pages (you already list 14+ industries on the homepage but none are linked): `/ai-for-real-estate`, `/ai-for-healthcare`, `/ai-for-legal`, `/ai-for-accounting`, etc. These are gold for long-tail traffic like "AI voice agent for real estate Australia."
+
+A blog at `/insights` or `/blog` for AEO/GEO content (more on that below).
+
+## Priority 3 — Local SEO (massive lever for "Brisbane/Sydney/Melbourne" terms)
+Set up a Google Business Profile for "AI Pivot Toolbox" in Brisbane. This gets you into the Map Pack, which is how most local "AI automation Brisbane" searches convert. Add NAP (Name/Address/Phone) consistently in the footer of every page. Add `LocalBusiness` schema (you currently only have `Organization`). List the business in: Yellow Pages AU, Hotfrog, True Local, Clutch, Sortlist, GoodFirms, DesignRush — these provide both citations and referral traffic.
+
+## Priority 4 — On-page SEO refinements
+Your H1 is in ALL CAPS via CSS, which is fine, but make sure the actual HTML reads in title case for accessibility and snippet display. Your H1 currently emphasizes "Get found on Google & AI Search" — strong, but consider adding a primary keyword variant: "AI Automation & SEO Agency for Australian Businesses." Add `alt` text to every image (your audit returned an empty images array, suggesting either none exist or none have alt — both are SEO problems; AI search models need alt text to understand visuals). Internal linking from FAQ answers to dedicated service pages once they exist. Add breadcrumb schema once you have child pages.
+
+## Priority 5 — Content for AEO/GEO (your differentiator)
+You already sell AEO/GEO services, so practice what you preach. Publish 1–2 articles/week answering high-intent questions Australians type into ChatGPT/Google:
+- "How much does an AI voice agent cost in Australia in 2026?"
+- "Best AI automation agencies in Brisbane (compared)"
+- "Xero vs MYOB AI bookkeeping automation — what works in 2026"
+- "Privacy Act 1988 compliance for AI automation"
+- "AI receptionist vs human receptionist cost comparison"
+
+Each piece should follow GEO best-practice: answer in the first 50 words, use H2 questions, include a stat/citation table, link to .gov.au and .edu.au sources, add `FAQPage` and `Article` schema. Embed your own data ("12,000+ calls handled monthly across deployments"). Princeton's research that you already cite on the homepage is exactly the right pattern — keep doing that everywhere.
+
+## Priority 6 — Off-page (links & mentions)
+The competitors ranking page-1 have backlinks from local AU directories, podcast mentions, and guest posts. Strategies: write a comparison/round-up post and pitch it to AU SMB blogs (Flying Solo, SmartCompany, Inside Small Business); appear as a guest on AU AI/marketing podcasts; submit to "Top AI agencies in Australia 2026" lists (e.g. Team400 already ranks for this — pitch them); answer questions on Reddit r/AusFinance, r/smallbusiness, and Quora linking back to relevant articles (not the homepage).
+
+## Priority 7 — Performance & Core Web Vitals
+PageSpeed wouldn't fully load in my session, but as a Replit-hosted SPA you're likely to take a hit on Largest Contentful Paint and Time-to-First-Byte. Run [pagespeed.web.dev](https://pagespeed.web.dev) yourself for both Mobile and Desktop. Common fixes: serve hero images as WebP/AVIF, preload the hero font, defer non-critical JS, and consider Cloudflare in front of the Replit origin for caching at the edge (huge LCP improvement for AU visitors).
+
+## Quick-win checklist (next 7 days)
+Add `robots.txt` and `sitemap.xml`. Verify Google Search Console + Bing Webmaster Tools and submit the sitemap. Set up Google Business Profile (Brisbane). Move the OG image off the replit.app subdomain. Add `LocalBusiness` schema. Build the first 3 location pages (Brisbane, Sydney, Melbourne) with unique copy. Publish 2 cornerstone blog posts targeting "AI voice agent cost Australia" and "AI automation agency Brisbane comparison."
+
+Want me to draft the `robots.txt` + `sitemap.xml` files, write the meta titles/descriptions for the 5 location pages, or outline the first cornerstone blog post next? I can also walk you through Search Console verification step-by-step in the tab you have open.
