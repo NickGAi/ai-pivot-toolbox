@@ -72,10 +72,28 @@ Marketing style: King Kong-style direct response — bold claims, specific timef
 
 ### SEO/GEO Optimization
 - Comprehensive meta tags for OpenGraph and Twitter cards
-- Schema.org structured data (JSON-LD) for organization, LocalBusiness, WebSite, WebPage, Services, FAQ
+- Schema.org structured data (JSON-LD) for organization, LocalBusiness, WebSite, WebPage, Services (10 services), FAQPage (10 questions)
 - robots.txt configured to allow AI crawlers (GPTBot, Claude-Web, PerplexityBot)
-- Australian geo-targeting meta tags
+- Australian geo-targeting meta tags + all 5 major city keywords (Brisbane, Sydney, Melbourne, Perth, Adelaide)
 - All brand references updated to "AI Pivot Toolbox"
+- GEO-optimised FAQ (10 questions) targeting real search queries with answer-first structure, statistics, and named sources
+- Solo operator positioning: 40–60% below agency rates clearly communicated on Toolbox page
+- Agency price comparison shown as strikethrough on each product card
+
+### Pricing Strategy (Research-Backed)
+Solo AI operator pricing — 40–60% below agency rates:
+- AI Voice Agent: $997/mo (agencies $2,500)
+- AI SEO Package: $1,497/mo (agencies $3,000)
+- AI Lead Nurturing: $997/mo (agencies $2,000)
+- Workflow Automation: $1,497/mo (agencies $3,500)
+- AI Chatbot: $597/mo (agencies $1,200)
+- Invoice Automation: $897/mo (agencies $1,800)
+- CRM Integration Suite: $997/mo (agencies $2,000)
+- AI Content Machine: $697/mo (agencies $1,800)
+- Website Design + AI: $3,497 once (agencies $8,000)
+- App Development: $7,997 once (agencies $20,000)
+- Reputation Management: $497/mo (agencies $900)
+- AI Analytics Dashboard: $397/mo (agencies $800)
 
 ## External Dependencies
 

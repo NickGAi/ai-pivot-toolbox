@@ -4,24 +4,44 @@ import { useState } from "react";
 
 const faqs = [
   {
-    question: "How much can AI automation reduce operational costs for Australian businesses?",
-    answer: "Australian enterprises typically see 60-80% reduction in manual processing costs within 6-12 months of implementing AI automation. For example, invoice processing automation can reduce per-transaction costs from $15-20 to $2-3, while AI voice agents can handle 70-85% of tier-1 customer inquiries without human intervention. Our clients in financial services and professional services report average annual savings of $180K-$450K in operational costs."
+    question: "How much does AI automation cost for a small business in Australia?",
+    answer: "AI automation for Australian small businesses starts from $397/month for a managed analytics dashboard, through to $1,497/month for full workflow automation or AI SEO. Because AI Pivot Toolbox is a solo AI-powered operator — not a large agency with high overhead — our pricing runs 40–60% below what traditional agencies charge for equivalent work. For context, large agencies typically charge $2,500–$5,000/month for the same managed services. Most clients see a return on investment within the first 60–90 days through time savings of 5–15 hours per week."
   },
   {
-    question: "Are AI automation solutions compliant with Australian data privacy regulations?",
-    answer: "Yes, enterprise AI automation can be fully compliant with Australian regulatory frameworks including the Privacy Act 1988, Australian Privacy Principles (APPs), and APRA standards for financial services. AIPivot designs all AI solutions with compliance-first architecture: data sovereignty (Australian-hosted infrastructure), audit trails for all automated decisions, explainable AI models, and privacy-by-design principles."
+    question: "What is GEO — Generative Engine Optimisation?",
+    answer: "GEO (Generative Engine Optimisation) is the practice of optimising your website and content so it gets cited, quoted, and surfaced by AI search engines like ChatGPT, Google AI Overviews, and Perplexity. Unlike traditional SEO which focuses on ranking in a list of links, GEO focuses on becoming the source AI engines pull their answers from. According to Princeton/IIT Delhi research (2024), adding statistics increases AI citation visibility by 33.9%, expert quotes by 32%, and structured content by 30%. AI Pivot Toolbox builds all content with GEO-first principles built in."
   },
   {
-    question: "What is the typical implementation timeline for enterprise AI automation?",
-    answer: "Enterprise AI automation typically requires 6-12 weeks for full implementation, depending on integration complexity. AIPivot's phased approach begins with a 2-week discovery and compliance audit, followed by pilot deployment in one department before enterprise-wide rollout. Most clients see measurable ROI within the first quarter."
+    question: "How do I get my business found on ChatGPT and Perplexity?",
+    answer: "Getting found on ChatGPT, Perplexity, and Google AI Overviews requires a different strategy than traditional SEO. The three most important factors are: (1) structured, answer-first content that directly responds to questions your customers ask; (2) authoritative citations — links to .gov, .edu, and trusted industry sources; and (3) FAQ pages and comparison content that match real conversational queries. AI Pivot Toolbox's AEO and GEO service handles all of this for you, typically improving AI search visibility within 60–90 days."
   },
   {
-    question: "Can AI voice agents integrate with existing CRM systems?",
-    answer: "Yes, AI voice agents seamlessly integrate with all major CRM platforms including Salesforce, HubSpot, Zoho, and Microsoft Dynamics. They also sync with Google and Outlook calendars for appointment scheduling. All interactions are automatically logged with full transcripts and analytics."
+    question: "How much does an AI voice agent cost in Australia?",
+    answer: "A fully managed AI voice agent service from AI Pivot Toolbox costs $997/month — including setup, custom voice and personality configuration, CRM integration, appointment booking, and ongoing management. Large AI agencies in Australia typically charge $2,000–$3,000/month for the same service. The AI voice agent handles inbound and outbound calls 24/7, qualifies leads, books appointments, and logs all interactions automatically. Most clients recover the cost within the first month through leads captured outside business hours."
   },
   {
-    question: "What industries benefit most from AI automation in Australia?",
-    answer: "AI automation delivers significant ROI across multiple industries including Real Estate, Healthcare, Professional Services, Finance, Retail, Manufacturing, Hospitality, Legal, Education, and Technology. Any business with high-volume customer interactions, repetitive administrative tasks, or lead management requirements can benefit from AI automation."
+    question: "What AI tools are Australian small businesses using most in 2025?",
+    answer: "According to BizCover's 2025 Australian Small Business AI Report (965 businesses surveyed), 80% of Australian SMBs are using or planning to adopt AI in 2025 — up from 39% in mid-2024. The most common use cases are: content and marketing automation (91% adoption intent in that sector), AI chatbots for customer service, meeting transcription tools, Xero/MYOB AI bookkeeping, and data reporting. The primary barrier to adoption is no longer cost — it's lack of knowledge about how to implement AI effectively. This is exactly the gap AI Pivot Toolbox fills."
+  },
+  {
+    question: "What is the difference between AI SEO and traditional SEO?",
+    answer: "Traditional SEO focuses on ranking in Google's blue-link results through keywords, backlinks, and technical optimisation. AI SEO goes further — it uses artificial intelligence to produce content at scale, identify ranking opportunities faster, and optimise for both Google and AI search engines simultaneously. AI SEO also encompasses AEO (Answer Engine Optimisation) and GEO (Generative Engine Optimisation), ensuring your business appears in AI-generated answers, not just search result pages. Gartner projects that 30% of searches will involve AI-generated answers by 2026, making AI SEO essential now."
+  },
+  {
+    question: "How long does it take to set up AI automation for my business?",
+    answer: "Most AI automation services from AI Pivot Toolbox are live within 7–14 days. An AI chatbot typically takes 3–5 days to train and deploy. A workflow automation build takes 1–2 weeks depending on complexity. An AI voice agent is generally live within a week. Full AI SEO campaigns begin producing measurable results within 60–90 days. Unlike large agencies with lengthy onboarding processes, working directly with a solo AI specialist means faster turnaround, direct communication, and no account manager delays."
+  },
+  {
+    question: "Can AI automation integrate with Xero, MYOB, or my existing software?",
+    answer: "Yes. AI Pivot Toolbox builds automation that integrates with Xero, MYOB, QuickBooks, HubSpot, Salesforce, Zoho, Google Workspace, Microsoft 365, Shopify, WooCommerce, and hundreds of other platforms via API and tools like Make and Zapier. Invoice automation specifically reduces per-transaction processing costs from $15–20 down to $2–3 with 90%+ error reduction. If your tool has an API or integration layer, we can connect it — and if it doesn't, we can usually find a workaround."
+  },
+  {
+    question: "Are AI automation services compliant with Australian privacy law?",
+    answer: "Yes. All AI Pivot Toolbox solutions are designed to comply with the Privacy Act 1988, the Australian Privacy Principles (APPs), and APRA standards for financial services. Key compliance practices include data sovereignty (Australian or locally-hosted infrastructure where required), full audit trails for automated decisions, and privacy-by-design architecture. We do not store or share client data with third parties beyond the integration platforms required to deliver the service. All AI models used are selected for transparency and explainability."
+  },
+  {
+    question: "Why is AI Pivot Toolbox cheaper than other AI agencies in Australia?",
+    answer: "AI Pivot Toolbox is a solo operator using AI tools to deliver agency-quality results without agency overhead. There are no account managers, no project coordinators, no large office leases, and no markup layers — just one specialist using the best available AI tools working directly with you. This structure allows pricing 40–60% below what traditional AI agencies charge, while maintaining faster turnaround and more direct communication. When you work with AI Pivot Toolbox, you work directly with the person doing the work — not a junior account manager relaying messages."
   }
 ];
 
@@ -41,7 +61,7 @@ export function FAQ() {
             Frequently Asked Questions
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Enterprise answers for operations directors, CFOs, and business leaders
+            Straight answers about AI automation pricing, timelines, and how it works for Australian businesses
           </p>
         </motion.div>
 
@@ -54,7 +74,7 @@ export function FAQ() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
+                transition={{ delay: i * 0.05 }}
                 itemScope
                 itemProp="mainEntity"
                 itemType="https://schema.org/Question"
@@ -78,7 +98,7 @@ export function FAQ() {
                 <div
                   id={`faq-answer-${i}`}
                   className={`overflow-hidden transition-all duration-300 ${
-                    openIndex === i ? 'max-h-96' : 'max-h-0'
+                    openIndex === i ? 'max-h-[600px]' : 'max-h-0'
                   }`}
                   itemScope
                   itemProp="acceptedAnswer"

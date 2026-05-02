@@ -73,6 +73,11 @@ function ToolCard({ tool }: { tool: Tool }) {
 
         <div className="border-t border-border pt-5 flex items-end justify-between gap-4">
           <div>
+            {tool.agencyPrice && (
+              <p className="text-xs text-muted-foreground line-through mb-0.5">
+                Agencies charge ${tool.agencyPrice.toLocaleString()}
+              </p>
+            )}
             <p className="text-2xl font-bold text-foreground">
               ${tool.price.toLocaleString()}
             </p>
@@ -132,9 +137,14 @@ export default function Toolbox() {
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-4 leading-tight">
               The AI Pivot <span className="gradient-text">Toolbox</span>
             </h1>
-            <p className="text-lg text-muted-foreground leading-relaxed">
+            <p className="text-lg text-muted-foreground leading-relaxed mb-6">
               Pick the AI tools your business needs. Add them to your cart, get a custom quote, and we'll have you live within days — not months.
             </p>
+            <div className="inline-flex flex-wrap items-center justify-center gap-x-6 gap-y-2 px-6 py-3 rounded-2xl bg-primary/10 border border-primary/20 text-sm">
+              <span className="text-primary font-semibold">Solo AI operator = no agency overhead</span>
+              <span className="text-muted-foreground">40–60% below standard agency rates</span>
+              <span className="text-muted-foreground">Same results. Direct access. Faster turnaround.</span>
+            </div>
           </motion.div>
 
           <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
