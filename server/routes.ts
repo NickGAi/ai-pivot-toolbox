@@ -4,6 +4,7 @@ import { storage } from "./storage";
 import { insertContactSubmissionSchema } from "@shared/schema";
 import { fromError } from "zod-validation-error";
 import { sendContactNotification } from "./gmail";
+import { legacyCreateProxyMiddleware } from "http-proxy-middleware";
 
 async function sendToGHL(data: {
   firstName: string | null;
@@ -52,6 +53,17 @@ export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
+  // Proxy /__mockup/* to the mockup sandbox dev server (port 23636)
+  app.use(
+    "/__mockup",
+    legacyCreateProxyMiddleware({
+      target: "http://localhost:23636",
+      changeOrigin: true,
+      ws: true,
+      pathRewrite: { "^": "/__mockup" },
+    })
+  );
+
   app.post("/api/contact", async (req, res) => {
     try {
       const validatedData = insertContactSubmissionSchema.parse(req.body);
