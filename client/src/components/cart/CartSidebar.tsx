@@ -23,7 +23,7 @@ export function CartSidebar() {
       <aside
         className="fixed right-0 top-0 h-full w-full sm:w-[420px] bg-background border-l border-border z-50 flex flex-col shadow-2xl"
         role="dialog"
-        aria-label="Shopping cart"
+        aria-label="Quote builder"
         data-testid="cart-sidebar"
       >
         <div className="flex items-center justify-between px-6 py-4 border-b border-border">
@@ -39,7 +39,7 @@ export function CartSidebar() {
           <button
             onClick={closeCart}
             className="p-2 text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-muted"
-            aria-label="Close cart"
+            aria-label="Close quote"
             data-testid="cart-close"
           >
             <X size={20} />
@@ -133,7 +133,7 @@ export function CartSidebar() {
                 className="w-full text-center text-xs text-muted-foreground hover:text-foreground transition-colors py-1"
                 data-testid="cart-clear"
               >
-                Clear cart
+                Clear quote
               </button>
             </div>
           </>

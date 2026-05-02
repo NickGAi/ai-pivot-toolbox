@@ -94,10 +94,10 @@ function ToolCard({ tool }: { tool: Tool }) {
                 : "bg-primary text-primary-foreground hover:bg-primary/90 active:scale-95"
             }`}
             data-testid={`add-to-cart-${tool.id}`}
-            aria-label={`${inCart ? "Added" : "Add"} ${tool.name} to cart`}
+            aria-label={`${inCart ? "Added" : "Add"} ${tool.name} to quote`}
           >
             <ShoppingCart className="w-4 h-4" />
-            {inCart ? "Added" : "Add to Cart"}
+            {inCart ? "Added ✓" : "Add to Quote"}
           </button>
         </div>
       </div>
@@ -138,7 +138,7 @@ export default function Toolbox() {
               The AI Pivot <span className="gradient-text">Toolbox</span>
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-              Pick the AI tools your business needs. Add them to your cart, get a custom quote, and we'll have you live within days — not months.
+              Pick the AI tools your business needs. Add them to your quote, and we'll send you a custom proposal within 24 hours — live within days, not months.
             </p>
             <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-x-6 gap-y-1 px-6 py-3 rounded-2xl bg-primary/10 border border-primary/20 text-sm">
               <span className="text-primary font-semibold">Solo AI operator = no agency overhead</span>
@@ -174,7 +174,7 @@ export default function Toolbox() {
                 data-testid="view-cart-button"
               >
                 <ShoppingCart className="w-4 h-4" />
-                View Cart ({totalItems})
+                View Quote ({totalItems})
               </button>
             )}
           </div>

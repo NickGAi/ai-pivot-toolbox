@@ -72,7 +72,7 @@ export function Navbar() {
             <button
               onClick={openCart}
               className="relative p-2 text-muted-foreground hover:text-foreground transition-colors"
-              aria-label={`Open cart${totalItems > 0 ? `, ${totalItems} items` : ""}`}
+              aria-label={`Open quote${totalItems > 0 ? `, ${totalItems} items` : ""}`}
               data-testid="nav-cart-button"
             >
               <ShoppingCart size={20} />
@@ -96,7 +96,7 @@ export function Navbar() {
             <button
               onClick={openCart}
               className="relative p-2 text-muted-foreground hover:text-foreground transition-colors"
-              aria-label={`Open cart${totalItems > 0 ? `, ${totalItems} items` : ""}`}
+              aria-label={`Open quote${totalItems > 0 ? `, ${totalItems} items` : ""}`}
               data-testid="nav-cart-button-mobile"
             >
               <ShoppingCart size={20} />

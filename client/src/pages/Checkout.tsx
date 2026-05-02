@@ -214,7 +214,7 @@ export default function Checkout() {
 
                 {items.length === 0 ? (
                   <p className="text-muted-foreground text-sm text-center py-4">
-                    Your cart is empty.{" "}
+                    Your quote is empty.{" "}
                     <button onClick={() => navigate("/toolbox")} className="text-primary hover:underline">Browse tools</button>
                   </p>
                 ) : (
