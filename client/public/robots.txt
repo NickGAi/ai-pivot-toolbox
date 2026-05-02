@@ -1,0 +1,43 @@
+# AI Pivot Toolbox - AI Automation Agency Australia
+# https://aipivot.com.au
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://aipivot.com.au/sitemap.xml
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1
+
+# Allow search engine indexing of all public content
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# AI Crawlers - Allow for GEO/AEO/LLM optimization
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
