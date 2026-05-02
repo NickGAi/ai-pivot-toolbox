@@ -55,7 +55,6 @@ export function Logo({ size = "md", className = "" }: LogoProps) {
           letterSpacing="0.5"
         >AI</text>
       </svg>
-
       {/* Wordmark */}
       <span className="flex flex-col leading-none">
         <span
@@ -65,7 +64,7 @@ export function Logo({ size = "md", className = "" }: LogoProps) {
           AI Pivot
         </span>
         <span
-          className={`${s.sub} font-semibold uppercase tracking-[0.18em] text-primary leading-none mt-0.5`}
+          className="text-[10px] font-semibold uppercase tracking-[0.18em] text-primary leading-none mt-0.5 text-center"
         >
           Toolbox
         </span>
