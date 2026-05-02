@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { Menu, X } from "lucide-react";
+import { Logo } from "@/components/ui/Logo";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -32,15 +33,12 @@ export function Navbar() {
         <div className="flex items-center justify-between h-16 sm:h-20">
           <a 
             href="#" 
-            className="flex items-center gap-2 sm:gap-3 flex-shrink-0"
-            aria-label="AIPivot - AI Automation Agency Australia - Home"
+            className="flex items-center flex-shrink-0"
+            aria-label="AI Pivot Toolbox - AI Automation Agency Australia - Home"
             itemScope
             itemType="https://schema.org/Organization"
           >
-            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-gradient-to-br from-primary to-cyan-400 flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-base sm:text-lg" aria-hidden="true">AI</span>
-            </div>
-            <span className="font-display font-bold text-lg sm:text-xl text-foreground" itemProp="name">AIPivot</span>
+            <Logo size="sm" />
           </a>
           
           <div className="hidden md:flex items-center gap-8 ml-auto">

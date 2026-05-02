@@ -9,13 +9,13 @@ export default function Privacy() {
         <article className="container-main max-w-4xl">
           <h1 className="text-4xl font-bold text-foreground mb-8">Privacy Policy</h1>
           <p className="text-muted-foreground mb-8">
-            <strong>AIPivot – aipivot.com.au</strong><br />
+            <strong>AI Pivot Toolbox – aipivot.com.au</strong><br />
             Last updated: January 2026
           </p>
 
           <div className="prose prose-invert max-w-none space-y-8">
             <p className="text-muted-foreground leading-relaxed">
-              AIPivot respects your privacy and is committed to protecting your personal information in accordance with the Privacy Act 1988 (Cth) and the Australian Privacy Principles (APPs).
+              AI Pivot Toolbox respects your privacy and is committed to protecting your personal information in accordance with the Privacy Act 1988 (Cth) and the Australian Privacy Principles (APPs).
             </p>
             <p className="text-muted-foreground leading-relaxed">
               This Privacy Policy explains how we collect, use, store, and disclose personal information when you use aipivot.com.au or our Services.

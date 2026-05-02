@@ -33,7 +33,7 @@ export function About() {
             viewport={{ once: true }}
           >
             <h2 id="about-heading" className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-              Why Choose <span className="gradient-text">AIPivot</span>?
+              Why Choose <span className="gradient-text">AI Pivot Toolbox</span>?
             </h2>
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed" itemProp="description">
               We're not a software platform you log into. We're implementation specialists who build, deploy, and manage AI systems that work inside your business — integrated with the tools you already use.

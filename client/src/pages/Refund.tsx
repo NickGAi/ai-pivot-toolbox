@@ -9,13 +9,13 @@ export default function Refund() {
         <article className="container-main max-w-4xl">
           <h1 className="text-4xl font-bold text-foreground mb-8">Refund Policy</h1>
           <p className="text-muted-foreground mb-8">
-            <strong>AIPivot – aipivot.com.au</strong><br />
+            <strong>AI Pivot Toolbox – aipivot.com.au</strong><br />
             Last updated: January 2026
           </p>
 
           <div className="prose prose-invert max-w-none space-y-8">
             <p className="text-muted-foreground leading-relaxed">
-              This Refund Policy outlines how refunds are handled for services purchased from AIPivot. It operates in addition to your rights under the Australian Consumer Law (ACL).
+              This Refund Policy outlines how refunds are handled for services purchased from AI Pivot Toolbox. It operates in addition to your rights under the Australian Consumer Law (ACL).
             </p>
 
             <section>

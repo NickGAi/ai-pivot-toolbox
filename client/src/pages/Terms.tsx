@@ -9,13 +9,13 @@ export default function Terms() {
         <article className="container-main max-w-4xl">
           <h1 className="text-4xl font-bold text-foreground mb-8">Terms of Service</h1>
           <p className="text-muted-foreground mb-8">
-            <strong>AIPivot – aipivot.com.au</strong><br />
+            <strong>AI Pivot Toolbox – aipivot.com.au</strong><br />
             Last updated: January 2026
           </p>
 
           <div className="prose prose-invert max-w-none space-y-8">
             <p className="text-muted-foreground leading-relaxed">
-              Welcome to AIPivot. These Terms of Service ("Terms") govern your access to and use of our website, products, and services provided through aipivot.com.au ("Website", "Services"). By accessing or using our Website or Services, you agree to be bound by these Terms.
+              Welcome to AI Pivot Toolbox. These Terms of Service ("Terms") govern your access to and use of our website, products, and services provided through aipivot.com.au ("Website", "Services"). By accessing or using our Website or Services, you agree to be bound by these Terms.
             </p>
 
             <section>
@@ -41,7 +41,7 @@ export default function Terms() {
             <section>
               <h2 className="text-2xl font-bold text-foreground mb-4">3. Services Provided</h2>
               <p className="text-muted-foreground leading-relaxed">
-                AIPivot provides AI-powered tools, digital services, software access, and related offerings as described on the Website. We may update, modify, suspend, or discontinue any part of the Services at any time.
+                AI Pivot Toolbox provides AI-powered tools, digital services, software access, and related offerings as described on the Website. We may update, modify, suspend, or discontinue any part of the Services at any time.
               </p>
             </section>
 
@@ -55,7 +55,7 @@ export default function Terms() {
             <section>
               <h2 className="text-2xl font-bold text-foreground mb-4">5. Intellectual Property</h2>
               <p className="text-muted-foreground leading-relaxed">
-                All content, software, branding, designs, text, graphics, and materials on the Website are owned by or licensed to AIPivot. You may not copy, reproduce, distribute, or modify any content without prior written consent.
+                All content, software, branding, designs, text, graphics, and materials on the Website are owned by or licensed to AI Pivot Toolbox. You may not copy, reproduce, distribute, or modify any content without prior written consent.
               </p>
             </section>
 
@@ -69,7 +69,7 @@ export default function Terms() {
             <section>
               <h2 className="text-2xl font-bold text-foreground mb-4">7. Limitation of Liability</h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                To the maximum extent permitted by law, AIPivot is not liable for any indirect, incidental, or consequential loss arising from your use of the Website or Services.
+                To the maximum extent permitted by law, AI Pivot Toolbox is not liable for any indirect, incidental, or consequential loss arising from your use of the Website or Services.
               </p>
               <p className="text-muted-foreground leading-relaxed mb-2">
                 Where liability cannot be excluded under the ACL, our liability is limited (at our option) to:
