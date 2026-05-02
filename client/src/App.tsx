@@ -6,11 +6,15 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "next-themes";
 import { CookieConsent } from "@/components/CookieConsent";
+import { CartProvider } from "@/context/CartContext";
+import { CartSidebar } from "@/components/cart/CartSidebar";
 import Home from "@/pages/Home";
 
 const Terms = lazy(() => import("@/pages/Terms"));
 const Privacy = lazy(() => import("@/pages/Privacy"));
 const Refund = lazy(() => import("@/pages/Refund"));
+const Toolbox = lazy(() => import("@/pages/Toolbox"));
+const Checkout = lazy(() => import("@/pages/Checkout"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 
 function Router() {
@@ -18,6 +22,8 @@ function Router() {
     <Suspense fallback={<div className="min-h-screen bg-background" />}>
       <Switch>
         <Route path="/" component={Home} />
+        <Route path="/toolbox" component={Toolbox} />
+        <Route path="/checkout" component={Checkout} />
         <Route path="/terms" component={Terms} />
         <Route path="/privacy" component={Privacy} />
         <Route path="/refund" component={Refund} />
@@ -32,9 +38,12 @@ function App() {
     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
-          <Toaster />
-          <Router />
-          <CookieConsent />
+          <CartProvider>
+            <Toaster />
+            <Router />
+            <CartSidebar />
+            <CookieConsent />
+          </CartProvider>
         </TooltipProvider>
       </QueryClientProvider>
     </ThemeProvider>

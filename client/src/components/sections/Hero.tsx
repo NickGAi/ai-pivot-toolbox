@@ -46,7 +46,7 @@ export function Hero() {
             </h1>
 
             <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-3 sm:mb-4 leading-relaxed" itemProp="text">
-              A shockingly effective new method that puts Brisbane businesses in front of customers on Google, ChatGPT, Perplexity and every AI search engine — for the most profitable terms in your industry.
+              A shockingly effective new method that puts Australian businesses in front of customers on Google, ChatGPT, Perplexity and every AI search engine — for the most profitable terms in your industry.
             </p>
 
             <p className="text-sm sm:text-base text-primary font-semibold max-w-xl mx-auto mb-8 sm:mb-10">

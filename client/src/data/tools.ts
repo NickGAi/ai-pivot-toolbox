@@ -1,0 +1,155 @@
+export type BillingType = "monthly" | "once";
+
+export interface Tool {
+  id: string;
+  name: string;
+  tagline: string;
+  description: string;
+  price: number;
+  billing: BillingType;
+  category: string;
+  badge?: string;
+  features: string[];
+  icon: string;
+}
+
+export const tools: Tool[] = [
+  {
+    id: "ai-voice-agent",
+    name: "AI Voice Agent",
+    tagline: "Never miss a call again",
+    description: "Human-like AI that answers, qualifies and books appointments 24/7 — integrated with your CRM and calendar.",
+    price: 497,
+    billing: "monthly",
+    category: "Lead Conversion",
+    badge: "Most Popular",
+    features: ["Inbound & outbound calls", "CRM integration", "Appointment booking", "Call transcripts & analytics", "Custom voice & personality"],
+    icon: "phone",
+  },
+  {
+    id: "ai-seo-package",
+    name: "AI SEO Package",
+    tagline: "Rank on Google & AI search",
+    description: "Full AI SEO and GEO strategy — get found on Google, ChatGPT, Perplexity and every AI search engine.",
+    price: 997,
+    billing: "monthly",
+    category: "SEO & Visibility",
+    badge: "Best Value",
+    features: ["AI-optimised content", "GEO & AEO strategy", "Technical SEO audit", "Monthly rank reports", "Schema markup"],
+    icon: "search",
+  },
+  {
+    id: "ai-lead-nurturing",
+    name: "AI Lead Nurturing",
+    tagline: "Convert leads while you sleep",
+    description: "Instantly engage and qualify leads across SMS, email, live chat and webforms with intelligent 24/7 follow-ups.",
+    price: 697,
+    billing: "monthly",
+    category: "Lead Conversion",
+    features: ["Multi-channel follow-up", "Lead scoring", "CRM sync", "SMS & email sequences", "Conversion analytics"],
+    icon: "target",
+  },
+  {
+    id: "workflow-automation",
+    name: "Workflow Automation",
+    tagline: "Eliminate repetitive tasks",
+    description: "Automate your most time-consuming workflows — data entry, reporting, client comms — and cut manual work by up to 80%.",
+    price: 897,
+    billing: "monthly",
+    category: "Automation",
+    features: ["Custom workflow builds", "Multi-platform integration", "Trigger-based automation", "Error alerts", "Ongoing optimisation"],
+    icon: "zap",
+  },
+  {
+    id: "ai-chatbot",
+    name: "AI Chatbot",
+    tagline: "Your website works 24/7",
+    description: "Custom-trained chatbot that answers questions, captures leads and books appointments directly on your website.",
+    price: 397,
+    billing: "monthly",
+    category: "Lead Conversion",
+    features: ["Custom knowledge base", "Lead capture forms", "Live chat handoff", "Multi-language support", "Analytics dashboard"],
+    icon: "message-circle",
+  },
+  {
+    id: "invoice-automation",
+    name: "Invoice Automation",
+    tagline: "Cut invoicing costs by 85%",
+    description: "AI-powered invoice processing that slashes per-transaction costs from $15–20 down to $2–3 with 90%+ error reduction.",
+    price: 447,
+    billing: "monthly",
+    category: "Automation",
+    features: ["Auto data extraction", "Approval workflows", "Xero / MYOB sync", "Exception alerts", "Audit trail"],
+    icon: "file-text",
+  },
+  {
+    id: "crm-integration-suite",
+    name: "CRM Integration Suite",
+    tagline: "One source of truth",
+    description: "Connect your CRM, calendar, email and tools into a single automated system. No more manual data entry.",
+    price: 597,
+    billing: "monthly",
+    category: "Automation",
+    features: ["CRM setup & migration", "Calendar sync", "Email integration", "Reporting dashboards", "Staff training"],
+    icon: "layers",
+  },
+  {
+    id: "ai-content-machine",
+    name: "AI Content Machine",
+    tagline: "Publish 10× the content",
+    description: "Done-for-you AI content strategy and production — blog posts, social media, email sequences and landing pages.",
+    price: 297,
+    billing: "monthly",
+    category: "SEO & Visibility",
+    features: ["Blog posts & articles", "Social content", "Email sequences", "SEO-optimised copy", "Brand voice training"],
+    icon: "pen-tool",
+  },
+  {
+    id: "website-design-ai",
+    name: "Website Design + AI",
+    tagline: "A site that sells for you",
+    description: "High-converting website with AI chat, SEO foundations and lead capture built in from day one.",
+    price: 2497,
+    billing: "once",
+    category: "Build & Design",
+    badge: "One-Time",
+    features: ["Custom design", "Mobile responsive", "AI chatbot included", "SEO foundations", "12-month support"],
+    icon: "monitor",
+  },
+  {
+    id: "app-development",
+    name: "App / Software Development",
+    tagline: "Build your AI-powered app",
+    description: "Custom web or mobile application built with AI features — from MVP to full-scale product.",
+    price: 4997,
+    billing: "once",
+    category: "Build & Design",
+    badge: "One-Time",
+    features: ["Custom development", "AI feature integration", "API connections", "Testing & QA", "Deployment & hosting"],
+    icon: "code",
+  },
+  {
+    id: "reputation-management",
+    name: "Reputation Management AI",
+    tagline: "More 5-star reviews, automatically",
+    description: "Automated review requests, AI-generated responses and reputation monitoring across Google, Facebook and more.",
+    price: 347,
+    billing: "monthly",
+    category: "SEO & Visibility",
+    features: ["Auto review requests", "AI review responses", "Multi-platform monitoring", "Competitor tracking", "Monthly report"],
+    icon: "star",
+  },
+  {
+    id: "ai-analytics-dashboard",
+    name: "AI Analytics Dashboard",
+    tagline: "See exactly what's working",
+    description: "Unified reporting dashboard that pulls data from all your tools and uses AI to surface insights and recommendations.",
+    price: 197,
+    billing: "monthly",
+    category: "Analytics",
+    features: ["Multi-source data", "AI insights engine", "Custom KPI views", "Automated alerts", "Weekly email digest"],
+    icon: "bar-chart-2",
+  },
+];
+
+export const categories = ["All", ...Array.from(new Set(tools.map((t) => t.category)))];
