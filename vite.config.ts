@@ -47,5 +47,12 @@ export default defineConfig({
       strict: true,
       deny: ["**/.*"],
     },
+    proxy: {
+      "/__mockup": {
+        target: "http://localhost:23636",
+        changeOrigin: true,
+        ws: true,
+      },
+    },
   },
 });

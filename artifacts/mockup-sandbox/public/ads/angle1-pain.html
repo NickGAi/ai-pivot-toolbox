@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 100vw; height: 100vh;
+    overflow: hidden;
+    background: #08080f;
+  }
+  .ad {
+    width: 100vw; height: 100vh;
+    background: #08080f;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 7vh 8vw;
+    position: relative;
+  }
+  .glow {
+    position: absolute;
+    top: -10vh; left: -10vw;
+    width: 60vw; height: 60vh;
+    background: radial-gradient(circle, rgba(14,165,233,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 1.2vw;
+  }
+  .logo-mark {
+    width: 5.5vh; height: 5.5vh;
+    border-radius: 1.2vh;
+    background: linear-gradient(135deg, #0ea5e9, #06b6d4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 2.2vh;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .logo-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 2.4vh;
+    color: #f8fafc;
+    letter-spacing: -0.02em;
+  }
+  .middle {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5vh;
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 1vw;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.6vh;
+    font-weight: 500;
+    color: #0ea5e9;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .dot {
+    width: 1vh; height: 1vh;
+    border-radius: 50%;
+    background: #0ea5e9;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+  }
+  .headline {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 8.5vw;
+    line-height: 1.05;
+    color: #f8fafc;
+    letter-spacing: -0.03em;
+  }
+  .headline span {
+    color: #0ea5e9;
+  }
+  .benefit {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 2.2vh;
+    color: rgba(248,250,252,0.6);
+    line-height: 1.5;
+  }
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5vw;
+    background: #0ea5e9;
+    color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 2vh;
+    padding: 2.2vh 4.5vw;
+    border-radius: 1.2vh;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    align-self: flex-start;
+  }
+  .arrow {
+    font-size: 2.2vh;
+  }
+  .footer {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.6vh;
+    color: rgba(248,250,252,0.3);
+    letter-spacing: 0.04em;
+  }
+</style>
+</head>
+<body>
+<div class="ad">
+  <div class="glow"></div>
+  <div class="logo">
+    <div class="logo-mark">AI</div>
+    <span class="logo-name">AIPivot</span>
+  </div>
+  <div class="middle">
+    <div class="eyebrow">
+      <div class="dot"></div>
+      AI Automation Agency
+    </div>
+    <div class="headline">
+      Still doing<br>it <span>manually?</span>
+    </div>
+    <div class="benefit">Your competitors have AI following up every lead 24/7.</div>
+    <div class="cta">
+      Book a free strategy call
+      <span class="arrow">→</span>
+    </div>
+  </div>
+  <div class="footer">aipivot.com.au</div>
+</div>
+</body>
+</html>
