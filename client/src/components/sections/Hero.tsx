@@ -32,7 +32,7 @@ export function Hero() {
           >
             <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs sm:text-sm font-medium mb-6 sm:mb-8" role="status">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" aria-hidden="true" />
-              <span itemProp="description">AI Automation &amp; SEO Agency — Brisbane, Australia</span>
+              <span itemProp="description">AI Automation & SEO Agency, Australia Wide</span>
             </div>
 
             <h1 
