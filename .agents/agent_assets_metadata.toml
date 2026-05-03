@@ -6,3 +6,9 @@ id = "JLNQ48PPYMzXXWdgNF4OW"
 uri = "file://attached_assets/ai-pivot-target-list.csv"
 type = "table"
 title = "AI Pivot Target Prospect List (54 leads)"
+
+[[outputs]]
+id = "GY2m13-K5ftATHnNzsTd-"
+uri = "file://attached_assets/cold-email-templates.md"
+type = "text"
+title = "AI Pivot Cold Email Templates (3 industries)"
