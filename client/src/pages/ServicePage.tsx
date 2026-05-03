@@ -5,6 +5,7 @@ import { Link } from "wouter";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Contact } from "@/components/sections/Contact";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { type ServiceData } from "@/data/services-data";
 
 interface Props {
@@ -80,6 +81,7 @@ export default function ServicePage({ service }: Props) {
         <section className="pt-32 pb-20">
           <div className="container-main px-4 sm:px-6 lg:px-8 max-w-5xl">
             <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+              <Breadcrumbs crumbs={[{ label: "Services" }, { label: service.name }]} />
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6">
                 <Zap className="w-4 h-4" />
                 AI Automation — Australia Wide
