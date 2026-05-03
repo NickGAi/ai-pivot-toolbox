@@ -12,9 +12,12 @@ import Home from "@/pages/Home";
 import LocationPage from "@/pages/LocationPage";
 import ServicePage from "@/pages/ServicePage";
 import IndustryPage from "@/pages/IndustryPage";
+import Blog from "@/pages/Blog";
+import BlogPostPage from "@/pages/BlogPostPage";
 import { getLocationBySlug } from "@/data/locations";
 import { getServiceBySlug } from "@/data/services-data";
 import { getIndustryBySlug } from "@/data/industries-data";
+import { getBlogPostBySlug } from "@/data/blog-data";
 
 const Terms = lazy(() => import("@/pages/Terms"));
 const Privacy = lazy(() => import("@/pages/Privacy"));
@@ -29,6 +32,10 @@ const locationSlugs = [
   "ai-automation-melbourne",
   "ai-automation-perth",
   "ai-automation-adelaide",
+  "ai-automation-gold-coast",
+  "ai-automation-canberra",
+  "ai-automation-newcastle",
+  "ai-automation-hobart",
 ];
 
 const serviceSlugs = [
@@ -64,6 +71,13 @@ function Router() {
         <Route path="/terms" component={Terms} />
         <Route path="/privacy" component={Privacy} />
         <Route path="/refund" component={Refund} />
+        <Route path="/blog" component={Blog} />
+
+        <Route path="/blog/:slug" component={({ params }) => {
+          const post = getBlogPostBySlug(params.slug);
+          if (!post) return <NotFound />;
+          return <BlogPostPage post={post} />;
+        }} />
 
         {locationSlugs.map(slug => (
           <Route key={slug} path={`/${slug}`} component={() => {

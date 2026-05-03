@@ -13,51 +13,92 @@ Brand name: "AI Pivot Toolbox" (formerly AIPivot)
 Target market: Australian businesses (not just Brisbane)
 Marketing style: King Kong-style direct response — bold claims, specific timeframes, guarantee language
 
-## Routes
+## Total Indexed Pages: 46
 
+### Core Pages
 | Path | Description |
 |------|-------------|
 | `/` | Home (marketing landing page) |
 | `/toolbox` | AI Toolbox shop with cart |
 | `/checkout` | Quote request checkout |
+| `/blog` | Blog index |
 | `/terms` | Terms of Service |
 | `/privacy` | Privacy Policy |
 | `/refund` | Refund Policy |
-| `/ai-automation-brisbane` | Location page — Brisbane, QLD |
-| `/ai-automation-sydney` | Location page — Sydney, NSW |
-| `/ai-automation-melbourne` | Location page — Melbourne, VIC |
-| `/ai-automation-perth` | Location page — Perth, WA |
-| `/ai-automation-adelaide` | Location page — Adelaide, SA |
-| `/ai-voice-agents` | Service page — AI Voice Agents ($997/mo) |
-| `/workflow-automation` | Service page — Workflow Automation ($1,497/mo) |
-| `/ai-seo-australia` | Service page — AI SEO Package ($1,497/mo) |
-| `/aeo-answer-engine-optimisation` | Service page — AEO |
-| `/geo-generative-engine-optimisation` | Service page — GEO |
-| `/ai-chatbot-australia` | Service page — AI Chatbot ($597/mo) |
-| `/website-design-ai` | Service page — Website Design + AI ($3,497 once) |
-| `/app-development-australia` | Service page — App Development ($7,997 once) |
-| `/ai-integrations` | Service page — CRM & AI Integrations ($997/mo) |
-| `/ai-for-real-estate` | Industry page — Real Estate |
-| `/ai-for-healthcare` | Industry page — Healthcare |
-| `/ai-for-legal` | Industry page — Legal |
-| `/ai-for-accounting` | Industry page — Accounting |
-| `/ai-for-hospitality` | Industry page — Hospitality |
-| `/ai-for-construction` | Industry page — Construction |
-| `/ai-for-finance` | Industry page — Finance & Mortgage Broking |
-| `/ai-for-retail` | Industry page — Retail & eCommerce |
 
-**Total: 30 indexed pages**
+### Location Pages (9)
+| Path | Description |
+|------|-------------|
+| `/ai-automation-brisbane` | Brisbane, QLD |
+| `/ai-automation-sydney` | Sydney, NSW |
+| `/ai-automation-melbourne` | Melbourne, VIC |
+| `/ai-automation-perth` | Perth, WA |
+| `/ai-automation-adelaide` | Adelaide, SA |
+| `/ai-automation-gold-coast` | Gold Coast, QLD |
+| `/ai-automation-canberra` | Canberra, ACT |
+| `/ai-automation-newcastle` | Newcastle, NSW |
+| `/ai-automation-hobart` | Hobart, TAS |
 
-### Page Architecture
-- Location data: `client/src/data/locations.ts` — LocationData interface + 5 city objects
-- Service data: `client/src/data/services-data.ts` — ServiceData interface + 9 service objects
-- Industry data: `client/src/data/industries-data.ts` — IndustryData interface + 8 industry objects
-- Location template: `client/src/pages/LocationPage.tsx`
-- Service template: `client/src/pages/ServicePage.tsx`
-- Industry template: `client/src/pages/IndustryPage.tsx`
+### Service Pages (9)
+| Path | Description |
+|------|-------------|
+| `/ai-voice-agents` | AI Voice Agents ($997/mo) |
+| `/workflow-automation` | Workflow Automation ($1,497/mo) |
+| `/ai-seo-australia` | AI SEO Package ($1,497/mo) |
+| `/aeo-answer-engine-optimisation` | AEO |
+| `/geo-generative-engine-optimisation` | GEO |
+| `/ai-chatbot-australia` | AI Chatbot ($597/mo) |
+| `/website-design-ai` | Website Design + AI ($3,497 once) |
+| `/app-development-australia` | App Development ($7,997 once) |
+| `/ai-integrations` | CRM & AI Integrations ($997/mo) |
+
+### Industry Pages (8)
+| Path | Description |
+|------|-------------|
+| `/ai-for-real-estate` | Real Estate |
+| `/ai-for-healthcare` | Healthcare |
+| `/ai-for-legal` | Legal |
+| `/ai-for-accounting` | Accounting |
+| `/ai-for-hospitality` | Hospitality |
+| `/ai-for-construction` | Construction |
+| `/ai-for-finance` | Finance & Mortgage Broking |
+| `/ai-for-retail` | Retail & eCommerce |
+
+### Blog Posts (6, growing)
+| Path | Description |
+|------|-------------|
+| `/blog/what-is-geo-generative-engine-optimisation` | GEO explainer |
+| `/blog/ai-voice-agent-cost-australia` | Pricing guide |
+| `/blog/aeo-vs-seo-australia` | AEO vs SEO comparison |
+| `/blog/get-business-recommended-chatgpt` | ChatGPT/Perplexity visibility guide |
+| `/blog/ai-automation-small-business-australia` | SMB starter guide |
+| `/blog/workflow-automation-tasks-australia` | 10 tasks to automate |
+
+## Page Architecture
+
+### Data Files
+- `client/src/data/locations.ts` — LocationData interface + 9 city objects + getLocationBySlug()
+- `client/src/data/services-data.ts` — ServiceData interface + 9 service objects + getServiceBySlug()
+- `client/src/data/industries-data.ts` — IndustryData interface + 8 industry objects + getIndustryBySlug()
+- `client/src/data/blog-data.ts` — BlogPost interface + 6 posts + getBlogPostBySlug() + getRecentPosts()
+
+### Page Templates
+- `client/src/pages/LocationPage.tsx` — reusable location page template
+- `client/src/pages/ServicePage.tsx` — reusable service page template (with pricing comparison, JSON-LD)
+- `client/src/pages/IndustryPage.tsx` — reusable industry page template (with case study, JSON-LD)
+- `client/src/pages/Blog.tsx` — blog index with featured post
+- `client/src/pages/BlogPostPage.tsx` — individual post template with related posts
+
+### Routing
 - All routes registered in `client/src/App.tsx` via slug arrays + inline component factories
-- All 30 URLs in `client/public/sitemap.xml`
-- Footer links to all service, industry, and location pages
+- Wouter router with lazy-loaded policy/utility pages
+
+### SEO Infrastructure
+- All 46 URLs in `client/public/sitemap.xml`
+- Footer links to all service, industry, location pages, and blog
+- Breadcrumbs component: `client/src/components/ui/Breadcrumbs.tsx` — on all service, industry, and blog pages
+- JSON-LD schema on every page: Service + FAQPage + BreadcrumbList (service pages), FAQPage + BreadcrumbList (industry), BlogPosting (blog posts), Blog (index)
+- robots.txt allows all AI crawlers (GPTBot, Claude-Web, PerplexityBot)
 
 ## Key Components
 
@@ -71,10 +112,6 @@ Marketing style: King Kong-style direct response — bold claims, specific timef
 - `client/src/components/cart/CartSidebar.tsx` — Slide-in cart panel (rendered once in App.tsx)
 - `client/src/data/tools.ts` — 12 AI tool products with pricing, features, categories
 - Cart icon with badge count in Navbar (desktop + mobile)
-
-### Pages
-- `client/src/pages/Toolbox.tsx` — Product grid with category filtering, ToolCard components
-- `client/src/pages/Checkout.tsx` — Quote request form + order summary sidebar
 
 ## System Architecture
 
@@ -105,17 +142,21 @@ Marketing style: King Kong-style direct response — bold claims, specific timef
 - **Development Mode**: Vite dev server with HMR proxied through Express
 - **Production Mode**: Static file serving from built assets
 
+### Favicon & PWA
+- `client/public/favicon.ico` — multi-size ICO (16x16, 32x32)
+- `client/public/favicon.png` — 128x128 PNG
+- `client/public/apple-touch-icon.png` — 180x180 (properly sized)
+- `client/public/icon-192.png` — 192x192 for Android/Chrome
+- `client/public/icon-512.png` — 512x512 for Android/Chrome
+- `client/public/site.webmanifest` — PWA manifest with brand colours
+
 ### SEO/GEO Optimization
 - Comprehensive meta tags for OpenGraph and Twitter cards
-- Schema.org structured data (JSON-LD) for organization, LocalBusiness, WebSite, WebPage, Services (10 services), FAQPage (10 questions)
+- Schema.org structured data (JSON-LD) for organization, LocalBusiness, WebSite, WebPage, Services, FAQPage
 - robots.txt configured to allow AI crawlers (GPTBot, Claude-Web, PerplexityBot)
-- Australian geo-targeting meta tags + all 5 major city keywords (Brisbane, Sydney, Melbourne, Perth, Adelaide)
-- All brand references updated to "AI Pivot Toolbox"
-- GEO-optimised FAQ (10 questions) targeting real search queries with answer-first structure, statistics, and named sources
-- Solo operator positioning: 40–60% below agency rates clearly communicated on Toolbox page
-- Agency price comparison shown as strikethrough on each product card
-- Service pages include Service + FAQPage + BreadcrumbList JSON-LD schema
-- Industry pages include FAQPage + BreadcrumbList JSON-LD schema
+- Australian geo-targeting meta tags + all major city keywords
+- GEO-optimised content with answer-first structure, statistics, and named sources
+- Solo operator positioning: 40–60% below agency rates
 
 ### Pricing Strategy (Research-Backed)
 Solo AI operator pricing — 40–60% below agency rates:

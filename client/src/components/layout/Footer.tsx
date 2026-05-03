@@ -7,6 +7,10 @@ const locationLinks = [
   { label: "AI Automation Melbourne", href: "/ai-automation-melbourne" },
   { label: "AI Automation Perth", href: "/ai-automation-perth" },
   { label: "AI Automation Adelaide", href: "/ai-automation-adelaide" },
+  { label: "AI Automation Gold Coast", href: "/ai-automation-gold-coast" },
+  { label: "AI Automation Canberra", href: "/ai-automation-canberra" },
+  { label: "AI Automation Newcastle", href: "/ai-automation-newcastle" },
+  { label: "AI Automation Hobart", href: "/ai-automation-hobart" },
 ];
 
 const serviceLinks = [
@@ -34,18 +38,13 @@ const industryLinks = [
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
-  
+
   return (
     <footer className="py-12 border-t border-border" role="contentinfo" aria-label="Site footer">
       <div className="container-main">
         <div className="flex flex-col gap-8">
           <div className="flex flex-col md:flex-row items-start justify-between gap-8">
-            <Link 
-              href="/"
-              className="flex items-center mx-auto md:mx-0"
-              itemScope
-              itemType="https://schema.org/Organization"
-            >
+            <Link href="/" className="flex items-center mx-auto md:mx-0" itemScope itemType="https://schema.org/Organization">
               <Logo size="md" />
             </Link>
 
@@ -56,6 +55,7 @@ export function Footer() {
               <a href="/#about" className="hover:text-foreground transition-colors text-sm">About</a>
               <a href="/#faq" className="hover:text-foreground transition-colors text-sm">FAQ</a>
               <Link href="/toolbox" className="hover:text-foreground transition-colors text-sm">Toolbox</Link>
+              <Link href="/blog" className="hover:text-foreground transition-colors text-sm">Blog</Link>
             </nav>
 
             <div className="text-muted-foreground text-sm text-center md:text-right">
@@ -73,9 +73,7 @@ export function Footer() {
             <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wider text-center mb-3">Services</p>
             <nav className="flex flex-wrap items-center justify-center gap-3 sm:gap-5 text-xs text-muted-foreground" role="navigation" aria-label="Service pages">
               {serviceLinks.map(link => (
-                <Link key={link.href} href={link.href} className="hover:text-foreground transition-colors">
-                  {link.label}
-                </Link>
+                <Link key={link.href} href={link.href} className="hover:text-foreground transition-colors">{link.label}</Link>
               ))}
             </nav>
           </div>
@@ -84,9 +82,7 @@ export function Footer() {
             <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wider text-center mb-3">Industries</p>
             <nav className="flex flex-wrap items-center justify-center gap-3 sm:gap-5 text-xs text-muted-foreground" role="navigation" aria-label="Industry pages">
               {industryLinks.map(link => (
-                <Link key={link.href} href={link.href} className="hover:text-foreground transition-colors">
-                  {link.label}
-                </Link>
+                <Link key={link.href} href={link.href} className="hover:text-foreground transition-colors">{link.label}</Link>
               ))}
             </nav>
           </div>
@@ -95,9 +91,7 @@ export function Footer() {
             <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wider text-center mb-3">Locations</p>
             <nav className="flex flex-wrap items-center justify-center gap-3 sm:gap-5 text-xs text-muted-foreground" role="navigation" aria-label="Location pages">
               {locationLinks.map(link => (
-                <Link key={link.href} href={link.href} className="hover:text-foreground transition-colors">
-                  {link.label}
-                </Link>
+                <Link key={link.href} href={link.href} className="hover:text-foreground transition-colors">{link.label}</Link>
               ))}
             </nav>
           </div>
