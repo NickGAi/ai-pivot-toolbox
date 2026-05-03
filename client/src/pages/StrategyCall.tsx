@@ -85,7 +85,7 @@ export default function StrategyCall() {
         throw new Error(data.message || "Submission failed");
       }
     } catch (err: any) {
-      toast({ title: "Something went wrong", description: err.message || "Please call 0XXX XXX XXX directly.", variant: "destructive" });
+      toast({ title: "Something went wrong", description: err.message || "Please call 0415 685 544 directly.", variant: "destructive" });
     } finally {
       setSubmitting(false);
     }
@@ -97,9 +97,9 @@ export default function StrategyCall() {
       <header className="border-b border-border">
         <div className="container-main px-4 sm:px-6 py-4 flex items-center justify-between">
           <a href="/" data-testid="link-home"><Logo size="md" /></a>
-          <a href="tel:0000000000" className="text-sm text-muted-foreground hover:text-foreground flex items-center gap-2" data-testid="link-phone">
+          <a href="tel:0415685544" className="text-sm text-muted-foreground hover:text-foreground flex items-center gap-2" data-testid="link-phone">
             <Phone className="w-4 h-4" />
-            <span className="hidden sm:inline">Or call: 0XXX XXX XXX</span>
+            <span className="hidden sm:inline">Or call: 0415 685 544</span>
           </a>
         </div>
       </header>
@@ -197,7 +197,7 @@ export default function StrategyCall() {
                     <Check className="w-8 h-8 text-primary" />
                   </div>
                   <h2 className="text-2xl font-bold text-foreground mb-2">You're in.</h2>
-                  <p className="text-muted-foreground">Nick will be in touch within 1 business day to confirm a time. If it's urgent, give him a call directly on 0XXX XXX XXX.</p>
+                  <p className="text-muted-foreground">Nick will be in touch within 1 business day to confirm a time. If it's urgent, give him a call directly on 0415 685 544.</p>
                 </div>
               ) : (
                 <>
