@@ -24,6 +24,7 @@ const Privacy = lazy(() => import("@/pages/Privacy"));
 const Refund = lazy(() => import("@/pages/Refund"));
 const Toolbox = lazy(() => import("@/pages/Toolbox"));
 const Checkout = lazy(() => import("@/pages/Checkout"));
+const VsMarketingAgency = lazy(() => import("@/pages/VsMarketingAgency"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 
 const locationSlugs = [
@@ -72,6 +73,7 @@ function Router() {
         <Route path="/privacy" component={Privacy} />
         <Route path="/refund" component={Refund} />
         <Route path="/blog" component={Blog} />
+        <Route path="/ai-pivot-vs-marketing-agency" component={VsMarketingAgency} />
 
         <Route path="/blog/:slug" component={({ params }) => {
           const post = getBlogPostBySlug(params.slug);

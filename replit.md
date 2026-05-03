@@ -13,7 +13,7 @@ Brand name: "AI Pivot Toolbox" (formerly AIPivot)
 Target market: Australian businesses (not just Brisbane)
 Marketing style: King Kong-style direct response — bold claims, specific timeframes, guarantee language
 
-## Total Indexed Pages: 46
+## Total Indexed Pages: 50
 
 ### Core Pages
 | Path | Description |
@@ -25,6 +25,7 @@ Marketing style: King Kong-style direct response — bold claims, specific timef
 | `/terms` | Terms of Service |
 | `/privacy` | Privacy Policy |
 | `/refund` | Refund Policy |
+| `/ai-pivot-vs-marketing-agency` | Comparison: AI Pivot Toolbox vs traditional Australian agencies |
 
 ### Location Pages (9)
 | Path | Description |
@@ -64,7 +65,7 @@ Marketing style: King Kong-style direct response — bold claims, specific timef
 | `/ai-for-finance` | Finance & Mortgage Broking |
 | `/ai-for-retail` | Retail & eCommerce |
 
-### Blog Posts (6, growing)
+### Blog Posts (9, growing)
 | Path | Description |
 |------|-------------|
 | `/blog/what-is-geo-generative-engine-optimisation` | GEO explainer |
@@ -73,6 +74,9 @@ Marketing style: King Kong-style direct response — bold claims, specific timef
 | `/blog/get-business-recommended-chatgpt` | ChatGPT/Perplexity visibility guide |
 | `/blog/ai-automation-small-business-australia` | SMB starter guide |
 | `/blog/workflow-automation-tasks-australia` | 10 tasks to automate |
+| `/blog/best-ai-tools-australian-small-business-2026` | Tool review/recommendation guide |
+| `/blog/automate-xero-with-ai-australia` | Xero AI automation playbook |
+| `/blog/ai-for-australian-accountants` | 7 workflows for accounting firms |
 
 ## Page Architecture
 

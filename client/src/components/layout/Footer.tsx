@@ -56,6 +56,7 @@ export function Footer() {
               <a href="/#faq" className="hover:text-foreground transition-colors text-sm">FAQ</a>
               <Link href="/toolbox" className="hover:text-foreground transition-colors text-sm">Toolbox</Link>
               <Link href="/blog" className="hover:text-foreground transition-colors text-sm">Blog</Link>
+              <Link href="/ai-pivot-vs-marketing-agency" className="hover:text-foreground transition-colors text-sm">vs Agency</Link>
             </nav>
 
             <div className="text-muted-foreground text-sm text-center md:text-right">
