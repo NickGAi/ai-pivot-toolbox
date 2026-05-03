@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "JLNQ48PPYMzXXWdgNF4OW"
+uri = "file://attached_assets/ai-pivot-target-list.csv"
+type = "table"
+title = "AI Pivot Target Prospect List (54 leads)"
