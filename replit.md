@@ -28,13 +28,36 @@ Marketing style: King Kong-style direct response — bold claims, specific timef
 | `/ai-automation-melbourne` | Location page — Melbourne, VIC |
 | `/ai-automation-perth` | Location page — Perth, WA |
 | `/ai-automation-adelaide` | Location page — Adelaide, SA |
+| `/ai-voice-agents` | Service page — AI Voice Agents ($997/mo) |
+| `/workflow-automation` | Service page — Workflow Automation ($1,497/mo) |
+| `/ai-seo-australia` | Service page — AI SEO Package ($1,497/mo) |
+| `/aeo-answer-engine-optimisation` | Service page — AEO |
+| `/geo-generative-engine-optimisation` | Service page — GEO |
+| `/ai-chatbot-australia` | Service page — AI Chatbot ($597/mo) |
+| `/website-design-ai` | Service page — Website Design + AI ($3,497 once) |
+| `/app-development-australia` | Service page — App Development ($7,997 once) |
+| `/ai-integrations` | Service page — CRM & AI Integrations ($997/mo) |
+| `/ai-for-real-estate` | Industry page — Real Estate |
+| `/ai-for-healthcare` | Industry page — Healthcare |
+| `/ai-for-legal` | Industry page — Legal |
+| `/ai-for-accounting` | Industry page — Accounting |
+| `/ai-for-hospitality` | Industry page — Hospitality |
+| `/ai-for-construction` | Industry page — Construction |
+| `/ai-for-finance` | Industry page — Finance & Mortgage Broking |
+| `/ai-for-retail` | Industry page — Retail & eCommerce |
 
-### Location Pages Architecture
-- Data: `client/src/data/locations.ts` — `LocationData` interface + 5 city objects + `getLocationBySlug()`
-- Template: `client/src/pages/LocationPage.tsx` — single reusable component
-- Routes registered in `client/src/App.tsx` via `locationSlugs` array
-- All 5 cities in `client/public/sitemap.xml`
-- Footer links to all 5 location pages for internal linking
+**Total: 30 indexed pages**
+
+### Page Architecture
+- Location data: `client/src/data/locations.ts` — LocationData interface + 5 city objects
+- Service data: `client/src/data/services-data.ts` — ServiceData interface + 9 service objects
+- Industry data: `client/src/data/industries-data.ts` — IndustryData interface + 8 industry objects
+- Location template: `client/src/pages/LocationPage.tsx`
+- Service template: `client/src/pages/ServicePage.tsx`
+- Industry template: `client/src/pages/IndustryPage.tsx`
+- All routes registered in `client/src/App.tsx` via slug arrays + inline component factories
+- All 30 URLs in `client/public/sitemap.xml`
+- Footer links to all service, industry, and location pages
 
 ## Key Components
 
@@ -91,6 +114,8 @@ Marketing style: King Kong-style direct response — bold claims, specific timef
 - GEO-optimised FAQ (10 questions) targeting real search queries with answer-first structure, statistics, and named sources
 - Solo operator positioning: 40–60% below agency rates clearly communicated on Toolbox page
 - Agency price comparison shown as strikethrough on each product card
+- Service pages include Service + FAQPage + BreadcrumbList JSON-LD schema
+- Industry pages include FAQPage + BreadcrumbList JSON-LD schema
 
 ### Pricing Strategy (Research-Backed)
 Solo AI operator pricing — 40–60% below agency rates:

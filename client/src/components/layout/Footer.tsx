@@ -9,6 +9,29 @@ const locationLinks = [
   { label: "AI Automation Adelaide", href: "/ai-automation-adelaide" },
 ];
 
+const serviceLinks = [
+  { label: "AI Voice Agents", href: "/ai-voice-agents" },
+  { label: "Workflow Automation", href: "/workflow-automation" },
+  { label: "AI SEO Australia", href: "/ai-seo-australia" },
+  { label: "AEO", href: "/aeo-answer-engine-optimisation" },
+  { label: "GEO", href: "/geo-generative-engine-optimisation" },
+  { label: "AI Chatbot", href: "/ai-chatbot-australia" },
+  { label: "Website Design + AI", href: "/website-design-ai" },
+  { label: "App Development", href: "/app-development-australia" },
+  { label: "AI Integrations", href: "/ai-integrations" },
+];
+
+const industryLinks = [
+  { label: "AI for Real Estate", href: "/ai-for-real-estate" },
+  { label: "AI for Healthcare", href: "/ai-for-healthcare" },
+  { label: "AI for Legal", href: "/ai-for-legal" },
+  { label: "AI for Accounting", href: "/ai-for-accounting" },
+  { label: "AI for Hospitality", href: "/ai-for-hospitality" },
+  { label: "AI for Construction", href: "/ai-for-construction" },
+  { label: "AI for Finance", href: "/ai-for-finance" },
+  { label: "AI for Retail", href: "/ai-for-retail" },
+];
+
 export function Footer() {
   const currentYear = new Date().getFullYear();
   
@@ -47,6 +70,29 @@ export function Footer() {
           </div>
 
           <div className="border-t border-border pt-6">
+            <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wider text-center mb-3">Services</p>
+            <nav className="flex flex-wrap items-center justify-center gap-3 sm:gap-5 text-xs text-muted-foreground" role="navigation" aria-label="Service pages">
+              {serviceLinks.map(link => (
+                <Link key={link.href} href={link.href} className="hover:text-foreground transition-colors">
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+          </div>
+
+          <div className="border-t border-border pt-6">
+            <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wider text-center mb-3">Industries</p>
+            <nav className="flex flex-wrap items-center justify-center gap-3 sm:gap-5 text-xs text-muted-foreground" role="navigation" aria-label="Industry pages">
+              {industryLinks.map(link => (
+                <Link key={link.href} href={link.href} className="hover:text-foreground transition-colors">
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+          </div>
+
+          <div className="border-t border-border pt-6">
+            <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wider text-center mb-3">Locations</p>
             <nav className="flex flex-wrap items-center justify-center gap-3 sm:gap-5 text-xs text-muted-foreground" role="navigation" aria-label="Location pages">
               {locationLinks.map(link => (
                 <Link key={link.href} href={link.href} className="hover:text-foreground transition-colors">

@@ -10,7 +10,11 @@ import { CartProvider } from "@/context/CartContext";
 import { CartSidebar } from "@/components/cart/CartSidebar";
 import Home from "@/pages/Home";
 import LocationPage from "@/pages/LocationPage";
+import ServicePage from "@/pages/ServicePage";
+import IndustryPage from "@/pages/IndustryPage";
 import { getLocationBySlug } from "@/data/locations";
+import { getServiceBySlug } from "@/data/services-data";
+import { getIndustryBySlug } from "@/data/industries-data";
 
 const Terms = lazy(() => import("@/pages/Terms"));
 const Privacy = lazy(() => import("@/pages/Privacy"));
@@ -27,11 +31,28 @@ const locationSlugs = [
   "ai-automation-adelaide",
 ];
 
-function LocationRoute({ params }: { params: { slug: string } }) {
-  const location = getLocationBySlug(params.slug);
-  if (!location) return <NotFound />;
-  return <LocationPage location={location} />;
-}
+const serviceSlugs = [
+  "ai-voice-agents",
+  "workflow-automation",
+  "ai-seo-australia",
+  "aeo-answer-engine-optimisation",
+  "geo-generative-engine-optimisation",
+  "ai-chatbot-australia",
+  "website-design-ai",
+  "app-development-australia",
+  "ai-integrations",
+];
+
+const industrySlugs = [
+  "ai-for-real-estate",
+  "ai-for-healthcare",
+  "ai-for-legal",
+  "ai-for-accounting",
+  "ai-for-hospitality",
+  "ai-for-construction",
+  "ai-for-finance",
+  "ai-for-retail",
+];
 
 function Router() {
   return (
@@ -43,17 +64,31 @@ function Router() {
         <Route path="/terms" component={Terms} />
         <Route path="/privacy" component={Privacy} />
         <Route path="/refund" component={Refund} />
+
         {locationSlugs.map(slug => (
-          <Route
-            key={slug}
-            path={`/${slug}`}
-            component={() => {
-              const location = getLocationBySlug(slug);
-              if (!location) return <NotFound />;
-              return <LocationPage location={location} />;
-            }}
-          />
+          <Route key={slug} path={`/${slug}`} component={() => {
+            const loc = getLocationBySlug(slug);
+            if (!loc) return <NotFound />;
+            return <LocationPage location={loc} />;
+          }} />
         ))}
+
+        {serviceSlugs.map(slug => (
+          <Route key={slug} path={`/${slug}`} component={() => {
+            const svc = getServiceBySlug(slug);
+            if (!svc) return <NotFound />;
+            return <ServicePage service={svc} />;
+          }} />
+        ))}
+
+        {industrySlugs.map(slug => (
+          <Route key={slug} path={`/${slug}`} component={() => {
+            const ind = getIndustryBySlug(slug);
+            if (!ind) return <NotFound />;
+            return <IndustryPage industry={ind} />;
+          }} />
+        ))}
+
         <Route component={NotFound} />
       </Switch>
     </Suspense>
