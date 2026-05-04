@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { trackEvent, GA_EVENTS } from "@/lib/analytics";
 
 export function Contact() {
   const { toast } = useToast();
@@ -30,6 +31,10 @@ export function Contact() {
       const data = await response.json();
 
       if (data.success) {
+        trackEvent(GA_EVENTS.CONTACT_FORM, {
+          form_location: "homepage",
+          industry: formData.industry || "unspecified",
+        });
         toast({
           title: "Success!",
           description: data.message,

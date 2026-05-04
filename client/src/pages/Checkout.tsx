@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { trackEvent, GA_EVENTS } from "@/lib/analytics";
 import { motion } from "framer-motion";
 import { ArrowLeft, CheckCircle2, ShoppingBag } from "lucide-react";
 import { useLocation } from "wouter";
@@ -45,6 +46,11 @@ export default function Checkout() {
           message: `TOOLBOX ORDER REQUEST\n\nSelected Tools:\n${toolList}\n\nTotal: $${totalPrice.toLocaleString()}\n\nAdditional notes:\n${form.message}`,
           service: "AI Toolbox Order",
         }),
+      });
+      trackEvent(GA_EVENTS.QUOTE_REQUEST, {
+        value: totalPrice,
+        currency: "AUD",
+        item_count: items.length,
       });
       setSubmitted(true);
       clearCart();

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Check, Clock, Shield, Phone, ArrowRight, Star } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
 import { useToast } from "@/hooks/use-toast";
+import { trackEvent, GA_EVENTS } from "@/lib/analytics";
 
 const benefits = [
   { icon: Clock, title: "30 minutes, max", text: "No slides, no sales theatre. We diagnose your highest-value automation, you decide what to do with it." },
@@ -79,6 +80,12 @@ export default function StrategyCall() {
       });
       const data = await res.json();
       if (data.success) {
+        trackEvent(GA_EVENTS.STRATEGY_CALL, {
+          form_location: "strategy_call_page",
+          industry: form.industry || "unspecified",
+          utm_source: utm.source || "direct",
+          utm_campaign: utm.campaign || "none",
+        });
         setSubmitted(true);
         toast({ title: "Booked!", description: "Nick will be in touch within 1 business day to confirm a time." });
       } else {
