@@ -1,0 +1,16 @@
+I need to stop and check in with you. The "+ Create event" panel is not the right tool for what you described. This panel creates a derived/customized event (a new event triggered by rules based on other events), not just a flag to mark an event name as a key event in advance. The form requires:
+
+An event name (the new derived event's name)
+A "Mark as key event" toggle (yes, this exists here)
+A "Choose how to create an event" section with rule conditions to define when the event fires
+
+If I proceed here and just type generate_lead, it would try to create a derived event named generate_lead that fires based on conditions I'd define — which would conflict with (or duplicate) the real generate_lead event your site sends, and could pollute the data badly.
+What you described — "GA4 → Admin → Key events → 'New key event' (blue button, top right)" — was the workflow in an older GA4 UI (and is documented in many older Google guides). In the current GA4 UI on this property, I'm seeing:
+
+The Key events screen is now just a tab on the Events page, with no standalone "New key event" button
+The only ways to add a key event are: (a) star an event that has already fired in Recent events, or (b) create a derived event via "+ Create event" with the "Mark as key event" toggle on
+
+Before I do anything further I want your call on which path to take, because both have side effects:
+Option A — Cancel this dialog and go back to the original plan: fire test submissions on the live site first, then star the events when they show up. This is the cleanest data-wise. (Per your earlier instructions and my plan step 5, I was going to ask before submitting test forms anyway — please confirm what name/email to use for the test, e.g. "Test User" / a test inbox you control.)
+Option B — Use this "Create event" dialog three times, each time naming the derived event generate_lead / contact / quote_request and toggling Mark as key event on, with copy conditions that match the source event 1:1 (e.g. matching parameter event_name equals generate_lead). This will pre-flag them as key events but it also creates derived duplicate events, which is messy and almost certainly not what you want — derived events double-count.
+I'd strongly recommend Option A. Cancel this dialog, you fire one test submission of each form (or I can do it with explicit test data you give me), and I'll star them as key events the moment they appear in Recent events. Want me to cancel and go that route? If yes, give me the test name/email to use on the homepage contact form and the strategy call form at aipivot.com.au/book and I'll handle the rest.
