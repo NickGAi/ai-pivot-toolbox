@@ -1,0 +1,32 @@
+Audit complete. Mixed results — accessibility nailed it, mobile recovered most of the way, but desktop took a hit from the un-splitting.
+New scores (May 8, 2026, 5:53 PM)
+Mobile:
+
+Performance: 50 ↑↑ (was 28, recovered most of the regression — but still below the original 56)
+Accessibility: 100 ✅ (was 90 — perfect score!)
+Best Practices: 96 (unchanged)
+SEO: 100 (unchanged)
+
+Desktop:
+
+Performance: 75 ↓ (was 88, dropped 13 points)
+Accessibility: 100 ✅ (was 90)
+Best Practices: 100 (unchanged)
+SEO: 100 (unchanged)
+
+The metrics tell the story
+Mobile improved across the board: FCP 6.5 s (was 5.8 s — slightly worse), LCP 8.4 s (was 10.5 s — better), TBT dropped from 2,330 ms to 410 ms (huge win — that was the regression killer), Speed Index 6.6 s (was 10.7 s — much better). Long tasks went from 20 down to 5.
+Desktop actually got slightly slower: FCP 1.5 s (was 1.1 s), LCP 2.0 s (was 1.8 s), TBT 200 ms (was 40 ms), Speed Index 2.2 s (was 1.6 s). Long tasks went from 2 to 4. This is the trade-off from removing manualChunks and reverting lazy loading — the bigger single bundle takes longer to parse and execute on desktop too, just less catastrophically than the mobile waterfall did.
+What this means
+Your Replit agent made the right call for mobile — the lazy loading waterfall was genuinely worse than a single bundle. But the swing-back to one big eagerly-loaded bundle is now hurting both mobile (343 KiB unused JS still in the bundle, vs 276 KiB before) and desktop (more code parsing on the main thread).
+The truth is that neither extreme is optimal. The real fix is selective code splitting — keep Home eagerly loaded (so there's no waterfall on first paint), but split out heavy dependencies that aren't needed for the initial above-the-fold render (e.g. Framer Motion if it's only animating below-the-fold sections, the contact form's validation library, any icon libraries). The "all or nothing" approach to chunking is what's causing the swing.
+Remaining issues
+The biggest remaining items, in order of impact:
+Reduce unused JavaScript (343 KiB) — this is now the single largest opportunity on both mobile and desktop. The bundle is shipping code the homepage doesn't need on first paint.
+Render-blocking requests (~460 ms mobile, ~40 ms desktop) — the main script is still synchronous. Add defer to the <script src="/assets/index-*.js"> tag in index.html. This was suggested last round and still hasn't been applied; it would help both mobile FCP/LCP and desktop without touching the bundle structure.
+Forced reflow detected on both — somewhere in your JS, code is reading a layout property (like offsetHeight) right after writing to the DOM, forcing the browser to recalculate layout synchronously. The Chrome DevTools Performance panel will pinpoint the exact line.
+Document request latency (~15 KiB) — server response time / TTFB could be improved with edge caching or a CDN if you're not already on one.
+5 long main-thread tasks on mobile, 4 on desktop — the bundle is doing heavy synchronous work on initialization.
+Suggested next steps for your Replit agent
+Tell it: "Performance improved but two things to address. First, add the defer attribute to the main <script> tag in index.html — this is a one-line change with no downside. Second, instead of either fully chunking or fully bundling, do targeted lazy imports inside the eagerly-bundled Home page: any component that renders below the fold (testimonials, contact form, FAQ section, footer animations) should use React.lazy() with Suspense so they don't block initial paint. Do NOT lazy-load the Home route itself — only sub-components within it. Also investigate the 'Forced reflow' warning using Chrome DevTools Performance panel and fix any layout-thrashing patterns."
+Big win on accessibility though — going from 90 to 100 on both is solid work. Want me to re-audit again once the next round of changes lands?
