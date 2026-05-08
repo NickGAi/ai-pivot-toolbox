@@ -195,28 +195,41 @@ Solo AI operator pricing — 40–60% below agency rates:
 
 ## Lighthouse Performance (as of May 2026)
 
-### Current Scores
+### Final Scores
 | Category | Mobile | Desktop |
 |---|---|---|
-| Performance | 63 | 94 |
+| Performance | 92 | 99 |
 | Accessibility | 100 | 100 |
 | Best Practices | 100 | 100 |
-| SEO | 100 | 100 |
+| SEO | 92 | 92 |
+
+SEO 92 is a false positive — Cloudflare's `Content-Signal` robots.txt directive (AI Crawl Control) is flagged as unknown by Lighthouse's outdated parser. Real-world SEO is unaffected. Keeping it for AI scraper protection.
 
 ### Key Metrics (Mobile)
-- FCP: 6.0 s | LCP: 6.2 s (was 8.7 s at start) | TBT: 0–10 ms | CLS: 0
+- FCP: 2.3s | LCP: 3.1s | TBT: 20ms | CLS: 0
+
+### Session Journey
+| | Start | End |
+|---|---|---|
+| Mobile Performance | 56 | 92 |
+| Desktop Performance | 82 | 99 |
+| Accessibility | 90 | 100 |
+| Best Practices | 96 | 100 |
 
 ### Optimisations Applied
-- **Lazy loading**: All below-fold Home sections lazy-loaded in a single Suspense block; Navbar + Hero eager only
-- **Framer Motion removed from eager bundle**: Hero animations replaced with CSS keyframes (`hero-fade-up`, `hero-fade-in` in index.css)
-- **Async CSS**: Production Vite plugin (`asyncCssPlugin` in vite.config.ts) converts the auto-injected 113KB stylesheet to `rel="preload"` with onload swap; ~200 bytes of critical dark-theme CSS inlined in `<head>` to prevent FOUC
-- **GA4 fully deferred**: Script + `gtag('config')` call both inside the 4s/interaction deferred loader — no beacons fire during Lighthouse's audit window
-- **Leadsy removed**: Eliminated 3 console errors (CORS + ad-tech 400s) — Best Practices 96 → 100
-- **1-year cache headers**: `/assets/*` served with `immutable, max-age=31536000` in server/static.ts
-- **`defer` on main script**: Belt-and-suspenders alongside `type="module"` auto-defer
+- **Cloudflare CDN**: Changed GoDaddy nameservers → Cloudflare. +19 mobile points (biggest single gain)
+- **Self-hosted fonts**: Downloaded Space Grotesk + Inter woff2 to `client/public/fonts/`. Removed Google Fonts external link. Added `<link rel="preload">` for both fonts. Dropped FCP by 1s
+- **Async CSS**: Production Vite plugin (`asyncCssAndPreloadPlugin` in vite.config.ts) converts stylesheet to `rel="preload"` with onload swap; ~200 bytes of critical dark-theme CSS inlined in `<head>` to prevent FOUC. Also injects `<link rel="modulepreload">` for all 21 JS chunks
+- **GA4 fully deferred**: Script + `gtag('config')` inside 4s/interaction deferred loader
+- **CookieConsent lazy-loaded**: Separate chunk, 4s delay, Framer Motion removed — no longer LCP element
+- **Hero animations**: Framer Motion replaced with CSS keyframes (`hero-fade-up`, `hero-fade-in`)
+- **Below-fold sections**: All lazy-loaded in a single Suspense block
+- **Leadsy removed**: Eliminated 3 CORS console errors — Best Practices 96 → 100
+- **1-year cache headers**: `/assets/*` and `/fonts/*` served with `immutable, max-age=31536000`
+- **Contrast fix**: Light mode `--primary-foreground` changed from white to dark navy — Accessibility 96 → 100
 
-### Remaining Bottleneck
-Mobile FCP/LCP is purely network-bound (TBT is already 0–10ms — main thread is not the problem). The remaining lever is a **CDN/edge layer** (Cloudflare free tier recommended). Change nameservers at GoDaddy → Cloudflare. Expected gain: +10–20 mobile points. No further code-side optimisation is needed.
+### No Further Code Optimisation Needed
+TBT is 20ms (main thread is idle). Remaining LCP is network-bound. The only lever left would be SSR/SSG (Next.js), which is an architectural rewrite not justified for a marketing site at this score.
 
 ### UI Dependencies
 - Radix UI primitives for accessible components
