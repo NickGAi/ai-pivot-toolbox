@@ -4,18 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5" />
     
-    <!-- Google Analytics: initialise dataLayer immediately, load script after page is interactive -->
+    <!-- Google Analytics: gtag stub only — script + config loaded after 4s or first interaction -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-Z5TMS725JR');
-      window.addEventListener('load', function() {
-        var s = document.createElement('script');
-        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-Z5TMS725JR';
-        s.async = true;
-        document.head.appendChild(s);
-      });
     </script>
     
     <title>AI Pivot Toolbox | AI Automation Agency Australia — Brisbane, Sydney, Melbourne</title>
@@ -345,6 +337,15 @@
         function loadThirdParty() {
           if (loaded) return;
           loaded = true;
+          // Google Analytics 4
+          var ga = document.createElement('script');
+          ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-Z5TMS725JR';
+          ga.async = true;
+          ga.onload = function() {
+            gtag('js', new Date());
+            gtag('config', 'G-Z5TMS725JR');
+          };
+          document.head.appendChild(ga);
           // Leadsy AI tracking
           var leadsy = document.createElement('script');
           leadsy.id = 'vtag-ai-js';

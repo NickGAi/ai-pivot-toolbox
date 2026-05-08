@@ -1,0 +1,61 @@
+Audit done, and I have a clear picture now. The good news: the bundle is genuinely Framer-Motion-free. The bad news: that didn't translate into a meaningful score change, because the bundle didn't actually shrink.
+New scores (May 8, 2026, 6:19 PM, post-republish)
+Mobile:
+
+Performance: 60 (same as round before last)
+Accessibility: 100 ✅
+Best Practices: 96
+SEO: 100
+
+Desktop:
+
+Performance: 83 ↑ (was 77, recovering)
+Accessibility: 100 ✅
+Best Practices: 96
+SEO: 100
+
+Mobile metrics: FCP 6.0 s, LCP 8.9 s, TBT 70 ms (back down from 140), Speed Index 6.0 s, 5 long tasks.
+Desktop metrics: FCP 1.2 s, LCP 2.1 s, TBT 120 ms (was 250), Speed Index 1.9 s, ~3 long tasks.
+So the republish helped TBT meaningfully (mobile 140 → 70 ms, desktop 250 → 120 ms). The earlier worse TBT reading was likely the un-republished build mixed with run-to-run variance.
+What I confirmed about the bundle
+The new initial bundle is index-BFrsVsHm.js and it's 664.9 KB uncompressed. I scanned it and:
+Framer Motion is genuinely gone — zero hits for framer-motion, VisualElement, AnimatePresence, or useReducedMotion. The keyframe replacement worked.
+But the bundle is essentially the same size as before (it was 665.0 KB, now 664.9 KB). Removing Framer Motion didn't shrink the initial bundle. That tells me Framer Motion was already pulled out earlier (or the lazy-loaded sections were the only ones using it), so this round's change had no measurable effect on initial bundle size.
+What is still in the 665 KB initial bundle: React + ReactDOM, Wouter, 29 instances of Lucide-React icons (this is significant — Lucide imports often pull in tree-shaken individual icon files but if imported wrong they can bring in the whole icon set), some Radix UI references, plus all your eagerly-loaded Hero/Navbar/Home shell code.
+Lighthouse still reports 332 KiB of unused JavaScript in the initial bundle. That's roughly half the bundle being shipped but not executed on first paint.
+What's actually limiting performance now
+Mobile FCP 6.0 s on Slow 4G is a network-time problem, not a JS-execution problem. With TBT at 70 ms, the main thread isn't the bottleneck. The page is just waiting on bytes to arrive. Concretely: on Slow 4G (~400 Kbps after slow start), 665 KB of JS + 110 KB of CSS = ~775 KB of render-critical assets, which takes ~15+ seconds to download under Lighthouse's throttling. Even with parallel chunks, the critical path is bound by total bytes.
+Two real opportunities left on the code side
+The Lucide icon imports are worth investigating. If your code does import { ChevronDown, Menu, X } from "lucide-react" Vite should tree-shake. But if it does import * as Icons from "lucide-react" or imports from a barrel that re-exports everything, the entire icon set lands in the bundle. 29 icon hits in the bundle suggests it's tree-shaking, but worth confirming. You can also switch to lucide-react/icons/chevron-down style imports for guaranteed minimum size.
+The CSS file is 110 KB, which is large for an above-the-fold render. Critical CSS extraction (inline the ~5–10 KB needed for Hero+Navbar in <head>, lazy-load the rest) would meaningfully cut FCP/LCP on mobile because the render-blocking 110 KB CSS is currently delaying first paint.
+The bigger picture, honestly
+We've spent several rounds on bundle work. Mobile has moved from 56 → 60. Desktop has moved from 82 → 83. Accessibility went from 90 → 100, which is a genuine win. Best Practices is stuck at 96 (worth checking the live console once for the cause). The mobile FCP/LCP numbers — 6.0 s and 8.9 s — are now overwhelmingly network-bound on Lighthouse's Slow 4G simulation. No amount of bundle splitting fixes a network bottleneck.
+If you want mobile to break 80, the highest-leverage moves are:
+Putting the site behind a CDN with edge caching (Cloudflare, Vercel, Netlify Edge). This cuts TTFB and serves assets from a location near the user. This alone is typically worth 10–20 mobile points.
+Critical CSS inlining for the above-the-fold styles, so the 110 KB stylesheet stops blocking first paint.
+A <link rel="preload" as="image"> for the Hero's LCP image (if there is one) so it starts downloading immediately rather than after CSS parses.
+After those three, you'd realistically be looking at mobile in the high 70s to mid 80s. Hitting 90+ on mobile with GA4 + Leadsy tracking still on the page is unlikely.
+For Best Practices 96 → 100: open https://aipivot.com.au/ in Chrome, hit F12, and read the Console tab for one or two minutes. Whatever shows up there (deprecated API warning, mixed content, an unhandled promise rejection, missing source map, etc.) is what Lighthouse is flagging. Fix that one thing and you'll get the point back.
+Want me to check if the Lucide imports are tree-shaking properly, or check the current console for the Best Practices issue?yes13 steps13 stepsI have findings on both. Some of these are revealing.
+On the Lucide icon investigation
+I scanned the live bundle but the deep regex inspection got blocked by the security filter (it kept flagging SVG path data as suspicious, which is a false positive). What I could confirm:
+The bundle contains 32 mentions of "lucide" and 53 SVG path arrays. That's roughly consistent with ~30–50 individual icons being bundled. If your code is doing import { ChevronDown, Menu, X } from "lucide-react", this is normal and expected — Vite tree-shakes it correctly, and each icon is roughly 200–500 bytes.
+The bundle is 665 KB but Lucide only accounts for maybe 10–20 KB of that, so it's not the main culprit. The bigger contributors are React + ReactDOM (~140 KB), Radix UI components, Wouter, and your application code.
+If you want to be thorough and squeeze out a bit more, switching to the per-icon import path works in Lucide:
+jsimport ChevronDown from "lucide-react/dist/esm/icons/chevron-down";
+But honestly, the savings would be modest (5–15 KB) and not worth chasing first.
+On the Best Practices 96 and the live console
+I refreshed the live site twice and watched the console. The only message I saw was a benign debug log from Leadsy (debug: response received Response). No JavaScript errors, no deprecation warnings, no mixed content, no failed asset requests. The page is clean from an obvious console-error perspective.
+However, I noticed something important: the only network request being captured by my tools was a POST to google-analytics.com/g/collect returning HTTP 503. That's a server error from Google's analytics endpoint. A 503 here is unusual — but it's likely because GA4 is being told to send a beacon and the request is being blocked or rate-limited (could be regional, could be a transient Google issue, could be from how the test is firing it). Lighthouse's "Best Practices" audit flags failing network requests, and a 503 to a third-party tracker can ding the score. This is the most likely cause of Best Practices being stuck at 96 instead of 100.
+Other observations from the live site
+I noticed the homepage has a "Chat with us" floating button at the bottom right of the page — it's working visually but only 4 external scripts are loaded (down from 8 originally). So the chat is now a much lighter custom implementation rather than the heavy LeadConnector widget. That's a real win.
+The DOM is now 807 nodes, which is fine — Lighthouse only flags this when it climbs above ~1,500.
+My recommendations from here
+The code-side optimisation work has effectively reached its plateau. To meaningfully push mobile past 60 and reach 90+ on both, here are the leverage points in order of impact:
+The biggest single move you can make is putting the site behind a CDN with edge caching. Cloudflare's free tier alone would cut TTFB from wherever it's currently hosted to <100 ms globally, and the asset latency would drop dramatically. Lighthouse's Slow 4G simulation is heavily TTFB-sensitive — a CDN typically delivers 10–25 mobile points on its own. If you're on Replit's hosting today, deploying to Vercel, Netlify, or Cloudflare Pages would give you a free CDN automatically.
+Second highest leverage: inline critical CSS in the <head> for the Hero+Navbar styles (probably 5–8 KB of CSS) and async-load the rest of the 110 KB stylesheet. This unblocks first paint on mobile and would shave 1–2 s off FCP/LCP on Slow 4G.
+Third: add <link rel="preload" as="image"> for the Hero's LCP image (if your hero has one) so it starts downloading at HTML parse time instead of after CSS resolves.
+Fourth: about the Best Practices 96 — try moving GA4 from the <script async> tag to fire after window.load or behind a delay (3–5 seconds). If the 503 is causing the audit hit, deferring the call entirely takes it out of the Lighthouse run window and the score should return to 100. Worst case, if you don't actually rely on GA4 for analytics, removing it would also restore the score.
+Honest summary
+You've done the meaningful code-side work. The bundle is clean, Framer Motion is gone from the eager path, lazy-loading is correctly scoped, accessibility is at 100, and the chat widget is no longer a problem. Mobile sits at 60 and desktop at 83 mostly because the homepage has to ship ~775 KB of render-critical assets over a simulated slow connection — that's a network problem, not a code problem.
+Want me to help you pick a hosting/CDN move, or do one more thing on the code side?
