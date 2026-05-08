@@ -190,6 +190,18 @@ const PAGE_META: Record<string, PageMeta> = {
     title: "AI for Australian Accountants: 7 Workflows to Automate (2026) | AI Pivot Toolbox",
     description: "How Australian accounting firms are using AI to automate client onboarding, BAS prep, advisory work, and compliance. 7 specific workflows with tools and ROI for 2026.",
   },
+  "/blog/how-to-choose-ai-seo-agency-australia": {
+    title: "How to Choose an AI SEO Agency in Australia (2026 Guide) | AI Pivot Toolbox",
+    description: "7-point checklist for choosing the right AI SEO agency in Australia. What to look for, red flags to avoid, questions to ask, and how to compare pricing. 2026 buyer's guide.",
+  },
+  "/blog/seo-agency-vs-ai-seo-agency-australia": {
+    title: "SEO Agency vs AI SEO Agency Australia: Which Is Right for Your Business? | AI Pivot Toolbox",
+    description: "Honest comparison of traditional SEO agencies vs AI SEO agencies for Australian businesses in 2026. Pricing, deliverables, results, and which one suits your goals.",
+  },
+  "/blog/what-is-a-geo-agency": {
+    title: "What Is a GEO Agency? Generative Engine Optimisation Explained | AI Pivot Toolbox",
+    description: "What a GEO agency is, what they do, and whether your Australian business needs one in 2026. Includes pricing, deliverables, and how GEO differs from traditional SEO.",
+  },
 };
 
 let cachedTemplate: string | null = null;

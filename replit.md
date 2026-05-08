@@ -13,7 +13,7 @@ Brand name: "AI Pivot Toolbox" (formerly AIPivot)
 Target market: Australian businesses (not just Brisbane)
 Marketing style: King Kong-style direct response — bold claims, specific timeframes, guarantee language
 
-## Total Indexed Pages: 50
+## Total Indexed Pages: 53
 
 ### Core Pages
 | Path | Description |
@@ -77,6 +77,9 @@ Marketing style: King Kong-style direct response — bold claims, specific timef
 | `/blog/best-ai-tools-australian-small-business-2026` | Tool review/recommendation guide |
 | `/blog/automate-xero-with-ai-australia` | Xero AI automation playbook |
 | `/blog/ai-for-australian-accountants` | 7 workflows for accounting firms |
+| `/blog/how-to-choose-ai-seo-agency-australia` | AI SEO agency buyer's guide (targets "AI SEO agency Australia") |
+| `/blog/seo-agency-vs-ai-seo-agency-australia` | SEO agency comparison (targets "SEO agency", "SEO marketing agency") |
+| `/blog/what-is-a-geo-agency` | GEO agency explainer (targets "GEO agency Australia") |
 
 ## Page Architecture
 
