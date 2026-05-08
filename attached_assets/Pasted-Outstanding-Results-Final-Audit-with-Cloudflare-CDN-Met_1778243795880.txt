@@ -1,0 +1,40 @@
+Outstanding Results!
+Final Audit (with Cloudflare CDN):
+MetricMobileDesktopPerformance82 ⬆ (+19 from 63)98 ⬆ (+4 from 94)Accessibility100 ✓100 ✓Best Practices100 ✓100 ✓SEO92 (was 100)92 (was 100)
+Mobile Core Web Vitals:
+
+LCP: 3.4s (massive improvement)
+TBT: 190ms (excellent)
+CLS: 0 (perfect)
+
+About the SEO drop from 100 → 92
+Cloudflare automatically prepended its "AI Crawl Control" managed content to your robots.txt when you enabled it. It includes a directive PageSpeed flags as invalid:
+Content-Signal: search=yes,ai-train=no
+This is a brand-new Cloudflare/IETF proposed standard for AI training opt-outs. PageSpeed's robots.txt parser doesn't recognise it yet. This is a false positive — the directive is valid per the emerging spec, just ahead of Lighthouse's parser. It's not actually hurting your SEO with Google, who treats unknown directives as ignored comments.
+Two options:
+
+Leave it — embraces the AI opt-out standard, accepts -8 SEO score (still 92, well in green). Recommended if you care about preventing AI scrapers from training on your content.
+Disable Cloudflare AI Crawl Control's robots.txt management — Go to Cloudflare → AI Crawl Control in the left sidebar → look for "Manage robots.txt" or similar setting and disable it. Score returns to 100. You can still block AI crawlers via your own robots.txt rules (which you already have lower in the file).
+
+Massive overall win
+You went from Mobile 56 → 82 (+26) and Desktop 82 → 98 (+16) over this session. That's a transformation. The Cloudflare CDN gave you +19 mobile points alone — exactly the multiplier we hoped for, served from Brisbane edge. 🚀
+Want me to walk you through disabling the AI Crawl Control robots.txt injection to recover those 8 SEO points?lets run again6 steps6 steps🚀 Even better this run!
+MetricThis runPrevious runSession startMobile Performance86 ⬆8256Desktop Performance99 ⬆9882Accessibility100 ✓10090Best Practices100 ✓10096SEO9292100
+Mobile Core Web Vitals (this run):
+
+🔴 FCP: 3.1s (still the weakest metric)
+🟠 LCP: 3.4s
+🟢 TBT: 10ms ⬆⬆⬆ (was 190ms — Cloudflare edge caching is now warm!)
+🟢 CLS: 0 (perfect)
+
+What this tells us
+The TBT collapse from 190ms → 10ms is huge — that's Cloudflare's edge cache warming up after the first run. Now that Cloudflare's Brisbane edge has the assets cached, every subsequent visitor in AU (and increasingly globally) will get sub-instant JS execution.
+Desktop is now effectively perfect at 99/100. Nudging that to 100 is statistical noise — Lighthouse explicitly says scores of 100 aren't expected.
+What's still holding mobile back from 90+?
+Both FCP (3.1s) and LCP (3.4s) are dragging the mobile score. These are render-time metrics — the page text is taking 3+ seconds to first appear. Possible culprits:
+
+The hero text uses a custom font that's blocking text rendering (font-display:swap missing)
+Render-blocking JS in the document head
+Origin server response time (TTFB) — even with Cloudflare, if your Replit origin is slow to respond on cache misses, the first byte takes too long
+
+Want me to dig into the diagnostics to identify exactly which of those is the bottleneck? Or are you happy with 86 mobile / 99 desktop and want to call it done?
