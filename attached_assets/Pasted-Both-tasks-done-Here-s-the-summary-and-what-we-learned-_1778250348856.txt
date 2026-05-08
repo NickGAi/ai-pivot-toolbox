@@ -1,0 +1,17 @@
+Both tasks done. Here's the summary and what we learned along the way.
+Indexing requests submitted (6/6):
+
+✅ / (homepage) — was already indexed, refresh requested
+✅ /ai-voice-agents — Discovered, not indexed → submitted
+✅ /workflow-automation — already indexed (this is one of your 3!), refresh requested
+✅ /ai-automation-melbourne — "URL unknown to Google" → submitted
+✅ /ai-chatbot-australia — Discovered, not indexed → submitted
+✅ /ai-pivot-vs-marketing-agency — "URL unknown to Google" → submitted
+
+So your 3 currently indexed pages are: homepage, /workflow-automation, and one other (probably /toolbox or /blog based on what's missing from the not-indexed list). Google should reprocess the requested URLs over the next few days to weeks — typical timeframes are 24 hours to 2 weeks for the queue.
+Two important diagnostic findings worth flagging:
+Finding 1 — Internal linking is the smoking gun. Every single page I inspected returned "Referring page: None detected". That includes pages like /ai-voice-agents and /ai-chatbot-australia, which I'd expect to be linked from the homepage navigation or services menu. Google is telling us it can't find any internal link from one page on your site to another. This is a much bigger deal than it sounds — for a young site without external backlinks, internal links are the primary signal Google uses to decide which pages deserve crawl budget. If your nav/menu/footer links are rendered client-side via JavaScript and Google is fetching the un-rendered HTML, it may not be seeing them at all. That's worth investigating: view-source your homepage and check whether the links to your service pages, location pages, and industry pages appear in the static HTML, or only after JS executes.
+Finding 2 — Sitemap detection inconsistency. For /ai-voice-agents and /ai-chatbot-australia, Google correctly detected "Sitemaps: https://aipivot.com.au/sitemap.xml". But for /ai-automation-melbourne and /ai-pivot-vs-marketing-agency, it reported "No referring sitemaps detected" — even though both URLs are in the sitemap I read earlier. This is unusual. It can happen if Google hasn't fully reprocessed the sitemap yet (the sitemap was last read 4 May, very recent), or if there's a subtle URL mismatch. Worth re-checking in a week.
+Recommended next moves, in priority order:
+The internal linking finding changes the priority of work. I'd put it ahead of authority-building, because no amount of backlinks will help if Google can't crawl through your own site. So: (1) verify your homepage and main nav actually contain crawlable HTML links to your service/location/industry pages — you can do this by visiting view-source:https://aipivot.com.au/ and searching for /ai-voice-agents, /ai-automation-melbourne etc.; (2) if those links exist in source, good — request indexing for the rest of the priority pages over the next few days (Google limits about 10–12 indexing requests per day per property, so spread them out); (3) then move on to authority work — Google Business Profile, AU directory listings, and a few real backlinks.
+Want me to check the homepage source right now to see whether your internal links are crawlable HTML or JS-rendered? That's a 30-second check and would confirm or rule out the biggest suspected cause.
