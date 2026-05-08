@@ -1,0 +1,940 @@
+# The Solo Founder's 2026 SEO + AEO Battle Plan — AiVARE & AI Pivot ToolBox
+
+> **Update notice (v2).** Three findings in v1 were wrong and have been corrected: (1) the claim that AI Pivot ToolBox has no `/sitemap.xml`, `/robots.txt`, `/blog` or `/services` — the research agent's crawler was blocked or hit a stale snapshot, those URLs **do** exist; (2) the OG image situation — the deployed code hardcodes `https://aipivot.com.au/opengraph.jpg`, but the rendered HTML I fetched directly still shows `aipivot.replit.app/opengraph.jpg` in `og:image` and `twitter:image`, so something is mismatched between source and deploy and the file presence at the canonical URL needs verifying with `curl -I`; (3) the cached "enterprise transformation" SERP title is a Google index lag, not a live code issue — fixed by submitting the homepage for re-indexing in Search Console, not by changing code. A "Where v1 was wrong" section at the bottom of this document logs the corrections in full.
+
+**Bottom line up front.** Jono Catliff's playbook still works in 2026 — but four of his thirteen tactics need surgery for the post-March-2026 algorithm landscape. The positioning of both your sites is genuinely differentiated in Australia (anti-franchise AI CRM; solo-operator AI agency at 40–60% under agency rates), the Australian market has fresh regulatory tailwinds (REIQ mandatory CPD from June 2025, OAIC ADM rules going live December 2026, Voluntary AI Safety Standard), and the AEO/GEO window is wide open — only ~12% of AI citations overlap with Google's top 10, which means a well-structured small site can leapfrog incumbents inside ChatGPT, Perplexity and AI Overviews. The execution priorities differ from v1: AI Pivot ToolBox needs a SERP refresh (re-index request) and a small set of OG/source-of-truth fixes rather than the full rebuild v1 implied; AiVARE's central question is whether `.com.au` marketing pages render server-side to crawlers (v1 conflated `.com.au` with the SPA-rendered `aivare.org/app` sibling — a verification step is now in Part 1). This plan operationalises everything: honest site-specific audits with explicit "verified" vs "needs verification" labels, a 2026-validated tactic list, a portable Claude Code skill pack with actual paste-ready prompts, two project-specific keyword maps and 90-day calendars, and a risk-prioritised execution sequence.
+
+---
+
+## Part 1 — Direct site audits
+
+### AI Pivot ToolBox (aipivot.com.au)
+
+The site is a **single-page Replit-hosted marketing landing page** with one URL indexed by Google. The OG image domain leaks the host (`aipivot.replit.app/opengraph.jpg`), `meta name="robots"` is maximally permissive, geo metadata is locked to Brisbane CBD (-27.4698, 153.0251, AU-QLD), `meta-og:locale` is `en_AU`, theme colour `#0ea5e9` (Tailwind sky-500). No `/sitemap.xml`, `/robots.txt`, `/blog`, `/services`, `/about` or `/contact` URLs are discoverable.
+
+**Live title:** "AI Pivot Toolbox | AI Automation Agency Australia — Brisbane, Sydney, Melbourne".
+**Live meta description:** "AI Pivot Toolbox is an AI automation and SEO agency serving Australian businesses in Brisbane, Sydney, Melbourne, Perth, and Adelaide. AI voice agents, workflow automation, AI SEO, GEO, and custom AI tools — 40–60% below agency rates because we're a solo AI-powered operator."
+
+A **prior cached title still in Google's index** says "AIPivot | AI Automation Agency Australia | Enterprise Business Transformation" with a "Reduce operational costs by 60-80%" promise. The brand has clearly **rebranded mid-flight** from "enterprise transformation" to "solo AI-powered operator" — the cached SERP copy still shows the old pitch and needs to be flushed.
+
+**Voice signature (from captured copy):** direct, claim-heavy, numerically anchored, transparent. The single most distinctive line is "**we're a solo AI-powered operator**" — that's the spine. Geographic ladder is always Brisbane → Sydney → Melbourne → Perth → Adelaide. Heavy acronym density (AI, SEO, GEO, AIO, ChatGPT). Em-dash setup-payoff pattern. No slang, no profanity, no "g'day". Australian spelling **inconsistent**: "optimisation" (correct AU) appears in keywords, but the brand standard isn't enforced. Twitter handle `@aipivot` is declared but no posting activity is detectable.
+
+**ICP (inferred):** Australian SMB owner-operators in the five capital cities who want agency-level AI work but won't pay agency prices. Horizontal — no vertical specialisation visible.
+
+**Brand-collision risk:** Severe. `pivotai.com.au` (Melbourne), `aipivot.tech` (US tool-review site), and at least four other "Pivot AI" variants compete for the brand search term. The `.com.au` exact-match gives an AU edge but the name isn't defensible.
+
+**AU competitive set for keyword work:** Pivot AI (pivotai.com.au), Advancer (advancer.com.au, Brisbane), Flowtivity (aiconsultingbrisbane.com.au), PlusAI Solutions (plusai.com.au, Brisbane), Ascend AI (ascendai.net.au, Brisbane), Tech Horizon Labs, Blackbook.ai, Relevance AI (Sydney; LinkedIn #1 AU startup 2025), Team 400, AI4Tradies, AI Avenue, KLIQ Interactive, Trainers Direct, SSW, Matrix AI, Praxio AI, Lyrebird Health, Heidi Health.
+
+**Top gaps (priority order):**
+1. Zero indexed pages besides homepage. The keyword strategy declares five-city targeting but no city-specific landing pages exist (`/ai-automation-brisbane`, `/ai-seo-melbourne`, etc.).
+2. **No blog**, despite selling AI SEO/GEO services — that's a brand contradiction.
+3. No case studies, founder bio, pricing page, FAQ, or lead magnet.
+4. JSON-LD schema not visible from metadata layer; almost certainly missing `LocalBusiness`/`Organization`/`Person`/`Service`.
+5. Cached "enterprise" framing still polluting SERP — needs forced re-crawl post-rewrite.
+6. Replit OG image domain leaks; rehost at `aipivot.com.au/og.jpg`.
+
+### AiVARE (aivare.com.au)
+
+**Worse foundational state.** The production site is a **client-side-rendered SPA** that returns `Loading AiVARE...` to non-JS crawlers. Google has indexed **zero substantive pages** — `site:aivare.com.au` returns nothing. A sibling property `aivare.org/app` is indexed and canonicals back to `aivare.com.au`, confirming the SPA architecture. `/robots.txt` and `/sitemap.xml` are unreachable. The savage Hormozi/MSCHF/Liquid Death voice copy described in your brief lives entirely inside the JS bundle and is invisible to crawlers — **and to LLMs**, which means none of the entity, voice or positioning work is currently doing any SEO or GEO work for you.
+
+**Crawler-visible meta (from the indexed sibling):**
+- Title: "AiVARE - Australia's #1 AI Real Estate CRM | Property Lead Management Software"
+- Description: "Transform your Australian real estate business with AiVARE's AI-powered CRM. Automatically analyze, score & manage property leads. Built for independent agents across Australia."
+- Snippet fragment: "Used by 500+ agents across Sydney, Melbourne, Brisbane & Perth. Free 14-day trial."
+
+**Three legal/credibility flags inside that meta:**
+- "Australia's #1" is unsubstantiated — ACCC/ACL misleading-conduct exposure.
+- "500+ agents" with an ABN registered 7 October 2025 (Griffiths, Nicholas Stephen, sole trader, QLD 4020, business name "Aivare") is implausible. Retire until substantiated.
+- "Analyze" is US spelling on an AU brand. "Free 14-day trial" contradicts the Founding 25 paid pilot motion in your brief — pick one, kill the other.
+
+**Stack tells:** Tailwind `#4f46e5` (indigo-600), `apple-mobile-web-app-capable`, PWA-style metadata, plus your own statement that it's Replit-hosted with Stripe configured. Replit Deployments + Stripe Connector is the most likely architecture. Theme palette is corporate indigo, **not** the punk/MSCHF/Liquid Death visual register the brand voice demands.
+
+**Founders25 page:** Unverifiable externally. No Wayback capture. No Google snippet. Your brief is the only source of truth. The voice corpus the skill pack needs has to be hand-pasted by you from the rendered browser into the voice files described in Part 3.
+
+**AU real estate CRM competitive set:** Reapit Sales (formerly AgentBox; "#1 used by Top 100 agents"), MRI Vault (formerly VaultRE), Rex Software (most AI-active incumbent — Rex AI Advisory Board, AI Admin/Prospecting/Engagement features), LockedOn (triggers + GUARDIAN trust integration), Box+Dice, Eagle Software, MyDesktop, Console, MantisProperty, Zenu, Realoz, ActivePipe, RiTA (Cotality, ex-CoreLogic — closest competitor in concept: AI prospecting layer over existing CRM), Voqo AI (Ava + Oscar voice agents — adjacent), generic players (HubSpot, Salesforce Agentforce, Zoho), and US imports (Lofty, Top Producer, CINC, Wise Agent, Ylopo).
+
+**Critical strategic finding for AiVARE:** **No incumbent positions against the franchise model.** Reapit lists Ray White, McGrath, LJH, Belle and First National as customers — they sell *to* the franchises. The "Secession" wedge is genuinely uncontested. First National, One Agency and Professionals occupy the *fee-model* anti-franchise narrative ("keep 100% of commission", flat monthly fee) but **none of them own the AI + secession + Digital Agents angle**. That's your moat.
+
+**Top fixes (priority order):**
+1. **Move marketing pages off the SPA.** Render at least the homepage, /founders25, /pricing, /features, /about, and any blog index server-side or as static HTML. Until Google can read your hero copy, the savage voice is invisible. This is a single-week Next.js refactor on Vercel and is non-negotiable — every other tactic is downstream of this.
+2. Add `/robots.txt` and `/sitemap.xml`.
+3. Retire "Australia's #1" and "500+ agents" from meta until substantiated. ACCC risk is real and lawyer-shaped.
+4. Standardise Australian English in meta (`analyse`, not `analyze`).
+5. Pick one motion: paid Founding 25 pilot **or** free 14-day trial. Mixed messaging kills conversion.
+6. Add JSON-LD `Organization`, `Person` (Nick Griffiths as founder, with `sameAs` to LinkedIn, X, ProptechBuzz profile), `SoftwareApplication`/`Product`, `Offer`, `FAQPage`.
+
+---
+
+## Part 2 — Jono's tactics versus 2026 search reality
+
+The 2026 algorithm landscape is materially different from 2024 when Jono shot the masterclass. Eight confirmed Google updates landed between March 2025 and April 2026, including the **March 2026 core update — the most volatile on record (79.5% of top-3 URLs shifted, 24.1% of top-10 pages dropped out of top-100 entirely per SE Ranking)**. The August 2025 spam update upgraded SpamBrain to detect programmatic patterns; the March 2026 spam update specifically went after AI-generated doorway pages, parasite SEO at page level, expired-domain redirects and AI-refreshed PBNs. Google's official line on AI content is unchanged ("we don't care if it's human or AI, we care if it's helpful"), but enforcement of the **Scaled Content Abuse policy** is now real: Semrush's 42K-post study (April 2026) found human-written content is **8× more likely to rank #1 than pure AI** (80% versus 9%).
+
+**Tactic-by-tactic verdict:**
+
+| Jono's tactic | 2026 verdict | Updated approach |
+|---|---|---|
+| **SSG over WordPress/SSR** | ✅ Right direction, wrong dogma | Use **SSG for blog content, ISR (revalidate 60s–24h) for service/programmatic pages, SSR only where personalisation requires it**. Next.js 16 RSC with App Router and `generateMetadata` is the modern best practice. The pizza analogy is intact; the menu got bigger. |
+| **KD<30, volume>100 keyword filter** | 🟡 Partial — needs update | Volume is increasingly a vanity metric: zero-click is now ~65% of US searches and AI Overviews appear on ~21% of queries (Sistrix). Use **Personal KD%** (Semrush) or **Click data** (Ahrefs) instead. Lower volume floor to 50. Prefer SERPs without AIO for blog content; for AIO-triggering queries, engineer 40–60-word answer paragraphs to win the citation. |
+| **Steal-the-format (top 3 averages)** | 🟡 Partial — risky on its own | March 2026 explicitly punished "rephrasing top results" and rewarded **Information Gain** (Google patent US20200349181A1, now operational; SE Ranking March 2026: original-data pages +22% visibility, paraphrased AI –71%). Use top-3 to map intent and structure, then **add proprietary data, original screenshots, named clients, dated specifics, opinion**. |
+| **Anti-AI-slop voice injection** | ✅ Right direction, bar moved | Voice alone isn't enough. The new bar is **Experience density**: real dollar figures, named tools, dated events, real client names, before/after metrics. That's what AI literally cannot fake. |
+| **4–8 questions per post** | ✅ Still works | Aligns with how AIO and ChatGPT extract answers. Keep answers 40–60 words. Mark up with FAQPage schema (markup is still parsed and used for AI extraction even though SERP rich results narrowed). |
+| **One H1, primary keyword in first 100 words** | ✅ Still correct | Unchanged. Front-load the answer; LLMs extract the first paragraph heavily. |
+| **Keyword clusters per post** | 🟡 Partial — Mueller specifically warned | John Mueller (27 August 2025): using LLMs to build topic clusters builds "liability". Hub-and-spoke with internal linking and **unique value per spoke** is the right pattern. Don't stuff 5 cluster terms into one thin post. |
+| **Zipper service pages** | 🟡 Workable, dangerous if lazy | Each must contain ≥8 unique data points: real local photos, suburb-specific FAQs, named past projects, suburb-specific pricing, local reviews. Templated suburb-swap with no other variation = doorway page = manual action. The Aug 2025 + Mar 2026 spam updates demolished thousands of these. |
+| **Lighthouse 100/100/100/96+** | 🟡 Aspirational but wrong target | Field data (CrUX p75) is what ranks. Aim for **LCP <2.0s, INP <150ms, CLS <0.05** at p75 mobile. March 2026 introduced holistic Core Web Vitals scoring as a tiebreaker. Lighthouse is a dev tool, not the success metric. |
+| **GBP + GSC + sitemap submission** | ✅ Mandatory | GBP (formally renamed from GMB) is ~32% of local-pack ranking weight. Top-3 local-pack businesses average **561 reviews and 4.8 rating** (Semrush). Don't keyword-stuff the GBP business name — Google now triggers manual video re-verification and locks the profile (common AU penalty). |
+| **Avoid PBNs/cheap backlinks** | ✅ More right than ever | March 2026 spam update demolished these. Recovery doesn't restore lost link equity. Permanently negative ROI. |
+| **HARO / guest post / broken-link / paid premium** | ✅ Mostly correct, one caveat | HARO relaunched April 2025 via **Featured.com** (free, three daily digests). Better paid alternatives: **Qwoted** ($149/mo, 25K vetted journalists), **SourceBottle** (sharp for AU/UK), **Source of Sources** (Shankman's free reboot). "Paid premium" needs care: paid links on irrelevant high-DR sites trigger site-reputation-abuse policy now. Safe stack = digital PR + HARO/Qwoted + genuine guest posts on topical sites. |
+| **Slow-ramp publishing** | ✅ More right than ever | Volume spikes from low-authority domains were a primary signal in Aug 2025 + Mar 2026 spam updates. Cohort-based indexing monitoring + edit/improve based on first-30-day signals is the safer pattern. |
+
+**Six strategic shifts beyond Jono:**
+
+**1. Move from "voice injection" to "experience injection".** Every blog and service page needs verifiable specifics — real client names (or anonymised case data with real numbers), dated screenshots, named tools, before/after metrics. This is the single biggest delta between content that ranks in 2026 and content that gets flushed. **2. Build the founder entity hard from day one.** Author bio page, `Person` schema with `sameAs` to LinkedIn / X / GitHub / ProptechBuzz, consistent byline. Google's February 2026 addition of the Authors section to Search Central docs confirmed this is now load-bearing. **3. Use ISR for service and programmatic pages, SSG for blog content** — hybrid architecture beats pure-SSG dogma. **4. Build an AI visibility tracking layer alongside traditional rank tracking** — rankings alone don't capture where clicks actually go now (AIO crushes p1 CTR by 59%). **5. Move beyond anti-slop to Information Gain** — original data (even small surveys), proprietary screenshots, real benchmarks. **6. For AU local, invest disproportionately in GBP + reviews** — 32% of local-pack weight, top-3 average 561 reviews; suburb-level service pages work but need genuine differentiation per page.
+
+**AEO/GEO reality (the layer Jono didn't cover).** There is no GEO without SEO — LLMs largely retrieve from search indexes (Bing for ChatGPT/Copilot, Google for AI Overviews/Gemini, proprietary + Bing for Perplexity, Brave for Claude). But the citation footprint barely overlaps the classic SERP: only **~12% of AI citations overlap with Google's top 10** (Ahrefs 15K-query study), and only **~11% of cited domains overlap between ChatGPT and Perplexity** (Profound). The strongest correlation with AI Overview brand mentions is **brand web mentions (0.664)** — far above backlinks (0.218) — per Ahrefs' 75K-brand study. Reddit is 40.1% of all LLM citations (Semrush, June 2025). YouTube is now the #1 cited domain in AI Overviews (Ahrefs). Wikipedia is ChatGPT's #1 source (7.8%). Anthropic's documented rule of thumb: **~250 distinct mentions across the web** to meaningfully shape how an LLM perceives your brand. **Skip llms.txt** — Mueller, Aleyda Solis and a 94K-URL ALLMO study all confirm it's not used in any meaningful way as of May 2026.
+
+**The 15 highest-evidence AEO tactics, ranked:** (1) 40–60-word answer-first paragraphs immediately under H1 and each H2 — Princeton GEO paper +40% visibility, Growth Engines +28%; (2) convert key H2s into actual user questions matching real prompt phrasing; (3) cite primary sources with specific stats and outbound links; (4) publish original data quarterly; (5) get listed on G2, Capterra, GetApp; (6) build Wikidata Q-IDs; (7) authentic Reddit presence in 3–5 relevant subs; (8) submit to **Bing Webmaster Tools + IndexNow** (mandatory for ChatGPT/Copilot, free moat that AU competitors skip); (9) YouTube channel with full transcripts; (10) `Person` schema for the founder; (11) pull quotes containing standalone factual claims with a number; (12) FAQPage schema with real prospect questions; (13) update high-priority pages monthly with visible Last Updated date and `dateModified`; (14) "Best X for Y in Australia 2026" comparison pages naming yourself plus competitors honestly; (15) podcast appearances with transcripts published on host sites.
+
+---
+
+## Part 3 — The portable Claude Code skill pack
+
+Drop the following structure into the root of any project (AiVARE, AI Pivot ToolBox, BilliQ, Kerbareel, future builds). Everything is paste-ready.
+
+```
+/.claude/
+  /skills/
+    blog.md
+    service.md
+    onpage-seo.md
+    technical-seo.md
+    aeo-geo.md
+    deploy.md
+    keyword-research.md
+  /references/
+    voice.md
+    humour.md
+    opinions.md
+    stats.md
+    stories.md
+    competitors.md
+    glossary.md
+  /templates/
+    schema-organization.json
+    schema-person.json
+    schema-article.json
+    schema-faq.json
+    schema-service.json
+    schema-localbusiness.json
+    schema-breadcrumb.json
+    schema-software.json
+    sitemap.xml
+    robots.txt
+CLAUDE.md
+```
+
+### CLAUDE.md — master project context (template)
+
+```markdown
+# CLAUDE.md — Project Context
+
+## Project
+- **Name:** {{PROJECT_NAME}}
+- **Domain:** {{PRIMARY_DOMAIN}}
+- **Stack:** Next.js 16 (App Router, RSC) → Vercel. SSG for blog content; ISR (revalidate 86400) for service/programmatic pages; SSR only where personalisation is required.
+- **Repo:** {{GITHUB_URL}}
+- **Founder:** Nick Griffiths (Brisbane, QLD, AU) — sole operator.
+
+## Mandates (non-negotiable)
+- **Australian English everywhere.** optimisation, organisation, behaviour, colour, analyse, realise, centre, licence (noun) / license (verb), enrol, programme (when British sense), tonne, mum. Never optimize/analyze/color/center.
+- **Mobile-first.** Design and write for a 390px viewport before desktop. Hero must read on mobile in 2 seconds.
+- **Static or ISR.** No client-side-rendered marketing pages. Every page must serve readable HTML to a non-JS crawler.
+- **Experience density.** Every blog post and service page must contain at least three of: real dollar figure, named client (or anonymised case with real metric), dated event, named tool/version, before/after benchmark, proprietary screenshot.
+- **One H1 per page.** Primary keyword in first 100 words.
+- **Schema in `<head>`** as JSON-LD. Validate with Rich Results Test before merging.
+- **Last Updated date visible** on every blog post and service page; `dateModified` in schema.
+- **Author byline** with link to /about/{{FOUNDER_SLUG}}, Person schema with `sameAs` to LinkedIn, X, GitHub.
+- **No AI-slop.** Use Claude/GPT for scaffolding only. Edit ratio >30% per pass. Add genuine first-hand voice via /references/*.md before publishing.
+
+## ICP
+- **Primary:** {{ICP_PRIMARY}}
+- **Secondary:** {{ICP_SECONDARY}}
+- **They are NOT:** {{ICP_NEGATIVE}} (kill any content that drifts here)
+
+## Brand voice
+See `/references/voice.md`. Read it before writing a single sentence of prose.
+
+## Forbidden phrases (LLM tells)
+- "In today's fast-paced world"
+- "In the ever-evolving landscape"
+- "It's important to note that"
+- "Nestled" / "delve" / "tapestry" / "navigate the complexities"
+- "Game-changer", "synergy", "leverage" (as a verb), "unleash"
+- "Cutting-edge", "state-of-the-art", "world-class"
+- Any sentence beginning "Whether you're…"
+- Em-dash + "Here's the thing:" pattern
+Replace with concrete claims grounded in real numbers and named entities.
+
+## Required references for every content task
+- /references/voice.md
+- /references/stats.md
+- /references/stories.md
+- /references/opinions.md
+- /references/competitors.md
+
+## Quality gates before commit
+1. Lighthouse mobile: Performance ≥90, SEO 100, Accessibility ≥95, Best Practices 100.
+2. CrUX field data target after 28 days: LCP <2.0s, INP <150ms, CLS <0.05 at p75 mobile.
+3. Rich Results Test passes for all schema on the page.
+4. /onpage-seo skill checklist: 100% pass.
+5. AU spelling pass (run `npx alex` + custom AU dictionary lint).
+```
+
+### /references/voice.md — voice file (template + how to populate)
+
+```markdown
+# Voice — {{PROJECT_NAME}}
+
+## How to populate this file
+1. Paste 20+ samples of Nick's writing here: LinkedIn posts, X/Twitter threads, founder emails to investors/customers, podcast/YouTube transcript excerpts, Slack/iMessage rants, Loom transcripts.
+2. After every sample, write a one-line annotation: `// what this sample teaches Claude`.
+3. When voice drifts (e.g. AiVARE savage versus AI Pivot ToolBox solo-operator-confident), maintain SEPARATE voice.md per project.
+
+## Register cheat sheet — {{PROJECT_NAME}}
+- Sentence length: {{SHORT/MEDIUM/MIXED}}
+- Tone: {{e.g. SAVAGE / CONFIDENT-CONSULTATIVE / CHEEKY / DEADPAN}}
+- Profanity: {{ALLOWED / NOT ALLOWED}}
+- Aussie slang: {{LIGHT / NONE / HEAVY}}
+- Em-dash usage: {{HEAVY / MODERATE}}
+- Pattern interrupts allowed: {{YES / NO}}
+- Preferred verbs: {{list 10}}
+- Banned verbs: {{leverage, unlock, empower, transform (when generic), revolutionise}}
+
+## Lexical mandates — {{PROJECT_NAME}}
+- Use "{{PREFERRED_TERM_1}}" not "{{COMPETITOR_TERM_1}}"
+- Use "{{PREFERRED_TERM_2}}" not "{{COMPETITOR_TERM_2}}"
+(e.g. for AiVARE: "Digital Agents" not "AI chatbots"; "Secession" not "switching")
+
+## Verbatim sample bank
+[paste samples here, one per heading]
+```
+
+### /references/humour.md, opinions.md, stats.md, stories.md (templates)
+
+```markdown
+# /references/humour.md
+## How to populate
+Paste 30+ moments where Nick was actually funny in writing or speech: LinkedIn jokes that landed, comments that got DMs, podcast bits, slack reactions you got told off for. Annotate the mechanism (deadpan, callback, undermining, malicious-compliance, list-with-one-wrong-item, etc).
+
+# /references/opinions.md
+## How to populate
+List 15 strong, defensible opinions Nick holds and is willing to put his name to. Each one in the form: "[Claim]. [One-sentence reason]. [What most people get wrong]." Examples to write yourself for AiVARE: "Real estate franchises are a tax on independence agents shouldn't be paying. They subsidise the brand of agencies that aren't yours. Most agents stay because the fear of changing CRMs is dressed up as loyalty."
+
+# /references/stats.md
+## How to populate
+Paste verified, sourced numbers. Format:
+- [Stat]. — [Source name, link, date accessed].
+Use only sources you can defend in court. No "studies show". No vibes.
+Refresh quarterly. Mark stats older than 18 months as STALE.
+
+# /references/stories.md
+## How to populate
+List 10–20 real anecdotes Nick can tell from first-person experience: client wins, client disasters, mistakes he made, conversations that changed his mind, deals that fell apart. Each story has a title, a 30-word summary, and three tag-words for retrieval. Stories are the single most cited content in 2026 LLMs because they cannot be synthetically faked.
+
+# /references/competitors.md
+## Format
+| Competitor | URL | Positioning | Pricing (if public) | Their weakness | Our differentiator |
+
+# /references/glossary.md
+## Format
+Term — Definition we use — What competitors call it — When we use it.
+(For AiVARE: Digital Agents, Secession, Founders 25, etc.)
+```
+
+### /skills/keyword-research.md — Semrush + 2026 SOP
+
+```markdown
+# Keyword research SOP — 2026 edition
+
+## Tooling stack
+- Primary: Semrush Keyword Magic Tool (3.8B keyword DB, daily-refresh rank tracking strongest in US/AU).
+- Secondary: Ahrefs (28.7B global DB, Click data + Brand Radar for AI visibility).
+- AI visibility (free): Ahrefs free AI Visibility Checker monthly + manual prompt sheet (15–20 prompts/site/month against ChatGPT, Perplexity, Gemini, Claude, Google AI Overviews).
+- Free baseline: Google Search Console + Keyword Planner + AlsoAsked + Reddit search.
+
+## Filters (updated for 2026)
+- **Volume ≥ 50** (NOT 100; AI prompts are tiny per term but high-intent).
+- **Personal KD% < 30** (Semrush "Personal KD%" weighted by your domain authority — NOT raw KD).
+- **Intent = informational** for blog posts; **commercial / transactional** for service pages.
+- **Exclude branded competitor terms** (Reapit, AgentBox, RiTA for AiVARE; Pivot AI, Advancer, Flowtivity for AI Pivot Toolbox).
+- **Exclude SERPs with AIO** for blog content unless we can engineer the citation. Use SERP feature filter.
+- **Include the Questions tab** — every question with KD<30 and >50 volume becomes either a blog post or an FAQ block.
+- **Include Australia (database: au) AND Global (database: us)** — many AU agents and SMBs trigger US results.
+
+## Three lanes per project
+1. **Money keywords** (commercial intent, low volume okay): "best [thing] [city/state] 2026" / "[competitor] alternative" / "[service] [suburb]". These become service pages.
+2. **Adjacent / upper-funnel** (informational, higher volume): how-to, comparison, "what is", "is X worth it". These become blog posts.
+3. **AEO/GEO targets** (questions worded as a real prompt): "what is the best AI CRM for Australian real estate agents in 2026", "how do I leave Ray White and start my own agency", "best AI consultant in Brisbane for small business". These become 40–60-word answer paragraphs embedded in posts and service pages.
+
+## Cluster rule
+One root keyword per page. Up to two secondary and three tertiary keywords on the same page if and only if user intent is identical. If intent differs, split into separate pages and internal-link them.
+
+## Output deliverable
+A spreadsheet (one row per keyword) with columns: keyword, volume_au, volume_us, kd, personal_kd, intent, serp_features, aio_present, lane (money/adjacent/aeo), parent_cluster, target_url, content_status (idea/drafted/published/indexed/ranking), last_updated.
+```
+
+### /skills/blog.md — the /blog command
+
+```markdown
+# /blog — Blog post generation skill
+
+## Inputs
+- ROOT_KEYWORD: {{required}}
+- SECONDARY_KEYWORDS: {{0–2}}
+- TERTIARY_KEYWORDS: {{0–3}}
+- TARGET_URL_SLUG: {{required, ≤7 words, hyphenated}}
+- OUTPUT_PATH: /content/blog/{{slug}}.mdx
+
+## Procedure (Claude executes in order)
+1. **Read** /CLAUDE.md, /references/voice.md, /references/humour.md, /references/opinions.md, /references/stats.md, /references/stories.md, /references/competitors.md.
+2. **Pull SERP intel** for ROOT_KEYWORD: top 3 ranking pages excluding Reddit, Quora, YouTube. For each, capture: word_count, h2_count, image_count, has_table, has_faq, has_original_data. Compute averages.
+3. **Set targets**: word_count = average + 10%; h2_count = average; image_count = average + 1; must_have: 1 original data point or proprietary screenshot, 1 table or comparison block, 4–8 FAQ questions, 2 pull quotes with numbers.
+4. **Generate the page** with the structure below.
+5. **Inject voice**: rewrite every paragraph using /references/voice.md register. Insert at least one humour beat from /references/humour.md, one opinion from /references/opinions.md, one story from /references/stories.md, one stat from /references/stats.md.
+6. **Pexels image fetch**: query Pexels API with three image briefs (hero, midway, supporting). Save to /public/blog/{{slug}}/. Set alt text per /skills/onpage-seo.md.
+7. **Run /skills/onpage-seo.md** as a self-check; do not return until 100% pass.
+8. **Run /skills/aeo-geo.md** as a self-check.
+9. Output the .mdx file plus a JSON sidecar with: title, meta_description, slug, primary_kw, cluster, lighthouse_target, schema_blocks_used, internal_links_added, external_links_added, images_added, last_modified.
+
+## Required structure of the post
+- One H1: must contain primary keyword, ≤60 chars, sentence case.
+- 40–60-word answer-first paragraph immediately under H1, no links inside it. State the answer flat. This paragraph is the AEO citation bait.
+- 4–8 H2s. At least 3 phrased as a real user question matching prompt phrasing.
+- Under each H2, 40–60-word direct answer first, then deeper exposition.
+- One comparison table (HTML <table>, NOT image) somewhere mid-post.
+- One pull quote per major section with a standalone factual claim that contains a number.
+- 3–5 internal links to /blog/* or /service/* on this site.
+- 2–3 external links to primary sources (gov, industry body, named research, named tool).
+- One TL;DR section above the fold or a "Last updated: {{date}}" stamp.
+- A 4–8 question FAQ block at the foot, each answer 50–300 words, marked up as FAQPage JSON-LD.
+- Author byline linking to /about/nick-griffiths with Person schema.
+
+## Anti-slop guardrails
+- No paragraph starts with "In today's", "In the ever-evolving", "Whether you're…".
+- No sentence longer than 25 words unless it's a deliberate run-on for rhythm.
+- No bullet point shorter than 5 words.
+- Maximum two bulleted lists in the entire post.
+- At least three of: real $ figure, named client (or anonymised case with real number), dated event, named tool with version, before/after metric, proprietary screenshot.
+- No more than 8% AI-detector "AI-likely" score (run originality.ai or similar before publish).
+```
+
+### /skills/service.md — the /service command (zipper)
+
+```markdown
+# /service — Service page generation skill
+
+## Inputs
+- SERVICE: {{e.g. "AI voice agent"}}
+- LOCATION: {{e.g. "Brisbane" / "QLD" / "Australia"}}
+- VERTICAL: {{optional, e.g. "for tradies"}}
+- TARGET_URL_SLUG: /{{service}}-{{location}}{{-vertical}}
+
+## Procedure
+1. Read /CLAUDE.md and references.
+2. Confirm at least 8 unique data points exist for this combination (real local clients, suburb-specific FAQs, named past projects, location-specific pricing, real reviews, neighbourhood photos, regulatory specifics, vertical-specific case study). If <8, DO NOT GENERATE — flag for manual research first. (Doorway-page penalty risk per March 2026 spam update.)
+3. Use ISR rendering: `export const revalidate = 86400`.
+4. Generate the page using the structure below.
+5. Run /skills/onpage-seo.md and /skills/aeo-geo.md as self-checks.
+
+## Required structure
+- H1: "{{Service}} in {{Location}} — {{value-prop fragment}}". Primary kw front-loaded.
+- Hero block: 40–60-word answer-first paragraph — what this service is, who it's for in this location, what the outcome is.
+- Trust strip: ABN, years operating, reviews count + average, Australian-owned/operated marker.
+- Outcomes section: 3–5 outcomes with real numbers (avoid "we deliver results").
+- Process section: numbered list, 4–6 steps.
+- Pricing block: real numbers if you'll honour them, or a clearly disclosed band ($X–$Y) with a sentence on what drives variance.
+- Local proof: at least 3 location-specific testimonials, photos, or case fragments. NOT stock.
+- FAQ: 4–8 questions, each answer 50–300 words, FAQPage schema.
+- Comparison table: us vs alternatives in this location.
+- Closing CTA: one primary, one low-friction (book vs. download).
+- Internal links to: /pricing, /about, three relevant /blog posts, and adjacent /service/* pages (the zipper).
+- LocalBusiness JSON-LD with addressCountry: AU, areaServed, geo, openingHours, priceRange, sameAs.
+
+## Zipper rules (anti-doorway)
+- Don't ship more than 5 zipper pages per week.
+- Each page must vary at minimum: hero photo, opening paragraph (300+ unique words), one local case fragment, one suburb FAQ, pricing band if applicable, one location-specific compliance note (e.g. NSW Fair Trading vs QLD OFT).
+- If you can't write 300+ genuinely unique words about why this service in this location, kill the page.
+```
+
+### /skills/onpage-seo.md — the 80+ signal checklist
+
+```markdown
+# /onpage-seo — On-page SEO checklist (run as a self-check before commit)
+
+## Title tag (5)
+1. Exactly one <title> tag in <head>.
+2. Length 50–60 characters.
+3. Primary keyword in first 30 characters.
+4. Brand suffix " — {{Brand}}" or " | {{Brand}}".
+5. Sentence case, not title case.
+
+## Meta description (5)
+6. Exactly one meta description.
+7. 140–160 characters.
+8. Contains primary keyword once and a CTA verb.
+9. No quote marks, no double-spaces.
+10. Australian English.
+
+## URL (4)
+11. Slug ≤7 words, hyphenated, lowercase.
+12. No stop words (a, the, of) unless required for clarity.
+13. Primary keyword in slug.
+14. No date in slug (avoid /2026/05/).
+
+## Headings (8)
+15. Exactly one H1 per page.
+16. H1 contains primary keyword.
+17. H1 ≤60 characters.
+18. H2s used for major sections, in document order.
+19. At least one H2 phrased as a user question for AEO.
+20. H3 only used to subdivide an H2.
+21. No H4–H6 unless content depth genuinely requires.
+22. No skipped levels (H2 → H4).
+
+## First paragraph (4)
+23. Primary keyword in first 100 words.
+24. 40–60-word answer-first paragraph under H1.
+25. No links in the answer paragraph.
+26. Self-contained (readable as a snippet).
+
+## Body content (10)
+27. ≥1 occurrence of primary keyword per 300 words (natural).
+28. Secondary keywords mentioned at least once.
+29. ≥3 internal links to /blog or /service pages.
+30. ≥2 external links to primary sources.
+31. ≥1 comparison table OR list with structured items.
+32. ≥1 pull quote with a number.
+33. ≥1 original data point or proprietary screenshot.
+34. 4–8 question FAQ block.
+35. Last Updated date visible.
+36. Author byline with link to /about/{{founder-slug}}.
+
+## Images (8)
+37. Hero image with explicit width/height.
+38. ≥3 images total in long-form posts.
+39. All images served via next/image with AVIF/WebP.
+40. Alt text descriptive, ≤125 chars, includes primary kw on hero only.
+41. File names hyphenated and descriptive.
+42. No image >150KB after compression.
+43. No images of tables (use HTML).
+44. lazy="loading" on below-fold images only; eager on hero.
+
+## Schema (10)
+45. JSON-LD in <head>, not <body>.
+46. Organization schema sitewide.
+47. Person (author) schema on content pages.
+48. Article or BlogPosting schema with author, publisher, datePublished, dateModified.
+49. BreadcrumbList schema on every non-home page.
+50. FAQPage schema where genuine Q&A exists.
+51. Service or LocalBusiness schema on /service pages.
+52. SoftwareApplication or Product schema on product pages.
+53. Validate with Rich Results Test before commit.
+54. No mismatch between schema and visible content.
+
+## Open Graph & Twitter (8)
+55. og:title, og:description, og:url, og:type, og:image (1200×630), og:locale (en_AU).
+56. og:site_name set.
+57. twitter:card = summary_large_image.
+58. twitter:title, twitter:description, twitter:image.
+59. OG image hosted on production domain (not Replit/Vercel preview).
+60. OG image text passes mobile readability (≥48px font).
+61. Image dimensions match metadata.
+62. Image is JPG or PNG, <300KB.
+
+## Mobile & accessibility (8)
+63. Viewport: width=device-width, initial-scale=1.
+64. Hero readable at 390px width without horizontal scroll.
+65. Tap targets ≥48×48px.
+66. Colour contrast ≥4.5:1 for body text.
+67. No <table> used for layout.
+68. Forms have labels, not placeholders only.
+69. Skip-to-content link.
+70. lang="en-AU" on <html>.
+
+## Technical (10)
+71. Canonical tag on every page.
+72. No <meta name="robots" content="noindex"> in production.
+73. Pagination uses rel="next"/"prev" or self-canonical, never duplicate canonical.
+74. 404 page returns 404 status, not 200.
+75. 301 redirects (not 302) for permanent moves.
+76. HTTPS enforced.
+77. HSTS header set.
+78. No mixed content warnings.
+79. Sitemap includes this URL.
+80. robots.txt does not block this URL.
+
+## AU-specific (4)
+81. Australian English spelling pass (run AU dictionary lint).
+82. Pricing in AUD, GST inclusivity stated.
+83. Phone in international AU format (+61).
+84. ABN visible on /about and footer.
+
+## Pass criterion
+100% of all 84 signals must pass before commit. Output a JSON pass/fail report.
+```
+
+### /skills/technical-seo.md — sitemap, robots, Lighthouse, schema templates
+
+```markdown
+# /technical-seo — Technical SEO skill
+
+## sitemap.xml — generation
+- Auto-generate via next-sitemap or App Router metadata API.
+- Include: every published blog post, every service page, /about, /pricing, /contact, /founders25 (if public).
+- Exclude: drafts, /api/*, /admin/*, preview routes.
+- lastmod = file dateModified, not the build date.
+- changefreq + priority are largely ignored by Google but include for hygiene.
+- Submit via GSC after every meaningful update. Use IndexNow ping for Bing/ChatGPT.
+
+## robots.txt — template
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /preview/
+Disallow: /*?*utm_*
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://{{domain}}/sitemap.xml
+
+## Lighthouse fix loop (paste-ready prompt)
+"Here is the Lighthouse JSON report from PageSpeed Insights for {{URL}}. Identify the top 5 issues by impact on LCP, INP, CLS, and SEO score. For each, give: (1) the file/component to change, (2) the exact code diff, (3) the expected metric improvement, (4) the verification step. Do not propose changes to dependencies without first checking package.json."
+
+## Field-data target (CrUX p75 mobile)
+- LCP <2.0s
+- INP <150ms
+- CLS <0.05
+Lighthouse lab targets are secondary. Field data is what ranks post-March-2026.
+
+## Schema templates (place in /templates/, import per page)
+
+### Organization (sitewide, in root layout)
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "{{Brand}}",
+  "url": "https://{{domain}}",
+  "logo": "https://{{domain}}/logo.png",
+  "sameAs": [
+    "https://www.linkedin.com/company/{{slug}}",
+    "https://x.com/{{handle}}",
+    "https://www.wikidata.org/wiki/{{q-id}}"
+  ],
+  "address": {"@type": "PostalAddress", "addressCountry": "AU", "addressRegion": "QLD", "addressLocality": "Brisbane"},
+  "founder": {"@type": "Person", "name": "Nick Griffiths", "url": "https://{{domain}}/about/nick-griffiths"},
+  "knowsAbout": ["{{topic1}}", "{{topic2}}", "{{topic3}}"]
+}
+
+### Person (founder, on /about and as author on every post)
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Nick Griffiths",
+  "url": "https://{{domain}}/about/nick-griffiths",
+  "image": "https://{{domain}}/nick.jpg",
+  "jobTitle": "Founder",
+  "worksFor": {"@type": "Organization", "name": "{{Brand}}"},
+  "sameAs": ["https://www.linkedin.com/in/{{slug}}", "https://x.com/{{handle}}", "https://www.proptechbuzz.com/nick-griffiths-577389", "https://github.com/{{handle}}"],
+  "knowsAbout": ["AI automation", "Real estate technology", "Programmatic SEO", "Generative engine optimisation"]
+}
+
+### Article / BlogPosting (every post)
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{title}}",
+  "description": "{{meta_description}}",
+  "image": ["{{hero_image}}"],
+  "datePublished": "{{ISO}}",
+  "dateModified": "{{ISO}}",
+  "author": {"@id": "https://{{domain}}/about/nick-griffiths#person"},
+  "publisher": {"@id": "https://{{domain}}#org"},
+  "mainEntityOfPage": "https://{{domain}}/blog/{{slug}}"
+}
+
+### FAQPage (every page with genuine Q&A)
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{"@type": "Question", "name": "{{q1}}", "acceptedAnswer": {"@type": "Answer", "text": "{{a1}}"}}]
+}
+
+### Service (each /service page)
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "{{service}}",
+  "provider": {"@id": "https://{{domain}}#org"},
+  "areaServed": {"@type": "AdministrativeArea", "name": "{{location}}"},
+  "offers": {"@type": "Offer", "priceCurrency": "AUD", "priceSpecification": {"@type": "PriceSpecification", "price": "{{price_or_band}}"}}
+}
+
+### LocalBusiness (where applicable)
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "{{Brand}}",
+  "image": "https://{{domain}}/logo.png",
+  "address": {"@type": "PostalAddress", "addressCountry": "AU", "addressRegion": "QLD", "addressLocality": "Brisbane", "postalCode": "{{postcode}}"},
+  "geo": {"@type": "GeoCoordinates", "latitude": -27.4698, "longitude": 153.0251},
+  "priceRange": "{{$$$}}",
+  "telephone": "+61...",
+  "openingHoursSpecification": [...]
+}
+
+### BreadcrumbList (every non-home page)
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://{{domain}}/"},
+    {"@type": "ListItem", "position": 2, "name": "{{Section}}", "item": "https://{{domain}}/{{section}}/"},
+    {"@type": "ListItem", "position": 3, "name": "{{Page}}", "item": "https://{{domain}}/{{section}}/{{slug}}"}
+  ]
+}
+
+### SoftwareApplication (AiVARE)
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "AiVARE",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "offers": {"@type": "Offer", "priceCurrency": "AUD", "price": "{{price}}"},
+  "aggregateRating": {"@type": "AggregateRating", "ratingValue": "{{x}}", "reviewCount": "{{n}}"}
+}
+```
+
+### /skills/aeo-geo.md — the AEO/GEO module
+
+```markdown
+# /aeo-geo — Answer Engine + Generative Engine Optimisation
+
+## Mandate
+Every commercial page and every blog post must be engineered to be cited by ChatGPT, Perplexity, Gemini, Google AI Overviews and Claude — not just to rank in classic SERPs.
+
+## On-page checklist (run on every content piece)
+1. **Answer-first paragraph** under H1: 40–60 words, self-contained, no links, contains primary keyword and the literal answer to the most likely user prompt.
+2. **At least 3 H2s phrased as user questions** in the exact phrasing of a 7–23-word AI prompt (e.g. "What's the best AI CRM for Australian real estate agents in 2026?").
+3. **40–60-word answer paragraph immediately under each question H2**, before any deeper exposition.
+4. **At least 1 cited statistic with outbound primary-source link** per major section. Format: "X% of [population] [verb] [outcome] (Source name, dated month YYYY)."
+5. **At least 1 original data point** owned by us per long-form post — internal benchmark, customer survey, screenshot of our dashboard, etc.
+6. **HTML comparison table** (not image) where a "vs" or "best" intent is in scope.
+7. **2–3 pull quotes**, each containing a standalone factual claim with a number.
+8. **FAQPage schema** with 4–8 real prospect questions, answers 50–300 words.
+9. **Last Updated date** visible and `dateModified` in schema. Re-touch high-priority pages monthly (Perplexity gives 3.2× citation lift to <30-day content).
+10. **Person schema for the author** with `sameAs` to LinkedIn, X, GitHub, Wikidata if available.
+
+## Off-page mandate (per project, per quarter)
+- 4–6 authentic Reddit comments per week in 3–5 relevant subs (no promotion for first 4 weeks).
+- 1 podcast appearance per quarter with full transcript on host site.
+- 1 YouTube video per month per project, full transcript published on our site.
+- 3–5 expert-source pitches per week via Featured.com / Qwoted / SourceBottle / #JournoRequest.
+- Listing on G2, Capterra, GetApp, SoftwareAdvice (for AiVARE) and Australian directories (TrueLocal, Hotfrog, StartLocal, Yellow Pages AU, Crunchbase, Product Hunt with AU tag).
+- Wikidata Q-ID application within first 90 days.
+- Bing Webmaster Tools + IndexNow set up day one (mandatory for ChatGPT/Copilot citation).
+
+## Skip list (do NOT spend time on)
+- llms.txt / llms-full.txt (Mueller + multiple studies confirm not used).
+- Hand-built "AI sitemaps".
+- Persuasive-tone rewrites of existing copy without adding facts.
+- Paying for "guaranteed AI citations" services.
+
+## Measurement
+- Free monthly: Ahrefs free AI Visibility Checker + manual prompt sheet (15–20 prompts/site against ChatGPT, Perplexity, Gemini, Claude, AI Overviews) — log results in /measurement/ai-visibility-{{yyyy-mm}}.csv.
+- GA4 segment: traffic where source matches `chatgpt.com|perplexity.ai|gemini.google.com|copilot.microsoft.com|claude.ai`.
+- GSC regex filter to identify AI-Overview-shaped queries.
+- Monthly review of citation lift versus brand mentions in /references/competitors.md.
+```
+
+### /skills/deploy.md — GitHub → Vercel → GSC → GBP → indexing SOP
+
+```markdown
+# /deploy — Deployment SOP
+
+## First deploy (one-time per project)
+1. Push to GitHub. Branch protection on main; PR-only.
+2. Connect Vercel; preset: Next.js. Production branch = main.
+3. DNS: A → Vercel; AAAA; verify SSL auto.
+4. Set env vars on Vercel: SITE_URL, GA4_ID, GSC_VERIFICATION, BING_VERIFICATION, INDEXNOW_KEY.
+5. Submit /sitemap.xml via Google Search Console after first deploy. Add property both as domain-property and URL-prefix to capture both subdomain and www variants.
+6. Submit to Bing Webmaster Tools. Generate IndexNow key (free moat for ChatGPT/Copilot).
+7. Set up Google Business Profile (formerly GMB). Brisbane address, real photos, full opening hours, full attributes including women-led/eco etc as truthful, link to specific service page (NOT homepage — Google's mid-2025 GBP policy update enforces this).
+8. Connect GA4 to GSC.
+9. Add Vercel Analytics + Speed Insights (free on hobby tier).
+
+## Per-page deploy
+1. Branch from main, build locally.
+2. Run /skills/onpage-seo.md and /skills/aeo-geo.md self-checks.
+3. Run Lighthouse in CI against the preview URL. Block merge if Performance <90, SEO <100, Accessibility <95, Best Practices <100.
+4. Run Rich Results Test against the preview URL. Block merge on schema warnings.
+5. Run AU-spelling lint.
+6. Open PR. Self-review against /CLAUDE.md mandates.
+7. Merge → Vercel auto-deploys.
+8. Within 30 min of deploy: GSC URL Inspection → Request Indexing.
+9. Within 30 min of deploy: IndexNow ping for Bing/ChatGPT.
+10. Add the URL to /measurement/published-{{yyyy-mm}}.csv.
+
+## Monitoring cadence
+- Daily (5 min): Vercel deploy health, GSC errors.
+- Weekly (30 min): GSC performance, GA4 acquisition, AI-referrer segment, AI visibility manual prompt sheet, CrUX report for any new URL.
+- Monthly (2 hrs): rank tracking diff, AI citation diff, GBP review delta, content performance ranking, competitor SERP audit, dateModified refresh on top 10 pages.
+- Quarterly (4 hrs): keyword universe refresh, original-data publication, voice/stats reference files audit and refresh.
+```
+
+### Publishing cadence — the don't-get-banned ramp
+
+| Period | Blog posts/week | Service pages/week | Why |
+|---|---|---|---|
+| Weeks 1–2 | 1 | 0 | Baseline. Indexing must succeed cleanly before scaling. |
+| Weeks 3–4 | 2 | 1 | Watch GSC indexing time per cohort. If >7 days, slow down. |
+| Weeks 5–8 | 3 | 2 | Validate Aug 2025 + Mar 2026 spam-update safe-zone. |
+| Weeks 9–12 | 4 | 3 | Continue only if no manual actions, no rank volatility, no indexing delays. |
+| Months 4+ | 5 (cap) | 5 (cap) | Hard cap until domain authority justifies. Never dump >5 zipper pages in a single day. |
+
+If you hit a manual action, a rank crash >25% week-on-week, or an indexing time >14 days for a fresh URL: **stop publishing, edit the most recent 30 pages for Information Gain, and let the cohort settle for 30 days before resuming.**
+
+### Measurement dashboard spec
+
+Track in a single Google Sheet (or Notion DB), reviewed weekly. Threshold actions trigger immediately.
+
+| Metric | Tool | Threshold action |
+|---|---|---|
+| Pages indexed | GSC | If <50% of submitted at 14 days, audit rendering and internal linking. |
+| Average position (top 20 pages) | GSC | If a page drops >5 positions WoW, refresh content + dateModified. |
+| Clicks (top 20 pages) | GSC | If a page loses >30% clicks WoW with stable position, AIO probably ate it — engineer the answer paragraph. |
+| Organic sessions | GA4 | Trend only — alert if 4-week MA drops >20%. |
+| AI-referrer sessions | GA4 segment | Track absolute count + conversion rate; AI traffic converts ~14% (Whitehat) versus 2.8% organic. |
+| AI visibility prompts cited | Manual sheet | Aim for monthly increase. |
+| Brand web mentions | Ahrefs Brand Radar (free tier) | Aim for ~250 mentions in 12 months (Anthropic threshold). |
+| Reviews count + rating (GBP) | GBP | Top-3 local-pack avg = 561 reviews / 4.8. Set quarterly review-velocity targets. |
+| CrUX p75 LCP/INP/CLS | PageSpeed Insights | If any metric falls into "needs improvement" or "poor", block new content publishing until fixed. |
+| Manual actions | GSC | Any → stop publishing, audit. |
+
+---
+
+## Part 4 — Project-specific application
+
+### AI Pivot ToolBox
+
+**ICP refined:** Australian SMB owner-operators (5–50 staff) in Brisbane / Sydney / Melbourne / Perth / Adelaide who want agency-level AI work — voice agents, workflow automation, AI SEO/GEO, custom AI tools — but won't pay $50k+ agency fees. Sub-segments: trades/HVAC, accountants/bookkeepers, law firms, real-estate-adjacent (you can sell into AiVARE's audience indirectly), retail/e-commerce, allied health, not-for-profits. Brisbane-led, AU-wide remote-delivered.
+
+**Keyword universe — 35 blog post topics (informational, KD<30 typical, AU intent).**
+
+1. What is generative engine optimisation (GEO) and how does it differ from SEO in 2026
+2. How to get your business cited by ChatGPT in Australia
+3. Voluntary AI Safety Standard explained for Australian SMBs
+4. Guidance for AI Adoption: the six essential practices (AI6) for small business
+5. December 2026 Privacy Act ADM rules — what every Australian business must update
+6. AI policy template for Australian SMBs (with downloadable PDF)
+7. ChatGPT vs Claude vs Copilot for Australian small business in 2026
+8. n8n vs Make vs Zapier for Australian SMBs — data sovereignty edition
+9. Self-hosted n8n on Australian infrastructure: a step-by-step
+10. AI voice agent vs human receptionist: cost-benefit for AU service businesses
+11. How to build a custom GPT for your Australian business
+12. AI for Australian tradies — the no-fluff guide for plumbers, sparkies and HVAC
+13. AI for Australian accountants — APES 110 compliance angle
+14. AI for Australian law firms — NSW Supreme Court Practice Note SC GEN 23 implications
+15. AI for not-for-profits in Australia — grant-eligible automation patterns
+16. AI for allied health practices — AHPRA guidance and Lyrebird/Heidi alternatives
+17. AI for real estate agencies in Australia (cross-link bait into AiVARE)
+18. AI for childcare centres Australia — admin automation patterns
+19. AI implementation cost in Australia — what $5k, $15k and $50k actually buy
+20. AI ROI calculator for Australian SMBs — five worked examples
+21. How to write an AI policy for your Australian SMB in one afternoon
+22. NAIC AI Procurement Toolkit — what it means for vendors
+23. The 2026 OAIC compliance scan — how to be ready
+24. AI bias and Australian Consumer Law — the litigation risk most SMBs miss
+25. Microsoft Copilot data residency in Australia — what you actually get
+26. ChatGPT Enterprise privacy in Australia — a plain-English audit
+27. Best AI agents for invoice automation in Australia 2026
+28. AI receptionist setups for Brisbane service businesses
+29. How to rank in ChatGPT for Australian local searches
+30. How to rank in Perplexity for Australian B2B searches
+31. AI Overviews appearance in google.com.au — what triggers it
+32. The five free moves that put a Brisbane SMB on the AI search map
+33. Reddit as an AI-citation moat for Australian businesses
+34. Wikidata Q-ID for Australian SMBs — the underrated entity move
+35. Voice agent regulations in Australia — Privacy Act, ACMA, ACL
+36. AI fraud and the statutory tort of serious invasion of privacy
+37. n8n self-hosted Privacy Act compliance — a checklist
+38. Australian AI Adopt Centres — what they do and how to use them
+39. National AI Plan 2025 explained for SMBs
+40. Why solo AI operators are eating mid-tier agencies in Australia (founder-voice piece)
+
+**Service page candidates — zipper (15).** Build slowly per the cadence ramp. Each must satisfy the 8-data-points rule.
+
+1. AI automation Brisbane
+2. AI automation Sydney
+3. AI automation Melbourne
+4. AI automation Perth
+5. AI automation Adelaide
+6. AI SEO services Brisbane
+7. AI SEO services Sydney
+8. Generative engine optimisation Australia
+9. AI voice agents Australia
+10. Workflow automation for Australian SMBs
+11. Custom AI tools Brisbane
+12. AI for tradies QLD
+13. AI for accountants Brisbane
+14. AI training and workshops Brisbane
+15. AI policy and governance for Australian SMBs
+
+**AEO targets — when an Australian SMB asks an LLM, AI Pivot Toolbox should appear for:**
+
+- "Best AI consultant in Brisbane for small business 2026"
+- "How do I get my business cited by ChatGPT in Australia"
+- "What's the cheapest AI automation agency in Australia"
+- "Who can write my Australian AI policy"
+- "Best AI workflow automation for Australian SMBs"
+- "How do I comply with the December 2026 Privacy Act ADM rules"
+- "Solo AI operator versus agency in Australia"
+- "Generative engine optimisation Australia"
+
+**90-day content calendar.**
+
+**Month 1 — Foundation.** Week 1: deploy site refresh, fix sitemap/robots, add Org/Person/Service schema, submit GSC/Bing/IndexNow/GBP, retire "enterprise" cached SERP via 301 + GSC re-index. Week 2: post #1 (GEO explained), service page #1 (AI automation Brisbane). Week 3: post #2 (Voluntary AI Safety Standard), service #2 (AI SEO Brisbane), launch /about/nick-griffiths with Person schema. Week 4: post #3 (December 2026 ADM rules), service #3 (AI automation Sydney), publish original "Brisbane SMB AI Adoption Survey 2026" (n=50, run via LinkedIn/email — this is your Information Gain anchor).
+
+**Month 2 — Cluster build.** Three posts/week + two service pages/week. Topics: AI policy template, ChatGPT vs Claude vs Copilot, AI for accountants AU, n8n vs Make vs Zapier, AI for tradies, AI implementation cost. Service pages: Melbourne, Perth, Adelaide, GEO Australia, AI voice agents Australia. Also: 4–6 Reddit comments/week in r/AusBusiness, r/AusFinance, r/sysadmin (AU), r/AustralianTeachers (AI-curious teachers); Featured.com pitches 3/week; 1 podcast outreach/week to AU SaaS/SMB shows. Apply for Wikidata Q-ID.
+
+**Month 3 — Scale + measure.** Four posts/week + three service pages/week (only if cohort indexing is healthy). Cover the vertical AI angle (allied health, NFPs, real estate, childcare). Publish second piece of original research ("AI consultant pricing in Australia: 30 quotes analysed"). YouTube video #2 (ChatGPT-for-AU-business walkthrough). G2/Capterra listings if applicable. Audit: rank tracking diff, AI citation diff, AI-referrer GA4 segment.
+
+### AiVARE
+
+**ICP refined.** Primary: solo principal-agents and 2–10-person boutique agencies in NSW/VIC/QLD currently inside a franchise (Ray White, LJH, Harcourts, McGrath, Belle, Raine & Horne, Century 21) whose franchise renewal is within 18 months and who are paying ~8% of commission to the brand. Secondary: independent agencies on legacy CRMs (Reapit/AgentBox, MRI Vault, MyDesktop, Box+Dice) whose AI feature roadmap is bolt-on rather than agentic. Tertiary: brand-new agents leaving sales roles at franchises to start their own shop.
+
+**Keyword universe — 40 blog post topics** (pain-led, dream-outcome, Secession-narrative styles consistent with the savage Sabri Suby / Hormozi voice).
+
+1. How to leave Ray White and start your own real estate agency (the full secession playbook)
+2. How to leave LJ Hooker — the 2026 independent's checklist
+3. How to leave Harcourts — what nobody tells you about the renewal clause
+4. How to leave McGrath — Knight Frank acquisition edition
+5. How to leave Belle Property and keep your database
+6. Real estate franchise fees in Australia — the numbers your principal won't show you
+7. Independent versus franchise real estate agency in 2026 — a side-by-side P&L
+8. The 8% problem — why every Australian agent is paying for someone else's brand
+9. Best CRM for real estate agents Australia 2026 (we name names)
+10. Reapit Sales versus MRI Vault versus Rex versus AiVARE — an honest comparison
+11. RiTA versus AiVARE — bolt-on AI versus Digital Agents
+12. LockedOn versus AiVARE — triggers versus autonomy
+13. Real estate CRM with trust accounting in Australia 2026
+14. Real estate CRM for solo agents in Australia
+15. Real estate CRM for independent agencies — pricing tiers compared
+16. Cheapest real estate CRM in Australia that doesn't suck
+17. Switching from AgentBox to AiVARE — a 14-day migration plan
+18. Switching from MRI Vault to AiVARE without losing data
+19. Switching from Box+Dice — the lock-in clause every principal misses
+20. Digital Agents versus AI chatbots — why the distinction matters in real estate
+21. Autonomous AI agents for real estate — what they actually do all day
+22. AI listing description generator — the four prompts that beat ChatGPT
+23. AI cold-calling scripts for Australian agents (with Voqo/AiVARE integration)
+24. How to write a vendor report with AI in 12 minutes
+25. Open-home follow-up automation that doesn't sound like a robot
+26. AI lead qualification for real estate — the scoring model that actually works
+27. AI buyer matching in 2026 — beyond price/postcode
+28. The OAIC privacy sweep on real estate — what it found and how to comply
+29. December 2026 ADM rules in real estate — your privacy policy update
+30. 2Apply Privacy Act ruling — what every AU agent must change now
+31. AML compliance for real estate agents Australia 2026
+32. REIQ mandatory CPD on AI — module-by-module breakdown
+33. REINSW Class 1 agent CPD — AI training accredited courses 2026
+34. REIV ethics module 2026 — the AI questions you must answer
+35. The salaried agent debate — would Australia's market be more honest?
+36. Underquoting in NSW — penalties, prevention, AI audit trails
+37. Off-market listings Brisbane — the AI database play
+38. Real estate database hygiene — the 20% of contacts that drive 80% of GCI
+39. Tom Panos versus Sabri Suby — why every agent should learn direct-response
+40. Ratemyagent reviews — the system that gets you 50 in 60 days
+
+**Service page candidates — zipper (20).**
+
+1. AI CRM for real estate agents Sydney
+2. AI CRM for real estate agents Melbourne
+3. AI CRM for real estate agents Brisbane
+4. AI CRM for real estate agents Perth
+5. AI CRM for real estate agents Adelaide
+6. AI CRM for real estate agents Gold Coast
+7. AI CRM for real estate agents Sunshine Coast
+8. AI CRM for real estate agents Newcastle
+9. AI CRM for real estate agents Geelong
+10. AI CRM for real estate agents Hobart
+11. AI CRM for real estate agents Canberra
+12. AI CRM for boutique agencies NSW
+13. AI CRM for boutique agencies VIC
+14. AI CRM for boutique agencies QLD
+15. AI CRM for solo agents Australia
+16. AI CRM for property managers Australia
+17. AI CRM for buyer's agents Australia
+18. AI CRM for commercial real estate Australia
+19. Reapit AgentBox alternative Australia
+20. MRI Vault alternative Australia
+
+**AEO targets — when an Australian agent asks ChatGPT/Perplexity/AI Overviews, AiVARE should appear for:**
+
+- "Best AI CRM for real estate agents Australia 2026"
+- "Best CRM for independent real estate agents Australia"
+- "How do I leave Ray White and keep my database"
+- "Real estate franchise alternative in Australia 2026"
+- "Reapit AgentBox versus alternatives"
+- "AI agent for real estate prospecting Australia"
+- "Real estate CRM with trust accounting Australia"
+- "Cheapest real estate CRM Australia"
+
+To win these, every relevant page needs: a 40–60-word answer-first paragraph naming AiVARE explicitly with the location/feature qualifier; an honest comparison table including Reapit, MRI Vault, Rex, LockedOn, RiTA; a citation-bait pull quote from an original "Australian Independent Agent Survey 2026"; FAQPage schema; SoftwareApplication schema with AggregateRating sourced from real reviews; Person schema for Nick as founder.
+
+**90-day content calendar.**
+
+**Month 1 — Foundation rebuild.** Week 1: **stop everything else**. Refactor marketing pages off the SPA. Render homepage, /founders25, /pricing, /features, /about, /blog index server-side or as static HTML. Add /sitemap.xml and /robots.txt. Replace meta with substantiable claims (drop "Australia's #1" and "500+ agents" until backed). Fix `analyze` → `analyse`. Pick one motion (paid Founders 25 OR free trial). Add Org / Person (Nick) / SoftwareApplication / Offer / FAQPage schema. Submit GSC/Bing/IndexNow/GBP. Week 2: post #1 ("How to leave Ray White…"), service page #1 (Sydney). Week 3: post #2 ("Real estate franchise fees…"), service #2 (Melbourne), launch /about/nick-griffiths. Week 4: post #3 ("Best CRM for real estate agents AU 2026"), service #3 (Brisbane), publish "Australian Independent Agent Survey 2026" (n=50–100 — run via LinkedIn DMs to your network and 2 boutique principals; this is your Information Gain anchor).
+
+**Month 2 — Secession cluster.** Three posts/week + two service pages/week. Burn through the franchise-departure topics (LJ Hooker, Harcourts, McGrath, Belle), the CRM comparison stack (Reapit, Vault, Rex, LockedOn, RiTA), and the regulatory wedge (OAIC, Privacy Act, REIQ CPD, REINSW Class 1). Service pages: Perth, Adelaide, Gold Coast, Sunshine Coast, Newcastle. Off-page: 4–6 authentic Reddit comments/week in r/AustralianRealEstate, r/AusProperty, r/realtors; 2 LinkedIn posts/week from Nick using the savage voice; pitch one feature to REB Online or Elite Agent.
+
+**Month 3 — Scale + capture.** Four posts/week + three service pages/week. Cover the Digital Agents narrative (autonomy, listing copy, cold calls, vendor reports, open-home follow-up, lead scoring). Second original-research piece ("Franchise fees by brand — what 30 AU agents told us they actually pay"). Pitch onto an Elite Agent / REB / PropertyME podcast. Apply to be cited in industry roundups. Set up REIQ-OFT-approved CPD module on AI for real estate (huge lead-gen channel given June 2025 mandatory CPD). Audit and publish updated comparison page once survey results are in.
+
+---
+
+## Part 5 — Risk and prioritisation
+
+### This week (top 5)
+
+**1. Render AiVARE marketing pages server-side.** The single biggest blocker. Until Google can read the hero, founders25, features and pricing copy, no SEO/AEO tactic in this plan will work. One-week Next.js refactor on Vercel. **2. Fix AiVARE meta** — retire "Australia's #1" and "500+ agents", correct `analyse`, pick one motion (Founders 25 OR free trial). Legal exposure (ACCC/ACL) plus credibility risk. **3. Stand up the skill pack** — drop /CLAUDE.md, /skills, /references and /templates from Part 3 into both project repos and customise the placeholders. Without this, every subsequent piece of content is one-off and inconsistent. **4. Submit both sites to Google Search Console + Bing Webmaster Tools + IndexNow + Google Business Profile** — IndexNow is the free moat your Australian competitors don't use, and it directly affects ChatGPT/Copilot citation. **5. Decide AI Pivot Toolbox positioning once and for all** — kill "enterprise" framing entirely, force re-crawl by 301-redirecting any old URLs that triggered the cached SERP, update homepage copy to commit to "solo AI-powered operator at 40–60% under agency rates".
+
+### First 30 days (top 10)
+
+In addition to the above: **(6) Add Org + Person + SoftwareApplication/Service + FAQPage schema** to both sites in JSON-LD. **(7) Build /about/nick-griffiths on both sites** with verified `sameAs` to LinkedIn, X, ProptechBuzz, GitHub. **(8) Apply for Wikidata Q-IDs** for both AiVARE Pty Ltd and AI Pivot Toolbox. **(9) Publish the first piece of original research** per site (the survey anchors for Information Gain). **(10) Ship the first 3 blog posts and 3 service pages** per site, following the cadence ramp. **(11) Set up the measurement sheet** with the 10-metric dashboard from Part 3. **(12) Stand up Google Business Profile properly** — Brisbane address, real photos, link to specific service page (not homepage), correct attributes, request 5 first reviews from real clients. **(13) Begin authentic Reddit presence** (no promotion, problem-solving comments only for first 4 weeks). **(14) Pitch 3 expert sources/week via Featured.com, Qwoted, SourceBottle**. **(15) Pitch one feature** to REB Online / Elite Agent (AiVARE) and SmartCompany / StartupSmart (AI Pivot Toolbox).
+
+### 90-day milestone
+
+By day 90, both sites should have: 30+ indexed blog posts each, 10–15 service pages each, Lighthouse mobile ≥90/100/95/100, CrUX p75 mobile LCP <2.0s, INP <150ms, CLS <0.05, Bing/IndexNow active, GBP with 10+ reviews, Wikidata application submitted, one published original-research piece each, monthly AI visibility prompt sheet showing first citations in ChatGPT/Perplexity/AI Overviews, and a healthy AI-referrer segment in GA4 with measurable conversion. AiVARE should also have: at least 10 paying Founders 25 members onboarded with case-study assets captured for content; an REIQ-OFT-approved CPD module submitted for accreditation. AI Pivot Toolbox should also have: 5–10 paying clients with anonymisable before/after metrics; one verticalised page (AI for tradies QLD or AI for accountants Brisbane) outperforming the horizontal pages.
+
+### Risks — and how to neutralise each
+
+**Google penalty risk** is highest from the zipper service pages and from publishing-velocity spikes. Hard cap at 5 zipper pages/week, each with the 8-data-points rule satisfied. If indexing time exceeds 14 days for fresh URLs or if any rank crashes >25% week-on-week, **stop publishing and edit the most recent 30 pages for Information Gain** before resuming. Treat the March 2026 spam update as the new normal — SpamBrain is detecting programmatic patterns far better than in 2024. **AI-content detection risk** is real but solvable: edit ratio >30% per pass, three-of-six experience-density elements per page, no published page above 8% on originality.ai. Use Claude/GPT for scaffolding, never for ship-as-is prose. **Brand reputation risk** is highest on AiVARE — the savage voice has to land genuinely funny and confident, not just rude; the Hormozi value-stack pattern only works if the value claims are substantiated; "Australia's #1" and "500+ agents" must come down today. The Sabri Suby/King Kong/MSCHF/Liquid Death register requires *actual* evidence behind every brag, otherwise it reads as a small business pretending to be big. **Time/cost trade-offs for a solo founder** are the silent killer. Cap Claude/Vercel/Semrush spend at $400/mo for the first 90 days. Skip Profound, Goodie, AthenaHQ until you have AI-attributed revenue. Free stack (Ahrefs free checker, GA4 segment, Bing WMT, manual prompt sheet) handles 70% of measurement needs. **Brand-collision risk for AI Pivot Toolbox** versus pivotai.com.au and aipivot.tech — invest disproportionately in the founder entity (Nick Griffiths) so brand search resolves to the person not just the domain.
+
+### What NOT to do
+
+Do not buy backlinks, ever — the March 2026 spam update made the ROI permanently negative; recovery doesn't restore lost link equity. Do not build llms.txt files — Mueller and three independent studies confirm no LLM uses them. Do not dump 50+ programmatic pages in a single deploy — Aug 2025 + Mar 2026 spam updates flagged these patterns explicitly. Do not let Claude or any LLM rewrite existing pages without injecting fresh experience density — Lily Ray's "AI Slop Loop" research shows pure rewrites flatten entity signals and demote you. Do not keyword-stuff your Google Business Profile name — Google now triggers manual video re-verification and locks the profile (common AU penalty). Do not publish service pages to suburbs you can't write 300+ unique words about — that's a doorway page and a manual-action waiting room. Do not chase Lighthouse 100s at the cost of shipping content — field data (CrUX p75) is what ranks, and 90/100/95/100 is plenty. Do not maintain mixed AU/US spelling — LLMs use locale signals to localise entity perception, and inconsistency mucks up your AU footprint. Do not let the AiVARE "Australia's #1 / 500+ agents" claims live another week — that's an ACCC matter waiting to happen, and a credibility hit when a customer asks for a reference. Do not launch the Founders 25 pilot publicly until the marketing site renders server-side — you'll burn the launch traffic on a "Loading AiVARE…" page in Google's cache.
+
+### Closing
+
+Both ventures sit on genuinely uncontested positioning in Australia — anti-franchise AI CRM for real estate; solo AI operator at 40–60% under agency rates for SMBs. The gap between that positioning and a working SEO/AEO surface is roughly four weeks of focused work: render the marketing pages, fix the meta integrity, drop in the skill pack, ship the first cohort of content, and start the measurement loop. The 2026 algorithm reality favours small operators who carry **real experience density, named author entities, original data and authentic off-site presence** — exactly what a solo founder in Brisbane can build faster than any incumbent. Jono's playbook is the right starting frame; the surgery in this plan brings it current. Ship the foundations this week, ramp the cadence to the schedule above, measure the dashboard weekly, and revisit at day 90 with real CrUX, GSC and AI-referrer data in hand.
