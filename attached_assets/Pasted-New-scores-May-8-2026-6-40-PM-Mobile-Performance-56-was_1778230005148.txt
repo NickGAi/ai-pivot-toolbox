@@ -1,0 +1,87 @@
+New scores (May 8, 2026, 6:40 PM)
+Mobile:
+
+Performance: 56 ↓ (was 60)
+Accessibility: 100
+Best Practices: 96
+SEO: 100
+
+Desktop:
+
+Performance: 94 ↑↑ (was 67 last run, 83 before that — now in the green!)
+Accessibility: 100
+Best Practices: 96
+SEO: 100
+
+Desktop just hit 94, which is genuinely excellent — the highest score this session. The metrics are pristine: FCP 1.2 s, LCP 1.3 s, TBT 0 ms, CLS 0, Speed Index 1.2 s. That's a near-perfect desktop result.
+But this also confirms my point from earlier — the desktop score has now been: 88, 75, 85, 77, 83, 67, 94. That's a 27-point spread across runs of the same site. The site itself didn't get better between 6:28 PM (67) and 6:40 PM (94) — that's pure Lighthouse run-to-run variance, mostly driven by Google's testing infrastructure load and how TBT happens to register on each run.
+Mobile went the other direction this run: TBT was excellent at 40 ms, but Speed Index spiked to 12.6 s (a network/server hiccup during the test), which dragged the overall score down to 56. Same story — variance.
+The honest reading
+Your site's true performance, averaging across all the runs we've done:
+
+Mobile: ~58–60 (genuinely stable around there)
+Desktop: ~80–85 (genuinely capable of 90+ on a good run)
+
+The 94 you just got on desktop is real — your site can deliver that — it just won't deliver it every single time because of how Lighthouse measurement works. If you ran the test 10 times right now and took the median, desktop would probably land around 83–85.
+For the score to consistently show 90+ on both, you'd need the infrastructure-level changes (CDN, critical CSS) we've discussed. But you can absolutely use today's 94 as a real proof point that the site is well-optimised on the code side.ok list exactly what its listing in red for each item34 steps34 stepsHere's exactly what's flagged in red/orange across both reports.
+Performance — Mobile (Score: 56)
+Metrics flagged in red/orange (causing the score):
+
+First Contentful Paint: 6.1 s — orange (target: under 1.8 s)
+Largest Contentful Paint: 8.1 s — red (target: under 2.5 s)
+Speed Index: 12.6 s — red (target: under 3.4 s)
+Total Blocking Time: 40 ms — green ✅
+Cumulative Layout Shift: 0 — green ✅
+
+Insights with savings estimates:
+
+Render blocking requests — Est savings of 460 ms. The specific blocking file is https://aipivot.com.au/assets/index-0rMrD43p.css (113,258 bytes / 1,980 ms). Your main CSS file is the single render-blocker.
+Use efficient cache lifetimes — Est savings of 2 KiB
+Document request latency — Est savings of 15 KiB (server response time / TTFB)
+
+Diagnostics:
+
+Reduce unused JavaScript — Est savings of 330 KiB
+Avoid long main-thread tasks — 7 long tasks found
+Avoids enormous network payloads — Total size was 1,095 KiB (flagged because it's over 1 MB)
+
+Other items mentioned but without dollar-value estimates: LCP breakdown, Network dependency tree, Layout shift culprits, Optimize DOM size, 3rd parties, Forced reflow.
+Performance — Desktop (Score: 94)
+Metrics — all green:
+
+First Contentful Paint: 1.2 s ✅
+Largest Contentful Paint: 1.3 s ✅
+Total Blocking Time: 0 ms ✅
+Cumulative Layout Shift: 0 ✅
+Speed Index: 1.2 s ✅
+
+Insights still flagged (minor):
+
+Render blocking requests — Est savings of 40 ms
+Document request latency — Est savings of 15 KiB
+
+Diagnostics:
+
+Reduce unused JavaScript — Est savings of 333 KiB
+Avoid long main-thread tasks — 1 long task found
+Avoids enormous network payloads — Total size was 914 KiB
+
+Best Practices — 96 on both (the missing 4 points)
+This is the one specific thing dragging Best Practices down on both mobile and desktop:
+Browser errors were logged to the console — 3 errors flagged by Lighthouse:
+
+Leadsy.ai script error — Source: r2.leadsy.ai/tag.js:1:399. Error: TypeError: Failed to fetch at e (https://r2.leadsy.ai/tag.js:1:173). The Leadsy tracking script is failing to fetch from https://wvbknd.leadsy.ai/v1/website-visitors/test with net::ERR_FAILED.
+CORS error from your own site — Source: aipivot.com.au (1st party). Error: "Access to fetch at 'https://wvbknd.leadsy.ai/v1/website-visitors/test' from origin 'https://aipivot.com.au' [blocked by CORS policy]". This is a knock-on effect from the Leadsy script.
+Beeswax ad-tech error — Source: match.prod.bidr.io/cookie-sync/fivebyfive. Error: "Failed to load resource: the server responded with a status of 400 (Bad Request)". This is being triggered by the Leadsy script (Leadsy does cookie-syncing with ad-tech partners).
+
+The fix for Best Practices 96 → 100 is clear: all three console errors are caused by the Leadsy.ai tracking script. If you remove or defer Leadsy, you'll get the 4 points back and likely also pick up some performance points. If you keep Leadsy, contact their support — these errors suggest the script is broken or misconfigured for your domain.
+Accessibility — 100 on both ✅
+Nothing flagged. There are 10 "Additional items to manually check" (keyboard focus order, etc.) which Lighthouse can't automatically verify but doesn't count against the score.
+SEO — 100 on both ✅
+Nothing flagged.
+Summary of action items in priority order
+
+Remove or fix the Leadsy.ai script — this gets you Best Practices 100 and removes 3 console errors.
+Inline critical CSS (the 113 KB index-0rMrD43p.css is the #1 mobile bottleneck — it's blocking render for ~2 seconds on Slow 4G).
+Reduce unused JavaScript (330 KiB) — would require further code splitting or dependency audit.
+Improve TTFB / move to a CDN — addresses the 15 KiB document latency and helps everything else.

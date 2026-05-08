@@ -4,6 +4,31 @@ import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 import { metaImagesPlugin } from "./vite-plugin-meta-images";
+import type { Plugin } from "vite";
+
+const CRITICAL_CSS = `
+:root{color-scheme:dark}
+html,body{margin:0;padding:0;background:#070d1a;color:#f0f4f8;font-family:Inter,system-ui,-apple-system,sans-serif;min-height:100vh}
+#root{min-height:100vh}
+`.trim();
+
+function asyncCssPlugin(): Plugin {
+  return {
+    name: "async-css",
+    transformIndexHtml: {
+      order: "post",
+      handler(html) {
+        return html.replace(
+          /<link rel="stylesheet" crossorigin href="(\/assets\/[^"]+\.css)">/g,
+          (_, href) =>
+            `<style>${CRITICAL_CSS}</style>` +
+            `<link rel="preload" as="style" href="${href}" onload="this.onload=null;this.rel='stylesheet'">` +
+            `<noscript><link rel="stylesheet" href="${href}"></noscript>`,
+        );
+      },
+    },
+  };
+}
 
 export default defineConfig({
   plugins: [
@@ -11,6 +36,7 @@ export default defineConfig({
     runtimeErrorOverlay(),
     tailwindcss(),
     metaImagesPlugin(),
+    asyncCssPlugin(),
     ...(process.env.NODE_ENV !== "production" &&
     process.env.REPL_ID !== undefined
       ? [
