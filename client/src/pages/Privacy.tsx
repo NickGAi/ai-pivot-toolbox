@@ -86,8 +86,7 @@ export default function Privacy() {
             <section>
               <h2 className="text-2xl font-bold text-foreground mb-4">8. Contact Us</h2>
               <p className="text-muted-foreground leading-relaxed">
-                For privacy enquiries or complaints, contact us at:<br />
-                Email: nick@aipivot.com.au
+                For privacy enquiries or complaints, use the contact form on our website.
               </p>
             </section>
           </div>

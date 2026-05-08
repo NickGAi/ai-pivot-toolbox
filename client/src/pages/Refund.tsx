@@ -58,7 +58,7 @@ export default function Refund() {
             <section>
               <h2 className="text-2xl font-bold text-foreground mb-4">4. Requesting a Refund</h2>
               <p className="text-muted-foreground leading-relaxed">
-                To request a refund, email: nick@aipivot.com.au
+                To request a refund, use the contact form on our website.
               </p>
               <p className="text-muted-foreground leading-relaxed mt-2">
                 Include your purchase details and a description of the issue.
