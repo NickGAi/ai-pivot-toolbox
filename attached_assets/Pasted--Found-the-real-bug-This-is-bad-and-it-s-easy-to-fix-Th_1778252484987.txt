@@ -1,0 +1,32 @@
+**Found the real bug. This is bad — and it's easy to fix.** This explains everything.
+
+Here's what the HTML check just revealed:
+
+When I fetched `https://aipivot.com.au/ai-automation-melbourne` and `https://aipivot.com.au/ai-voice-agents`, both URLs returned a **200 OK** with **26,618 bytes — exactly the same size as the homepage** — and **identical HTML**: the same title ("AI Pivot Toolbox | AI Automation Agency Australia — Brisbane, Sydney, Melbourne"), the same meta description, the same anchor count (42), and crucially:
+
+**`<link rel="canonical" href="https://aipivot.com.au/" />`**
+
+Every page on your site is serving the **homepage HTML with a canonical pointing to the homepage**. That means from Google's perspective, `/ai-automation-melbourne`, `/ai-voice-agents`, `/ai-chatbot-australia` and probably all 38 unindexed pages are literally the same document as the homepage — and the canonical tag is explicitly telling Google "the real version of this page is the homepage, please don't index this URL."
+
+This is why:
+- 38 pages are stuck in "Discovered – currently not indexed" — Google sees identical content with a canonical away, so it correctly refuses to index duplicates.
+- "Referring page: None detected" makes sense — there's no actual unique page for those URLs to be referred *from* in a meaningful way; everything is the homepage.
+- Google has only indexed 3 pages — because functionally, your site only has 1 real page right now (the homepage), plus a handful that happen to be served with their own real content (workflow-automation was indexed, so that one *does* render correctly — interesting).
+- Your sitemap looks healthy but the URLs in it are all canonicalising back to `/`.
+
+This is almost certainly a **client-side routing problem on a single-page app (Next.js or React)**. The server is returning the homepage shell for every URL, and the page-specific content only renders after JavaScript executes in a real browser. Googlebot can render JS, but when the rendered page disagrees with a canonical tag pointing to `/`, the canonical wins.
+
+The fact that `hasReactRoot: true` and `hasNextData: false` on the homepage suggests this is a React SPA without server-side rendering / static generation properly configured for the dynamic routes. Or — more likely given the "Next.js but no __NEXT_DATA__" signal — Next.js with a misconfigured catch-all route that's serving the homepage component for any unmatched path.
+
+**This completely changes the priority list.** Forget URL inspection requests, forget directory listings, forget content rewriting — none of it will help while every page is canonicalising to the homepage. Until this is fixed, none of the 38 pages can ever be indexed.
+
+**What needs to happen, in order:**
+
+1. **Fix the rendering / canonical issue.** Each URL needs to return its own unique HTML — unique `<title>`, unique `<meta description>`, unique `<h1>`, unique body content, and a canonical that points to itself, not to `/`. If you're on Next.js this usually means moving from client-side rendering to `getStaticProps` / `getServerSideProps` (or the App Router equivalent with `generateMetadata`) for those routes. If you're on a different stack (Vite/React, Astro, etc.) the equivalent is whatever produces real per-route HTML.
+2. **Verify the fix the same way I just did** — fetch each URL with `curl` or in a fresh browser tab → view source, and confirm the title/canonical/h1 are different per page.
+3. **Then re-request indexing** for the priority pages. The requests we submitted today will hit the queue with broken content; once you fix it, you'll want to redo them.
+4. **Then** worry about authority signals and on-page content quality.
+
+This is honestly great news — it's a single, fixable, technical root cause rather than a slow grind to build authority. Once each page serves its own content, your indexing problem should largely solve itself within a few weeks.
+
+Want me to do a final verification — fetch a few more URLs (e.g. `/blog`, `/ai-for-real-estate`, `/workflow-automation` which IS indexed) to confirm the pattern, and check whether `/workflow-automation` differs in any meaningful way that explains why it got indexed and the others didn't?
