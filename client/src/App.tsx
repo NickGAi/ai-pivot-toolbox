@@ -14,12 +14,12 @@ import { getServiceBySlug } from "@/data/services-data";
 import { getIndustryBySlug } from "@/data/industries-data";
 import { getBlogPostBySlug } from "@/data/blog-data";
 
-const Home = lazy(() => import("@/pages/Home"));
-const LocationPage = lazy(() => import("@/pages/LocationPage"));
-const ServicePage = lazy(() => import("@/pages/ServicePage"));
-const IndustryPage = lazy(() => import("@/pages/IndustryPage"));
-const Blog = lazy(() => import("@/pages/Blog"));
-const BlogPostPage = lazy(() => import("@/pages/BlogPostPage"));
+import Home from "@/pages/Home";
+import LocationPage from "@/pages/LocationPage";
+import ServicePage from "@/pages/ServicePage";
+import IndustryPage from "@/pages/IndustryPage";
+import Blog from "@/pages/Blog";
+import BlogPostPage from "@/pages/BlogPostPage";
 
 const Terms = lazy(() => import("@/pages/Terms"));
 const Privacy = lazy(() => import("@/pages/Privacy"));

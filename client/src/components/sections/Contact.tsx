@@ -126,7 +126,9 @@ export function Contact() {
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
+                  <label htmlFor="contact-firstName" className="sr-only">First Name</label>
                   <input
+                    id="contact-firstName"
                     type="text"
                     name="firstName"
                     placeholder="First Name"
@@ -137,7 +139,9 @@ export function Contact() {
                   />
                 </div>
                 <div>
+                  <label htmlFor="contact-lastName" className="sr-only">Last Name</label>
                   <input
+                    id="contact-lastName"
                     type="text"
                     name="lastName"
                     placeholder="Last Name"
@@ -149,7 +153,9 @@ export function Contact() {
                 </div>
               </div>
               <div>
+                <label htmlFor="contact-email" className="sr-only">Email Address</label>
                 <input
+                  id="contact-email"
                   type="email"
                   name="email"
                   placeholder="Email Address"
@@ -160,7 +166,9 @@ export function Contact() {
                 />
               </div>
               <div>
+                <label htmlFor="contact-phone" className="sr-only">Phone Number</label>
                 <input
+                  id="contact-phone"
                   type="tel"
                   name="phone"
                   placeholder="Phone Number"
@@ -171,7 +179,9 @@ export function Contact() {
                 />
               </div>
               <div>
+                <label htmlFor="contact-industry" className="sr-only">Industry</label>
                 <select
+                  id="contact-industry"
                   name="industry"
                   value={formData.industry}
                   onChange={handleChange as any}
@@ -192,8 +202,9 @@ export function Contact() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm text-muted-foreground mb-2">Preferred Meeting Date & Time</label>
+                <label htmlFor="contact-date" className="block text-sm text-muted-foreground mb-2">Preferred Meeting Date & Time</label>
                 <input
+                  id="contact-date"
                   type="datetime-local"
                   name="preferredDate"
                   value={formData.preferredDate}
@@ -202,7 +213,9 @@ export function Contact() {
                 />
               </div>
               <div>
+                <label htmlFor="contact-message" className="sr-only">Tell us about your business</label>
                 <textarea
+                  id="contact-message"
                   name="message"
                   placeholder="Tell us about your business (Optional)"
                   value={formData.message}

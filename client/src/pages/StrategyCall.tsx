@@ -213,29 +213,29 @@ export default function StrategyCall() {
                   <form onSubmit={submit} className="space-y-4">
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="text-sm font-medium text-foreground mb-1.5 block">First name</label>
-                        <input required value={form.firstName} onChange={e => setForm({...form, firstName: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground focus:ring-2 focus:ring-primary outline-none" data-testid="input-first-name" />
+                        <label htmlFor="sc-firstName" className="text-sm font-medium text-foreground mb-1.5 block">First name</label>
+                        <input id="sc-firstName" required value={form.firstName} onChange={e => setForm({...form, firstName: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground focus:ring-2 focus:ring-primary outline-none" data-testid="input-first-name" />
                       </div>
                       <div>
-                        <label className="text-sm font-medium text-foreground mb-1.5 block">Last name</label>
-                        <input required value={form.lastName} onChange={e => setForm({...form, lastName: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground focus:ring-2 focus:ring-primary outline-none" data-testid="input-last-name" />
+                        <label htmlFor="sc-lastName" className="text-sm font-medium text-foreground mb-1.5 block">Last name</label>
+                        <input id="sc-lastName" required value={form.lastName} onChange={e => setForm({...form, lastName: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground focus:ring-2 focus:ring-primary outline-none" data-testid="input-last-name" />
                       </div>
                     </div>
                     <div>
-                      <label className="text-sm font-medium text-foreground mb-1.5 block">Email</label>
-                      <input type="email" required value={form.email} onChange={e => setForm({...form, email: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground focus:ring-2 focus:ring-primary outline-none" data-testid="input-email" />
+                      <label htmlFor="sc-email" className="text-sm font-medium text-foreground mb-1.5 block">Email</label>
+                      <input id="sc-email" type="email" required value={form.email} onChange={e => setForm({...form, email: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground focus:ring-2 focus:ring-primary outline-none" data-testid="input-email" />
                     </div>
                     <div>
-                      <label className="text-sm font-medium text-foreground mb-1.5 block">Phone (mobile preferred)</label>
-                      <input type="tel" required value={form.phone} onChange={e => setForm({...form, phone: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground focus:ring-2 focus:ring-primary outline-none" data-testid="input-phone" />
+                      <label htmlFor="sc-phone" className="text-sm font-medium text-foreground mb-1.5 block">Phone (mobile preferred)</label>
+                      <input id="sc-phone" type="tel" required value={form.phone} onChange={e => setForm({...form, phone: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground focus:ring-2 focus:ring-primary outline-none" data-testid="input-phone" />
                     </div>
                     <div>
-                      <label className="text-sm font-medium text-foreground mb-1.5 block">Business name</label>
-                      <input required value={form.businessName} onChange={e => setForm({...form, businessName: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground focus:ring-2 focus:ring-primary outline-none" data-testid="input-business" />
+                      <label htmlFor="sc-business" className="text-sm font-medium text-foreground mb-1.5 block">Business name</label>
+                      <input id="sc-business" required value={form.businessName} onChange={e => setForm({...form, businessName: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground focus:ring-2 focus:ring-primary outline-none" data-testid="input-business" />
                     </div>
                     <div>
-                      <label className="text-sm font-medium text-foreground mb-1.5 block">Industry</label>
-                      <select value={form.industry} onChange={e => setForm({...form, industry: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground focus:ring-2 focus:ring-primary outline-none" data-testid="select-industry">
+                      <label htmlFor="sc-industry" className="text-sm font-medium text-foreground mb-1.5 block">Industry</label>
+                      <select id="sc-industry" value={form.industry} onChange={e => setForm({...form, industry: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground focus:ring-2 focus:ring-primary outline-none" data-testid="select-industry">
                         <option value="">Select your industry</option>
                         <option>Mortgage / Finance Broking</option>
                         <option>Construction / Trades</option>
@@ -249,8 +249,8 @@ export default function StrategyCall() {
                       </select>
                     </div>
                     <div>
-                      <label className="text-sm font-medium text-foreground mb-1.5 block">What's the #1 thing eating your time right now? <span className="text-muted-foreground font-normal">(optional, but helps)</span></label>
-                      <textarea rows={3} value={form.message} onChange={e => setForm({...form, message: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground focus:ring-2 focus:ring-primary outline-none resize-none" data-testid="input-message" />
+                      <label htmlFor="sc-message" className="text-sm font-medium text-foreground mb-1.5 block">What's the #1 thing eating your time right now? <span className="text-muted-foreground font-normal">(optional, but helps)</span></label>
+                      <textarea id="sc-message" rows={3} value={form.message} onChange={e => setForm({...form, message: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground focus:ring-2 focus:ring-primary outline-none resize-none" data-testid="input-message" />
                     </div>
                     <button type="submit" disabled={submitting} className="btn btn-primary w-full text-lg py-4 disabled:opacity-50" data-testid="button-submit">
                       {submitting ? "Sending..." : "Book My Free Strategy Call"}

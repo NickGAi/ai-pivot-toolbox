@@ -1,0 +1,28 @@
+Audit complete. The results are mixed — desktop improved nicely, but mobile actually got worse. Here's the breakdown:
+New scores (May 8, 2026, 5:41 PM)
+Desktop:
+
+Performance: 88 ↑ (was 82) ✅
+Accessibility: 90 (unchanged)
+Best Practices: 100 ↑ (was 96) ✅
+SEO: 100 (unchanged)
+
+Mobile:
+
+Performance: 28 ↓ (was 56) ❌ — significant regression
+Accessibility: 90 (unchanged)
+Best Practices: 96 (unchanged)
+SEO: 100 (unchanged)
+
+Desktop metrics — solid improvement: FCP 1.1 s (was 1.6 s), LCP 1.8 s (was 2.0 s), TBT 40 ms (was 50 ms), CLS 0, Speed Index 1.6 s.
+Mobile metrics — major regression: FCP 5.8 s (was 7.5 s — slightly better), LCP 10.5 s (was 8.7 s — worse), TBT 2,330 ms (was 140 ms — dramatically worse, ~16× slower), Speed Index 10.7 s (was 7.5 s — worse).
+What I can see actually changed on the live site
+The good news: the chat widget (LeadConnector) and libphonenumber-min.js are gone from the homepage. The Bunny Fonts duplication is also resolved. That's a real win and is why desktop improved.
+The bad news, and the cause of the mobile regression: the main app bundle index-Dfwek-Ke.js is still loaded synchronously without defer or async, and it's now executing more work on the main thread. Lighthouse is showing 8.6 seconds of main-thread work, 4.1 seconds of JS execution, and 20 long tasks on mobile — all dramatically worse than before. The 2,330 ms Total Blocking Time is the killer; that single metric is dragging the score down.
+Also, the unused fonts.googleapis.com and fonts.gstatic.com preconnects are still there.
+What still needs to be done
+The number one fix that wasn't applied: add defer to the main script tag. Currently it's <script src="/assets/index-Dfwek-Ke.js"></script>. It needs to be <script src="/assets/index-Dfwek-Ke.js" defer></script>. This is a one-line change and would have a large impact on mobile.
+The bigger issue is that the bundle itself is doing too much work on the main thread when it executes. Lighthouse flagged ~276 KiB of unused JavaScript still in the bundle, and the 20 long tasks suggest the SPA is doing heavy synchronous initialization on mobile (which has a much weaker CPU than the emulated desktop). This needs code splitting / lazy loading of routes and components, which is a bigger refactor.
+Other remaining items: remove the unused fonts.googleapis.com / fonts.gstatic.com preconnects, fix the form/select label accessibility issue (still flagged), set longer cache lifetimes (~2 KiB), and reduce document request latency (~15 KiB).
+Summary for your Replit agent
+Tell it: "Mobile performance regressed from 56 to 28 because Total Blocking Time increased to 2,330 ms. Required fixes: (1) Add defer attribute to the <script> tag loading /assets/index-Dfwek-Ke.js in index.html. (2) Implement route-based code splitting in the Vite config to reduce the 276 KiB of unused JS in the initial bundle. (3) Remove the unused <link rel='preconnect' href='https://fonts.googleapis.com/'> and <link rel='preconnect' href='https://fonts.gstatic.com/'> tags from index.html. (4) Add aria-label or associated <label> elements to all form inputs and <select> elements."
