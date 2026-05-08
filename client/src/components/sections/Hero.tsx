@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { ArrowRight, Play } from "lucide-react";
 
 const logosRow1 = [
@@ -25,11 +24,7 @@ export function Hero() {
       </div>
       <div className="container-main relative z-10 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
+          <div className="animate-hero-fade-up">
             <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs sm:text-sm font-medium mb-6 sm:mb-8" role="status">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" aria-hidden="true" />
               <span itemProp="description">AI Automation & SEO Agency, Australia Wide</span>
@@ -73,15 +68,10 @@ export function Hero() {
                 See How It Works
               </a>
             </div>
-          </motion.div>
+          </div>
 
           {/* Logo Marquee */}
-          <motion.div 
-            className="mt-12 sm:mt-20 pt-8 sm:pt-12 border-t border-border overflow-hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
+          <div className="animate-hero-fade-in mt-12 sm:mt-20 pt-8 sm:pt-12 border-t border-border overflow-hidden">
             <p className="text-sm text-muted-foreground mb-6 sm:mb-8 uppercase tracking-wider">
               Trusted Across Industries
             </p>
@@ -89,10 +79,7 @@ export function Hero() {
             {/* Mobile: Wrapped grid */}
             <div className="flex flex-wrap justify-center gap-3 sm:hidden">
               {[...logosRow1, ...logosRow2.slice(0, 4)].map((logo, i) => (
-                <div 
-                  key={i} 
-                  className="text-xs font-bold text-white/70 px-2 py-1"
-                >
+                <div key={i} className="text-xs font-bold text-white/70 px-2 py-1">
                   {logo}
                 </div>
               ))}
@@ -100,35 +87,26 @@ export function Hero() {
 
             {/* Desktop: Scrolling marquee */}
             <div className="hidden sm:block">
-              {/* Row 1 - Moving Left */}
               <div className="relative overflow-hidden mb-6">
                 <div className="flex animate-marquee-left whitespace-nowrap">
                   {[...logosRow1, ...logosRow1].map((logo, i) => (
-                    <div 
-                      key={i} 
-                      className="mx-8 text-xl font-bold text-white/70 hover:text-white transition-colors flex-shrink-0"
-                    >
+                    <div key={i} className="mx-8 text-xl font-bold text-white/70 hover:text-white transition-colors flex-shrink-0">
                       {logo}
                     </div>
                   ))}
                 </div>
               </div>
-
-              {/* Row 2 - Moving Right */}
               <div className="relative overflow-hidden">
                 <div className="flex animate-marquee-right whitespace-nowrap">
                   {[...logosRow2, ...logosRow2].map((logo, i) => (
-                    <div 
-                      key={i} 
-                      className="mx-8 text-xl font-bold text-white/70 hover:text-white transition-colors flex-shrink-0"
-                    >
+                    <div key={i} className="mx-8 text-xl font-bold text-white/70 hover:text-white transition-colors flex-shrink-0">
                       {logo}
                     </div>
                   ))}
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

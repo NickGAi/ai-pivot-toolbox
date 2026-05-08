@@ -1,0 +1,35 @@
+Solid progress this round — both mobile and desktop moved in the right direction, and the surgical approach clearly worked.
+New scores (May 8, 2026, 6:04 PM)
+Mobile:
+
+Performance: 60 ↑ (was 50, was 28 at low point, originally 56) — now above the original baseline ✅
+Accessibility: 100 ✅
+Best Practices: 96
+SEO: 100
+
+Desktop:
+
+Performance: 85 ↑ (was 75, recovering toward the 88 high) ✅
+Accessibility: 100 ✅
+Best Practices: 96 (down from 100 — small regression)
+SEO: 100
+
+Metrics show the strategy is working
+Mobile: FCP 6.0 s (was 6.5 s), LCP 7.8 s (was 8.4 s), TBT 70 ms (was 410 ms — massive win, almost 6× better), Speed Index 6.0 s (was 6.6 s). Long tasks down to 4 from 5. The lazy-loaded below-the-fold sections are doing exactly what they should.
+Desktop: FCP 1.2 s (was 1.5 s), LCP 1.9 s (was 2.0 s), TBT 40 ms (was 200 ms — 5× better), Speed Index 1.9 s (was 2.2 s). Long tasks down to 3 from 4.
+The TBT collapse on both is the real story — that means the main thread is freed up much earlier, which is what defer + lazy below-the-fold sections were supposed to deliver. Your Replit agent's diagnosis was correct.
+What's still holding the scores back
+The bottleneck now is no longer the bundle structure — it's network-level. On mobile, FCP is still 6.0 s and LCP 7.8 s. With TBT only 70 ms, the main thread isn't the problem anymore. The page is just waiting on the network to deliver the initial HTML, CSS, and Hero/Navbar JS chunk over Slow 4G.
+Lighthouse is still flagging:
+Render-blocking requests (~460 ms mobile, ~80 ms desktop) — still some CSS or synchronous resource blocking the first paint. Likely the main CSS file index-*.css is still render-blocking.
+330 KiB unused JavaScript still in the initial chunks — the Hero + Navbar eager bundle is still shipping more than it needs. Likely candidates: heavy icon libraries imported but only partially used, Framer Motion if it's used in Hero, or utility libraries.
+Document request latency (~15 KiB) — server TTFB, addressable with edge caching/CDN.
+Forced reflow still detected on mobile.
+DOM size optimisation still flagged.
+Cache lifetimes (~2 KiB) — minor.
+The Best Practices drop from 100 → 96 on desktop is curious — something the latest deploy introduced (could be a console error, deprecated API, or something flagged in the new chunks). Worth a quick look.
+Suggested next moves
+The biggest remaining opportunity is the LCP/FCP on mobile, which is now network-bound. The fix is inlining critical CSS for the Hero/Navbar above-the-fold render and async-loading the rest of the stylesheet. In Vite this is typically done with a critical CSS plugin or by manually splitting the CSS so the hero's styles ship inline in index.html and the rest loads via a preload/onload pattern.
+Second: audit what's in the Hero chunk. If Framer Motion is only animating the hero's entrance, consider replacing that one animation with a CSS keyframe so the entire Framer Motion library can move into the lazy below-the-fold chunk. That alone could shave 50–100 KiB off the initial bundle.
+Third: check the new Best Practices warning on desktop — open Chrome DevTools console on the live site and see what's being logged or flagged.
+Realistically, mobile 60 → 90+ from here requires either a CDN/edge layer to reduce TTFB and asset latency, or going further with critical CSS inlining and image preloading for the hero. The pure JS bundle work is mostly done — diminishing returns from here on the bundle side.
