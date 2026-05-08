@@ -5,7 +5,6 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "next-themes";
-import { CookieConsent } from "@/components/CookieConsent";
 import { CartProvider } from "@/context/CartContext";
 import { CartSidebar } from "@/components/cart/CartSidebar";
 import { ChatButton } from "@/components/ChatButton";
@@ -29,6 +28,7 @@ const Checkout = lazy(() => import("@/pages/Checkout"));
 const VsMarketingAgency = lazy(() => import("@/pages/VsMarketingAgency"));
 const StrategyCall = lazy(() => import("@/pages/StrategyCall"));
 const NotFound = lazy(() => import("@/pages/not-found"));
+const CookieConsent = lazy(() => import("@/components/CookieConsent").then(m => ({ default: m.CookieConsent })));
 
 const locationSlugs = [
   "ai-automation-brisbane",
@@ -126,7 +126,9 @@ function App() {
             <Router />
             <CartSidebar />
             <ChatButton />
-            <CookieConsent />
+            <Suspense fallback={null}>
+              <CookieConsent />
+            </Suspense>
           </CartProvider>
         </TooltipProvider>
       </QueryClientProvider>

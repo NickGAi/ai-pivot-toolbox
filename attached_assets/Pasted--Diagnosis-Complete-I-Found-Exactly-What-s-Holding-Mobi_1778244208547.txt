@@ -1,0 +1,30 @@
+ Diagnosis Complete — I Found Exactly What's Holding Mobile Back
+Three findings (in order of impact):
+1. The cookie consent banner IS the LCP element 🚨
+Your Largest Contentful Paint isn't your hero text — it's the cookie banner ("We use cookies to enhance your browsing experience…"). The breakdown:
+
+TTFB: 0ms (Cloudflare edge is perfect)
+Element render delay: 1,690ms (this is 100% of your LCP problem)
+
+The browser receives HTML instantly, then waits 1.69 seconds for the cookie banner JS to load and inject the banner into the DOM. That JS injection is what Lighthouse measures as your LCP.
+Fix options:
+
+Best: SSR/inline the cookie banner HTML+CSS so it appears in the initial document (no JS wait). Tell Replit to "render the cookie consent banner as static HTML in the initial response, then attach event handlers via JS".
+Easier: Switch to a lighter cookie banner (Cookieyes, Klaro, or a 2KB custom one). Whichever banner you're using is heavyweight.
+Easiest hack: Add loading="eager" on the banner container so it doesn't wait for "interaction ready". Marginal gain.
+
+2. Critical request chain: 13 JS files chained at 770–1,088ms 🔗
+Your Vite/React bundle is splitting like this on first load:
+index.html → main JS → Hero.js → Process.js → Proof.js →
+LeadCapture.js → Method.js → Services.js → search.js →
+Integration.js → About.js → Urgency.js → FAQ.js
+Each one is a sequential request. Total chain latency: 1,088ms. These should be either:
+
+Bundled together (one larger file = one round trip — usually faster on mobile despite being bigger)
+Or loaded in parallel via <link rel="modulepreload"> hints in the HTML head
+
+Tell Replit to either: (a) increase the Vite chunk size limit so all above-the-fold sections are in one chunk, OR (b) add <link rel="modulepreload"> tags for the first 6 chunks in index.html.
+3. No preconnect hints
+PageSpeed flagged "no origins were preconnected." If you're loading anything from Google Fonts, Mailgun tracking, analytics, etc., add <link rel="preconnect" href="https://..."> for each in your HTML head.
+My priority recommendation
+If you want one change with the biggest impact: fix the cookie banner. Eliminating that 1.69s render delay alone should push mobile from 86 → ~93+. The LCP would drop from 3.4s to roughly 1.7s.

@@ -12,19 +12,36 @@ html,body{margin:0;padding:0;background:#070d1a;color:#f0f4f8;font-family:Inter,
 #root{min-height:100vh}
 `.trim();
 
-function asyncCssPlugin(): Plugin {
+function asyncCssAndPreloadPlugin(): Plugin {
+  const jsChunks: string[] = [];
+
   return {
-    name: "async-css",
+    name: "async-css-and-preload",
+
+    generateBundle(_opts, bundle) {
+      for (const [fileName, chunk] of Object.entries(bundle)) {
+        if (chunk.type === "chunk" && fileName.endsWith(".js")) {
+          jsChunks.push(`/${fileName}`);
+        }
+      }
+    },
+
     transformIndexHtml: {
       order: "post",
       handler(html) {
-        return html.replace(
-          /<link rel="stylesheet" crossorigin href="(\/assets\/[^"]+\.css)">/g,
-          (_, href) =>
-            `<style>${CRITICAL_CSS}</style>` +
-            `<link rel="preload" as="style" href="${href}" onload="this.onload=null;this.rel='stylesheet'">` +
-            `<noscript><link rel="stylesheet" href="${href}"></noscript>`,
-        );
+        const preloadLinks = jsChunks
+          .map(href => `<link rel="modulepreload" crossorigin href="${href}">`)
+          .join("\n    ");
+
+        return html
+          .replace(
+            /<link rel="stylesheet" crossorigin href="(\/assets\/[^"]+\.css)">/g,
+            (_, href) =>
+              `<style>${CRITICAL_CSS}</style>` +
+              `<link rel="preload" as="style" href="${href}" onload="this.onload=null;this.rel='stylesheet'">` +
+              `<noscript><link rel="stylesheet" href="${href}"></noscript>`,
+          )
+          .replace("</head>", `    ${preloadLinks}\n  </head>`);
       },
     },
   };
@@ -36,7 +53,7 @@ export default defineConfig({
     runtimeErrorOverlay(),
     tailwindcss(),
     metaImagesPlugin(),
-    asyncCssPlugin(),
+    asyncCssAndPreloadPlugin(),
     ...(process.env.NODE_ENV !== "production" &&
     process.env.REPL_ID !== undefined
       ? [
@@ -65,7 +82,6 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
-
   },
   server: {
     host: "0.0.0.0",
