@@ -1,0 +1,18 @@
+Part 1 — Direct site audits
+AI Pivot ToolBox (aipivot.com.au)
+The site is a single-page Replit-hosted marketing landing page with one URL indexed by Google. The OG image domain leaks the host (aipivot.replit.app/opengraph.jpg), meta name="robots" is maximally permissive, geo metadata is locked to Brisbane CBD (-27.4698, 153.0251, AU-QLD), meta-og:locale is en_AU, theme colour #0ea5e9 (Tailwind sky-500). No /sitemap.xml, /robots.txt, /blog, /services, /about or /contact URLs are discoverable. aipivot + 3
+Live title: "AI Pivot Toolbox | AI Automation Agency Australia — Brisbane, Sydney, Melbourne".
+Live meta description: "AI Pivot Toolbox is an AI automation and SEO agency serving Australian businesses in Brisbane, Sydney, Melbourne, Perth, and Adelaide. AI voice agents, workflow automation, AI SEO, GEO, and custom AI tools — 40–60% below agency rates because we're a solo AI-powered operator." aipivot + 2
+A prior cached title still in Google's index says "AIPivot | AI Automation Agency Australia | Enterprise Business Transformation" with a "Reduce operational costs by 60-80%" promise. The brand has clearly rebranded mid-flight from "enterprise transformation" to "solo AI-powered operator" — the cached SERP copy still shows the old pitch and needs to be flushed. Pivot AI + 2
+Voice signature (from captured copy): direct, claim-heavy, numerically anchored, transparent. The single most distinctive line is "we're a solo AI-powered operator" — that's the spine. Geographic ladder is always Brisbane → Sydney → Melbourne → Perth → Adelaide. Heavy acronym density (AI, SEO, GEO, AIO, ChatGPT). Em-dash setup-payoff pattern. No slang, no profanity, no "g'day". Australian spelling inconsistent: "optimisation" (correct AU) appears in keywords, but the brand standard isn't enforced. Twitter handle @aipivot is declared but no posting activity is detectable. aipivot + 2
+ICP (inferred): Australian SMB owner-operators in the five capital cities who want agency-level AI work but won't pay agency prices. Horizontal — no vertical specialisation visible.
+Brand-collision risk: Severe. pivotai.com.au (Melbourne), aipivot.tech (US tool-review site), and at least four other "Pivot AI" variants compete for the brand search term. The .com.au exact-match gives an AU edge but the name isn't defensible. Aipivot
+AU competitive set for keyword work: Pivot AI (pivotai.com.au), Advancer (advancer.com.au, Brisbane), Flowtivity (aiconsultingbrisbane.com.au), PlusAI Solutions (plusai.com.au, Brisbane), Ascend AI (ascendai.net.au, Brisbane), Tech Horizon Labs, Blackbook.ai, Relevance AI (Sydney; LinkedIn #1 AU startup 2025), Team 400, AI4Tradies, AI Avenue, KLIQ Interactive, Trainers Direct, SSW, Matrix AI, Praxio AI, Lyrebird Health, Heidi Health. Advancer + 6
+Top gaps (priority order):
+
+Zero indexed pages besides homepage. The keyword strategy declares five-city targeting but no city-specific landing pages exist (/ai-automation-brisbane, /ai-seo-melbourne, etc.).
+No blog, despite selling AI SEO/GEO services — that's a brand contradiction.
+No case studies, founder bio, pricing page, FAQ, or lead magnet.
+JSON-LD schema not visible from metadata layer; almost certainly missing LocalBusiness/Organization/Person/Service.
+Cached "enterprise" framing still polluting SERP — needs forced re-crawl post-rewrite.
+Replit OG image domain leaks; rehost at aipivot.com.au/og.jpg
