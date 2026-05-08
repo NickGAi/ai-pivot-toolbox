@@ -11,8 +11,8 @@ const BASE_URL = "https://aipivot.com.au";
 
 const PAGE_META: Record<string, PageMeta> = {
   "/": {
-    title: "AI Pivot Toolbox | AI Automation Agency Australia — Brisbane, Sydney, Melbourne",
-    description: "AI Pivot Toolbox is an AI automation and SEO agency serving Australian businesses in Brisbane, Sydney, Melbourne, Perth, and Adelaide. AI voice agents, workflow automation, AI SEO, GEO, and custom AI tools — 40–60% below agency rates because we're a solo AI-powered operator.",
+    title: "AI Pivot Toolbox | AI SEO & Automation Agency Australia — Brisbane, Sydney, Melbourne",
+    description: "AI Pivot Toolbox is an AI SEO agency and automation agency serving Australian businesses. AI voice agents, workflow automation, AI SEO, GEO, AEO, and custom AI tools — 40–60% below agency rates because we're a solo AI-powered operator.",
   },
   "/toolbox": {
     title: "AI Toolbox | Browse AI Tools & Automation Products | AI Pivot Toolbox",
@@ -91,16 +91,16 @@ const PAGE_META: Record<string, PageMeta> = {
     description: "Custom workflow automation for Australian businesses. Eliminate manual tasks, integrate your systems, save 40+ hours per week. From $1,497/month. Free strategy call.",
   },
   "/ai-seo-australia": {
-    title: "AI SEO Services Australia | GEO, AEO & Google Rankings from $1,497/mo | AI Pivot Toolbox",
-    description: "AI SEO for Australian businesses. Rank on Google AND get cited by ChatGPT, Perplexity & AI Overviews. GEO, AEO, technical SEO — fully managed from $1,497/month.",
+    title: "AI SEO Agency Australia | SEO, GEO & AEO from $1,497/mo | AI Pivot Toolbox",
+    description: "Australia's AI SEO agency. Rank on Google AND get cited by ChatGPT, Perplexity & AI Overviews. Full-service SEO agency covering technical SEO, GEO, and AEO — from $1,497/month.",
   },
   "/aeo-answer-engine-optimisation": {
     title: "Answer Engine Optimisation (AEO) Australia | Get Found on ChatGPT & Perplexity | AI Pivot Toolbox",
     description: "AEO services for Australian businesses. Get your business cited by ChatGPT, Perplexity, and Google AI Overviews. Structured content, FAQ schema, and AI visibility tracking. Free strategy call.",
   },
   "/geo-generative-engine-optimisation": {
-    title: "GEO — Generative Engine Optimisation Australia | Get Cited by AI Search | AI Pivot Toolbox",
-    description: "GEO services for Australian businesses. Get cited by Google AI Overviews, ChatGPT, and Perplexity. Research-backed generative engine optimisation from $1,497/month.",
+    title: "GEO Agency Australia | Generative Engine Optimisation from $1,497/mo | AI Pivot Toolbox",
+    description: "Australia's specialist GEO agency. Get cited by Google AI Overviews, ChatGPT, and Perplexity. Research-backed generative engine optimisation — fully managed from $1,497/month.",
   },
   "/ai-chatbot-australia": {
     title: "AI Chatbot Australia | Custom Website Chatbot from $597/mo | AI Pivot Toolbox",
