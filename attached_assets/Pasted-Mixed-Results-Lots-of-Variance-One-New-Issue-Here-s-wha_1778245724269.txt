@@ -1,0 +1,37 @@
+Mixed Results — Lots of Variance, One New Issue
+Here's what I'm seeing across the runs:
+MetricRun 1 (this round)Run 2 (this round)Last roundMobile Performance48 ⬇️84 ✓86Desktop Performancen/a99 ✓99Accessibility10096 ⬇️100Best Practices100100100SEO929292
+Mobile Core Web Vitals (Run 2 — the trustworthy one):
+
+FCP: 3.3s
+LCP: 3.5s
+TBT: 50ms (back to good — confirms run 1 was a freak result)
+CLS: 0
+
+Three takeaways
+1. Run 1 was a flier — ignore it. Mobile 48 with TBT 2,440ms doesn't match Run 2's TBT of 50ms. PageSpeed's test machine was clearly under load. The truthful score is 84 mobile, 99 desktop.
+2. The fixes did NOT measurably improve LCP as hoped. We expected the cookie banner change to drop LCP from 3.4s → ~1.7s, but LCP came in at 3.5s — basically flat. That suggests:
+
+The cookie banner is still appearing within Lighthouse's measurement window, OR
+A different element (probably the dark hero gradient background) is now the LCP element
+
+3. Accessibility regressed 100 → 96. Something in the recent changes introduced an a11y issue. Let me find it.
+Let me investigate both the LCP element AND the new accessibility issue before recommending next steps.Tool: findTool: browser_batchThe mobile element ref_247 is showing a.flex > span.flex > span.flex > span.font-display — that's likely your "Claim Your Free Strategy Session" CTA button (uses font-display class for the headline font). That's actually correct hero content as the LCP — much better than the cookie banner! Let me find the accessibility issue.Tool: computerTool: findTool: browser_batchFound it. The "Accept All" button on the cookie banner has poor contrast — it's bg-primary with text-primary-foreground. Likely your bright cyan/blue background with white text doesn't meet 4.5:1 ratio.Diagnosis Complete
+What's actually happening
+Performance: 84 mobile / 99 desktop — basically unchanged from last round. The fixes worked but didn't move the needle on the score because:
+The LCP element shifted from cookie banner → "Claim Your Free Strategy Session" button (the font-display headline span). That's a win architecturally (correct content is now LCP), but the timing didn't improve because the hero CTA paints at roughly the same time the cookie banner used to (~3.5s).
+The real bottleneck now is hero rendering itself. The CTA button text uses a custom display font (likely Google Fonts via font-display). Even with the preconnect, the font swap is delaying when text becomes visible. FCP at 3.3s confirms text rendering is the holdup.
+Run 1's mobile 48 was a flier — TBT 2,440ms vs Run 2's TBT 50ms means PageSpeed's test machine was contended. Discount it.
+New issue introduced: Accessibility 100 → 96
+Specific failure: The cookie banner's "Accept All" button has insufficient contrast (likely bg-primary + text-primary-foreground = bright blue with white text doesn't meet WCAG 4.5:1).
+html<button class="flex-1 sm:flex-none px-4 py-2.5 rounded-xl 
+  bg-primary text-primary-foreground..." 
+  data-testid="button-accept-cookies">Accept All</button>
+This was fine before because the cookie banner wasn't being audited. Now that it lazy-loads (good!) but appears in the audit window after first interaction simulation, axe-core flagged it.
+Recommendations (in priority order)
+Priority 1: Fix the cookie banner contrast (recovers 100 accessibility)
+Tell Replit: "In the cookie consent banner's 'Accept All' button, the bg-primary + text-primary-foreground combo fails WCAG AA contrast. Either darken the primary colour or change the button text colour to ensure ≥4.5:1 contrast ratio. The button has data-testid='button-accept-cookies'."
+Priority 2: Fix the font swap delay for the hero headline (this is what's actually capping mobile)
+Tell Replit: "The hero CTA uses a custom display font (.font-display class) loading from Google Fonts. Even with preconnect, the font swap delays LCP. Add <link rel='preload' as='font' crossorigin> for the specific .woff2 file used by .font-display headlines, OR self-host the font file in /public/fonts/ and serve via Cloudflare. This should drop LCP from 3.5s to ~2s."
+Priority 3 (optional, only if you want to chase 90+): Reduce the modulepreload to just the above-the-fold chunks (Hero, Process maybe). The current 21-chunk preload is wasteful network on mobile.
+Want me to write up a concise Replit prompt covering Priority 1 and 2 together?
