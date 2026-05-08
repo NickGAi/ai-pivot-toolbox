@@ -62,11 +62,6 @@ export function Footer() {
             <div className="text-muted-foreground text-sm text-center md:text-right">
               <p>© {currentYear} AI Pivot Toolbox. All rights reserved.</p>
               <p className="mt-1">AI Automation Agency Australia | Brisbane, QLD</p>
-              <p className="mt-1">
-                <a href="mailto:nick@aipivot.com.au" className="hover:text-foreground transition-colors">
-                  nick@aipivot.com.au
-                </a>
-              </p>
             </div>
           </div>
 
