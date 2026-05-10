@@ -13,13 +13,52 @@ export function Logo({ size = "md", className = "" }: LogoProps) {
 
   return (
     <span className={`flex items-center ${s.gap} ${className}`}>
-      <img
-        src="/logo-mark.png"
-        alt="AI Pivot Toolbox"
+      <svg
         width={s.mark}
         height={s.mark}
-        style={{ flexShrink: 0, objectFit: "contain" }}
-      />
+        viewBox="0 0 40 40"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+        style={{ flexShrink: 0 }}
+      >
+        {/* Sky-blue rounded square background */}
+        <rect width="40" height="40" rx="9" fill="#0ea5e9" />
+
+        {/* Briefcase handle — arch above body */}
+        <path
+          d="M15 14 L15 11 Q15 8 20 8 Q25 8 25 11 L25 14"
+          stroke="white"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          fill="none"
+        />
+
+        {/* Briefcase body */}
+        <rect x="7" y="14" width="26" height="18" rx="3" fill="white" fillOpacity="0.15" stroke="white" strokeWidth="2" />
+
+        {/* Horizontal latch divider */}
+        <line x1="7" y1="23" x2="33" y2="23" stroke="white" strokeWidth="1.5" strokeOpacity="0.8" />
+
+        {/* Latch clasp */}
+        <rect x="17.5" y="21" width="5" height="4" rx="1" fill="white" fillOpacity="0.9" />
+
+        {/* AI text in upper section */}
+        <text
+          x="20"
+          y="20"
+          textAnchor="middle"
+          dominantBaseline="middle"
+          fill="white"
+          fontFamily="'Space Grotesk', sans-serif"
+          fontWeight="800"
+          fontSize="7.5"
+          letterSpacing="1"
+        >AI</text>
+      </svg>
+
+      {/* Wordmark */}
       <span className="flex flex-col leading-none">
         <span
           className={`font-display font-bold ${s.font} text-foreground tracking-tight leading-none`}
