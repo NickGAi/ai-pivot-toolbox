@@ -2,6 +2,37 @@
 // Uses proxy pattern with automatic OAuth2 token refresh
 import { ReplitConnectors } from "@replit/connectors-sdk";
 
+async function sendGmail(to: string, subject: string, htmlBody: string): Promise<void> {
+  const connectors = new ReplitConnectors();
+  const emailLines = [
+    "From: me",
+    `To: ${to}`,
+    `Subject: ${subject}`,
+    "Content-Type: text/html; charset=utf-8",
+    "",
+    htmlBody,
+  ];
+  const raw = Buffer.from(emailLines.join("\r\n"))
+    .toString("base64")
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=+$/, "");
+  const response = await connectors.proxy("google-mail", "/gmail/v1/users/me/messages/send", {
+    method: "POST",
+    body: JSON.stringify({ raw }),
+    headers: { "Content-Type": "application/json" },
+  });
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Gmail send failed (${response.status}): ${errorText}`);
+  }
+}
+
+export async function sendSubscriberEmail(to: string, subject: string, htmlBody: string): Promise<void> {
+  await sendGmail(to, subject, htmlBody);
+  console.log(`Sequence email sent to ${to}: ${subject}`);
+}
+
 interface ContactFormData {
   firstName: string;
   lastName: string;
@@ -18,8 +49,6 @@ interface LeadMagnetData {
 }
 
 export async function sendContactNotification(data: ContactFormData): Promise<void> {
-  const connectors = new ReplitConnectors();
-
   const formattedDate = data.preferredDate
     ? new Date(data.preferredDate).toLocaleString("en-AU", {
         weekday: "long",
@@ -45,42 +74,11 @@ export async function sendContactNotification(data: ContactFormData): Promise<vo
     <p><em>This meeting request was submitted via the AI Pivot Toolbox website.</em></p>
   `;
 
-  const emailLines = [
-    "From: me",
-    "To: nick@aipivot.com.au, nick@nickgriffiths.com.au",
-    `Subject: ${subject}`,
-    "Content-Type: text/html; charset=utf-8",
-    "",
-    htmlBody,
-  ];
-
-  const raw = Buffer.from(emailLines.join("\r\n"))
-    .toString("base64")
-    .replace(/\+/g, "-")
-    .replace(/\//g, "_")
-    .replace(/=+$/, "");
-
-  const response = await connectors.proxy(
-    "google-mail",
-    "/gmail/v1/users/me/messages/send",
-    {
-      method: "POST",
-      body: JSON.stringify({ raw }),
-      headers: { "Content-Type": "application/json" },
-    }
-  );
-
-  if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`Gmail send failed (${response.status}): ${errorText}`);
-  }
-
+  await sendGmail("nick@aipivot.com.au, nick@nickgriffiths.com.au", subject, htmlBody);
   console.log("Contact notification email sent successfully");
 }
 
 export async function sendLeadMagnetNotification(data: LeadMagnetData): Promise<void> {
-  const connectors = new ReplitConnectors();
-
   const subject = `New Lead Magnet Download: ${data.firstName} (${data.email})`;
   const htmlBody = `
     <h2>New Lead Magnet Subscriber</h2>
@@ -90,36 +88,6 @@ export async function sendLeadMagnetNotification(data: LeadMagnetData): Promise<
     <hr>
     <p><em>This lead opted in via the AI Pivot Toolbox homepage lead magnet.</em></p>
   `;
-
-  const emailLines = [
-    "From: me",
-    "To: nick@aipivot.com.au",
-    `Subject: ${subject}`,
-    "Content-Type: text/html; charset=utf-8",
-    "",
-    htmlBody,
-  ];
-
-  const raw = Buffer.from(emailLines.join("\r\n"))
-    .toString("base64")
-    .replace(/\+/g, "-")
-    .replace(/\//g, "_")
-    .replace(/=+$/, "");
-
-  const response = await connectors.proxy(
-    "google-mail",
-    "/gmail/v1/users/me/messages/send",
-    {
-      method: "POST",
-      body: JSON.stringify({ raw }),
-      headers: { "Content-Type": "application/json" },
-    }
-  );
-
-  if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`Gmail send failed (${response.status}): ${errorText}`);
-  }
-
+  await sendGmail("nick@aipivot.com.au", subject, htmlBody);
   console.log("Lead magnet notification email sent successfully");
 }

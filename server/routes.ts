@@ -4,6 +4,7 @@ import { storage } from "./storage";
 import { insertContactSubmissionSchema, insertLeadMagnetSchema } from "@shared/schema";
 import { fromError } from "zod-validation-error";
 import { sendContactNotification, sendLeadMagnetNotification } from "./gmail";
+import { buildDay1Email } from "./email-sequences";
 import { legacyCreateProxyMiddleware } from "http-proxy-middleware";
 
 async function sendToGHL(data: {
@@ -133,6 +134,16 @@ export async function registerRoutes(
         });
       } catch (emailError) {
         console.error("Failed to send lead magnet notification email:", emailError);
+      }
+
+      try {
+        const { subject, html } = buildDay1Email(submission.firstName);
+        const { sendSubscriberEmail } = await import("./gmail");
+        await sendSubscriberEmail(submission.email, subject, html);
+        await storage.advanceLeadMagnetSequenceStep(submission.id, 1);
+        console.log(`Day 1 sequence email sent to ${submission.email}`);
+      } catch (seqError) {
+        console.error("Failed to send Day 1 sequence email:", seqError);
       }
 
       res.json({

@@ -3,11 +3,14 @@ import {
   type LeadMagnetSubmission, type InsertLeadMagnet, leadMagnetSubmissions,
 } from "@shared/schema";
 import { db } from "./db";
+import { lte, lt, and, eq } from "drizzle-orm";
 
 export interface IStorage {
   createContactSubmission(submission: InsertContactSubmission): Promise<ContactSubmission>;
   getAllContactSubmissions(): Promise<ContactSubmission[]>;
   createLeadMagnetSubmission(submission: InsertLeadMagnet): Promise<LeadMagnetSubmission>;
+  getLeadMagnetSubmissionsDueForSequence(step: number, daysAfterSignup: number): Promise<LeadMagnetSubmission[]>;
+  advanceLeadMagnetSequenceStep(id: string, nextStep: number): Promise<void>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -25,6 +28,21 @@ export class DatabaseStorage implements IStorage {
     const [submission] = await db.insert(leadMagnetSubmissions).values(insertSubmission).returning();
     console.log("Lead magnet submission saved to database:", submission);
     return submission;
+  }
+
+  async getLeadMagnetSubmissionsDueForSequence(step: number, daysAfterSignup: number): Promise<LeadMagnetSubmission[]> {
+    const cutoff = new Date(Date.now() - daysAfterSignup * 24 * 60 * 60 * 1000);
+    return await db
+      .select()
+      .from(leadMagnetSubmissions)
+      .where(and(eq(leadMagnetSubmissions.sequenceStep, step), lte(leadMagnetSubmissions.createdAt, cutoff)));
+  }
+
+  async advanceLeadMagnetSequenceStep(id: string, nextStep: number): Promise<void> {
+    await db
+      .update(leadMagnetSubmissions)
+      .set({ sequenceStep: nextStep, sequenceLastSentAt: new Date() })
+      .where(eq(leadMagnetSubmissions.id, id));
   }
 }
 

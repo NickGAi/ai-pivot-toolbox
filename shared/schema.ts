@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { pgTable, text, varchar, timestamp } from "drizzle-orm/pg-core";
+import { pgTable, text, varchar, timestamp, integer } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -33,11 +33,15 @@ export const leadMagnetSubmissions = pgTable("lead_magnet_submissions", {
   firstName: text("first_name").notNull(),
   email: text("email").notNull(),
   createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  sequenceStep: integer("sequence_step").notNull().default(0),
+  sequenceLastSentAt: timestamp("sequence_last_sent_at"),
 });
 
 export const insertLeadMagnetSchema = createInsertSchema(leadMagnetSubmissions).omit({
   id: true,
   createdAt: true,
+  sequenceStep: true,
+  sequenceLastSentAt: true,
 }).extend({
   firstName: z.string().min(1, "First name is required"),
   email: z.string().email("Please provide a valid email address"),
