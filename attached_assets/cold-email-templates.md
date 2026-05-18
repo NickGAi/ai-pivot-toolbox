@@ -10,7 +10,7 @@ Each sequence = 4 emails over 14 days. Drop the prospect's `WhyNow` line into `[
 - Reference something specific (their suburb, a tool they use, a number)
 
 **Sender setup:**
-- From: Nick Griffiths <nick@aipivot.com.au>
+- From: Nick Griffiths <nick@avaire.com.au>
 - Reply-to: same
 - Plain text only — no HTML, no logos, no signature image
 - Signature: 3 lines max (name, role, phone)
@@ -70,7 +70,7 @@ Hey [first_name],
 
 Last one from me — I'll stop chasing.
 
-If after-hours lead capture isn't a priority right now, all good. If it is, the door's open whenever — nick@aipivot.com.au.
+If after-hours lead capture isn't a priority right now, all good. If it is, the door's open whenever — nick@avaire.com.au.
 
 Nick
 
@@ -142,7 +142,7 @@ Hey [first_name],
 
 Won't keep chasing — I know you're flat out.
 
-If the quote follow-up / after-hours thing ever becomes a priority, I'm here. nick@aipivot.com.au.
+If the quote follow-up / after-hours thing ever becomes a priority, I'm here. nick@avaire.com.au.
 
 Best with the next job.
 
@@ -214,7 +214,7 @@ Hi [first_name],
 Last note — I'll let it rest.
 
 If the intake bottleneck ever becomes the thing you want to fix, you know where to find me.
-nick@aipivot.com.au
+nick@avaire.com.au
 
 All the best.
 

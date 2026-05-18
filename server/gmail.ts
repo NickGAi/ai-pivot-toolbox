@@ -74,7 +74,7 @@ export async function sendContactNotification(data: ContactFormData): Promise<vo
     <p><em>This meeting request was submitted via the AI Pivot Toolbox website.</em></p>
   `;
 
-  await sendGmail("nick@aipivot.com.au, nick@nickgriffiths.com.au", subject, htmlBody);
+  await sendGmail("nick@avaire.com.au, nick@nickgriffiths.com.au", subject, htmlBody);
   console.log("Contact notification email sent successfully");
 }
 
@@ -210,7 +210,7 @@ export async function sendLeadMagnetNotification(data: LeadMagnetData): Promise<
     <hr>
     <p><em>This lead opted in via the AI Pivot Toolbox homepage lead magnet.</em></p>
   `;
-  await sendGmail("nick@aipivot.com.au", subject, htmlBody);
+  await sendGmail("nick@avaire.com.au, nick@nickgriffiths.com.au", subject, htmlBody);
   console.log("Lead magnet notification email sent successfully");
 }
 
@@ -269,6 +269,6 @@ export async function sendRealEstateFunnelNotification(data: RealEstateFunnelDat
       </div>
     </div>
   `;
-  await sendGmail("nick@aipivot.com.au, nick@nickgriffiths.com.au", subject, htmlBody);
+  await sendGmail("nick@avaire.com.au, nick@nickgriffiths.com.au", subject, htmlBody);
   console.log(`Real estate funnel application received from ${data.name} (${data.email})`);
 }

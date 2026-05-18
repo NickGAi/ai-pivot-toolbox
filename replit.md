@@ -184,7 +184,7 @@ Solo AI operator pricing — 40–60% below agency rates:
 
 ### Email Integration
 - **Gmail API**: Connected via Replit Connectors for contact form notifications
-- **Dual notification**: nick@aipivot.com.au and nick@nickgriffiths.com.au
+- **Dual notification**: nick@avaire.com.au and nick@nickgriffiths.com.au
 - **Authentication**: OAuth2 via Replit identity tokens
 
 ### Analytics

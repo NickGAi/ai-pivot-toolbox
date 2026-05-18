@@ -77,7 +77,7 @@ export default function LocationPage({ location }: Props) {
           "longitude": location.lng
         },
         "url": `https://aipivot.com.au/${location.slug}`,
-        "email": "nick@aipivot.com.au",
+        "email": "nick@avaire.com.au",
         "priceRange": "$$",
         "areaServed": {
           "@type": "State",

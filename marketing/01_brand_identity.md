@@ -6,7 +6,7 @@
 **Tagline:** AI solutions that run 24/7  
 **Positioning:** Brisbane's AI SEO and automation agency for Australian businesses  
 **Location:** Brisbane, Queensland, Australia  
-**Contact:** nick@aipivot.com.au
+**Contact:** nick@avaire.com.au
 
 ---
 
@@ -36,7 +36,7 @@
 - **Onboarding:** "Let's find the right AI solution for your business. It takes less than 2 minutes."
 - **CTA:** "Book your free strategy call"
 - **Empty state:** "No enquiries yet — once your first form comes in, you'll see it here."
-- **Error:** "Something went wrong. Try again or email nick@aipivot.com.au directly."
+- **Error:** "Something went wrong. Try again or email nick@avaire.com.au directly."
 
 **Banned phrases:** "In today's digital landscape," "cutting-edge," "synergy," "leverage," "game-changing," "revolutionary," "I'm excited to share"
 
@@ -96,7 +96,7 @@
 | Channel | Handle/URL | Priority |
 |---|---|---|
 | Website | aipivot.com.au | Primary |
-| Email | nick@aipivot.com.au | Primary |
+| Email | nick@avaire.com.au | Primary |
 | LinkedIn | /company/aipivot | High |
 | Instagram | @aipivot.com.au | High |
 | X/Twitter | @aipivot | Medium |
