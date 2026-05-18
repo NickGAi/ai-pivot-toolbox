@@ -213,3 +213,62 @@ export async function sendLeadMagnetNotification(data: LeadMagnetData): Promise<
   await sendGmail("nick@aipivot.com.au", subject, htmlBody);
   console.log("Lead magnet notification email sent successfully");
 }
+
+interface RealEstateFunnelData {
+  name: string;
+  mobile: string;
+  email: string;
+  agency: string;
+  dealsPerMonth: string;
+  leadSources: string[];
+  goal: string;
+}
+
+export async function sendRealEstateFunnelNotification(data: RealEstateFunnelData): Promise<void> {
+  const subject = `🏠 New Growth Map Application: ${data.name} — ${data.agency}`;
+  const htmlBody = `
+    <div style="font-family:sans-serif;max-width:600px;margin:0 auto">
+      <div style="background:#0a0f1e;padding:24px 32px;border-radius:8px 8px 0 0">
+        <h2 style="color:#0ea5e9;margin:0;font-size:20px">New 90-Day Pipeline Growth Map Application</h2>
+        <p style="color:#94a3b8;margin:4px 0 0;font-size:14px">Real Estate Funnel — aipivot.com.au/real-estate-pipeline-growth-map</p>
+      </div>
+      <div style="background:#ffffff;padding:32px;border-radius:0 0 8px 8px;border:1px solid #e2e8f0">
+        <table style="width:100%;border-collapse:collapse;font-size:15px">
+          <tr style="border-bottom:1px solid #f1f5f9">
+            <td style="padding:10px 0;color:#64748b;width:170px;font-weight:600">Name</td>
+            <td style="padding:10px 0;color:#0f172a">${data.name}</td>
+          </tr>
+          <tr style="border-bottom:1px solid #f1f5f9">
+            <td style="padding:10px 0;color:#64748b;font-weight:600">Mobile</td>
+            <td style="padding:10px 0;color:#0f172a">${data.mobile}</td>
+          </tr>
+          <tr style="border-bottom:1px solid #f1f5f9">
+            <td style="padding:10px 0;color:#64748b;font-weight:600">Email</td>
+            <td style="padding:10px 0"><a href="mailto:${data.email}" style="color:#0ea5e9">${data.email}</a></td>
+          </tr>
+          <tr style="border-bottom:1px solid #f1f5f9">
+            <td style="padding:10px 0;color:#64748b;font-weight:600">Agency / Brand</td>
+            <td style="padding:10px 0;color:#0f172a">${data.agency}</td>
+          </tr>
+          <tr style="border-bottom:1px solid #f1f5f9">
+            <td style="padding:10px 0;color:#64748b;font-weight:600">Deals / Month</td>
+            <td style="padding:10px 0;color:#0f172a">${data.dealsPerMonth}</td>
+          </tr>
+          <tr style="border-bottom:1px solid #f1f5f9">
+            <td style="padding:10px 0;color:#64748b;font-weight:600">Lead Sources</td>
+            <td style="padding:10px 0;color:#0f172a">${data.leadSources.length ? data.leadSources.join(", ") : "Not specified"}</td>
+          </tr>
+          <tr>
+            <td style="padding:10px 0;color:#64748b;font-weight:600;vertical-align:top">#1 Goal (90 days)</td>
+            <td style="padding:10px 0;color:#0f172a">${data.goal || "Not provided"}</td>
+          </tr>
+        </table>
+        <div style="margin-top:24px;padding:16px;background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:4px">
+          <p style="margin:0;color:#0369a1;font-size:13px">Reply to this email or call ${data.mobile} to send the booking link if this is a fit.</p>
+        </div>
+      </div>
+    </div>
+  `;
+  await sendGmail("nick@aipivot.com.au, nick@nickgriffiths.com.au", subject, htmlBody);
+  console.log(`Real estate funnel application received from ${data.name} (${data.email})`);
+}

@@ -27,6 +27,7 @@ const Toolbox = lazy(() => import("@/pages/Toolbox"));
 const Checkout = lazy(() => import("@/pages/Checkout"));
 const VsMarketingAgency = lazy(() => import("@/pages/VsMarketingAgency"));
 const StrategyCall = lazy(() => import("@/pages/StrategyCall"));
+const RealEstateFunnel = lazy(() => import("@/pages/RealEstateFunnel"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 const CookieConsent = lazy(() => import("@/components/CookieConsent").then(m => ({ default: m.CookieConsent })));
 
@@ -79,6 +80,7 @@ function Router() {
         <Route path="/ai-pivot-vs-marketing-agency" component={VsMarketingAgency} />
         <Route path="/free-strategy-call" component={StrategyCall} />
         <Route path="/book" component={StrategyCall} />
+        <Route path="/real-estate-pipeline-growth-map" component={RealEstateFunnel} />
 
         <Route path="/blog/:slug" component={({ params }) => {
           const post = getBlogPostBySlug(params.slug);

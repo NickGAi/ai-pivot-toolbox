@@ -3,7 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertContactSubmissionSchema, insertLeadMagnetSchema } from "@shared/schema";
 import { fromError } from "zod-validation-error";
-import { sendContactNotification, sendLeadMagnetNotification, sendLeadMagnetDelivery } from "./gmail";
+import { sendContactNotification, sendLeadMagnetNotification, sendLeadMagnetDelivery, sendRealEstateFunnelNotification } from "./gmail";
 import { legacyCreateProxyMiddleware } from "http-proxy-middleware";
 
 async function sendToGHL(data: {
@@ -156,6 +156,24 @@ export async function registerRoutes(
       }
       console.error("Lead magnet form error:", error);
       res.status(500).json({ success: false, error: "An error occurred. Please try again later." });
+    }
+  });
+
+  app.post("/api/real-estate-funnel", async (req, res) => {
+    try {
+      const { name, mobile, email, agency, dealsPerMonth, leadSources, goal } = req.body;
+      if (!name || !mobile || !email || !agency || !dealsPerMonth) {
+        return res.status(400).json({ success: false, error: "Missing required fields." });
+      }
+      try {
+        await sendRealEstateFunnelNotification({ name, mobile, email, agency, dealsPerMonth, leadSources: leadSources || [], goal: goal || "" });
+      } catch (emailError) {
+        console.error("Failed to send real estate funnel notification:", emailError);
+      }
+      res.json({ success: true, message: "Application received. We'll be in touch within 24 hours." });
+    } catch (error) {
+      console.error("Real estate funnel error:", error);
+      res.status(500).json({ success: false, error: "An error occurred. Please try again." });
     }
   });
 
