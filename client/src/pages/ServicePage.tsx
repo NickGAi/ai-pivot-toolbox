@@ -90,6 +90,7 @@ export default function ServicePage({ service }: Props) {
                 {service.headline}
               </h1>
               <p className="text-xl sm:text-2xl text-primary font-medium mb-6">{service.tagline}</p>
+              <p className="text-lg text-foreground font-medium mb-4 max-w-3xl leading-relaxed border-l-4 border-primary pl-4">{service.painHook}</p>
               <p className="text-lg text-muted-foreground mb-10 max-w-3xl leading-relaxed">{service.intro}</p>
 
               {/* Pricing comparison */}

@@ -8,6 +8,7 @@ export interface LocationData {
   geoRegion: string;
   headline: string;
   subheadline: string;
+  painHook: string;
   intro: string;
   stats: { value: string; label: string; source: string }[];
   industries: string[];
@@ -29,6 +30,7 @@ export const locations: LocationData[] = [
     geoRegion: "AU-QLD",
     headline: "AI Automation Agency Brisbane",
     subheadline: "Save 40+ hours a week. Get found on Google & AI search. No agency markup.",
+    painHook: "Brisbane businesses are spending thousands on ads and SEO — then losing leads after hours because no one answers the phone or responds to website enquiries. Your competitors are deploying AI to capture those leads automatically. If you're still handling this manually, you're already behind.",
     intro: "Brisbane businesses are moving fast on AI — and those who automate first are pulling ahead. AI Pivot Toolbox helps Queensland SMBs deploy AI voice agents, workflow automation, and AI SEO that puts them in front of customers on Google, ChatGPT, and Perplexity — at 40–60% below what Brisbane agencies charge.",
     stats: [
       { value: "80%", label: "of QLD SMBs adopting AI in 2025", source: "BizCover 2025" },
@@ -60,6 +62,7 @@ export const locations: LocationData[] = [
     geoRegion: "AU-NSW",
     headline: "AI Automation Agency Sydney",
     subheadline: "Enterprise-grade AI automation. Solo operator prices. No account manager layers.",
+    painHook: "Sydney is Australia's most competitive market — and large agencies are charging $5,000–$8,000 per month for AI automation services, pricing out the small and mid-sized businesses that need it most. Meanwhile, those businesses keep losing leads to the few competitors who have already deployed AI and are responding in under 90 seconds.",
     intro: "Sydney businesses face Australia's most competitive market. AI Pivot Toolbox gives NSW companies enterprise-grade AI voice agents, workflow automation, and AI SEO — without the $5,000/month Sydney agency price tag. Work directly with one specialist who deploys faster and costs 40–60% less.",
     stats: [
       { value: "4.4x", label: "conversion rate from AI search vs organic", source: "Semrush 2025" },
@@ -91,6 +94,7 @@ export const locations: LocationData[] = [
     geoRegion: "AU-VIC",
     headline: "AI Automation Agency Melbourne",
     subheadline: "Victoria's fastest-growing businesses use AI. Don't get left behind.",
+    painHook: "Melbourne's tech-forward business culture means AI adoption here is accelerating faster than anywhere else in Australia. The businesses moving now are automating their lead response, locking in Google and AI search rankings, and pulling ahead of competitors still doing things manually. Waiting six more months is not a neutral decision.",
     intro: "Melbourne is Australia's tech and startup capital — and AI adoption here is accelerating faster than anywhere else in the country. AI Pivot Toolbox helps Victorian businesses deploy AI voice agents, workflow automation, and AI SEO quickly and affordably, without locking you into an expensive agency retainer.",
     stats: [
       { value: "51%", label: "CAGR of Australian AI market to 2034", source: "IBIS World 2025" },
@@ -122,6 +126,7 @@ export const locations: LocationData[] = [
     geoRegion: "AU-WA",
     headline: "AI Automation Agency Perth",
     subheadline: "WA businesses are automating the work. The ones moving now are pulling ahead.",
+    painHook: "Perth businesses in mining, construction, and professional services are leaving serious money on the table: timesheet errors, slow invoice processing, missed calls during FIFO rosters, and admin that takes hours instead of seconds. Every manual process is a cost you're carrying that your competitors — who have already automated — are not.",
     intro: "Perth's resource, mining, and professional services industries are sitting on some of the highest-value automation opportunities in Australia. AI Pivot Toolbox builds AI voice agents, workflow automation, and AI SEO for Western Australian businesses — at 40–60% below what Perth agencies charge for the same work.",
     stats: [
       { value: "5hrs", label: "saved per day by WA businesses using AI admin tools", source: "Deloitte Access Economics 2025" },
@@ -153,6 +158,7 @@ export const locations: LocationData[] = [
     geoRegion: "AU-SA",
     headline: "AI Automation Agency Adelaide",
     subheadline: "South Australia's AI automation specialist. Less overhead. More results.",
+    painHook: "Most Adelaide businesses are still running on manual processes their Sydney and Melbourne competitors automated years ago. The good news: Adelaide's lower digital competition means the businesses that move now will lock in Google rankings, AI citation advantages, and customer experience wins before the market catches up.",
     intro: "Adelaide businesses have a real competitive advantage right now — AI adoption is still early here, meaning the companies who move first will dominate search results and win customers on autopilot. AI Pivot Toolbox helps South Australian businesses deploy AI tools, automation, and AI SEO faster and more affordably than any Adelaide agency.",
     stats: [
       { value: "39%", label: "of AU searches now show AI-generated answers", source: "auDA Digital Lives 2025" },
@@ -184,6 +190,7 @@ export const locations: LocationData[] = [
     geoRegion: "AU-QLD",
     headline: "AI Automation Agency Gold Coast",
     subheadline: "Gold Coast businesses — more leads, less admin, without the agency price tag.",
+    painHook: "The Gold Coast's tourism and real estate markets never sleep — but your lead response probably does. Every after-hours enquiry that goes unanswered is a booking that goes to the next result on Google. In a market this seasonal and this competitive, response time is the difference between winning the customer and losing them forever.",
     intro: "The Gold Coast is one of Queensland's fastest-growing business markets — tourism, hospitality, real estate, and professional services are booming. AI Pivot Toolbox helps Gold Coast businesses automate the tasks that slow them down: lead response, appointment booking, follow-up, and admin processing. At 40–60% below what Gold Coast or Brisbane agencies charge.",
     stats: [
       { value: "24/7", label: "AI-powered lead response — no after-hours misses", source: "AI Pivot Toolbox" },
@@ -215,6 +222,7 @@ export const locations: LocationData[] = [
     geoRegion: "AU-ACT",
     headline: "AI Automation Agency Canberra",
     subheadline: "AI automation built for Canberra's government, defence, and professional services sectors.",
+    painHook: "Canberra consulting and professional services businesses are carrying some of the highest administrative overheads in Australia — compliance documentation, client intake, billing preparation, and reporting all done manually. For businesses charging out at $200–$400 per hour, every hour spent on non-billable admin is money you've already earned but given away.",
     intro: "Canberra's business landscape is dominated by government services, defence, consulting, and professional services — industries where compliance, documentation, and process efficiency are critical. AI Pivot Toolbox builds AI automation for ACT businesses that handles the admin burden, improves client service, and integrates with the systems Canberra businesses use — at 40–60% below agency rates.",
     stats: [
       { value: "28hrs", label: "admin saved per week in professional services", source: "AI Pivot deployments" },
@@ -246,6 +254,7 @@ export const locations: LocationData[] = [
     geoRegion: "AU-NSW",
     headline: "AI Automation Agency Newcastle",
     subheadline: "Hunter Valley businesses — AI automation without Sydney prices.",
+    painHook: "Newcastle businesses are competing against Sydney-based companies with larger tech budgets and more automated operations. Sydney competitors are responding to leads in under 90 seconds with AI, ranking above local businesses on Google with AI SEO, and processing admin automatically. The gap is growing — and waiting only makes it wider.",
     intro: "Newcastle and the Hunter Valley are home to a growing professional services, healthcare, construction, and manufacturing sector — and businesses here are increasingly competing against Sydney-based competitors with bigger tech budgets. AI Pivot Toolbox helps Newcastle businesses level the playing field with AI voice agents, workflow automation, and AI SEO at 40–60% below Sydney agency rates.",
     stats: [
       { value: "40hrs", label: "admin saved per week on average", source: "AI Pivot deployments" },
@@ -277,6 +286,7 @@ export const locations: LocationData[] = [
     geoRegion: "AU-TAS",
     headline: "AI Automation Agency Hobart",
     subheadline: "Tasmania's first-mover advantage — AI automation before your competitors have it.",
+    painHook: "Tasmanian businesses are at the start of an AI adoption wave that has already reshaped how mainland Australian businesses compete. In Sydney and Melbourne, your competitors may already be using AI voice agents, automated follow-up, and AI SEO. In Hobart, most businesses are still doing these things manually — which is either a problem or an opportunity, depending on which side of it you're on.",
     intro: "Hobart and Tasmania represent one of Australia's biggest first-mover opportunities in AI automation. AI adoption among Tasmanian businesses is still early — meaning the businesses that move now will lock in search rankings, automated operations, and customer experience advantages before competitors catch up. AI Pivot Toolbox delivers the same AI automation capabilities as mainland agencies at 40–60% lower cost.",
     stats: [
       { value: "Early", label: "AI adoption stage in TAS — first movers win", source: "auDA Digital Lives 2025" },

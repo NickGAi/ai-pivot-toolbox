@@ -132,6 +132,9 @@ export default function LocationPage({ location }: Props) {
               <p className="text-xl text-muted-foreground mb-4 max-w-3xl">
                 {location.subheadline}
               </p>
+              <p className="text-lg text-foreground font-medium mb-4 max-w-3xl leading-relaxed border-l-4 border-primary pl-4">
+                {location.painHook}
+              </p>
               <p className="text-lg text-muted-foreground mb-10 max-w-3xl leading-relaxed">
                 {location.intro}
               </p>

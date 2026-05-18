@@ -3,6 +3,7 @@ export interface ServiceData {
   name: string;
   tagline: string;
   headline: string;
+  painHook: string;
   intro: string;
   ourPrice: string;
   agencyPrice: string;
@@ -23,6 +24,7 @@ export const servicesData: ServiceData[] = [
     name: "AI Voice Agents",
     tagline: "Never miss a call again — 24/7, human-like, fully managed.",
     headline: "AI Voice Agents for Australian Businesses",
+    painHook: "Every unanswered call is a customer your competitor just picked up. Australian businesses lose an average of 35% of inbound leads by not answering the phone — especially after hours, on weekends, and during busy periods. If you're relying on staff to handle every call manually, you're already losing business you don't even know about.",
     intro: "Your phone never sleeps — and neither does your AI voice agent. AI Pivot Toolbox deploys fully managed AI voice agents that answer inbound calls, qualify leads, book appointments, and handle FAQs 24 hours a day. Custom-trained on your business, integrated with your CRM and calendar, for $997/month — compared to $2,500+ at a traditional agency.",
     ourPrice: "$997",
     agencyPrice: "$2,500",
@@ -69,6 +71,7 @@ export const servicesData: ServiceData[] = [
     name: "Workflow Automation",
     tagline: "Eliminate the manual work eating your team's time.",
     headline: "Workflow Automation for Australian Businesses",
+    painHook: "Your team is spending half their week on work a machine could do in seconds. Data entry, follow-up emails, invoice processing, report generation — every hour wasted on manual admin is an hour not spent on the work that actually grows your business. And it's happening every single day.",
     intro: "The average Australian business wastes 40+ hours per week on manual tasks — data entry, follow-up emails, report generation, invoice processing, and handoffs between systems. AI Pivot Toolbox builds custom workflow automations that eliminate this entirely. At $1,497/month — versus $3,500+ at a traditional agency — you get fully managed automation that runs while you sleep.",
     ourPrice: "$1,497",
     agencyPrice: "$3,500",
@@ -115,6 +118,7 @@ export const servicesData: ServiceData[] = [
     name: "AI SEO Agency",
     tagline: "Australia's AI SEO agency — ranking on Google AND every AI search engine.",
     headline: "Australia's AI SEO Agency — Google Rankings, GEO & AEO",
+    painHook: "Right now, someone in your city is asking ChatGPT which service provider to use — and your business is not in the answer. Traditional SEO agencies are still chasing Google's blue links while 39% of Australian searches now show AI-generated answers first. If your SEO strategy was built before 2024, it's already out of date.",
     intro: "AI Pivot Toolbox is an AI SEO agency built for 2026 search — where 39% of Australian queries now show AI-generated answers. Unlike a traditional SEO agency or SEO marketing agency, we don't just chase Google's blue links. We combine technical SEO with GEO (Generative Engine Optimisation) and AEO (Answer Engine Optimisation) to get your business ranking on Google AND cited by ChatGPT, Perplexity, and AI Overviews. Fully managed, at $1,497/month versus $3,000+ at a Brisbane or Sydney SEO agency.",
     ourPrice: "$1,497",
     agencyPrice: "$3,000",
@@ -161,6 +165,7 @@ export const servicesData: ServiceData[] = [
     name: "AEO — Answer Engine Optimisation",
     tagline: "Get your business chosen as the answer by AI engines.",
     headline: "Answer Engine Optimisation (AEO) for Australian Businesses",
+    painHook: "When a potential client asks ChatGPT or Perplexity for the best service provider in your industry, the answer they get is not random — it's the business with the most AI-credible content. Right now, that is probably your competitor. AEO is how you change that.",
     intro: "When someone asks ChatGPT, Perplexity, or Google's AI Overview a question in your industry, whose business gets cited? AEO (Answer Engine Optimisation) is the discipline of structuring your content so AI systems select you as the authoritative answer source. AI Pivot Toolbox implements AEO as part of a full AI SEO strategy — making your business the default recommendation for your industry's most important questions.",
     ourPrice: "$1,497",
     agencyPrice: "$3,000",
@@ -207,6 +212,7 @@ export const servicesData: ServiceData[] = [
     name: "GEO Agency",
     tagline: "Australia's GEO agency — get cited, quoted, and recommended by AI search.",
     headline: "Australia's GEO Agency — Generative Engine Optimisation for AI Search",
+    painHook: "Google AI Overviews now appear at the top of 30% of Australian searches — above every ad, every map result, and every blue link. If your business is not featured in those AI-generated answers, you are invisible to the fastest-growing traffic source in search. And your competitors who are cited there are getting those customers instead.",
     intro: "AI Pivot Toolbox is Australia's specialist GEO agency. As Google AI Overviews, ChatGPT search, and Perplexity handle an increasing share of Australian search queries, the businesses who appear in AI-generated answers will dominate their industries. Our GEO agency service applies the latest research-backed techniques — from Princeton and IIT Delhi — to make your business the source AI engines cite for the most valuable queries in your industry.",
     ourPrice: "$1,497",
     agencyPrice: "$3,000",
@@ -253,6 +259,7 @@ export const servicesData: ServiceData[] = [
     name: "AI Chatbot",
     tagline: "Capture leads and answer questions 24/7 — without lifting a finger.",
     headline: "AI Chatbot for Australian Business Websites",
+    painHook: "Most Australian business websites lose four out of every five visitors without capturing a name, number, or email. They browse, decide you look good, then leave. They don't fill in a form. They don't call. They check your competitor's site — and book with them instead. You paid to get them there and got nothing.",
     intro: "Most business websites lose 70–80% of visitors without capturing their details. An AI chatbot changes that — engaging visitors instantly, answering their questions, qualifying their needs, and booking appointments while you sleep. AI Pivot Toolbox builds and manages custom-trained AI chatbots for Australian business websites from $597/month — less than half the cost of a traditional agency.",
     ourPrice: "$597",
     agencyPrice: "$1,200",
@@ -299,6 +306,7 @@ export const servicesData: ServiceData[] = [
     name: "Website Design + AI",
     tagline: "A high-converting website with AI built in from day one.",
     headline: "Website Design with AI for Australian Businesses",
+    painHook: "Your website is quietly costing you leads every single day. Visitors arrive, scroll for ten seconds, and leave — no chat, no booking prompt, no follow-up. Just lost traffic you either paid for or worked hard to earn. A website that looks okay but doesn't convert is worse than no website: it gives you false confidence while your competitors capture the customers you're sending away.",
     intro: "Most websites are digital brochures. AI Pivot Toolbox builds websites that work — high-converting designs with AI chat, SEO foundations, lead capture, and automation built in from the start. No templates, no drag-and-drop builders — a custom-built site that attracts, engages, and converts. From $3,497 once-off, compared to $8,000+ at a typical Australian web agency.",
     ourPrice: "$3,497",
     agencyPrice: "$8,000",
@@ -345,6 +353,7 @@ export const servicesData: ServiceData[] = [
     name: "App & Software Development",
     tagline: "Custom AI-powered apps built faster and cheaper than any agency.",
     headline: "App & Software Development for Australian Businesses",
+    painHook: "You know exactly what software your business needs — you've described it a dozen times to developers who quoted $50,000 and six months. Or you've settled for off-the-shelf tools that almost fit, and spent years working around what they can't do. Either way, the software problem is still eating your productivity.",
     intro: "Have a software idea that could transform your business or industry? AI Pivot Toolbox builds custom web and mobile applications with AI features — from MVP to full-scale product. Using the latest AI-assisted development tools, we ship faster than a traditional agency and at a fraction of the cost. From $7,997 for a defined-scope MVP versus $20,000+ at a traditional Australian software agency.",
     ourPrice: "$7,997",
     agencyPrice: "$20,000",
@@ -391,6 +400,7 @@ export const servicesData: ServiceData[] = [
     name: "CRM & AI Integrations",
     tagline: "Connect your tools. Eliminate the gaps. Make everything work together.",
     headline: "CRM & AI Integrations for Australian Businesses",
+    painHook: "Your team is the integration. Every time data needs to move from your CRM to your accounting software, from your booking system to your spreadsheet, from your email to your project management tool — a person is doing it manually. That person is making mistakes, wasting hours, and doing work that should have been automated years ago.",
     intro: "The average Australian business uses 12+ software tools — and most of them don't talk to each other. Data falls through the cracks, staff duplicate work across systems, and reporting is a manual nightmare. AI Pivot Toolbox builds the integrations that make your tools work as one — connecting your CRM, accounting software, calendar, phone system, and marketing tools. From $997/month, fully managed.",
     ourPrice: "$997",
     agencyPrice: "$2,000",
