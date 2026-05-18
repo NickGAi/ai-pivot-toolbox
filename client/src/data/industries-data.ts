@@ -3,6 +3,7 @@ export interface IndustryData {
   industry: string;
   headline: string;
   tagline: string;
+  painHook: string;
   intro: string;
   painPoints: { title: string; desc: string }[];
   topServices: { name: string; slug: string; benefit: string }[];
@@ -19,6 +20,7 @@ export const industriesData: IndustryData[] = [
     industry: "Real Estate",
     headline: "AI Automation for Real Estate Agencies in Australia",
     tagline: "Handle more enquiries, book more inspections, convert more buyers — without more staff.",
+    painHook: "Right now, somewhere between 40% and 60% of your buyer enquiries are going unanswered. Not because your agents don't care — because those enquiries land at 9pm on a Tuesday when everyone's gone home. The buyer waits five minutes, then submits to the next agency on the list. Meanwhile your team is spending Monday morning manually booking inspections, chasing CRM updates, and following up leads that have already gone cold. Every missed enquiry is a lost listing. Every hour on admin is an hour not spent closing deals.",
     intro: "Australian real estate agencies receive hundreds of property enquiries every week. Most get slow responses, incomplete follow-up, and missed leads after hours. AI Pivot Toolbox deploys AI voice agents, chatbots, and workflow automation that respond instantly 24/7, qualify buyer and renter intent, book inspections, and sync everything to your CRM — for less than the cost of a part-time admin.",
     painPoints: [
       { title: "After-hours enquiries go unanswered", desc: "Most buyer enquiries arrive outside business hours. Without 24/7 response, leads go cold before you call back." },
@@ -56,6 +58,7 @@ export const industriesData: IndustryData[] = [
     industry: "Healthcare",
     headline: "AI Automation for Healthcare Practices in Australia",
     tagline: "Fewer no-shows. Less admin. More time for patients.",
+    painHook: "Your practitioners spent years training to help patients — not to chase referral letters, leave reminder voicemails, and manually reconcile Medicare billing. Yet that's exactly where the hours go. The average Australian healthcare practice loses $1,200–$2,000 per week to no-shows alone, while clinical admin staff spend half their day on tasks that haven't changed since the fax machine. Patients call after hours and hang up without booking. Documents sit in inboxes waiting to be entered manually. It's not a staffing problem — it's a systems problem.",
     intro: "Australian healthcare practices face a relentless administrative burden — appointment scheduling, referral management, patient reminders, billing, and compliance documentation. AI Pivot Toolbox builds AI automation that integrates with practice management software, reduces no-shows by up to 60%, and saves clinical admin staff 10–20 hours per week — while maintaining full compliance with Australian privacy requirements.",
     painPoints: [
       { title: "High no-show and cancellation rates", desc: "No-shows cost practices thousands per week in lost revenue and wasted appointment slots." },
@@ -93,6 +96,7 @@ export const industriesData: IndustryData[] = [
     industry: "Legal",
     headline: "AI Automation for Law Firms in Australia",
     tagline: "Less admin. More billable hours. Better client experience.",
+    painHook: "The average Australian solicitor writes off 2–3 hours of non-billable admin every single day. That's 10–15 hours a week — roughly $1,500–$3,000 in uncaptured revenue, per fee earner, every week. Conflict checks done manually. New clients onboarded with spreadsheets and email chains. Disbursements missed because nobody remembered to record them. Documents chased three times before they arrive. Every one of those tasks is necessary — but none of it needs a lawyer to do it. And right now, every one of them does.",
     intro: "Australian law firms lose thousands in billable hours each week to non-billable admin — client intake, document collection, billing, appointment scheduling, and follow-up. AI Pivot Toolbox builds legal-specific AI automation that handles the admin load, improves client response times, and lets your lawyers focus on the work that actually generates revenue. Built with Privacy Act compliance and legal professional obligations in mind.",
     painPoints: [
       { title: "Client intake is slow and manual", desc: "Collecting conflict checks, engagement letters, ID verification, and initial information takes hours of non-billable time." },
@@ -130,6 +134,7 @@ export const industriesData: IndustryData[] = [
     industry: "Accounting",
     headline: "AI Automation for Accounting Firms in Australia",
     tagline: "Less data entry, more advisory. That's how accounting firms grow.",
+    painHook: "Your accountants are qualified professionals — yet most of their week is spent keying transactions into Xero, chasing clients for bank statements that are three weeks overdue, and manually preparing BAS returns that AI could draft in minutes. Tax time shouldn't feel like a death march. But when your team is drowning in low-value data entry from July to October every year, advisory work gets squeezed out entirely. Clients who need strategic guidance get a harried email and a rushed phone call. That's not the practice you built — and it's not what your clients are paying for.",
     intro: "Australian accounting firms are under pressure to do more with less — more advisory work, more client service, less time on manual data entry, reconciliation, and document chasing. AI Pivot Toolbox builds accounting-specific automation that integrates with Xero and MYOB, automates the low-value tasks, and frees your accountants to do the work clients actually pay for.",
     painPoints: [
       { title: "Manual data entry and reconciliation", desc: "Hours spent entering transactions, matching receipts, and reconciling accounts that AI can handle automatically." },
@@ -167,6 +172,7 @@ export const industriesData: IndustryData[] = [
     industry: "Hospitality",
     headline: "AI Automation for Hospitality Businesses in Australia",
     tagline: "Handle reservations, reviews, and guest questions — automatically.",
+    painHook: "Saturday night service. The kitchen is at capacity, every table is full, the floor team is sprinting — and the phone rings. Again. A staff member breaks away to answer a reservation enquiry, loses their flow, and the table they were serving notices. Meanwhile your Google rating sits at 4.1 stars because three negative reviews from last month still haven't been responded to. No-shows cost you $800 in prep and lost covers last weekend alone. None of this is your team's fault. It's what happens when a hospitality business tries to run on manual processes in a 24/7 world.",
     intro: "Australian hospitality businesses face staffing pressures, rising costs, and guests who expect instant responses at any hour. AI Pivot Toolbox builds AI automation for restaurants, hotels, cafés, and accommodation providers that handles reservations, answers guest questions, responds to reviews, and manages loyalty communications — freeing your team to focus on the guest experience.",
     painPoints: [
       { title: "Phone calls during service", desc: "Staff answering reservation calls during peak service hurts the customer experience for guests already in-venue." },
@@ -204,6 +210,7 @@ export const industriesData: IndustryData[] = [
     industry: "Construction",
     headline: "AI Automation for Construction Businesses in Australia",
     tagline: "Less paperwork. Faster quotes. Better project visibility.",
+    painHook: "You lost that commercial fitout contract last month — not because your price was wrong, but because the quote took three days and the client went with someone faster. Right now your estimator is manually pulling specs out of email attachments, populating a quote template line by line. Your accounts team is matching supplier invoices to purchase orders by hand. Your site supervisors are printing and filing SWMS on Monday morning instead of running their teams. Construction businesses don't die from bad jobs — they die from paper cuts. Thousands of small, manual tasks that compound every single week.",
     intro: "Australian construction businesses are drowning in paperwork — quotes, contracts, compliance documents, supplier invoices, and project reports. AI Pivot Toolbox builds automation for builders, contractors, and construction companies that speeds up quoting, automates document processing, and connects your systems — reducing admin by 40+ hours per month.",
     painPoints: [
       { title: "Slow quoting and estimating", desc: "Manual quote preparation takes days and creates bottlenecks that cost contracts to faster competitors." },
@@ -241,6 +248,7 @@ export const industriesData: IndustryData[] = [
     industry: "Finance & Mortgage Broking",
     headline: "AI Automation for Finance and Mortgage Brokers in Australia",
     tagline: "Pre-qualify more leads. Process more applications. Win more clients.",
+    painHook: "A prospective borrower submits an enquiry on your website at 7:43pm. You see it the next morning and call them back at 9:15am. In those 13 hours, two other brokers have already spoken to them. One has already sent a product comparison. Finance leads are perishable — response time is everything, and manual processes guarantee you'll always be late. Then there's the document chase. Payslips. Bank statements. Tax returns. Three follow-up emails to get one complete package. And at the end of the week, you've spent 15 hours qualifying and chasing — and settled maybe two loans. The ceiling on your business isn't your expertise. It's your capacity to handle leads manually.",
     intro: "Australian finance brokers and financial planners are competing for clients who expect instant responses and seamless processes. AI Pivot Toolbox deploys AI voice agents, chatbots, and workflow automation that pre-qualify loan enquiries, automate document collection, and keep clients informed throughout the process — letting brokers focus on the advice and relationships that win business.",
     painPoints: [
       { title: "Unqualified leads consuming broker time", desc: "Hours spent on enquiries that don't convert because initial qualification isn't happening fast enough." },
@@ -278,6 +286,7 @@ export const industriesData: IndustryData[] = [
     industry: "Retail & eCommerce",
     headline: "AI Automation for Retail & eCommerce Businesses in Australia",
     tagline: "More sales, fewer support tickets, less manual work.",
+    painHook: "68% of your online shoppers will abandon their cart tonight. Most of them will never hear from you again. At the same time, your support inbox is filling up with \"where's my order\" emails that take 3 minutes each to answer manually — the same question, three hundred times a week. Your customer service team is spending their entire day answering things a chatbot could resolve in 10 seconds. Meanwhile, a competitor with half your product range is outselling you because they respond instantly, follow up automatically, and never leave a review unanswered. The gap between you and them isn't inventory. It's automation.",
     intro: "Australian retail and eCommerce businesses are competing against Amazon and global players on customer experience and speed. AI Pivot Toolbox builds AI chatbots, workflow automations, and integrations that give Australian retailers enterprise-grade customer service and operational efficiency — at a price that makes sense for SMBs. Handle 1,000+ customer queries monthly without a proportional increase in support staff.",
     painPoints: [
       { title: "High volume of repetitive customer queries", desc: "Order status, returns, product questions — the same questions answered hundreds of times per week by human staff." },

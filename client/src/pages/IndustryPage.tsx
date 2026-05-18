@@ -69,6 +69,7 @@ export default function IndustryPage({ industry }: Props) {
                 {industry.headline}
               </h1>
               <p className="text-xl sm:text-2xl text-primary font-medium mb-6">{industry.tagline}</p>
+              <p className="text-lg text-foreground font-medium mb-6 max-w-3xl leading-relaxed border-l-4 border-primary pl-5 py-1">{industry.painHook}</p>
               <p className="text-lg text-muted-foreground mb-10 max-w-3xl leading-relaxed">{industry.intro}</p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a href="#contact" className="btn btn-primary text-lg px-8 py-4">
