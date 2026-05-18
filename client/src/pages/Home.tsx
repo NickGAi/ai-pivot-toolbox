@@ -5,6 +5,7 @@ import { Hero } from "@/components/sections/Hero";
 // Below-the-fold sections: lazy loaded so they don't block initial paint
 const Proof       = lazy(() => import("@/components/sections/Proof").then(m => ({ default: m.Proof })));
 const LeadCapture = lazy(() => import("@/components/sections/LeadCapture").then(m => ({ default: m.LeadCapture })));
+const LeadMagnet  = lazy(() => import("@/components/sections/LeadMagnet").then(m => ({ default: m.LeadMagnet })));
 const Method      = lazy(() => import("@/components/sections/Method").then(m => ({ default: m.Method })));
 const Services    = lazy(() => import("@/components/sections/Services").then(m => ({ default: m.Services })));
 const Integrations = lazy(() => import("@/components/sections/Integrations").then(m => ({ default: m.Integrations })));
@@ -31,6 +32,7 @@ export default function Home() {
             <Integrations />
             <About />
             <Urgency />
+            <LeadMagnet />
             <FAQ />
             <Contact />
           </Suspense>

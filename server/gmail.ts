@@ -12,6 +12,11 @@ interface ContactFormData {
   message?: string | null;
 }
 
+interface LeadMagnetData {
+  firstName: string;
+  email: string;
+}
+
 export async function sendContactNotification(data: ContactFormData): Promise<void> {
   const connectors = new ReplitConnectors();
 
@@ -71,4 +76,50 @@ export async function sendContactNotification(data: ContactFormData): Promise<vo
   }
 
   console.log("Contact notification email sent successfully");
+}
+
+export async function sendLeadMagnetNotification(data: LeadMagnetData): Promise<void> {
+  const connectors = new ReplitConnectors();
+
+  const subject = `New Lead Magnet Download: ${data.firstName} (${data.email})`;
+  const htmlBody = `
+    <h2>New Lead Magnet Subscriber</h2>
+    <p><strong>Name:</strong> ${data.firstName}</p>
+    <p><strong>Email:</strong> ${data.email}</p>
+    <p><strong>Resource:</strong> The Australian Business AI Checklist</p>
+    <hr>
+    <p><em>This lead opted in via the AI Pivot Toolbox homepage lead magnet.</em></p>
+  `;
+
+  const emailLines = [
+    "From: me",
+    "To: nick@aipivot.com.au",
+    `Subject: ${subject}`,
+    "Content-Type: text/html; charset=utf-8",
+    "",
+    htmlBody,
+  ];
+
+  const raw = Buffer.from(emailLines.join("\r\n"))
+    .toString("base64")
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=+$/, "");
+
+  const response = await connectors.proxy(
+    "google-mail",
+    "/gmail/v1/users/me/messages/send",
+    {
+      method: "POST",
+      body: JSON.stringify({ raw }),
+      headers: { "Content-Type": "application/json" },
+    }
+  );
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Gmail send failed (${response.status}): ${errorText}`);
+  }
+
+  console.log("Lead magnet notification email sent successfully");
 }

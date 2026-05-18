@@ -87,8 +87,9 @@ export function Navbar() {
               href="/#contact"
               className="btn btn-primary"
               data-testid="nav-cta-consultation"
+              aria-label="Book your free AI growth map call"
             >
-              Free Consultation
+              Book a Free Growth Map Call
             </a>
           </div>
 
@@ -142,8 +143,10 @@ export function Navbar() {
               <Wrench className="w-4 h-4" />
               AI Toolbox
             </Link>
-            <a href="/#contact" className="btn btn-primary mt-2" onClick={() => setMobileOpen(false)}>
-              Free Consultation
+            <a href="/#contact" className="btn btn-primary mt-2" onClick={() => setMobileOpen(false)}
+              aria-label="Book your free AI growth map call"
+            >
+              Book a Free Growth Map Call
             </a>
           </nav>
         </div>

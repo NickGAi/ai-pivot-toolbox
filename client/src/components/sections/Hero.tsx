@@ -35,17 +35,17 @@ export function Hero() {
               className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-[1.0] tracking-tight uppercase"
               itemProp="headline"
             >
-              Finally. A guaranteed way to get your business found on{" "}
-              <span className="gradient-text">Google & AI Search</span>{" "}
-              in 60 days or less.
+              Your competitors are already showing up on{" "}
+              <span className="gradient-text">ChatGPT & Google.</span>{" "}
+              You're not. Let's fix that in 60 days.
             </h1>
 
             <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-3 sm:mb-4 leading-relaxed" itemProp="text">
-              A shockingly effective new method that puts Australian businesses in front of customers on Google, ChatGPT, Perplexity and every AI search engine — for the most profitable terms in your industry.
+              When someone asks ChatGPT, Perplexity or Google who's the best in your industry — is your business the answer? If not, you're handing those leads to your competition every single day.
             </p>
 
             <p className="text-sm sm:text-base text-primary font-semibold max-w-xl mx-auto mb-8 sm:mb-10">
-              ★★★★★ Trusted by Australian businesses across 10+ industries
+              ★★★★★ Guaranteed results for Australian businesses in 60 days or less
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
@@ -53,9 +53,9 @@ export function Hero() {
                 href="#contact" 
                 className="btn btn-primary text-sm sm:text-base md:text-lg px-5 sm:px-6 md:px-8 py-3 sm:py-4 w-full sm:w-auto justify-center"
                 data-testid="hero-cta-consultation"
-                aria-label="Claim your free AI growth strategy session"
+                aria-label="Book your free AI growth map call"
               >
-                Claim Your Free Strategy Session
+                Book Your Free Growth Map Call
                 <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
               </a>
               <a 

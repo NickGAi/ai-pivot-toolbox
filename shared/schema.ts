@@ -27,3 +27,21 @@ export const insertContactSubmissionSchema = createInsertSchema(contactSubmissio
 
 export type InsertContactSubmission = z.infer<typeof insertContactSubmissionSchema>;
 export type ContactSubmission = typeof contactSubmissions.$inferSelect;
+
+export const leadMagnetSubmissions = pgTable("lead_magnet_submissions", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  firstName: text("first_name").notNull(),
+  email: text("email").notNull(),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const insertLeadMagnetSchema = createInsertSchema(leadMagnetSubmissions).omit({
+  id: true,
+  createdAt: true,
+}).extend({
+  firstName: z.string().min(1, "First name is required"),
+  email: z.string().email("Please provide a valid email address"),
+});
+
+export type InsertLeadMagnet = z.infer<typeof insertLeadMagnetSchema>;
+export type LeadMagnetSubmission = typeof leadMagnetSubmissions.$inferSelect;

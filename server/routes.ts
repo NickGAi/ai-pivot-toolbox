@@ -1,9 +1,9 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertContactSubmissionSchema } from "@shared/schema";
+import { insertContactSubmissionSchema, insertLeadMagnetSchema } from "@shared/schema";
 import { fromError } from "zod-validation-error";
-import { sendContactNotification } from "./gmail";
+import { sendContactNotification, sendLeadMagnetNotification } from "./gmail";
 import { legacyCreateProxyMiddleware } from "http-proxy-middleware";
 
 async function sendToGHL(data: {
@@ -118,6 +118,35 @@ export async function registerRoutes(
         success: false, 
         error: "An error occurred. Please try again later." 
       });
+    }
+  });
+
+  app.post("/api/lead-magnet", async (req, res) => {
+    try {
+      const validatedData = insertLeadMagnetSchema.parse(req.body);
+      const submission = await storage.createLeadMagnetSubmission(validatedData);
+
+      try {
+        await sendLeadMagnetNotification({
+          firstName: submission.firstName,
+          email: submission.email,
+        });
+      } catch (emailError) {
+        console.error("Failed to send lead magnet notification email:", emailError);
+      }
+
+      res.json({
+        success: true,
+        message: "Thanks! Check your inbox for the checklist.",
+        id: submission.id,
+      });
+    } catch (error: any) {
+      if (error.name === "ZodError") {
+        const validationError = fromError(error);
+        return res.status(400).json({ success: false, error: validationError.toString() });
+      }
+      console.error("Lead magnet form error:", error);
+      res.status(500).json({ success: false, error: "An error occurred. Please try again later." });
     }
   });
 
