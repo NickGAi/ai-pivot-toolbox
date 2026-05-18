@@ -89,7 +89,7 @@ export function Navbar() {
               data-testid="nav-cta-consultation"
               aria-label="Book your free AI growth map call"
             >
-              Book a Free Growth Map Call
+              Book Your Free Growth Map Call
             </a>
           </div>
 
@@ -146,7 +146,7 @@ export function Navbar() {
             <a href="/#contact" className="btn btn-primary mt-2" onClick={() => setMobileOpen(false)}
               aria-label="Book your free AI growth map call"
             >
-              Book a Free Growth Map Call
+              Book Your Free Growth Map Call
             </a>
           </nav>
         </div>
