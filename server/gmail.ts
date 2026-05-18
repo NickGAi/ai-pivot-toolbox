@@ -215,32 +215,40 @@ export async function sendLeadMagnetNotification(data: LeadMagnetData): Promise<
 }
 
 interface RealEstateFunnelData {
-  name: string;
-  mobile: string;
+  firstName: string;
+  lastName: string;
   email: string;
+  mobile: string;
   agency: string;
+  suburb: string;
   dealsPerMonth: string;
-  leadSources: string[];
-  goal: string;
+  leadSource: string;
+  pipelineProblem: string;
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
+  referrer?: string;
 }
 
 export async function sendRealEstateFunnelNotification(data: RealEstateFunnelData): Promise<void> {
-  const subject = `🏠 New Growth Map Application: ${data.name} — ${data.agency}`;
+  const fullName = `${data.firstName} ${data.lastName}`;
+  const subject = `🏠 Growth Map Application: ${fullName} — ${data.agency} (${data.suburb})`;
+  const utmInfo = [data.utm_source, data.utm_medium, data.utm_campaign].filter(Boolean).join(" / ");
   const htmlBody = `
     <div style="font-family:sans-serif;max-width:600px;margin:0 auto">
       <div style="background:#0a0f1e;padding:24px 32px;border-radius:8px 8px 0 0">
         <h2 style="color:#0ea5e9;margin:0;font-size:20px">New 90-Day Pipeline Growth Map Application</h2>
-        <p style="color:#94a3b8;margin:4px 0 0;font-size:14px">Real Estate Funnel — aipivot.com.au/real-estate-pipeline-growth-map</p>
+        <p style="color:#94a3b8;margin:4px 0 0;font-size:14px">aipivottoolbox.com.au/real-estate-pipeline-growth-map</p>
       </div>
       <div style="background:#ffffff;padding:32px;border-radius:0 0 8px 8px;border:1px solid #e2e8f0">
         <table style="width:100%;border-collapse:collapse;font-size:15px">
           <tr style="border-bottom:1px solid #f1f5f9">
-            <td style="padding:10px 0;color:#64748b;width:170px;font-weight:600">Name</td>
-            <td style="padding:10px 0;color:#0f172a">${data.name}</td>
+            <td style="padding:10px 0;color:#64748b;width:180px;font-weight:600">Name</td>
+            <td style="padding:10px 0;color:#0f172a;font-weight:700">${fullName}</td>
           </tr>
           <tr style="border-bottom:1px solid #f1f5f9">
             <td style="padding:10px 0;color:#64748b;font-weight:600">Mobile</td>
-            <td style="padding:10px 0;color:#0f172a">${data.mobile}</td>
+            <td style="padding:10px 0;color:#0f172a"><a href="tel:${data.mobile}" style="color:#0369a1">${data.mobile}</a></td>
           </tr>
           <tr style="border-bottom:1px solid #f1f5f9">
             <td style="padding:10px 0;color:#64748b;font-weight:600">Email</td>
@@ -251,24 +259,32 @@ export async function sendRealEstateFunnelNotification(data: RealEstateFunnelDat
             <td style="padding:10px 0;color:#0f172a">${data.agency}</td>
           </tr>
           <tr style="border-bottom:1px solid #f1f5f9">
+            <td style="padding:10px 0;color:#64748b;font-weight:600">Suburb / Market</td>
+            <td style="padding:10px 0;color:#0f172a">${data.suburb}</td>
+          </tr>
+          <tr style="border-bottom:1px solid #f1f5f9">
             <td style="padding:10px 0;color:#64748b;font-weight:600">Deals / Month</td>
             <td style="padding:10px 0;color:#0f172a">${data.dealsPerMonth}</td>
           </tr>
           <tr style="border-bottom:1px solid #f1f5f9">
-            <td style="padding:10px 0;color:#64748b;font-weight:600">Lead Sources</td>
-            <td style="padding:10px 0;color:#0f172a">${data.leadSources.length ? data.leadSources.join(", ") : "Not specified"}</td>
+            <td style="padding:10px 0;color:#64748b;font-weight:600">Main Lead Source</td>
+            <td style="padding:10px 0;color:#0f172a">${data.leadSource || "Not specified"}</td>
           </tr>
-          <tr>
-            <td style="padding:10px 0;color:#64748b;font-weight:600;vertical-align:top">#1 Goal (90 days)</td>
-            <td style="padding:10px 0;color:#0f172a">${data.goal || "Not provided"}</td>
+          <tr style="border-bottom:1px solid #f1f5f9">
+            <td style="padding:10px 0;color:#64748b;font-weight:600;vertical-align:top">Biggest Problem</td>
+            <td style="padding:10px 0;color:#0f172a">${data.pipelineProblem || "Not provided"}</td>
           </tr>
+          ${utmInfo ? `<tr>
+            <td style="padding:10px 0;color:#64748b;font-weight:600">UTM / Source</td>
+            <td style="padding:10px 0;color:#94a3b8;font-size:13px">${utmInfo}${data.referrer ? ` · ${data.referrer}` : ""}</td>
+          </tr>` : ""}
         </table>
         <div style="margin-top:24px;padding:16px;background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:4px">
-          <p style="margin:0;color:#0369a1;font-size:13px">Reply to this email or call ${data.mobile} to send the booking link if this is a fit.</p>
+          <p style="margin:0;color:#0369a1;font-size:13px;font-weight:600">Next step: Call ${data.mobile} or reply to send the booking link if this is a fit.</p>
         </div>
       </div>
     </div>
   `;
   await sendGmail("nick@avaire.com.au, nick@nickgriffiths.com.au", subject, htmlBody);
-  console.log(`Real estate funnel application received from ${data.name} (${data.email})`);
+  console.log(`Real estate funnel application: ${fullName} (${data.email}) — ${data.agency}, ${data.suburb}`);
 }

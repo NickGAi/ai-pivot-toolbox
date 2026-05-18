@@ -161,12 +161,12 @@ export async function registerRoutes(
 
   app.post("/api/real-estate-funnel", async (req, res) => {
     try {
-      const { name, mobile, email, agency, dealsPerMonth, leadSources, goal } = req.body;
-      if (!name || !mobile || !email || !agency || !dealsPerMonth) {
+      const { firstName, lastName, email, mobile, agency, suburb, dealsPerMonth, leadSource, pipelineProblem, utm_source, utm_medium, utm_campaign, referrer } = req.body;
+      if (!firstName || !lastName || !mobile || !email || !agency || !suburb || !dealsPerMonth) {
         return res.status(400).json({ success: false, error: "Missing required fields." });
       }
       try {
-        await sendRealEstateFunnelNotification({ name, mobile, email, agency, dealsPerMonth, leadSources: leadSources || [], goal: goal || "" });
+        await sendRealEstateFunnelNotification({ firstName, lastName, email, mobile, agency, suburb, dealsPerMonth, leadSource: leadSource || "", pipelineProblem: pipelineProblem || "", utm_source, utm_medium, utm_campaign, referrer });
       } catch (emailError) {
         console.error("Failed to send real estate funnel notification:", emailError);
       }

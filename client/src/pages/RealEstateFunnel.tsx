@@ -1,138 +1,307 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 
-interface VideoPlaceholderProps {
-  label: string;
-  description: string;
-  aspectRatio?: "landscape" | "square";
+// ─── CONFIG ──────────────────────────────────────────────────────────────────
+const CONFIG = {
+  bookingUrl: "https://aipivottoolbox.com.au/book",
+  apiEndpoint: "/api/real-estate-funnel",
+};
+
+// ─── COPY ────────────────────────────────────────────────────────────────────
+const COPY = {
+  badge: "For Australian Real Estate Agents Only",
+  heroHeadline: ["Stop Torching", "Your Portal Leads."],
+  heroSub: "Turn the leads you already have into 90 days of extra listing appointments with AiPivot's free Pipeline Growth Map.",
+  heroBullets: [
+    "See exactly where your pipeline is leaking",
+    "Find out how many extra listings you could squeeze from your current leads",
+    "Get a 90-day AI-powered follow-up plan built around your business",
+  ],
+  heroCta: "Get My Free Growth Map",
+  heroSecondaryCta: "Watch The 60-Second Breakdown",
+  heroTrust: "Built for agents who are sick of wasting portal spend, missing follow-up, and leaving GCI on the table.",
+  formCta: "Apply For My Free Growth Map",
+  smallPrint: "No fluff. No obligation. If it looks like a fit, we'll invite you to book a short strategy call and walk you through the map.",
+};
+
+const LEAD_SOURCES = [
+  "Portals (REA, Domain)",
+  "Social Media Ads",
+  "Referrals",
+  "Signboards / Open Homes",
+  "Website / SEO",
+  "Other",
+];
+
+// ─── TYPES ───────────────────────────────────────────────────────────────────
+interface FormData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  mobile: string;
+  agency: string;
+  suburb: string;
+  dealsPerMonth: string;
+  leadSource: string;
+  pipelineProblem: string;
+  utm_source: string;
+  utm_medium: string;
+  utm_campaign: string;
+  referrer: string;
 }
 
-function VideoPlaceholder({ label, description, aspectRatio = "landscape" }: VideoPlaceholderProps) {
+type FormErrors = Partial<Record<keyof FormData, string>>;
+
+// ─── VIDEO PLACEHOLDER ───────────────────────────────────────────────────────
+function VideoCinematic({ id, label, sublabel }: { id: string; label: string; sublabel: string }) {
   return (
     <div
-      className={`relative w-full bg-[#0d1829] border-2 border-dashed border-[#0ea5e9]/30 rounded-2xl flex flex-col items-center justify-center text-center p-8 ${aspectRatio === "landscape" ? "aspect-video" : "aspect-square max-w-xl mx-auto"}`}
+      id={id}
+      className="relative w-full aspect-video rounded-2xl overflow-hidden flex items-center justify-center"
+      style={{
+        background: "linear-gradient(135deg, #07090f 0%, #0c1420 50%, #07090f 100%)",
+        boxShadow: "0 0 60px rgba(14,165,233,0.08), 0 0 120px rgba(14,165,233,0.04), inset 0 1px 0 rgba(255,255,255,0.04)",
+        border: "1px solid rgba(14,165,233,0.15)",
+      }}
     >
-      <div className="w-16 h-16 rounded-full bg-[#0ea5e9]/20 border-2 border-[#0ea5e9] flex items-center justify-center mb-4">
-        <svg className="w-7 h-7 text-[#0ea5e9] ml-1" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M8 5v14l11-7z" />
-        </svg>
+      {/* Subtle scan-line texture */}
+      <div className="absolute inset-0 opacity-[0.03]" style={{
+        backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.5) 2px, rgba(255,255,255,0.5) 3px)",
+      }} />
+
+      {/* Corner accents */}
+      <div className="absolute top-4 left-4 w-6 h-6 border-t-2 border-l-2 border-[#0ea5e9]/40 rounded-tl" />
+      <div className="absolute top-4 right-4 w-6 h-6 border-t-2 border-r-2 border-[#0ea5e9]/40 rounded-tr" />
+      <div className="absolute bottom-4 left-4 w-6 h-6 border-b-2 border-l-2 border-[#0ea5e9]/40 rounded-bl" />
+      <div className="absolute bottom-4 right-4 w-6 h-6 border-b-2 border-r-2 border-[#0ea5e9]/40 rounded-br" />
+
+      <div className="relative z-10 text-center px-8">
+        {/* Play button */}
+        <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-5" style={{
+          background: "rgba(14,165,233,0.12)",
+          border: "2px solid rgba(14,165,233,0.4)",
+          boxShadow: "0 0 30px rgba(14,165,233,0.2)",
+        }}>
+          <svg className="w-8 h-8 ml-1" fill="#0ea5e9" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z" />
+          </svg>
+        </div>
+        <p className="text-white font-bold text-lg mb-1 tracking-tight">{label}</p>
+        <p className="text-slate-500 text-sm">{sublabel}</p>
       </div>
-      <p className="text-[#0ea5e9] font-bold text-lg mb-1">{label}</p>
-      <p className="text-slate-400 text-sm max-w-xs">{description}</p>
     </div>
   );
 }
 
-interface FormData {
-  name: string;
-  mobile: string;
-  email: string;
-  agency: string;
-  dealsPerMonth: string;
-  leadSources: string[];
-  goal: string;
+// ─── CTA BUTTON ──────────────────────────────────────────────────────────────
+function CtaButton({ href, children, size = "md", className = "" }: {
+  href: string;
+  children: React.ReactNode;
+  size?: "sm" | "md" | "lg";
+  className?: string;
+}) {
+  const sizes = {
+    sm: "px-6 py-3 text-base",
+    md: "px-8 py-4 text-lg",
+    lg: "px-12 py-5 text-xl",
+  };
+  return (
+    <a
+      href={href}
+      className={`inline-block font-bold rounded-xl transition-all ${sizes[size]} ${className}`}
+      style={{
+        background: "linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%)",
+        boxShadow: "0 4px 24px rgba(14,165,233,0.35), 0 1px 0 rgba(255,255,255,0.1) inset",
+      }}
+    >
+      {children}
+    </a>
+  );
 }
 
-const LEAD_SOURCES = ["Portals (REA, Domain)", "Social Media", "Referrals", "Signboards / Open Homes", "Website", "Other"];
+// ─── SECTION LABEL ───────────────────────────────────────────────────────────
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="text-[#0ea5e9] font-bold text-xs uppercase tracking-[0.2em] mb-5 flex items-center gap-3">
+      <span className="w-6 h-px bg-[#0ea5e9]/50" />
+      {children}
+      <span className="w-6 h-px bg-[#0ea5e9]/50" />
+    </p>
+  );
+}
 
+// ─── FORM FIELD ──────────────────────────────────────────────────────────────
+function Field({ label, error, required, children }: {
+  label: string;
+  error?: string;
+  required?: boolean;
+  children: React.ReactNode;
+}) {
+  return (
+    <div>
+      <label className="block text-sm font-semibold text-slate-300 mb-2">
+        {label}{required && <span className="text-[#0ea5e9] ml-1">*</span>}
+      </label>
+      {children}
+      {error && <p className="text-red-400 text-xs mt-1.5">{error}</p>}
+    </div>
+  );
+}
+
+const inputCls = "w-full rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none transition-colors text-sm"
+  + " bg-[#0c1018] border border-white/8 focus:border-[#0ea5e9]/60";
+
+// ─── MAIN PAGE ───────────────────────────────────────────────────────────────
 export default function RealEstateFunnel() {
-  const [form, setForm] = useState<FormData>({
-    name: "",
-    mobile: "",
-    email: "",
-    agency: "",
-    dealsPerMonth: "",
-    leadSources: [],
-    goal: "",
-  });
+  const [showSticky, setShowSticky] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [errors, setErrors] = useState<Partial<FormData>>({});
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [form, setForm] = useState<FormData>({
+    firstName: "",
+    lastName: "",
+    email: "",
+    mobile: "",
+    agency: "",
+    suburb: "",
+    dealsPerMonth: "",
+    leadSource: "",
+    pipelineProblem: "",
+    utm_source: "",
+    utm_medium: "",
+    utm_campaign: "",
+    referrer: "",
+  });
+
+  // Capture UTM / referrer on mount
+  useEffect(() => {
+    const p = new URLSearchParams(window.location.search);
+    setForm(f => ({
+      ...f,
+      utm_source: p.get("utm_source") || "",
+      utm_medium: p.get("utm_medium") || "",
+      utm_campaign: p.get("utm_campaign") || "",
+      referrer: document.referrer || "",
+    }));
+  }, []);
+
+  // Sticky CTA after scroll
+  useEffect(() => {
+    const handler = () => setShowSticky(window.scrollY > 600);
+    window.addEventListener("scroll", handler, { passive: true });
+    return () => window.removeEventListener("scroll", handler);
+  }, []);
 
   const mutation = useMutation({
-    mutationFn: (data: FormData) =>
-      apiRequest("POST", "/api/real-estate-funnel", data),
+    mutationFn: (data: FormData) => apiRequest("POST", CONFIG.apiEndpoint, data),
     onSuccess: () => setSubmitted(true),
   });
 
+  function set(field: keyof FormData, value: string) {
+    setForm(f => ({ ...f, [field]: value }));
+    if (errors[field]) setErrors(e => ({ ...e, [field]: undefined }));
+  }
+
   function validate(): boolean {
-    const e: Partial<FormData> = {};
-    if (!form.name.trim()) e.name = "Required";
-    if (!form.mobile.trim()) e.mobile = "Required";
+    const e: FormErrors = {};
+    if (!form.firstName.trim()) e.firstName = "Required";
+    if (!form.lastName.trim()) e.lastName = "Required";
     if (!form.email.includes("@")) e.email = "Valid email required";
+    if (!form.mobile.trim()) e.mobile = "Required";
     if (!form.agency.trim()) e.agency = "Required";
+    if (!form.suburb.trim()) e.suburb = "Required";
     if (!form.dealsPerMonth) e.dealsPerMonth = "Required";
     setErrors(e);
     return Object.keys(e).length === 0;
   }
 
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
+  function handleSubmit(ev: React.FormEvent) {
+    ev.preventDefault();
     if (validate()) mutation.mutate(form);
   }
 
-  function toggleSource(s: string) {
-    setForm(f => ({
-      ...f,
-      leadSources: f.leadSources.includes(s)
-        ? f.leadSources.filter(x => x !== s)
-        : [...f.leadSources, s],
-    }));
-  }
-
+  // ── THANK-YOU STATE ───────────────────────────────────────────────────────
   if (submitted) {
     return (
-      <div className="min-h-screen bg-[#080d1a] flex items-center justify-center px-4">
+      <div className="min-h-screen bg-[#07090f] flex items-center justify-center px-4 py-20">
         <div className="max-w-lg text-center">
-          <div className="w-20 h-20 rounded-full bg-[#0ea5e9]/20 border-2 border-[#0ea5e9] flex items-center justify-center mx-auto mb-6">
+          <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-8" style={{
+            background: "rgba(14,165,233,0.1)",
+            border: "2px solid rgba(14,165,233,0.4)",
+            boxShadow: "0 0 40px rgba(14,165,233,0.2)",
+          }}>
             <svg className="w-10 h-10 text-[#0ea5e9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
           </div>
-          <h1 className="text-3xl font-bold text-white mb-4">You're In.</h1>
-          <p className="text-slate-300 text-lg mb-4">
-            We've got your application. We review every one personally — if it's a fit,
-            you'll receive a booking link within 24 hours to lock in your free 90-Day Pipeline Growth Map session.
+
+          <p className="text-[#0ea5e9] text-xs font-bold uppercase tracking-[0.2em] mb-4">Application Received</p>
+          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6 leading-tight">
+            Application Received.<br />Nice.
+          </h1>
+          <p className="text-slate-300 text-lg leading-relaxed mb-4">
+            Now lock in a short call so we can sanity-check your numbers, look at how your pipeline works today, and build your 90-Day Growth Map properly.
           </p>
-          <p className="text-slate-400 text-sm">Keep an eye on your inbox (and spam folder just in case).</p>
+          <p className="text-slate-500 text-sm mb-10">
+            Check your inbox — we'll also send confirmation within a few minutes.
+          </p>
+
+          <a
+            href={CONFIG.bookingUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block font-bold text-white text-lg px-10 py-5 rounded-xl w-full sm:w-auto"
+            style={{
+              background: "linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%)",
+              boxShadow: "0 4px 24px rgba(14,165,233,0.4)",
+            }}
+          >
+            Book My Strategy Call →
+          </a>
+          <p className="text-slate-600 text-xs mt-4">Short call. No obligation. We look at your numbers together.</p>
         </div>
       </div>
     );
   }
 
+  // ── PAGE ─────────────────────────────────────────────────────────────────
   return (
-    <div className="min-h-screen bg-[#080d1a] text-white" style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}>
+    <div
+      className="min-h-screen text-white"
+      style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif", background: "#07090f" }}
+    >
 
-      {/* HERO */}
-      <section className="relative pt-12 pb-16 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 bg-[#0ea5e9]/10 border border-[#0ea5e9]/30 rounded-full px-4 py-2 text-[#0ea5e9] text-sm font-semibold mb-8">
-            <span className="w-2 h-2 rounded-full bg-[#0ea5e9] animate-pulse" />
-            For Australian Real Estate Agents Only
+      {/* ── HERO ─────────────────────────────────────────────────────────── */}
+      <section className="relative pt-16 pb-20 px-4 overflow-hidden">
+        {/* Background glow */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] rounded-full opacity-[0.07]"
+            style={{ background: "radial-gradient(ellipse, #0ea5e9 0%, transparent 70%)" }} />
+        </div>
+
+        <div className="relative max-w-4xl mx-auto text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-[#0ea5e9] text-xs font-bold uppercase tracking-widest mb-10"
+            style={{ background: "rgba(14,165,233,0.08)", border: "1px solid rgba(14,165,233,0.2)" }}>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#0ea5e9] animate-pulse" />
+            {COPY.badge}
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-            Stop Torching<br />
-            <span className="text-[#0ea5e9]">Your Portal Leads.</span>
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight mb-8">
+            {COPY.heroHeadline[0]}<br />
+            <span style={{ color: "#0ea5e9" }}>{COPY.heroHeadline[1]}</span>
           </h1>
-          <p className="text-xl sm:text-2xl text-slate-300 font-medium mb-4 leading-relaxed">
-            Turn The Leads You Already Have Into<br className="hidden sm:block" />
-            <span className="text-white font-bold"> 90 Days Of Extra Listing Appointments.</span>
-          </p>
-          <p className="text-slate-400 text-lg mb-10 max-w-2xl mx-auto">
-            Free 90‑Day Pipeline Growth Map for Australian real estate agents who want more listings — without spending another cent on ads or portals.
+
+          <p className="text-xl sm:text-2xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed">
+            {COPY.heroSub}
           </p>
 
-          <ul className="flex flex-col sm:flex-row gap-4 justify-center mb-10 text-left max-w-2xl mx-auto">
-            {[
-              "Find out exactly where your pipeline is bleeding money",
-              "See how many extra listings you can squeeze from your existing database",
-              "Get a 90-day, AI-powered follow-up plan done for you",
-            ].map(b => (
+          <ul className="flex flex-col sm:flex-row gap-4 justify-center mb-12 max-w-2xl mx-auto text-left">
+            {COPY.heroBullets.map(b => (
               <li key={b} className="flex items-start gap-3 flex-1">
-                <span className="w-5 h-5 rounded-full bg-[#0ea5e9] flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                <span className="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center"
+                  style={{ background: "rgba(14,165,233,0.15)", border: "1px solid rgba(14,165,233,0.4)" }}>
+                  <svg className="w-3 h-3 text-[#0ea5e9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                   </svg>
                 </span>
                 <span className="text-slate-300 text-sm leading-snug">{b}</span>
@@ -140,196 +309,211 @@ export default function RealEstateFunnel() {
             ))}
           </ul>
 
-          <a
-            href="#apply"
-            className="inline-block bg-[#0ea5e9] hover:bg-[#0284c7] text-white font-bold text-lg px-10 py-4 rounded-xl transition-colors shadow-lg shadow-[#0ea5e9]/30 mb-6"
-          >
-            Get My Free 90-Day Pipeline Growth Map
-          </a>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-5">
+            <CtaButton href="#apply" size="lg" className="text-white w-full sm:w-auto">
+              {COPY.heroCta}
+            </CtaButton>
+            <a href="#video1" className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors text-sm font-medium">
+              <span className="w-10 h-10 rounded-full flex items-center justify-center"
+                style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>
+                <svg className="w-4 h-4 ml-0.5" fill="white" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+              </span>
+              {COPY.heroSecondaryCta}
+            </a>
+          </div>
 
-          <div className="text-slate-500 text-sm mb-12">No cost. No obligation. Limited spots each month.</div>
+          <p className="text-slate-500 text-sm mb-16">{COPY.heroTrust}</p>
 
-          {/* VIDEO 1 — Hero explainer */}
+          {/* VIDEO 1 */}
           <div className="max-w-3xl mx-auto">
-            <VideoPlaceholder
-              label="Video 1: Stop Torching Your Portal Leads"
-              description="60-second hero explainer — autoplay muted above the fold. Upload your video and it will appear here."
+            <VideoCinematic
+              id="video1"
+              label="Stop Torching Your Portal Leads"
+              sublabel="60-sec explainer — upload your video to replace this placeholder"
             />
-            <p className="text-slate-500 text-xs mt-3">Autoplay muted · click to watch with sound</p>
           </div>
         </div>
       </section>
 
-      {/* SECTION 2 — Pain */}
-      <section className="py-20 px-4 bg-[#0a0f1e]">
+      {/* ── PAIN ─────────────────────────────────────────────────────────── */}
+      <section className="py-24 px-4" style={{ background: "#0b0e16" }}>
         <div className="max-w-3xl mx-auto">
-          <p className="text-[#0ea5e9] font-bold text-sm uppercase tracking-widest mb-4">Brutal Honesty</p>
-          <h2 className="text-3xl sm:text-4xl font-bold mb-10 leading-tight">
-            Be Honest… How Many Of Your<br />Portal Leads Never Hear From You?
+          <SectionLabel>Brutal Honesty</SectionLabel>
+          <h2 className="text-3xl sm:text-5xl font-bold leading-tight mb-12">
+            Be Honest… How Many Of<br />Your Leads Never Hear<br />From You?
           </h2>
 
-          <div className="space-y-5 text-lg text-slate-300 leading-relaxed">
-            <p>Every month you wire serious cash to the portals.</p>
-            <p>And what do you get?<br />
-              A flood of email alerts… texts… buyer and seller enquiries at all hours.</p>
-            <p className="text-white font-semibold text-xl border-l-4 border-[#0ea5e9] pl-5">
-              But here's the uncomfortable truth:<br />
-              By the time you actually ring them back, they've already spoken to two other agents —<br />
-              or worse — they've gone cold and you never hear from them again.
-            </p>
-            <p>You're not alone.<br />
-              Digital real estate advertising is a multi-billion dollar game in Australia, dominated by the portals.</p>
-            <p className="text-2xl font-bold text-white">They're getting richer.<br />
-              Most agents are just getting busier… not wealthier.</p>
-            <div className="bg-[#0d1829] border border-[#0ea5e9]/20 rounded-2xl p-6 mt-8">
-              <p className="text-[#0ea5e9] font-bold text-xl mb-2">The problem is NOT "I need more leads."</p>
-              <p className="text-slate-300">The problem is you're <strong className="text-white">leaking the leads you already have.</strong></p>
+          <div className="space-y-6 text-lg text-slate-300 leading-relaxed">
+            <p>Every month, agents pour serious money into portals, paid ads, socials, signboards and websites.</p>
+            <p>Then the enquiry comes in at the worst possible time — during an open, on the road, at dinner, or buried under a hundred other things.</p>
+            <p className="text-xl text-white font-semibold">By the time you call them back, they've already spoken to another agent… or gone cold.</p>
+            <div className="pl-6 border-l-4 border-[#0ea5e9] py-2 space-y-3">
+              <p className="text-slate-300">That's the brutal truth:</p>
+              <p className="text-white font-bold text-xl">Most agents do not have a lead problem.<br />They have a follow-up problem.</p>
+              <p className="text-slate-400">And that problem is quietly costing them listings, appraisals and commission.</p>
             </div>
           </div>
+
+          <div className="mt-12 rounded-2xl p-8"
+            style={{ background: "#0c1018", border: "1px solid rgba(14,165,233,0.12)" }}>
+            <p className="text-[#0ea5e9] font-bold text-xl leading-snug">
+              You don't need more leads.<br />
+              <span className="text-white">You need more conversations with the leads you already have.</span>
+            </p>
+          </div>
+
+          <div className="mt-12 text-center">
+            <CtaButton href="#apply" size="md" className="text-white">Get My Free Growth Map</CtaButton>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 3 — The 3% Truth */}
-      <section className="py-20 px-4">
+      {/* ── EDUCATION — 3% ───────────────────────────────────────────────── */}
+      <section className="py-24 px-4">
         <div className="max-w-4xl mx-auto">
-          <p className="text-[#0ea5e9] font-bold text-sm uppercase tracking-widest mb-4">Market Education</p>
-          <h2 className="text-3xl sm:text-4xl font-bold mb-6 leading-tight">
-            Only 3% Of Your Market Is Ready To List Today.<br />
-            <span className="text-[#0ea5e9]">Who's Working The Other 97%?</span>
+          <SectionLabel>Market Education</SectionLabel>
+          <h2 className="text-3xl sm:text-5xl font-bold leading-tight mb-6">
+            Only 3% Of Your Market Is<br />Ready To List Right Now.
           </h2>
+          <p className="text-slate-400 text-lg mb-16 max-w-2xl">At any moment, in any suburb in Australia, the market breaks down like this:</p>
 
-          <p className="text-slate-400 text-lg mb-10">Right now, in your patch:</p>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+          {/* Market pyramid cards */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
             {[
-              { pct: "3%", label: "Ready to sign a listing agreement this month", color: "#ef4444" },
-              { pct: "17%", label: "Stalking portals, researching, 'thinking about it'", color: "#f59e0b" },
-              { pct: "20%", label: "Know they should sell soon — but not hunting agents yet", color: "#3b82f6" },
-              { pct: "60%", label: "Not even on the radar yet — future listings", color: "#6b7280" },
-            ].map(({ pct, label, color }) => (
-              <div key={pct} className="bg-[#0a0f1e] rounded-2xl p-6 border border-white/5 text-center">
-                <p className="text-5xl font-bold mb-3" style={{ color }}>{pct}</p>
+              { pct: "3%",  label: "Ready to sign a listing agreement today",                color: "#ef4444", glow: "rgba(239,68,68,0.15)" },
+              { pct: "17%", label: "Researching, stalking portals, 'thinking about it'",    color: "#f59e0b", glow: "rgba(245,158,11,0.12)" },
+              { pct: "20%", label: "Know they'll need an agent soon — not ready yet",       color: "#3b82f6", glow: "rgba(59,130,246,0.12)" },
+              { pct: "60%", label: "Not even thinking about selling yet — future listings", color: "#475569", glow: "rgba(71,85,105,0.1)" },
+            ].map(({ pct, label, color, glow }) => (
+              <div key={pct} className="rounded-2xl p-7 text-center"
+                style={{ background: "#0c1018", border: `1px solid ${color}22`, boxShadow: `0 0 30px ${glow}` }}>
+                <p className="text-5xl font-bold mb-4 leading-none" style={{ color }}>{pct}</p>
                 <p className="text-slate-400 text-sm leading-snug">{label}</p>
               </div>
             ))}
           </div>
 
-          {/* VIDEO 2 — 3% vs 97% explainer */}
-          <div className="mb-12">
-            <VideoPlaceholder
-              label="Video 2: The 3% vs 97% Strategy"
-              description="Education explainer — mid-page. Shows the market pyramid and why most agents are fighting for the wrong slice. Upload your video and it will appear here."
+          {/* VIDEO 2 */}
+          <div className="mb-16">
+            <VideoCinematic
+              id="video2"
+              label="The 3% Truth No Agent Wants To Hear"
+              sublabel="Market education explainer — upload your video to replace this placeholder"
             />
           </div>
 
-          <div className="max-w-3xl mx-auto space-y-5 text-lg text-slate-300">
-            <p>What does most real estate marketing do?<br />
-              Sprays all the budget at that tiny 3%… and completely ignores the 97% who'll be your future listings.</p>
-            <p className="italic text-slate-400">Then agents say "Facebook doesn't work" or "The portals are broken."</p>
-            <p className="text-white font-bold text-xl">No. The strategy is broken.</p>
-            <div className="bg-[#0a0f1e] border border-[#0ea5e9]/20 rounded-2xl p-6">
-              <p className="text-[#0ea5e9] font-bold text-lg mb-2">You absolutely go after the 3%.</p>
-              <p>But you <strong className="text-white">also</strong> capture and nurture the 97% — so when they're ready to sell, you're the only agent they think of.</p>
+          <div className="max-w-3xl mx-auto space-y-6 text-lg text-slate-300">
+            <p>Most agents waste all their budget chasing the tiny 3% and completely ignore the 97% that needs to be warmed up, educated and followed up properly.</p>
+            <p className="text-slate-400 italic">That's why their marketing feels inconsistent. It's not because the portals are broken. It's because the system is.</p>
+            <div className="rounded-2xl p-7" style={{ background: "#0c1018", border: "1px solid rgba(14,165,233,0.12)" }}>
+              <p className="text-[#0ea5e9] font-bold text-lg mb-2">AiPivot helps you work the 3% fast —</p>
+              <p className="text-white">and nurture the other 97% until they're ready to raise their hand.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* SECTION 4 — Enter AiPivot */}
-      <section className="py-20 px-4 bg-[#0a0f1e]">
+      {/* ── SOLUTION ─────────────────────────────────────────────────────── */}
+      <section className="py-24 px-4" style={{ background: "#0b0e16" }}>
         <div className="max-w-4xl mx-auto">
-          <p className="text-[#0ea5e9] font-bold text-sm uppercase tracking-widest mb-4">The Solution</p>
-          <h2 className="text-3xl sm:text-4xl font-bold mb-6 leading-tight">
-            Meet AI Pivot Toolbox: Your 24/7 Follow-Up Machine<br />
-            <span className="text-[#0ea5e9]">That Never Sleeps, Never Forgets, Never Gets "Too Busy."</span>
+          <SectionLabel>The Solution</SectionLabel>
+          <h2 className="text-3xl sm:text-5xl font-bold leading-tight mb-6">
+            AiPivot Is The Follow-Up Machine<br />
+            <span style={{ color: "#0ea5e9" }}>Your Agency Never Had</span>
           </h2>
 
-          <p className="text-slate-300 text-lg mb-8">AI Pivot Toolbox plugs into the leads you're already getting from:</p>
-          <div className="flex flex-wrap gap-3 mb-10">
-            {["Portals (REA, Domain, etc.)", "Your website and landing pages", "Social DMs and enquiry forms", "Open-home registrations and QR codes"].map(s => (
-              <span key={s} className="bg-[#0d1829] border border-[#0ea5e9]/20 text-slate-300 px-4 py-2 rounded-full text-sm font-medium">{s}</span>
+          <p className="text-slate-300 text-lg mb-10 max-w-2xl">
+            AiPivot plugs into the leads you're already getting from portals, your website, social media, open homes and referral channels.
+          </p>
+
+          <div className="flex flex-wrap gap-3 mb-14">
+            {["REA & Domain", "Your website", "Social DMs", "Open-home registrations", "Referral enquiries"].map(s => (
+              <span key={s} className="px-4 py-2 rounded-full text-sm font-medium text-slate-300"
+                style={{ background: "#0c1018", border: "1px solid rgba(14,165,233,0.15)" }}>
+                {s}
+              </span>
             ))}
           </div>
 
-          <p className="text-slate-300 text-lg mb-6">Then it:</p>
-          <div className="grid sm:grid-cols-2 gap-4 mb-12">
+          <div className="grid sm:grid-cols-2 gap-4 mb-14">
             {[
-              { icon: "⚡", text: "Replies to new enquiries in seconds — not hours" },
-              { icon: "📱", text: "Follows up automatically with smart SMS and email sequences" },
-              { icon: "🔥", text: "Nurtures cold buyers into hot sellers over 30, 60, 90 days" },
-              { icon: "📅", text: "Pushes hot prospects straight to your calendar for appraisals" },
-            ].map(({ icon, text }) => (
-              <div key={text} className="flex items-start gap-4 bg-[#080d1a] rounded-xl p-5 border border-white/5">
-                <span className="text-2xl">{icon}</span>
-                <p className="text-slate-300 leading-snug">{text}</p>
+              { icon: "⚡", title: "Instant lead response", body: "Replies in seconds — not hours. First to follow up wins the listing." },
+              { icon: "📱", title: "Smart SMS & email nurture", body: "Sequences that sound human, follow up relentlessly, and never forget." },
+              { icon: "📊", title: "Pipeline visibility", body: "See every lead, every stage, every gap — no more Excel guesswork." },
+              { icon: "📅", title: "AI appointment generation", body: "Warm prospects pushed to your calendar for inspections and appraisals automatically." },
+            ].map(({ icon, title, body }) => (
+              <div key={title} className="rounded-2xl p-6"
+                style={{ background: "#0c1018", border: "1px solid rgba(255,255,255,0.05)" }}>
+                <div className="text-2xl mb-4">{icon}</div>
+                <h3 className="text-white font-bold mb-2">{title}</h3>
+                <p className="text-slate-400 text-sm leading-relaxed">{body}</p>
               </div>
             ))}
           </div>
 
-          <div className="text-center space-y-2 mb-12 text-lg text-white font-semibold">
-            <p>No more spreadsheets.</p>
-            <p>No more "I forgot to call them back."</p>
-            <p>No more praying the phone rings.</p>
+          <div className="text-center space-y-1 mb-14">
+            {["No more spreadsheets.", "No more 'I forgot to call them back.'", "No more praying the phone rings."].map(l => (
+              <p key={l} className="text-xl text-white font-semibold">{l}</p>
+            ))}
           </div>
 
-          <div className="bg-gradient-to-r from-[#0ea5e9]/10 to-[#0284c7]/10 border border-[#0ea5e9]/30 rounded-2xl p-6 text-center">
-            <p className="text-white text-lg font-semibold">You get a simple, brutal system that works every lead like gold.</p>
+          <div className="rounded-2xl p-8 text-center"
+            style={{
+              background: "linear-gradient(135deg, rgba(14,165,233,0.08) 0%, rgba(2,132,199,0.06) 100%)",
+              border: "1px solid rgba(14,165,233,0.2)",
+            }}>
+            <p className="text-white font-bold text-xl">You get a simple, brutal system that works every lead like gold.</p>
           </div>
         </div>
       </section>
 
-      {/* SECTION 5 — What You Get */}
-      <section className="py-20 px-4">
+      {/* ── GROWTH MAP ───────────────────────────────────────────────────── */}
+      <section className="py-24 px-4">
         <div className="max-w-4xl mx-auto">
-          <p className="text-[#0ea5e9] font-bold text-sm uppercase tracking-widest mb-4">What's Included</p>
-          <h2 className="text-3xl sm:text-4xl font-bold mb-12 leading-tight">
-            Here's Exactly What We'll Do For You <span className="text-[#0ea5e9]">(Free)</span>
+          <SectionLabel>What's Included</SectionLabel>
+          <h2 className="text-3xl sm:text-5xl font-bold leading-tight mb-6">
+            What You Get In The<br />90-Day Pipeline Growth Map
           </h2>
+          <p className="text-slate-400 text-lg mb-16 max-w-2xl">
+            This is not fluff, theory, or another "marketing audit" that tells you to post more on Instagram. This is a personalised growth map built around your numbers, your lead sources and your current pipeline.
+          </p>
 
-          <div className="space-y-6 mb-14">
+          <div className="space-y-5 mb-16">
             {[
               {
                 step: "01",
-                title: "Stalk Your Current Pipeline",
-                items: [
-                  "Where your leads are coming from (portals, signboards, socials, referrals)",
-                  "What actually happens to them: enquiry → inspection → appraisal → listing → sale",
-                  "You'll see — probably for the first time — the real numbers behind your pipeline",
-                ],
+                title: "We Audit The Pipeline",
+                body: "We look at where your leads come from now — portals, website, socials, referrals, open homes — and what actually happens after they come in.",
+                items: ["Enquiry sources mapped", "Conversion stages identified", "Your real follow-up timing exposed"],
               },
               {
                 step: "02",
-                title: "Expose The Leaks (Brutally)",
-                items: [
-                  "How many enquiries are never contacted in time",
-                  "How many open-home attendees vanish after one call",
-                  "How many appraisals never get nurtured properly",
-                  "How much GCI you're leaving on the table every 90 days",
-                ],
+                title: "We Expose The Leaks",
+                body: "We map the real-world journey from enquiry to inspection, appraisal, listing and sale — so you can see exactly where follow-up is weak, delayed, inconsistent or missing.",
+                items: ["Enquiries never contacted in time", "Open-home attendees who vanish", "Appraisals never properly nurtured", "GCI left on the table every 90 days"],
               },
               {
                 step: "03",
-                title: "Design Your 90-Day AI Follow-Up Machine",
-                items: [
-                  "Day 0–3: instant responses + rapid-fire follow-up",
-                  "Day 4–30: education, proof, inspection and appraisal pushes",
-                  "Day 31–90: light-touch nurture so they don't forget your name",
-                  "All built to run inside AI Pivot Toolbox — no tech skills required",
-                ],
+                title: "We Build The 90-Day Plan",
+                body: "We outline a practical AI-powered follow-up and nurture system built around your specific business — so you can convert more of your existing leads into conversations, appointments and listings.",
+                items: ["Days 0–3: rapid-fire follow-up", "Days 4–30: nurture and appraisal push", "Days 31–90: light-touch, top-of-mind", "Fully automated inside AiPivot"],
               },
-            ].map(({ step, title, items }) => (
-              <div key={step} className="flex gap-6 bg-[#0a0f1e] rounded-2xl p-7 border border-white/5">
+            ].map(({ step, title, body, items }) => (
+              <div key={step} className="flex gap-6 rounded-2xl p-8"
+                style={{ background: "#0c1018", border: "1px solid rgba(255,255,255,0.05)" }}>
                 <div className="flex-shrink-0">
-                  <div className="w-14 h-14 rounded-full bg-[#0ea5e9]/10 border-2 border-[#0ea5e9] flex items-center justify-center">
-                    <span className="text-[#0ea5e9] font-bold text-lg">{step}</span>
+                  <div className="w-14 h-14 rounded-full flex items-center justify-center text-[#0ea5e9] font-bold text-lg"
+                    style={{ background: "rgba(14,165,233,0.08)", border: "2px solid rgba(14,165,233,0.3)" }}>
+                    {step}
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-4">{title}</h3>
+                  <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
+                  <p className="text-slate-400 text-sm leading-relaxed mb-4">{body}</p>
                   <ul className="space-y-2">
                     {items.map(item => (
-                      <li key={item} className="flex items-start gap-3 text-slate-300">
-                        <svg className="w-4 h-4 text-[#0ea5e9] flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <li key={item} className="flex items-center gap-3 text-slate-300 text-sm">
+                        <svg className="w-4 h-4 text-[#0ea5e9] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                         </svg>
                         {item}
@@ -341,243 +525,247 @@ export default function RealEstateFunnel() {
             ))}
           </div>
 
-          <p className="text-slate-300 text-lg text-center mb-8">
-            You walk away with a clear, written 90-day plan and a video walkthrough of how it works in your specific business.
-          </p>
+          <div className="rounded-2xl p-7 mb-12"
+            style={{ background: "#0c1018", border: "1px solid rgba(14,165,233,0.12)" }}>
+            <p className="text-white font-semibold text-lg mb-4">You also walk away knowing:</p>
+            <ul className="grid sm:grid-cols-2 gap-3">
+              {[
+                "How many extra listings may be sitting in your current database",
+                "What messages to send and when",
+                "How to follow up faster without more manual work",
+                "What AiPivot would automate if you want us to build it",
+              ].map(o => (
+                <li key={o} className="flex items-start gap-3 text-slate-300 text-sm">
+                  <span className="text-[#0ea5e9] mt-0.5 flex-shrink-0">✓</span>
+                  {o}
+                </li>
+              ))}
+            </ul>
+          </div>
 
           <div className="text-center">
-            <a
-              href="#apply"
-              className="inline-block bg-[#0ea5e9] hover:bg-[#0284c7] text-white font-bold text-xl px-12 py-5 rounded-xl transition-colors shadow-lg shadow-[#0ea5e9]/30"
-            >
-              Yes, I Want My Pipeline Growth Map
-            </a>
+            <CtaButton href="#apply" size="lg" className="text-white">Yes, I Want My Pipeline Growth Map</CtaButton>
           </div>
         </div>
       </section>
 
-      {/* SECTION 6 — Who it's for */}
-      <section className="py-20 px-4 bg-[#0a0f1e]">
+      {/* ── WHO IT'S FOR ─────────────────────────────────────────────────── */}
+      <section className="py-24 px-4" style={{ background: "#0b0e16" }}>
         <div className="max-w-3xl mx-auto">
-          <p className="text-[#0ea5e9] font-bold text-sm uppercase tracking-widest mb-4">Is This For You?</p>
-          <h2 className="text-3xl sm:text-4xl font-bold mb-10 leading-tight">
-            This Is NOT For Every Agent In Australia
+          <SectionLabel>Is This For You?</SectionLabel>
+          <h2 className="text-3xl sm:text-5xl font-bold leading-tight mb-16">
+            Who This Is For.<br />Who It's Not.
           </h2>
 
           <div className="grid sm:grid-cols-2 gap-6">
-            <div className="bg-[#080d1a] rounded-2xl p-6 border border-emerald-500/20">
-              <p className="text-emerald-400 font-bold text-lg mb-4">✅ This IS for you if:</p>
-              <ul className="space-y-3 text-slate-300">
+            <div className="rounded-2xl p-7" style={{ background: "#0c1018", border: "1px solid rgba(16,185,129,0.2)" }}>
+              <p className="text-emerald-400 font-bold text-base mb-6 flex items-center gap-2">
+                <span>This IS for you</span>
+              </p>
+              <ul className="space-y-4">
                 {[
-                  "You're a licensed agent in Australia",
-                  "You're already doing deals and spending on portals / marketing",
-                  "You know you're sitting on a database that's underworked",
-                  "You're willing to use tech if it makes you more money",
-                ].map(i => <li key={i} className="flex items-start gap-2 text-sm"><span className="text-emerald-400 mt-0.5">→</span>{i}</li>)}
+                  "Australian real estate agents already generating leads",
+                  "Boutique principals and high-performing listing agents",
+                  "Teams spending on portals, digital marketing or social media",
+                  "Agents who know they're underworking their database",
+                  "People serious about building a proper system",
+                ].map(i => (
+                  <li key={i} className="flex items-start gap-3 text-slate-300 text-sm leading-snug">
+                    <span className="text-emerald-400 mt-0.5 flex-shrink-0">→</span>
+                    {i}
+                  </li>
+                ))}
               </ul>
             </div>
-            <div className="bg-[#080d1a] rounded-2xl p-6 border border-red-500/20">
-              <p className="text-red-400 font-bold text-lg mb-4">❌ This is NOT for:</p>
-              <ul className="space-y-3 text-slate-300">
+            <div className="rounded-2xl p-7" style={{ background: "#0c1018", border: "1px solid rgba(239,68,68,0.2)" }}>
+              <p className="text-red-400 font-bold text-base mb-6">This is NOT for:</p>
+              <ul className="space-y-4">
                 {[
-                  "Brand-new agents with no listings and no leads",
-                  "People looking for a 'magic lead source' without doing any follow-up",
-                  "Anyone allergic to numbers, accountability and growth",
-                ].map(i => <li key={i} className="flex items-start gap-2 text-sm"><span className="text-red-400 mt-0.5">→</span>{i}</li>)}
+                  "Brand-new agents with no pipeline",
+                  "People looking for a magic bullet without follow-up",
+                  "Anyone who wants 'more leads' but refuses to fix conversion",
+                  "Tyre-kickers with no intention to act",
+                ].map(i => (
+                  <li key={i} className="flex items-start gap-3 text-slate-400 text-sm leading-snug">
+                    <span className="text-red-400 mt-0.5 flex-shrink-0">→</span>
+                    {i}
+                  </li>
+                ))}
               </ul>
-              <p className="text-slate-500 text-sm mt-4 italic">If that's you, save us both the time.</p>
+              <p className="text-slate-600 text-xs mt-6 italic">If that's you, save us both the time.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* SECTION 7 — Why us */}
-      <section className="py-20 px-4">
+      {/* ── TRUST / WHY ──────────────────────────────────────────────────── */}
+      <section className="py-24 px-4">
         <div className="max-w-4xl mx-auto">
-          <p className="text-[#0ea5e9] font-bold text-sm uppercase tracking-widest mb-4">Why AI Pivot Toolbox</p>
-          <h2 className="text-3xl sm:text-4xl font-bold mb-8 leading-tight">
-            Why Take Growth Advice From<br />
-            <span className="text-[#0ea5e9]">A Bunch Of AI Nerds?</span>
+          <SectionLabel>Why This Works</SectionLabel>
+          <h2 className="text-3xl sm:text-5xl font-bold leading-tight mb-12">
+            The Game Isn't Just<br />Lead Generation Anymore.
           </h2>
 
-          <div className="space-y-5 text-lg text-slate-300 leading-relaxed mb-10">
-            <p className="text-white font-semibold text-xl">Because we live where tech meets GCI.</p>
-            <p>We built AI Pivot Toolbox specifically for service businesses that win or lose based on how well they turn leads into conversations — and conversations into contracts.</p>
-            <p>You've seen how much money is pouring into digital ads and portals in Australia right now. The agents who win treat follow-up like a weapon, not an afterthought.</p>
-            <div className="bg-[#0a0f1e] border border-[#0ea5e9]/20 rounded-2xl p-6">
-              <p className="text-white font-semibold mb-2">Our job is simple:</p>
-              <p>Bolt a ruthless, AI-powered follow-up engine onto your existing marketing — so you squeeze every last listing out of the demand that's already there.</p>
-            </div>
-            <p className="text-slate-400">If you get value from the Growth Map and want our help building and running it — great, we can talk about that. If not, you'll still walk away with a 90-day pipeline plan you can implement yourself.</p>
+          <div className="space-y-6 text-lg text-slate-300 leading-relaxed mb-12">
+            <p>The agents who win are the agents who follow up fast, stay top of mind, and build a system that works leads long after the first enquiry comes in.</p>
+            <p>AiPivot is built around that exact problem: helping service businesses turn attention into leads, leads into appointments, and appointments into revenue.</p>
           </div>
 
-          {/* VIDEO 3 — Growth Map explainer */}
-          <VideoPlaceholder
-            label="Video 3: How the Growth Map Works"
-            description="Walkthrough of the 90-Day Pipeline Growth Map — what happens on the call and what you'll leave with. Upload your video and it will appear here."
-          />
-        </div>
-      </section>
-
-      {/* SECTION 8 — Application Form */}
-      <section id="apply" className="py-20 px-4 bg-[#0a0f1e]">
-        <div className="max-w-2xl mx-auto">
-          <p className="text-[#0ea5e9] font-bold text-sm uppercase tracking-widest mb-4 text-center">Limited Spots Each Month</p>
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-center leading-tight">
-            Ready To Stop Leaking Listings?
-          </h2>
-          <p className="text-slate-400 text-lg text-center mb-10">
-            We can only build a handful of Growth Maps each month without dropping the ball on existing clients. Fill out the form below — we'll review it and, if it's a fit, send you a booking link.
-          </p>
-
-          <div className="flex flex-wrap justify-center gap-6 mb-10">
+          <div className="grid sm:grid-cols-3 gap-4 mb-16">
             {[
-              "Sick of watching portal leads go stone-cold",
-              "Tired of 'more marketing' that doesn't turn into more listings",
-              "Ready to plug a real system into your business",
-            ].map(p => (
-              <div key={p} className="flex items-center gap-2 text-slate-300 text-sm">
-                <span className="w-2 h-2 rounded-full bg-[#0ea5e9]" />
-                {p}
+              { label: "Built for appointment-driven businesses", icon: "🎯" },
+              { label: "Designed to capture the leads most agents forget", icon: "🔍" },
+              { label: "Focused on pipeline, not vanity metrics", icon: "📈" },
+            ].map(({ label, icon }) => (
+              <div key={label} className="rounded-2xl p-6 text-center"
+                style={{ background: "#0c1018", border: "1px solid rgba(255,255,255,0.05)" }}>
+                <div className="text-3xl mb-4">{icon}</div>
+                <p className="text-slate-300 text-sm leading-snug">{label}</p>
               </div>
             ))}
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-5 bg-[#080d1a] rounded-2xl p-8 border border-white/5">
+          {/* VIDEO 3 */}
+          <VideoCinematic
+            id="video3"
+            label="What Happens In A 90-Day Growth Map?"
+            sublabel="Walkthrough of the session and what you'll walk away with — upload your video to replace this placeholder"
+          />
+        </div>
+      </section>
+
+      {/* ── FORM ─────────────────────────────────────────────────────────── */}
+      <section id="apply" className="py-24 px-4" style={{ background: "#0b0e16" }}>
+        <div className="max-w-2xl mx-auto">
+          <div className="text-center mb-14">
+            <SectionLabel>Limited Spots Each Month</SectionLabel>
+            <h2 className="text-3xl sm:text-5xl font-bold leading-tight mb-5">
+              Ready To Stop<br />Leaking Listings?
+            </h2>
+            <p className="text-slate-400 text-lg max-w-lg mx-auto">
+              If you're serious about getting more listing appointments from the leads you already have, apply now.
+              We only do a limited number each month so we can actually make them useful.
+            </p>
+          </div>
+
+          <form onSubmit={handleSubmit} className="space-y-5 rounded-2xl p-8 sm:p-10"
+            style={{ background: "#0c1018", border: "1px solid rgba(255,255,255,0.06)" }}>
 
             <div className="grid sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-semibold text-slate-300 mb-2">Name *</label>
-                <input
-                  data-testid="input-name"
-                  type="text"
-                  value={form.name}
-                  onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
-                  className="w-full bg-[#0d1829] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:border-[#0ea5e9] focus:outline-none transition-colors"
-                  placeholder="Jane Smith"
-                />
-                {errors.name && <p className="text-red-400 text-xs mt-1">{errors.name}</p>}
-              </div>
-              <div>
-                <label className="block text-sm font-semibold text-slate-300 mb-2">Mobile *</label>
-                <input
-                  data-testid="input-mobile"
-                  type="tel"
-                  value={form.mobile}
-                  onChange={e => setForm(f => ({ ...f, mobile: e.target.value }))}
-                  className="w-full bg-[#0d1829] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:border-[#0ea5e9] focus:outline-none transition-colors"
-                  placeholder="0400 000 000"
-                />
-                {errors.mobile && <p className="text-red-400 text-xs mt-1">{errors.mobile}</p>}
-              </div>
+              <Field label="First name" required error={errors.firstName}>
+                <input data-testid="input-firstName" type="text" value={form.firstName}
+                  onChange={e => set("firstName", e.target.value)}
+                  className={inputCls} placeholder="Jane" />
+              </Field>
+              <Field label="Last name" required error={errors.lastName}>
+                <input data-testid="input-lastName" type="text" value={form.lastName}
+                  onChange={e => set("lastName", e.target.value)}
+                  className={inputCls} placeholder="Smith" />
+              </Field>
             </div>
 
-            <div>
-              <label className="block text-sm font-semibold text-slate-300 mb-2">Email *</label>
-              <input
-                data-testid="input-email"
-                type="email"
-                value={form.email}
-                onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
-                className="w-full bg-[#0d1829] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:border-[#0ea5e9] focus:outline-none transition-colors"
-                placeholder="jane@realestate.com.au"
-              />
-              {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email}</p>}
+            <div className="grid sm:grid-cols-2 gap-4">
+              <Field label="Email" required error={errors.email}>
+                <input data-testid="input-email" type="email" value={form.email}
+                  onChange={e => set("email", e.target.value)}
+                  className={inputCls} placeholder="jane@realestate.com.au" />
+              </Field>
+              <Field label="Mobile" required error={errors.mobile}>
+                <input data-testid="input-mobile" type="tel" value={form.mobile}
+                  onChange={e => set("mobile", e.target.value)}
+                  className={inputCls} placeholder="0400 000 000" />
+              </Field>
             </div>
 
-            <div>
-              <label className="block text-sm font-semibold text-slate-300 mb-2">Agency / Brand *</label>
-              <input
-                data-testid="input-agency"
-                type="text"
-                value={form.agency}
-                onChange={e => setForm(f => ({ ...f, agency: e.target.value }))}
-                className="w-full bg-[#0d1829] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:border-[#0ea5e9] focus:outline-none transition-colors"
-                placeholder="Ray White Inner North"
-              />
-              {errors.agency && <p className="text-red-400 text-xs mt-1">{errors.agency}</p>}
+            <div className="grid sm:grid-cols-2 gap-4">
+              <Field label="Agency / brand" required error={errors.agency}>
+                <input data-testid="input-agency" type="text" value={form.agency}
+                  onChange={e => set("agency", e.target.value)}
+                  className={inputCls} placeholder="Ray White Inner North" />
+              </Field>
+              <Field label="Suburb / market" required error={errors.suburb}>
+                <input data-testid="input-suburb" type="text" value={form.suburb}
+                  onChange={e => set("suburb", e.target.value)}
+                  className={inputCls} placeholder="Newstead, QLD" />
+              </Field>
             </div>
 
-            <div>
-              <label className="block text-sm font-semibold text-slate-300 mb-2">Approximate deals per month *</label>
-              <select
-                data-testid="select-deals"
-                value={form.dealsPerMonth}
-                onChange={e => setForm(f => ({ ...f, dealsPerMonth: e.target.value }))}
-                className="w-full bg-[#0d1829] border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[#0ea5e9] focus:outline-none transition-colors"
-              >
-                <option value="" className="text-slate-600">Select range…</option>
+            <Field label="Approx. deals per month" required error={errors.dealsPerMonth}>
+              <select data-testid="select-deals" value={form.dealsPerMonth}
+                onChange={e => set("dealsPerMonth", e.target.value)}
+                className={inputCls} style={{ colorScheme: "dark" }}>
+                <option value="">Select range…</option>
                 <option value="1-2">1–2 deals/month</option>
                 <option value="3-5">3–5 deals/month</option>
                 <option value="6-10">6–10 deals/month</option>
                 <option value="10+">10+ deals/month</option>
               </select>
-              {errors.dealsPerMonth && <p className="text-red-400 text-xs mt-1">{errors.dealsPerMonth}</p>}
-            </div>
+            </Field>
 
-            <div>
-              <label className="block text-sm font-semibold text-slate-300 mb-3">Main lead sources (select all that apply)</label>
-              <div className="flex flex-wrap gap-2">
+            <Field label="Main lead source">
+              <div className="flex flex-wrap gap-2 pt-1">
                 {LEAD_SOURCES.map(s => (
-                  <button
-                    key={s}
-                    type="button"
-                    data-testid={`toggle-source-${s}`}
-                    onClick={() => toggleSource(s)}
-                    className={`px-4 py-2 rounded-full text-sm font-medium border transition-colors ${
-                      form.leadSources.includes(s)
-                        ? "bg-[#0ea5e9] border-[#0ea5e9] text-white"
-                        : "bg-[#0d1829] border-white/10 text-slate-400 hover:border-[#0ea5e9]/40"
-                    }`}
-                  >
+                  <button key={s} type="button" data-testid={`toggle-source-${s}`}
+                    onClick={() => set("leadSource", s)}
+                    className="px-4 py-2 rounded-full text-xs font-semibold border transition-all"
+                    style={form.leadSource === s
+                      ? { background: "#0ea5e9", borderColor: "#0ea5e9", color: "#fff" }
+                      : { background: "transparent", borderColor: "rgba(255,255,255,0.1)", color: "#94a3b8" }}>
                     {s}
                   </button>
                 ))}
               </div>
-            </div>
+            </Field>
 
-            <div>
-              <label className="block text-sm font-semibold text-slate-300 mb-2">
-                What's the #1 thing you want more of in the next 90 days?
-              </label>
-              <input
-                data-testid="input-goal"
-                type="text"
-                value={form.goal}
-                onChange={e => setForm(f => ({ ...f, goal: e.target.value }))}
-                className="w-full bg-[#0d1829] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:border-[#0ea5e9] focus:outline-none transition-colors"
-                placeholder="More listing appraisals from my existing database"
-              />
-            </div>
+            <Field label="Biggest pipeline problem right now">
+              <input data-testid="input-problem" type="text" value={form.pipelineProblem}
+                onChange={e => set("pipelineProblem", e.target.value)}
+                className={inputCls} placeholder="e.g. Portal leads go cold before I can call them back" />
+            </Field>
+
+            {/* Hidden UTM fields */}
+            <input type="hidden" value={form.utm_source} readOnly />
+            <input type="hidden" value={form.utm_medium} readOnly />
+            <input type="hidden" value={form.utm_campaign} readOnly />
+            <input type="hidden" value={form.referrer} readOnly />
 
             {mutation.isError && (
-              <p className="text-red-400 text-sm text-center">Something went wrong. Please try again or email us directly.</p>
+              <p className="text-red-400 text-sm text-center py-2">Something went wrong — please try again or email us directly.</p>
             )}
 
-            <button
-              data-testid="button-submit"
-              type="submit"
-              disabled={mutation.isPending}
-              className="w-full bg-[#0ea5e9] hover:bg-[#0284c7] disabled:opacity-60 text-white font-bold text-xl py-5 rounded-xl transition-colors shadow-lg shadow-[#0ea5e9]/30"
-            >
-              {mutation.isPending ? "Submitting…" : "Apply For My Free 90-Day Growth Map"}
+            <button data-testid="button-submit" type="submit" disabled={mutation.isPending}
+              className="w-full font-bold text-white text-lg py-5 rounded-xl transition-all disabled:opacity-50"
+              style={{
+                background: "linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%)",
+                boxShadow: "0 4px 24px rgba(14,165,233,0.35)",
+              }}>
+              {mutation.isPending ? "Submitting…" : COPY.formCta}
             </button>
 
-            <p className="text-slate-500 text-xs text-center leading-relaxed">
-              No cost. No obligation. We'll review your answers and, if it's a fit,<br />
-              send you a booking link for your personalised Growth Map session.
-            </p>
+            <p className="text-slate-600 text-xs text-center leading-relaxed pt-1">{COPY.smallPrint}</p>
           </form>
         </div>
       </section>
 
-      {/* Footer bar */}
-      <footer className="py-8 px-4 border-t border-white/5 text-center">
+      {/* ── FOOTER ───────────────────────────────────────────────────────── */}
+      <footer className="py-10 px-4 text-center" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
         <p className="text-slate-600 text-sm">
-          © {new Date().getFullYear()} AI Pivot Toolbox · aipivot.com.au ·{" "}
-          <a href="/privacy" className="hover:text-slate-400 transition-colors">Privacy Policy</a>
+          © {new Date().getFullYear()} AiPivot · aipivottoolbox.com.au ·{" "}
+          <a href="/privacy" className="hover:text-slate-400 transition-colors">Privacy</a>
         </p>
       </footer>
+
+      {/* ── STICKY MOBILE CTA ────────────────────────────────────────────── */}
+      <div
+        className={`fixed bottom-0 left-0 right-0 z-50 p-4 sm:hidden transition-transform duration-300 ${showSticky ? "translate-y-0" : "translate-y-full"}`}
+        style={{ background: "rgba(7,9,15,0.95)", backdropFilter: "blur(12px)", borderTop: "1px solid rgba(14,165,233,0.15)" }}
+      >
+        <a href="#apply"
+          className="block w-full text-center font-bold text-white py-4 rounded-xl"
+          style={{ background: "linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%)", boxShadow: "0 4px 20px rgba(14,165,233,0.4)" }}>
+          Get My Free Growth Map
+        </a>
+      </div>
 
     </div>
   );

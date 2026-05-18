@@ -1,0 +1,445 @@
+Absolutely — here’s the **Replit agent coding prompt** designed specifically so the agent can **edit and improve an existing build**, not start from scratch.
+
+***
+
+## Replit Agent Edit Prompt
+
+You are editing and upgrading an **existing Replit landing page project** for **AiPivot**. Do **not** rebuild from scratch unless something is fundamentally broken. First inspect the current codebase, understand the structure, identify reusable components, then refactor and improve the existing implementation in place. Keep what is good, replace what is weak, and reorganise only where necessary. The goal is to turn the current page into a **premium, high-converting one-page direct-response funnel** for **Australian real estate agents**. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/183302786/e903fb42-7f39-4ca9-8309-96152381cbe5/Seven-Figure-Cheat-Sheet-KING-KONG.pdf)
+
+The core offer is:
+
+**Free 90-Day Pipeline Growth Map**
+
+The page should be optimised for one business outcome:
+
+**Get Australian real estate agents to submit the Growth Map form and then book a short strategy call.** [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/183302786/b3232b26-cc00-456c-a195-b6d179038896/5waystodoublesalesKINGKONG.pdf)
+
+***
+
+## Priority instruction
+
+Before changing anything:
+
+1. Audit the current project structure.
+2. Identify what already exists: sections, components, styling system, form logic, routing, animations, hooks, API endpoints.
+3. Reuse and improve existing code where sensible.
+4. Do not destroy working functionality just to make it “cleaner.”
+5. Refactor incrementally.
+6. Preserve anything already connected to forms, webhooks, analytics, or bookings unless it clearly conflicts with the new funnel.
+
+The source documents emphasise simple systems, strong offers, and conversion paths; your job is to improve the existing system, not introduce unnecessary complexity. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/183302786/e903fb42-7f39-4ca9-8309-96152381cbe5/Seven-Figure-Cheat-Sheet-KING-KONG.pdf)
+
+***
+
+## Project goal
+
+Transform the current build into a **single-focus direct-response landing page** with:
+
+- one clear audience: Australian real estate agents  
+- one clear problem: leaking leads and inconsistent follow-up  
+- one clear solution: AiPivot  
+- one clear offer: free 90-Day Pipeline Growth Map  
+- one clear CTA: apply / book
+
+The page structure should mirror a simple funnel:  
+**attention → pain → education → solution → offer → form → booking step**, matching the source material’s client-getting system and blueprint-style CTA. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/183302786/affeee1b-1ba5-441e-b9c8-b0372974f16c/High-Converting-Facebook-Ads-Swipe-File-KINGKONG.pdf)
+
+***
+
+## Design direction
+
+Upgrade the visual style to feel:
+
+- cinematic  
+- premium  
+- sharp  
+- high-conviction  
+- direct-response  
+- dark-mode-first  
+- mobile-first  
+- expensive without being flashy
+
+Avoid:
+
+- generic startup gradients  
+- generic 3-card SaaS sections  
+- fluffy “all-in-one platform” copy  
+- symmetrical boring layouts  
+- default template feel
+
+Use:
+
+- dark charcoal / black backgrounds  
+- restrained teal / green-blue accent for CTA and key highlights  
+- strong typography hierarchy  
+- subtle motion and glow  
+- premium spacing  
+- cinematic video placeholders or embeds  
+- hard-hitting section intros
+
+This aligns with the uploaded HeyGen cinematic workflow screenshot and the website-building guidance to avoid generic AI aesthetics. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/images/183302786/8962e555-061a-4ed4-9da5-0f9da1b08d37/image.jpg)
+
+***
+
+## Technical instructions
+
+Inspect the current stack and work with it. If the project is already in React, Next-style React, or a component-based front end, continue in that stack. If it is plain HTML/CSS/JS and already functioning well, improve within that structure. Do not force a framework migration unless absolutely necessary.
+
+### Required technical outcomes
+
+- Keep this as a one-page landing funnel.
+- Preserve existing working form submission logic where possible.
+- Make the form endpoint configurable.
+- Add or preserve support for webhook posting.
+- Add hidden fields for UTM / referrer / timestamp if not already present.
+- Add a thank-you state after form submission.
+- Add a booking step after form success.
+- Ensure mobile sticky CTA exists.
+- Ensure sections are modular and editable.
+- Make copy easy to update via constants, config, or structured component props.
+- Preserve SEO basics: title, meta description, OG tags if present.
+
+The source material prioritises clear, measurable conversion paths over complexity, so the implementation should stay simple and focused. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/183302786/b3232b26-cc00-456c-a195-b6d179038896/5waystodoublesalesKINGKONG.pdf)
+
+***
+
+## Required page sections
+
+Ensure the existing page contains, in this order, these sections. Rework current sections into this structure if needed:
+
+1. Hero  
+2. Pain / wasted leads  
+3. 3% vs 97% education  
+4. AiPivot solution  
+5. What’s included in the Growth Map  
+6. Who it’s for / not for  
+7. Why this works / trust  
+8. Final CTA + application form  
+9. Thank-you / booking section
+
+These sections should support the single-offer funnel pattern reflected in the source PDFs. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/183302786/affeee1b-1ba5-441e-b9c8-b0372974f16c/High-Converting-Facebook-Ads-Swipe-File-KINGKONG.pdf)
+
+***
+
+## Copy source of truth
+
+Use the following copy as the new messaging baseline. Replace weak or generic copy in the existing build with this.
+
+### Hero
+
+**Headline:**  
+Stop Torching Your Portal Leads.
+
+**Subheadline:**  
+Turn the leads you already have into 90 days of extra listing appointments with AiPivot’s free Pipeline Growth Map for Australian real estate agents.
+
+**Bullets:**  
+- See exactly where your pipeline is leaking  
+- Find out how many extra listings you could squeeze from your current leads  
+- Get a 90-day AI-powered follow-up plan built around your business
+
+**Primary CTA:**  
+Get My Free Growth Map
+
+**Secondary CTA:**  
+Watch The 60-Second Breakdown
+
+**Trust line:**  
+Built for agents who are sick of wasting portal spend, missing follow-up, and leaving GCI on the table.
+
+This copy reflects the source material’s focus on a clear offer, direct value, and a simple growth system. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/183302786/e903fb42-7f39-4ca9-8309-96152381cbe5/Seven-Figure-Cheat-Sheet-KING-KONG.pdf)
+
+***
+
+### Pain section
+
+**Heading:**  
+Be Honest… How Many Of Your Leads Never Hear From You?
+
+**Body:**  
+Every month, agents pour serious money into portals, paid ads, socials, signboards and websites. Then the enquiry comes in at the worst possible time — during an open, on the road, at dinner, or buried under a hundred other things.  
+
+By the time you call them back, they’ve already spoken to another agent… or gone cold.  
+
+That’s the brutal truth: most agents do not have a lead problem. They have a follow-up problem. And that problem is quietly costing them listings, appraisals and commission.
+
+**Callout:**  
+You don’t need more leads. You need more conversations with the leads you already have.
+
+This is consistent with the source documents’ framing that the bottleneck is conversion, not just traffic volume. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/183302786/b3232b26-cc00-456c-a195-b6d179038896/5waystodoublesalesKINGKONG.pdf)
+
+***
+
+### Education section
+
+**Heading:**  
+Only 3% Of Your Market Is Ready To List Right Now.
+
+**Body:**  
+At any moment, only a tiny slice of owners are ready to sign a listing agreement today. Another group is researching. Another group knows they’ll need an agent soon. And a massive chunk isn’t ready yet — but will be later.  
+
+Most agents waste all their budget chasing the tiny 3% and completely ignore the 97% that needs to be warmed up, educated and followed up properly.  
+
+That’s why their marketing feels inconsistent. It’s not because the portals are broken. It’s because the system is.
+
+**Stats:**  
+- 3% ready now  
+- 17% researching  
+- 20% problem aware  
+- 60% not thinking about it yet
+
+**Closing line:**  
+AiPivot helps you work the 3% fast — and nurture the other 97% until they’re ready to raise their hand.
+
+This section comes from the “Larger Market Formula” in the source material. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/183302786/b3232b26-cc00-456c-a195-b6d179038896/5waystodoublesalesKINGKONG.pdf)
+
+***
+
+### Solution section
+
+**Heading:**  
+AiPivot Is The Follow-Up Machine Your Agency Never Had
+
+**Body:**  
+AiPivot plugs into the leads you’re already getting from portals, your website, social media, open homes and referral channels.  
+
+Then it replies fast, nurtures consistently, chases without sounding robotic, and pushes warm prospects toward inspections, appraisals and listing appointments.  
+
+Instead of relying on memory, spreadsheets, scribbled notes and “I’ll get back to them later,” you get a system that works your pipeline every day, every night, every weekend.
+
+**Feature list:**  
+- Instant lead response  
+- Smart SMS and email nurture  
+- Pipeline visibility and follow-up tracking  
+- AI-assisted appointment generation  
+- Better conversion from your existing lead sources
+
+This aligns with the client-getting system framework and value-first conversion narrative. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/183302786/e903fb42-7f39-4ca9-8309-96152381cbe5/Seven-Figure-Cheat-Sheet-KING-KONG.pdf)
+
+***
+
+### Growth Map section
+
+**Heading:**  
+What You Get In The 90-Day Pipeline Growth Map
+
+**Intro:**  
+This is not fluff, theory, or another “marketing audit” that tells you to post more on Instagram. This is a personalised growth map built around your numbers, your lead sources and your current pipeline.
+
+**Step 1:**  
+We Audit The Pipeline  
+We look at where your leads come from now — portals, website, socials, referrals, open homes — and what happens after they come in.
+
+**Step 2:**  
+We Expose The Leaks  
+We map your real-world journey from enquiry to inspection, appraisal, listing and sale, so you can see where follow-up is weak, delayed, inconsistent or missing.
+
+**Step 3:**  
+We Build The 90-Day Plan  
+We outline a practical AI-powered follow-up and nurture system you can use to turn more of your existing leads into conversations, appointments and listings over the next 90 days.
+
+**Outcomes:**  
+- How many extra listings may be sitting in your current database  
+- What messages to send and when  
+- How to follow up faster without doing more manual work  
+- What AiPivot would automate if you want us to build it
+
+This is modeled on the source PDFs’ free blueprint / strategy session mechanism. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/183302786/affeee1b-1ba5-441e-b9c8-b0372974f16c/High-Converting-Facebook-Ads-Swipe-File-KINGKONG.pdf)
+
+***
+
+### Who it’s for
+
+**Heading:**  
+Who This Is For
+
+**Bullets:**  
+- Australian real estate agents already generating leads  
+- Boutique principals and high-performing listing agents  
+- Teams spending on portals, digital marketing or social media  
+- Agents who know they’re underworking their database  
+- People serious about building a proper system
+
+**Subheading:**  
+Who It’s Not For
+
+**Bullets:**  
+- Brand-new agents with no pipeline  
+- People looking for a magic bullet without follow-up  
+- Anyone who wants “more leads” but refuses to fix conversion  
+- Tyre-kickers looking for free advice with no intention to act
+
+This follows the qualification and filtering style used in the source materials. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/183302786/affeee1b-1ba5-441e-b9c8-b0372974f16c/High-Converting-Facebook-Ads-Swipe-File-KINGKONG.pdf)
+
+***
+
+### Trust section
+
+**Heading:**  
+Why This Works
+
+**Body:**  
+Because the game is not just lead generation anymore. The agents who win are the agents who follow up fast, stay top of mind, and build a system that works leads long after the first enquiry comes in.  
+
+AiPivot is built around that exact problem: helping service businesses turn attention into leads, leads into appointments, and appointments into revenue.
+
+**Mini proof points:**  
+- Built for appointment-driven businesses  
+- Designed to capture the leads most agents forget  
+- Focused on pipeline, not vanity metrics
+
+This matches the source documents’ focus on measurable client-getting systems instead of vanity marketing. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/183302786/e903fb42-7f39-4ca9-8309-96152381cbe5/Seven-Figure-Cheat-Sheet-KING-KONG.pdf)
+
+***
+
+### Final CTA section
+
+**Heading:**  
+Ready To Stop Leaking Listings?
+
+**Body:**  
+If you’re serious about getting more listing appointments from the leads you already have, apply for your free 90-Day Pipeline Growth Map now.  
+
+We only do a limited number each month so we can actually make them useful.
+
+**Form fields:**  
+- First name  
+- Last name  
+- Email  
+- Mobile  
+- Agency name  
+- Suburb / market  
+- Deals per month  
+- Main lead source  
+- Biggest pipeline problem
+
+**Button:**  
+Apply For My Free Growth Map
+
+**Small print:**  
+No fluff. No obligation. If it looks like a fit, we’ll invite you to book a short strategy call and walk you through the map.
+
+This keeps the CTA singular and value-led, consistent with the source strategy. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/183302786/b3232b26-cc00-456c-a195-b6d179038896/5waystodoublesalesKINGKONG.pdf)
+
+***
+
+### Thank-you / booking section
+
+After successful form submission, show:
+
+**Heading:**  
+Application Received. Nice.
+
+**Body:**  
+Now lock in a short call so we can sanity-check your numbers, look at how your pipeline works today, and build your 90-Day Growth Map properly.
+
+**Button:**  
+Book My Strategy Call
+
+This reflects the source strategy of using the free offer to move prospects into a strategy call. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/183302786/affeee1b-1ba5-441e-b9c8-b0372974f16c/High-Converting-Facebook-Ads-Swipe-File-KINGKONG.pdf)
+
+***
+
+## Video section requirements
+
+If the current build already has video or media sections, adapt them rather than deleting them.
+
+Create or refine placeholders for 3 videos:
+
+- Stop Torching Your Portal Leads  
+- The 3% Truth No Agent Wants To Hear  
+- What Happens In A 90-Day Growth Map?
+
+Use premium cinematic cards or embedded video blocks with strong poster styling. This supports the video-led funnel approach inspired by the ad swipe file and your HeyGen workflow. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/images/183302786/8962e555-061a-4ed4-9da5-0f9da1b08d37/image.jpg)
+
+***
+
+## UX rules
+
+- Every major section should end with a soft CTA or visual prompt toward the form.
+- Sticky CTA on mobile.
+- Navigation, if present, should be minimal and anchor-based.
+- Use one main conversion action throughout.
+- If there are existing sections that distract from the offer, remove or collapse them.
+- If current testimonials / stats are fake, placeholder, or weak, replace with neutral trust framing instead of inventing proof.
+
+This preserves direct-response discipline and avoids watering down the offer. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/183302786/affeee1b-1ba5-441e-b9c8-b0372974f16c/High-Converting-Facebook-Ads-Swipe-File-KINGKONG.pdf)
+
+***
+
+## Form and automation requirements
+
+If the current project already submits somewhere, keep that unless broken. Otherwise implement in a clean, configurable way.
+
+### Must support:
+- POST to configurable webhook / endpoint
+- hidden fields: utm_source, utm_medium, utm_campaign, referrer, timestamp
+- success state
+- booking step
+- easy-to-edit booking link
+- validation and error handling
+- mobile friendly form UX
+
+### Suggested lead status:
+- `growth_map_applied`
+- `growth_map_booked`
+- `growth_map_no_booking_yet`
+
+This keeps the funnel measurable and aligned with the source documents’ conversion logic. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/183302786/b3232b26-cc00-456c-a195-b6d179038896/5waystodoublesalesKINGKONG.pdf)
+
+***
+
+## Suggested code organisation
+
+If using React/component architecture, move toward this structure **without unnecessary rewrites**:
+
+- `HeroSection`
+- `PainSection`
+- `EducationSection`
+- `SolutionSection`
+- `GrowthMapSection`
+- `WhoItsForSection`
+- `TrustSection`
+- `LeadFormSection`
+- `ThankYouSection`
+- `StickyMobileCTA`
+
+Also create:
+- a `content` or `copy` config file for all text
+- a `config` object for booking link and webhook URL
+- reusable CTA button component if one already exists
+
+If not using React, structure the existing code with clear section IDs and editable content objects where possible.
+
+***
+
+## Content management preference
+
+Refactor so I can easily edit:
+
+- headline copy
+- subheads
+- bullets
+- CTA labels
+- booking link
+- webhook URL
+- video URLs
+- form labels
+
+Do this without needing to hunt through massive files.
+
+***
+
+## Visual prompt for hero / media direction
+
+Use this direction when editing hero visuals or video placeholders:
+
+A confident Australian real estate growth expert stands in a modern office overlooking a city skyline at dusk. The look is cinematic, premium, high-contrast, and sharp, with shallow depth of field, soft city-light glow, subtle glass reflections, and rich dark tones with teal highlights. It should feel like a Netflix business documentary mixed with a high-converting premium ad funnel. Leave room for bold on-screen text and clear CTA overlays. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/images/183302786/8962e555-061a-4ed4-9da5-0f9da1b08d37/image.jpg)
+
+***
+
+## Final instruction to Replit agent
+
+Do not give me a prettier generic website. Give me a sharper **sales funnel**. Improve the existing build in place, preserve working parts, and make every section serve one job: get real estate agents to apply for and book the 90-Day Pipeline Growth Map. That is the offer, the CTA, and the whole point of the page. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/183302786/e903fb42-7f39-4ca9-8309-96152381cbe5/Seven-Figure-Cheat-Sheet-KING-KONG.pdf)
+
+If you want, I can also do the next layer: a **backend / webhook prompt** for Replit agent so it sets up form capture, lead status handling, and booking logic properly.
