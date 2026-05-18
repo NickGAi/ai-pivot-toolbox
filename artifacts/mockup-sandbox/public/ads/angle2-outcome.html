@@ -5,171 +5,98 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { width: 100vw; height: 100vh; overflow: hidden; background: #06050f; }
+  html, body { width: 100vw; height: 100vh; overflow: hidden; }
   .ad {
     width: 100vw; height: 100vh;
-    background: #06050f;
+    background: #0ea5e9;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 6vh 7vw;
-    position: relative;
-    overflow: hidden;
+    padding: 7vh 8vw;
   }
-  .glow {
-    position: absolute;
-    top: -15vh; right: -15vw;
-    width: 65vw; height: 65vh;
-    background: radial-gradient(circle, rgba(14,165,233,0.2) 0%, transparent 65%);
-    pointer-events: none;
-  }
-  .glow2 {
-    position: absolute;
-    bottom: -10vh; left: -10vw;
-    width: 50vw; height: 50vh;
-    background: radial-gradient(circle, rgba(6,182,212,0.1) 0%, transparent 65%);
-    pointer-events: none;
-  }
-  .logo { display: flex; align-items: center; gap: 1.2vw; position: relative; z-index: 2; }
-  .logo-mark {
-    width: 5vh; height: 5vh; border-radius: 1vh;
-    background: linear-gradient(135deg, #0ea5e9, #06b6d4);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700; font-size: 2vh; color: #fff; flex-shrink: 0;
-  }
-  .logo-name {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700; font-size: 2.2vh; color: #f8fafc; letter-spacing: -0.02em;
-  }
-  .middle { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 2.8vh; }
-  .headline {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    font-size: clamp(22px, 6.2vw, 54px);
-    line-height: 1.05;
-    color: #f8fafc;
-    letter-spacing: -0.04em;
-    text-transform: uppercase;
-  }
-  .headline .blue {
-    background: linear-gradient(90deg, #0ea5e9, #06b6d4);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .or-free {
-    display: inline-block;
-    background: rgba(14,165,233,0.15);
-    border: 1.5px solid #0ea5e9;
-    color: #0ea5e9;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    font-size: clamp(12px, 1.6vh, 15px);
-    padding: 0.8vh 2vw;
-    border-radius: 0.5vh;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    margin-top: 0.5vh;
-    align-self: flex-start;
-  }
-  .body {
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(13px, 1.85vh, 17px);
-    color: rgba(248,250,252,0.6);
-    line-height: 1.55;
-  }
-  .proof-row {
+  .logo {
     display: flex;
-    gap: 3vw;
-    flex-wrap: wrap;
+    align-items: center;
+    gap: 2.5vw;
   }
-  .proof-item {
-    display: flex;
-    flex-direction: column;
-  }
-  .proof-num {
+  .logo-svg { flex-shrink: 0; width: 6vh; height: 6vh; }
+  .logo-wordmark { display: flex; flex-direction: column; line-height: 1; }
+  .logo-main {
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
-    font-size: clamp(20px, 3.5vh, 32px);
-    color: #0ea5e9;
-    line-height: 1;
+    font-size: 2.4vh;
+    color: #ffffff;
+    letter-spacing: -0.03em;
   }
-  .proof-label {
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(10px, 1.35vh, 12px);
-    color: rgba(248,250,252,0.45);
+  .logo-sub {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 1.1vh;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
     margin-top: 0.3vh;
   }
+  .content { display: flex; flex-direction: column; gap: 3vh; }
+  .headline {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 900;
+    font-size: clamp(20px, 6vh, 52px);
+    line-height: 1.0;
+    color: #0a0f1e;
+    letter-spacing: -0.04em;
+  }
+  .benefit {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: clamp(13px, 2vh, 18px);
+    color: rgba(10,15,30,0.8);
+    line-height: 1.5;
+  }
   .cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 1.5vw;
-    background: linear-gradient(135deg, #0ea5e9, #06b6d4);
-    color: #fff;
+    display: inline-block;
+    background: #0a0f1e;
+    color: #ffffff;
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
-    font-size: clamp(13px, 1.9vh, 17px);
-    padding: 2vh 4vw;
-    border-radius: 0.7vh;
+    font-size: clamp(12px, 1.9vh, 17px);
+    padding: 2vh 4.5vw;
+    border-radius: 0.6vh;
     letter-spacing: -0.01em;
     align-self: flex-start;
-  }
-  .footer {
-    position: relative; z-index: 2;
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .domain { font-family: 'Inter', sans-serif; font-size: clamp(10px, 1.5vh, 13px); color: rgba(248,250,252,0.25); }
-  .badge {
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(9px, 1.3vh, 11px);
-    color: rgba(6,182,212,0.7);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    border: 1px solid rgba(6,182,212,0.3);
-    padding: 0.5vh 1.5vw;
-    border-radius: 0.4vh;
   }
 </style>
 </head>
 <body>
 <div class="ad">
-  <div class="glow"></div>
-  <div class="glow2"></div>
   <div class="logo">
-    <div class="logo-mark">AI</div>
-    <span class="logo-name">AIPivot</span>
+    <svg class="logo-svg" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect width="40" height="40" rx="9" fill="#0ea5e9"/>
+      <path d="M15 14 L15 11 Q15 8 20 8 Q25 8 25 11 L25 14" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <rect x="7" y="14" width="26" height="18" rx="3" fill="white" fill-opacity="0.15" stroke="white" stroke-width="2"/>
+      <line x1="7" y1="23" x2="33" y2="23" stroke="white" stroke-width="1.5" stroke-opacity="0.8"/>
+      <rect x="17.5" y="21" width="5" height="4" rx="1" fill="white" fill-opacity="0.9"/>
+      <text x="20" y="20" text-anchor="middle" dominant-baseline="middle" fill="white" font-family="'Space Grotesk', sans-serif" font-weight="800" font-size="7.5" letter-spacing="1">AI</text>
+    </svg>
+    <div class="logo-wordmark">
+      <span class="logo-main">AI Pivot</span>
+      <span class="logo-sub">Toolbox</span>
+    </div>
   </div>
-  <div class="middle">
+
+  <div class="content">
     <div class="headline">
-      Rank #1 on<br><span class="blue">Google & AI Search</span><br>in 60 days.
+      Get your business<br>recommended by<br>ChatGPT in 60 days.
     </div>
-    <div class="or-free">Or we work for free — guaranteed.</div>
-    <div class="proof-row">
-      <div class="proof-item">
-        <span class="proof-num">60</span>
-        <span class="proof-label">Day results</span>
-      </div>
-      <div class="proof-item">
-        <span class="proof-num">24/7</span>
-        <span class="proof-label">AI running</span>
-      </div>
-      <div class="proof-item">
-        <span class="proof-num">100%</span>
-        <span class="proof-label">Leads followed up</span>
-      </div>
+    <div class="benefit">
+      Guaranteed AI search visibility for Australian businesses.
     </div>
-    <div class="cta">Get Free Strategy Session →</div>
+    <a class="cta" href="https://aipivot.com.au/book">Book Your Free Growth Map Call →</a>
   </div>
-  <div class="footer">
-    <span class="domain">aipivot.com.au</span>
-    <span class="badge">Brisbane · Australia-wide</span>
-  </div>
+
 </div>
 </body>
 </html>
