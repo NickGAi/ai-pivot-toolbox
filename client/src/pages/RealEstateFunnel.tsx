@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 
@@ -54,7 +54,62 @@ interface FormData {
 type FormErrors = Partial<Record<keyof FormData, string>>;
 
 // ─── VIDEO PLACEHOLDER ───────────────────────────────────────────────────────
-function VideoCinematic({ id, label, sublabel }: { id: string; label: string; sublabel: string }) {
+function VideoCinematic({ id, label, sublabel, src }: { id: string; label: string; sublabel: string; src?: string }) {
+  const [playing, setPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  function handlePlayClick() {
+    if (videoRef.current) {
+      videoRef.current.play();
+      setPlaying(true);
+    }
+  }
+
+  if (src) {
+    return (
+      <div
+        id={id}
+        className="relative w-full aspect-video rounded-2xl overflow-hidden"
+        style={{
+          boxShadow: "0 0 60px rgba(14,165,233,0.10), 0 0 120px rgba(14,165,233,0.05)",
+          border: "1px solid rgba(14,165,233,0.18)",
+        }}
+      >
+        <video
+          ref={videoRef}
+          src={src}
+          controls={playing}
+          playsInline
+          preload="metadata"
+          className="w-full h-full object-cover"
+          onEnded={() => setPlaying(false)}
+        />
+        {!playing && (
+          <button
+            onClick={handlePlayClick}
+            aria-label={`Play ${label}`}
+            className="absolute inset-0 flex flex-col items-center justify-center w-full h-full group"
+            style={{ background: "rgba(7,9,15,0.45)" }}
+          >
+            <div
+              className="w-20 h-20 rounded-full flex items-center justify-center mb-4 transition-transform group-hover:scale-110"
+              style={{
+                background: "rgba(14,165,233,0.15)",
+                border: "2px solid rgba(14,165,233,0.5)",
+                boxShadow: "0 0 40px rgba(14,165,233,0.3)",
+              }}
+            >
+              <svg className="w-8 h-8 ml-1" fill="#0ea5e9" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </div>
+            <p className="text-white font-bold text-lg tracking-tight drop-shadow">{label}</p>
+          </button>
+        )}
+      </div>
+    );
+  }
+
   return (
     <div
       id={id}
@@ -65,19 +120,14 @@ function VideoCinematic({ id, label, sublabel }: { id: string; label: string; su
         border: "1px solid rgba(14,165,233,0.15)",
       }}
     >
-      {/* Subtle scan-line texture */}
       <div className="absolute inset-0 opacity-[0.03]" style={{
         backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.5) 2px, rgba(255,255,255,0.5) 3px)",
       }} />
-
-      {/* Corner accents */}
       <div className="absolute top-4 left-4 w-6 h-6 border-t-2 border-l-2 border-[#0ea5e9]/40 rounded-tl" />
       <div className="absolute top-4 right-4 w-6 h-6 border-t-2 border-r-2 border-[#0ea5e9]/40 rounded-tr" />
       <div className="absolute bottom-4 left-4 w-6 h-6 border-b-2 border-l-2 border-[#0ea5e9]/40 rounded-bl" />
       <div className="absolute bottom-4 right-4 w-6 h-6 border-b-2 border-r-2 border-[#0ea5e9]/40 rounded-br" />
-
       <div className="relative z-10 text-center px-8">
-        {/* Play button */}
         <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-5" style={{
           background: "rgba(14,165,233,0.12)",
           border: "2px solid rgba(14,165,233,0.4)",
@@ -345,7 +395,8 @@ export default function RealEstateFunnel() {
             <VideoCinematic
               id="video1"
               label="Stop Torching Your Portal Leads"
-              sublabel="60-sec explainer — upload your video to replace this placeholder"
+              sublabel="60-sec explainer"
+              src="/videos/video1.mp4"
             />
           </div>
         </div>
@@ -414,7 +465,8 @@ export default function RealEstateFunnel() {
             <VideoCinematic
               id="video2"
               label="The 3% Truth No Agent Wants To Hear"
-              sublabel="Market education explainer — upload your video to replace this placeholder"
+              sublabel="Market education explainer"
+              src="/videos/video2.mp4"
             />
           </div>
 
