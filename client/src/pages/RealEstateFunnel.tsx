@@ -88,7 +88,7 @@ function VideoCinematic({ id, label, sublabel, youtubeId, src }: {
           <iframe
             src={`https://www.youtube.com/embed/${youtubeId}?rel=0&modestbranding=1&playsinline=1&color=white`}
             title={label}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
             className="absolute inset-0 w-full h-full border-0"
           />
@@ -438,7 +438,7 @@ export default function RealEstateFunnel() {
               id="video1"
               label="Stop Torching Your Portal Leads"
               sublabel="60-sec explainer"
-              youtubeId="YOUTUBE_ID_1"
+              youtubeId="sV5m8tYaTlE"
             />
           </div>
         </div>
@@ -508,7 +508,7 @@ export default function RealEstateFunnel() {
               id="video2"
               label="The 3% Truth No Agent Wants To Hear"
               sublabel="Market education explainer"
-              youtubeId="YOUTUBE_ID_2"
+              youtubeId="AvYfF2WArVk"
             />
           </div>
 
@@ -740,7 +740,7 @@ export default function RealEstateFunnel() {
             id="video3"
             label="What Happens In A 90-Day Growth Map?"
             sublabel="Walkthrough of the session and what you'll walk away with"
-            youtubeId="YOUTUBE_ID_3"
+            youtubeId="ckDfcXFRuA4"
           />
         </div>
       </section>
