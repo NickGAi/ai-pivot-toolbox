@@ -4,7 +4,7 @@ import { apiRequest } from "@/lib/queryClient";
 
 // ─── CONFIG ──────────────────────────────────────────────────────────────────
 const CONFIG = {
-  bookingUrl: "https://aipivottoolbox.com.au/book",
+  bookingUrl: "/book",
   apiEndpoint: "/api/real-estate-funnel",
 };
 
@@ -173,6 +173,24 @@ export default function RealEstateFunnel() {
     referrer: "",
   });
 
+  // Page title + meta
+  useEffect(() => {
+    document.title = "Free 90-Day Pipeline Growth Map | Australian Real Estate Agents | AiPivot";
+    const desc = document.querySelector('meta[name="description"]');
+    if (desc) desc.setAttribute("content", "Stop leaking listing appointments. Get a free 90-Day Pipeline Growth Map — a personalised AI-powered follow-up plan built around your real estate pipeline, your leads, and your market.");
+    let robots = document.querySelector('meta[name="robots"]');
+    if (!robots) {
+      robots = document.createElement("meta");
+      robots.setAttribute("name", "robots");
+      document.head.appendChild(robots);
+    }
+    robots.setAttribute("content", "noindex, nofollow");
+    return () => {
+      document.title = "AI Pivot Toolbox | AI SEO & Automation Agency Australia";
+      robots?.setAttribute("content", "index, follow");
+    };
+  }, []);
+
   // Capture UTM / referrer on mount
   useEffect(() => {
     const p = new URLSearchParams(window.location.search);
@@ -248,8 +266,6 @@ export default function RealEstateFunnel() {
 
           <a
             href={CONFIG.bookingUrl}
-            target="_blank"
-            rel="noopener noreferrer"
             className="inline-block font-bold text-white text-lg px-10 py-5 rounded-xl w-full sm:w-auto"
             style={{
               background: "linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%)",
@@ -634,17 +650,63 @@ export default function RealEstateFunnel() {
         </div>
       </section>
 
+      {/* ── GUARANTEE ────────────────────────────────────────────────────── */}
+      <section className="py-16 px-4">
+        <div className="max-w-3xl mx-auto">
+          <div className="rounded-2xl p-10 text-center relative overflow-hidden"
+            style={{
+              background: "linear-gradient(135deg, #07090f 0%, #0c1420 100%)",
+              border: "1px solid rgba(14,165,233,0.25)",
+              boxShadow: "0 0 80px rgba(14,165,233,0.07)",
+            }}>
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-px"
+              style={{ background: "linear-gradient(90deg, transparent, #0ea5e9, transparent)" }} />
+            <p className="text-[#0ea5e9] text-xs font-bold uppercase tracking-[0.2em] mb-5">The AiPivot Promise</p>
+            <h2 className="text-2xl sm:text-4xl font-bold text-white mb-6 leading-tight">
+              If You Don't Walk Away With At Least<br />
+              <span style={{ color: "#0ea5e9" }}>One Clear, Actionable Insight</span> From<br />
+              Your Growth Map Session —<br />
+              We'll Give You Back The Hour.
+            </h2>
+            <p className="text-slate-400 text-lg max-w-xl mx-auto mb-8 leading-relaxed">
+              No upsell pressure. No templated advice. If we can't find at least one specific place where your pipeline is leaking money — the call is on us and you owe us nothing.
+            </p>
+            <div className="flex flex-wrap justify-center gap-6 text-sm">
+              {[
+                "Free. No hidden cost.",
+                "No lock-in commitment.",
+                "Real numbers, not theory.",
+              ].map(p => (
+                <div key={p} className="flex items-center gap-2 text-slate-300">
+                  <span className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
+                    style={{ background: "rgba(14,165,233,0.15)", border: "1px solid rgba(14,165,233,0.4)" }}>
+                    <svg className="w-3 h-3 text-[#0ea5e9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </span>
+                  {p}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── FORM ─────────────────────────────────────────────────────────── */}
       <section id="apply" className="py-24 px-4" style={{ background: "#0b0e16" }}>
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-14">
-            <SectionLabel>Limited Spots Each Month</SectionLabel>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest mb-6"
+              style={{ background: "rgba(239,68,68,0.1)", border: "1px solid rgba(239,68,68,0.25)", color: "#f87171" }}>
+              <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse" />
+              Only 8 Growth Maps available this month
+            </div>
+            <SectionLabel>Apply Now</SectionLabel>
             <h2 className="text-3xl sm:text-5xl font-bold leading-tight mb-5">
               Ready To Stop<br />Leaking Listings?
             </h2>
             <p className="text-slate-400 text-lg max-w-lg mx-auto">
-              If you're serious about getting more listing appointments from the leads you already have, apply now.
-              We only do a limited number each month so we can actually make them useful.
+              Fill out the form. We review every application personally. If it's a fit, we'll send you a booking link for your free Growth Map session.
             </p>
           </div>
 
