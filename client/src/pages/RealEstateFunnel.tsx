@@ -698,7 +698,8 @@ export default function RealEstateFunnel() {
           <VideoCinematic
             id="video3"
             label="What Happens In A 90-Day Growth Map?"
-            sublabel="Walkthrough of the session and what you'll walk away with — upload your video to replace this placeholder"
+            sublabel="Walkthrough of the session and what you'll walk away with"
+            src="/videos/video3.mp4"
           />
         </div>
       </section>
