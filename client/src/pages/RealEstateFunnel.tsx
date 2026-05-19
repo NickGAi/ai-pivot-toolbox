@@ -67,14 +67,14 @@ function VideoCinematic({ id, label, sublabel, src }: { id: string; label: strin
 
   if (src) {
     return (
-      <div
-        id={id}
-        className="relative w-full aspect-video rounded-2xl overflow-hidden"
-        style={{
-          boxShadow: "0 0 60px rgba(14,165,233,0.10), 0 0 120px rgba(14,165,233,0.05)",
-          border: "1px solid rgba(14,165,233,0.18)",
-        }}
-      >
+      <div className="flex justify-center" id={id}>
+        <div
+          className="relative w-full max-w-sm aspect-[9/16] rounded-2xl overflow-hidden"
+          style={{
+            boxShadow: "0 0 60px rgba(14,165,233,0.10), 0 0 120px rgba(14,165,233,0.05)",
+            border: "1px solid rgba(14,165,233,0.18)",
+          }}
+        >
         <video
           ref={videoRef}
           src={src}
@@ -106,6 +106,7 @@ function VideoCinematic({ id, label, sublabel, src }: { id: string; label: strin
             <p className="text-white font-bold text-lg tracking-tight drop-shadow">{label}</p>
           </button>
         )}
+        </div>
       </div>
     );
   }
