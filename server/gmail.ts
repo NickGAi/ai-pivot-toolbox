@@ -2,12 +2,19 @@
 // Uses proxy pattern with automatic OAuth2 token refresh
 import { ReplitConnectors } from "@replit/connectors-sdk";
 
+function rfc2047Subject(subject: string): string {
+  if (/[^\x00-\x7F]/.test(subject)) {
+    return `=?UTF-8?B?${Buffer.from(subject, "utf-8").toString("base64")}?=`;
+  }
+  return subject;
+}
+
 async function sendGmail(to: string, subject: string, htmlBody: string): Promise<void> {
   const connectors = new ReplitConnectors();
   const emailLines = [
     "From: me",
     `To: ${to}`,
-    `Subject: ${subject}`,
+    `Subject: ${rfc2047Subject(subject)}`,
     "Content-Type: text/html; charset=utf-8",
     "",
     htmlBody,
