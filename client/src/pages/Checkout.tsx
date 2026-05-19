@@ -226,23 +226,22 @@ export default function Checkout() {
                 ) : (
                   <div className="space-y-3">
                     {items.map(({ tool, quantity }) => (
-                      <div key={tool.id} className="flex justify-between gap-3 text-sm" data-testid={`order-item-${tool.id}`}>
+                      <div key={tool.id} className="flex items-start justify-between gap-3 text-sm" data-testid={`order-item-${tool.id}`}>
                         <div className="min-w-0">
                           <p className="font-medium text-foreground truncate">{tool.name}</p>
                           <p className="text-muted-foreground text-xs">
-                            {quantity > 1 ? `×${quantity} ` : ""}
-                            {tool.billing === "monthly" ? "monthly" : "one-time"}
+                            {quantity > 1 ? `×${quantity} · ` : ""}
+                            {tool.billing === "monthly" ? "Monthly" : "One-time"}
                           </p>
                         </div>
-                        <p className="font-semibold text-foreground shrink-0">
-                          ${(tool.price * quantity).toLocaleString()}
-                        </p>
+                        <span className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary font-medium shrink-0">
+                          {tool.billing === "monthly" ? "Monthly" : "Once"}
+                        </span>
                       </div>
                     ))}
 
-                    <div className="border-t border-border pt-3 flex justify-between items-center">
-                      <p className="font-bold text-foreground">Total</p>
-                      <p className="font-bold text-foreground text-xl">${totalPrice.toLocaleString()}</p>
+                    <div className="border-t border-border pt-3">
+                      <p className="text-xs text-muted-foreground text-center">Custom pricing included in your proposal</p>
                     </div>
                   </div>
                 )}

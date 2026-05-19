@@ -71,24 +71,10 @@ function ToolCard({ tool }: { tool: Tool }) {
           ))}
         </ul>
 
-        <div className="border-t border-border pt-5 flex items-end justify-between gap-4">
-          <div>
-            {tool.agencyPrice && (
-              <p className="text-xs text-muted-foreground line-through mb-0.5">
-                Agencies charge ${tool.agencyPrice.toLocaleString()}
-              </p>
-            )}
-            <p className="text-2xl font-bold text-foreground">
-              ${tool.price.toLocaleString()}
-            </p>
-            <p className="text-muted-foreground text-xs">
-              {tool.billing === "monthly" ? "per month" : "one-time"}
-            </p>
-          </div>
-
+        <div className="border-t border-border pt-5">
           <button
             onClick={() => addItem(tool)}
-            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-sm transition-all duration-200 ${
+            className={`w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-semibold text-sm transition-all duration-200 ${
               inCart
                 ? "bg-primary/20 text-primary border border-primary/30"
                 : "bg-primary text-primary-foreground hover:bg-primary/90 active:scale-95"
@@ -97,7 +83,7 @@ function ToolCard({ tool }: { tool: Tool }) {
             aria-label={`${inCart ? "Added" : "Add"} ${tool.name} to quote`}
           >
             <ShoppingCart className="w-4 h-4" />
-            {inCart ? "Added ✓" : "Add to Quote"}
+            {inCart ? "Added to Quote ✓" : "Add to Quote — Get Pricing"}
           </button>
         </div>
       </div>

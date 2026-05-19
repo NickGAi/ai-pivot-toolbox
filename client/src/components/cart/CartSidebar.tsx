@@ -97,26 +97,18 @@ export function CartSidebar() {
                     </div>
                   </div>
                   <div className="text-right shrink-0">
-                    <p className="font-bold text-foreground text-sm">
-                      ${(tool.price * quantity).toLocaleString()}
-                    </p>
-                    <p className="text-muted-foreground text-xs mt-0.5">
-                      {tool.billing === "monthly" ? "/mo" : "once"}
-                    </p>
+                    <span className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary font-medium">
+                      {tool.billing === "monthly" ? "Monthly" : "One-time"}
+                    </span>
                   </div>
                 </div>
               ))}
             </div>
 
             <div className="border-t border-border px-6 py-5 space-y-4">
-              <div className="flex items-start justify-between">
-                <div>
-                  <p className="text-muted-foreground text-sm">Total</p>
-                  <p className="text-xs text-muted-foreground mt-0.5">Mix of monthly &amp; one-time</p>
-                </div>
-                <div className="text-right">
-                  <p className="font-bold text-foreground text-xl">${totalPrice.toLocaleString()}</p>
-                </div>
+              <div className="rounded-xl bg-primary/10 border border-primary/20 px-4 py-3">
+                <p className="text-primary font-semibold text-sm">Custom pricing for every quote</p>
+                <p className="text-muted-foreground text-xs mt-0.5">Submit your selection and we'll send a tailored proposal within 24 hours.</p>
               </div>
 
               <button
