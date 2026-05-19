@@ -1,15 +1,32 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
-import { Menu, X, ShoppingCart, Wrench } from "lucide-react";
+import { Menu, X, ShoppingCart, Wrench, ChevronDown, LayoutGrid, MapPin } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
 import { useCart } from "@/context/CartContext";
 import { Link } from "wouter";
 
+const toolboxItems = [
+  { href: "/toolbox", label: "AI Toolbox", description: "Browse & build your quote", icon: LayoutGrid },
+  { href: "/real-estate-pipeline-growth-map", label: "Real Estate Growth Map", description: "Free pipeline audit for agents", icon: MapPin },
+];
+
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [toolboxOpen, setToolboxOpen] = useState(false);
+  const toolboxRef = useRef<HTMLDivElement>(null);
   const { totalItems, openCart } = useCart();
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (toolboxRef.current && !toolboxRef.current.contains(e.target as Node)) {
+        setToolboxOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -58,14 +75,49 @@ export function Navbar() {
               ))}
             </nav>
 
-            <Link
-              href="/toolbox"
-              className="flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors font-semibold text-sm"
-              data-testid="nav-link-toolbox"
+            <div
+              ref={toolboxRef}
+              className="relative"
+              onMouseEnter={() => setToolboxOpen(true)}
+              onMouseLeave={() => setToolboxOpen(false)}
             >
-              <Wrench className="w-4 h-4" />
-              Toolbox
-            </Link>
+              <button
+                className="flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors font-semibold text-sm"
+                onClick={() => setToolboxOpen(!toolboxOpen)}
+                aria-expanded={toolboxOpen}
+                data-testid="nav-link-toolbox"
+              >
+                <Wrench className="w-4 h-4" />
+                Toolbox
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${toolboxOpen ? "rotate-180" : ""}`} />
+              </button>
+
+              {toolboxOpen && (
+                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 z-50">
+                  <div className="bg-background border border-border rounded-2xl shadow-xl shadow-black/20 overflow-hidden min-w-[260px]">
+                    {toolboxItems.map((item) => {
+                      const Icon = item.icon;
+                      return (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className="flex items-start gap-3 px-4 py-3.5 hover:bg-muted transition-colors group"
+                          onClick={() => setToolboxOpen(false)}
+                        >
+                          <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-primary/20 transition-colors">
+                            <Icon className="w-4 h-4 text-primary" />
+                          </div>
+                          <div>
+                            <p className="font-semibold text-foreground text-sm">{item.label}</p>
+                            <p className="text-muted-foreground text-xs mt-0.5">{item.description}</p>
+                          </div>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
 
             <ThemeToggle />
 
@@ -135,14 +187,30 @@ export function Navbar() {
                 {link.label}
               </a>
             ))}
-            <Link
-              href="/toolbox"
-              className="flex items-center gap-2 text-primary font-semibold py-2"
-              onClick={() => setMobileOpen(false)}
-            >
-              <Wrench className="w-4 h-4" />
-              AI Toolbox
-            </Link>
+            <div className="flex flex-col gap-1">
+              <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground px-1 mt-1">
+                <Wrench className="w-3.5 h-3.5" /> Toolbox
+              </p>
+              {toolboxItems.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="flex items-center gap-3 py-2.5 px-2 rounded-xl hover:bg-muted transition-colors"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                      <Icon className="w-3.5 h-3.5 text-primary" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-foreground text-sm">{item.label}</p>
+                      <p className="text-muted-foreground text-xs">{item.description}</p>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
             <a href="/#contact" className="btn btn-primary mt-2" onClick={() => setMobileOpen(false)}
               aria-label="Book your free AI growth map call"
             >
