@@ -866,7 +866,7 @@ export default function RealEstateFunnel() {
       {/* ── FOOTER ───────────────────────────────────────────────────────── */}
       <footer className="py-10 px-4 text-center" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
         <p className="text-slate-600 text-sm">
-          © {new Date().getFullYear()} AiPivot · aipivottoolbox.com.au ·{" "}
+          © {new Date().getFullYear()} AI Pivot Toolbox · aipivot.com.au ·{" "}
           <a href="/privacy" className="hover:text-slate-400 transition-colors">Privacy</a>
         </p>
       </footer>
