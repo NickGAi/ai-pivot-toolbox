@@ -338,6 +338,17 @@ export default function RealEstateFunnel() {
       style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif", background: "#07090f" }}
     >
 
+      {/* ── BACK LINK ────────────────────────────────────────────────────── */}
+      <div className="absolute top-5 left-4 sm:left-8 z-50">
+        <a
+          href="/"
+          className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors text-sm font-medium"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          Back to home
+        </a>
+      </div>
+
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
       <section className="relative pt-16 pb-20 px-4 overflow-hidden">
         {/* Background glow */}
