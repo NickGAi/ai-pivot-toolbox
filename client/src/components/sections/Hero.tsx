@@ -79,7 +79,7 @@ export function Hero() {
             {/* Mobile: Wrapped grid */}
             <div className="flex flex-wrap justify-center gap-3 sm:hidden">
               {[...logosRow1, ...logosRow2.slice(0, 4)].map((logo, i) => (
-                <div key={i} className="text-xs font-bold text-foreground/40 px-2 py-1">
+                <div key={i} className="text-xs font-bold text-foreground/60 px-2 py-1">
                   {logo}
                 </div>
               ))}
@@ -90,7 +90,7 @@ export function Hero() {
               <div className="relative overflow-hidden mb-6">
                 <div className="flex animate-marquee-left whitespace-nowrap">
                   {[...logosRow1, ...logosRow1].map((logo, i) => (
-                    <div key={i} className="mx-8 text-xl font-bold text-foreground/40 hover:text-foreground/70 transition-colors flex-shrink-0">
+                    <div key={i} className="mx-8 text-xl font-bold text-foreground/60 hover:text-foreground/80 transition-colors flex-shrink-0">
                       {logo}
                     </div>
                   ))}
@@ -99,7 +99,7 @@ export function Hero() {
               <div className="relative overflow-hidden">
                 <div className="flex animate-marquee-right whitespace-nowrap">
                   {[...logosRow2, ...logosRow2].map((logo, i) => (
-                    <div key={i} className="mx-8 text-xl font-bold text-foreground/40 hover:text-foreground/70 transition-colors flex-shrink-0">
+                    <div key={i} className="mx-8 text-xl font-bold text-foreground/60 hover:text-foreground/80 transition-colors flex-shrink-0">
                       {logo}
                     </div>
                   ))}
