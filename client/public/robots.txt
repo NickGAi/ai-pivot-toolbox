@@ -7,17 +7,14 @@ Allow: /
 # Sitemap
 Sitemap: https://aipivot.com.au/sitemap.xml
 
-# Crawl-delay for polite crawling
-Crawl-delay: 1
-
-# Allow search engine indexing of all public content
+# Search engines
 User-agent: Googlebot
 Allow: /
 
 User-agent: Bingbot
 Allow: /
 
-# AI Crawlers - Allow for GEO/AEO/LLM optimization
+# AI Crawlers - Allow for GEO/AEO/LLM optimisation
 User-agent: GPTBot
 Allow: /
 
