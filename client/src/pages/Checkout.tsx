@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { trackEvent, GA_EVENTS } from "@/lib/analytics";
+import { pixelTrack } from "@/lib/pixel";
 import { motion } from "framer-motion";
 import { ArrowLeft, CheckCircle2, ShoppingBag } from "lucide-react";
 import { useLocation } from "wouter";
@@ -47,6 +48,7 @@ export default function Checkout() {
           service: "AI Toolbox Order",
         }),
       });
+      pixelTrack("Lead", { content_name: "Toolbox Quote", value: totalPrice, currency: "AUD" });
       trackEvent(GA_EVENTS.QUOTE_REQUEST, {
         value: totalPrice,
         currency: "AUD",

@@ -1,12 +1,17 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { trackEvent, GA_EVENTS } from "@/lib/analytics";
+import { pixelTrack } from "@/lib/pixel";
 
 export function Contact() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    pixelTrack("Contact");
+  }, []);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -31,6 +36,7 @@ export function Contact() {
       const data = await response.json();
 
       if (data.success) {
+        pixelTrack("Contact");
         trackEvent(GA_EVENTS.CONTACT_FORM, {
           form_location: "homepage",
           industry: formData.industry || "unspecified",

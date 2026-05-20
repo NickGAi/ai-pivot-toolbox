@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
+import { pixelTrack } from "@/lib/pixel";
 
 // ─── CONFIG ──────────────────────────────────────────────────────────────────
 const CONFIG = {
@@ -293,7 +294,7 @@ export default function RealEstateFunnel() {
 
   const mutation = useMutation({
     mutationFn: (data: FormData) => apiRequest("POST", CONFIG.apiEndpoint, data),
-    onSuccess: () => setSubmitted(true),
+    onSuccess: () => { pixelTrack("Lead", { content_name: "Pipeline Growth Map" }); setSubmitted(true); },
   });
 
   function set(field: keyof FormData, value: string) {

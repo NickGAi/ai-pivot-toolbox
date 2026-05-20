@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, X, CheckCircle } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { pixelTrack } from "@/lib/pixel";
 
 export function LeadCapture() {
   const { toast } = useToast();
@@ -33,6 +34,7 @@ export function LeadCapture() {
       const data = await response.json();
 
       if (data.success) {
+        pixelTrack("Lead", { content_name: "Free Assessment" });
         toast({
           title: "Success!",
           description: "We'll be in touch within 24 hours with your assessment.",

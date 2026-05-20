@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Download, CheckCircle, ArrowRight, FileText } from "lucide-react";
+import { pixelTrack } from "@/lib/pixel";
 
 const checklist = [
   "How to make ChatGPT recommend YOUR business (not your competitors)",
@@ -29,6 +30,7 @@ export function LeadMagnet() {
       });
       const data = await res.json();
       if (data.success) {
+        pixelTrack("Lead", { content_name: "AI Checklist" });
         setStatus("success");
       } else {
         setErrorMsg(data.error || "Something went wrong. Please try again.");
