@@ -1,5 +1,5 @@
 import { ArrowRight } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { pixelTrack } from "@/lib/pixel";
 
 const logosRow1 = [
@@ -14,28 +14,40 @@ const logosRow2 = [
 
 export function Hero() {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [firstName, setFirstName] = useState("");
+  const [step, setStep] = useState<"email" | "name" | "loading" | "success" | "error">("email");
+  const nameRef = useRef<HTMLInputElement>(null);
 
-  async function handleEmailSubmit(e: React.FormEvent) {
+  useEffect(() => {
+    if (step === "name") {
+      setTimeout(() => nameRef.current?.focus(), 320);
+    }
+  }, [step]);
+
+  function handleEmailNext(e: React.FormEvent) {
     e.preventDefault();
     if (!email) return;
-    setStatus("loading");
+    setStep("name");
+  }
+
+  async function handleNameSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setStep("loading");
     try {
       const res = await fetch("/api/lead-magnet", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ firstName: "", email }),
+        body: JSON.stringify({ firstName, email }),
       });
       const data = await res.json();
       if (data.success) {
         pixelTrack("Lead", { content_name: "Hero Email Capture" });
-        setStatus("success");
-        setEmail("");
+        setStep("success");
       } else {
-        setStatus("error");
+        setStep("error");
       }
     } catch {
-      setStatus("error");
+      setStep("error");
     }
   }
 
@@ -76,40 +88,84 @@ export function Hero() {
               ★★★★★ Guaranteed results for Australian businesses in 60 days or less
             </p>
 
-            {/* Email capture bar */}
-            {status === "success" ? (
+            {/* Email + Name capture bar */}
+            {step === "success" ? (
               <div className="max-w-xl mx-auto flex items-center justify-center gap-3 bg-primary/10 border border-primary/30 rounded-full px-6 py-4">
                 <span className="text-2xl">🎉</span>
                 <p className="text-foreground font-semibold">Done! Check your inbox — your clear path is on its way.</p>
               </div>
             ) : (
-              <form
-                onSubmit={handleEmailSubmit}
-                className="max-w-xl mx-auto flex items-center gap-0 bg-foreground/10 border border-foreground/20 rounded-full overflow-hidden pl-4 pr-1 py-1"
-                data-testid="hero-email-form"
-              >
-                <span className="text-xl mr-3 flex-shrink-0" aria-hidden="true">👋</span>
-                <input
-                  type="email"
-                  required
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                  placeholder="Enter your email and we'll send you a clear path..."
-                  className="flex-1 bg-transparent text-foreground placeholder:text-muted-foreground text-sm sm:text-base outline-none min-w-0"
-                  data-testid="hero-email-input"
-                  aria-label="Enter your email address"
-                />
-                <button
-                  type="submit"
-                  disabled={status === "loading"}
-                  className="flex-shrink-0 bg-[#b8f000] hover:bg-[#caff00] text-black font-bold text-sm sm:text-base px-5 py-3 rounded-full transition-colors disabled:opacity-60 whitespace-nowrap flex items-center gap-1"
-                  data-testid="hero-email-submit"
-                >
-                  {status === "loading" ? "Sending…" : <>Do it <ArrowRight className="w-4 h-4" /></>}
-                </button>
-              </form>
+              <div className="max-w-xl mx-auto">
+                <div className="relative overflow-hidden rounded-full">
+                  {/* Step 1 — Email */}
+                  <form
+                    onSubmit={handleEmailNext}
+                    data-testid="hero-email-form"
+                    className="flex items-center gap-0 bg-foreground/10 border border-foreground/20 rounded-full pl-4 pr-1 py-1 transition-transform duration-300 ease-in-out"
+                    style={{
+                      transform: step === "email" ? "translateX(0%)" : "translateX(-110%)",
+                      position: step === "email" ? "relative" : "absolute",
+                      inset: 0,
+                      width: "100%",
+                    }}
+                  >
+                    <span className="text-xl mr-3 flex-shrink-0" aria-hidden="true">👋</span>
+                    <input
+                      type="email"
+                      required
+                      value={email}
+                      onChange={e => setEmail(e.target.value)}
+                      placeholder="Enter your email and we'll send you a clear path..."
+                      className="flex-1 bg-transparent text-foreground placeholder:text-muted-foreground text-sm sm:text-base outline-none min-w-0"
+                      data-testid="hero-email-input"
+                      aria-label="Enter your email address"
+                    />
+                    <button
+                      type="submit"
+                      className="flex-shrink-0 bg-[#b8f000] hover:bg-[#caff00] text-black font-bold text-sm sm:text-base px-5 py-3 rounded-full transition-colors whitespace-nowrap flex items-center gap-1"
+                      data-testid="hero-email-submit"
+                    >
+                      Do it <ArrowRight className="w-4 h-4" />
+                    </button>
+                  </form>
+
+                  {/* Step 2 — Name */}
+                  <form
+                    onSubmit={handleNameSubmit}
+                    data-testid="hero-name-form"
+                    className="flex items-center gap-0 bg-foreground/10 border border-foreground/20 rounded-full pl-4 pr-1 py-1 transition-transform duration-300 ease-in-out"
+                    style={{
+                      transform: step !== "email" ? "translateX(0%)" : "translateX(110%)",
+                      position: step !== "email" ? "relative" : "absolute",
+                      inset: 0,
+                      width: "100%",
+                    }}
+                  >
+                    <span className="text-xl mr-3 flex-shrink-0" aria-hidden="true">👋</span>
+                    <input
+                      ref={nameRef}
+                      type="text"
+                      required
+                      value={firstName}
+                      onChange={e => setFirstName(e.target.value)}
+                      placeholder="And your first name..."
+                      className="flex-1 bg-transparent text-foreground placeholder:text-muted-foreground text-sm sm:text-base outline-none min-w-0"
+                      data-testid="hero-name-input"
+                      aria-label="Enter your first name"
+                    />
+                    <button
+                      type="submit"
+                      disabled={step === "loading"}
+                      className="flex-shrink-0 bg-[#b8f000] hover:bg-[#caff00] text-black font-bold text-sm sm:text-base px-5 py-3 rounded-full transition-colors disabled:opacity-60 whitespace-nowrap flex items-center gap-1"
+                      data-testid="hero-name-submit"
+                    >
+                      {step === "loading" ? "Sending…" : <>Submit <ArrowRight className="w-4 h-4" /></>}
+                    </button>
+                  </form>
+                </div>
+              </div>
             )}
-            {status === "error" && (
+            {step === "error" && (
               <p className="text-red-400 text-sm mt-3 text-center">Something went wrong — try again or <a href="#contact" className="underline">book a call</a>.</p>
             )}
           </div>
