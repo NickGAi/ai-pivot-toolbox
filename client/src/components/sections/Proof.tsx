@@ -111,23 +111,6 @@ export function Proof() {
           ))}
         </div>
 
-        <motion.div
-          className="text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <p className="text-sm text-muted-foreground mb-4">
-            Built on top of the systems businesses already trust
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8">
-            {trustedSystems.map((system, i) => (
-              <span key={i} className="text-sm sm:text-base font-semibold text-foreground/60">
-                {system}
-              </span>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   );
