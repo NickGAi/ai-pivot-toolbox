@@ -43,7 +43,7 @@ export const insertLeadMagnetSchema = createInsertSchema(leadMagnetSubmissions).
   sequenceStep: true,
   sequenceLastSentAt: true,
 }).extend({
-  firstName: z.string().min(1, "First name is required"),
+  firstName: z.string().optional().default(""),
   email: z.string().email("Please provide a valid email address"),
 });
 
