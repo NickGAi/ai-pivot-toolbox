@@ -115,7 +115,7 @@ export function Hero() {
                       required
                       value={email}
                       onChange={e => setEmail(e.target.value)}
-                      placeholder="Enter your email and we'll send you a clear path..."
+                      placeholder="Enter your email here and we'll send you some 'magic'..."
                       className="flex-1 bg-transparent text-foreground placeholder:text-muted-foreground text-sm sm:text-base outline-none min-w-0"
                       data-testid="hero-email-input"
                       aria-label="Enter your email address"
