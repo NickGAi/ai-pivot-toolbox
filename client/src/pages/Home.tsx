@@ -8,7 +8,6 @@ const LeadCapture = lazy(() => import("@/components/sections/LeadCapture").then(
 const LeadMagnet  = lazy(() => import("@/components/sections/LeadMagnet").then(m => ({ default: m.LeadMagnet })));
 const Services    = lazy(() => import("@/components/sections/Services").then(m => ({ default: m.Services })));
 const About       = lazy(() => import("@/components/sections/About").then(m => ({ default: m.About })));
-const Urgency     = lazy(() => import("@/components/sections/Urgency").then(m => ({ default: m.Urgency })));
 const FAQ         = lazy(() => import("@/components/sections/FAQ").then(m => ({ default: m.FAQ })));
 const Contact     = lazy(() => import("@/components/sections/Contact").then(m => ({ default: m.Contact })));
 const Footer      = lazy(() => import("@/components/layout/Footer").then(m => ({ default: m.Footer })));
@@ -27,7 +26,6 @@ export default function Home() {
             <LeadCapture />
             <Services />
             <About />
-            <Urgency />
             <LeadMagnet />
             <FAQ />
             <Contact />
