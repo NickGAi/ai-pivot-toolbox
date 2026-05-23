@@ -25,7 +25,7 @@ export class DatabaseStorage implements IStorage {
   }
 
   async createLeadMagnetSubmission(insertSubmission: InsertLeadMagnet): Promise<LeadMagnetSubmission> {
-    const [submission] = await db.insert(leadMagnetSubmissions).values(insertSubmission).returning();
+    const [submission] = await db.insert(leadMagnetSubmissions).values({ ...insertSubmission, sequenceStep: 1 }).returning();
     console.log("Lead magnet submission saved to database:", submission);
     return submission;
   }
