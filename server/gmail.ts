@@ -87,7 +87,7 @@ export async function sendContactNotification(data: ContactFormData): Promise<vo
 
 export async function sendLeadMagnetDelivery(data: LeadMagnetData): Promise<void> {
   const BRAND_COLOR = "#0ea5e9";
-  const SITE_URL = "https://aipivottoolbox.com.au";
+  const SITE_URL = "https://aipivot.com.au";
 
   const subject = `Your Australian Business AI Checklist is here, ${data.firstName} ✓`;
   const htmlBody = `<!DOCTYPE html>
@@ -245,7 +245,7 @@ export async function sendRealEstateFunnelNotification(data: RealEstateFunnelDat
     <div style="font-family:sans-serif;max-width:600px;margin:0 auto">
       <div style="background:#0a0f1e;padding:24px 32px;border-radius:8px 8px 0 0">
         <h2 style="color:#0ea5e9;margin:0;font-size:20px">New 90-Day Pipeline Growth Map Application</h2>
-        <p style="color:#94a3b8;margin:4px 0 0;font-size:14px">aipivottoolbox.com.au/real-estate-pipeline-growth-map</p>
+        <p style="color:#94a3b8;margin:4px 0 0;font-size:14px">aipivot.com.au/real-estate-pipeline-growth-map</p>
       </div>
       <div style="background:#ffffff;padding:32px;border-radius:0 0 8px 8px;border:1px solid #e2e8f0">
         <table style="width:100%;border-collapse:collapse;font-size:15px">

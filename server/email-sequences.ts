@@ -2,8 +2,8 @@ import { storage } from "./storage";
 import { sendSubscriberEmail } from "./gmail";
 
 const BRAND_COLOR = "#0ea5e9";
-const SITE_URL = "https://aipivottoolbox.com.au";
-const BOOKING_URL = "https://aipivottoolbox.com.au/#book";
+const SITE_URL = "https://aipivot.com.au";
+const BOOKING_URL = "https://aipivot.com.au/#book";
 
 function emailWrapper(firstName: string, body: string): string {
   return `<!DOCTYPE html>
@@ -134,7 +134,7 @@ export function buildDay14Email(firstName: string): { subject: string; html: str
     <a href="${BOOKING_URL}" class="cta">Book Your Free Growth Map Call</a>
     <p>Spots are limited — I cap these at 5 per week to keep them genuinely useful. If you've been sitting on the fence, this is the easiest way to get clarity.</p>
     <p>Talk soon,<br><strong>Nick</strong><br>AI Pivot Toolbox</p>
-    <p style="font-size: 14px; color: #64748b;">P.S. If the timing isn't right yet, no worries — you can always book later at <a href="${BOOKING_URL}" style="color: ${BRAND_COLOR};">aipivottoolbox.com.au</a>.</p>
+    <p style="font-size: 14px; color: #64748b;">P.S. If the timing isn't right yet, no worries — you can always book later at <a href="${BOOKING_URL}" style="color: ${BRAND_COLOR};">aipivot.com.au</a>.</p>
   `;
   return { subject, html: emailWrapper(firstName, body) };
 }
