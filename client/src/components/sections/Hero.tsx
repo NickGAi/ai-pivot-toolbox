@@ -35,9 +35,9 @@ export function Hero() {
               className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-[1.0] tracking-tight uppercase"
               itemProp="headline"
             >
-              Your competitors are already showing up on{" "}
-              <span className="gradient-text">ChatGPT & Google.</span>{" "}
-              You're not. Let's fix that in 60 days.
+              AI Business Automation Tools —{" "}
+              <span className="gradient-text">Tell Us What You Want,</span>{" "}
+              We'll Get It Done.
             </h1>
 
             <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-3 sm:mb-4 leading-relaxed" itemProp="text">
