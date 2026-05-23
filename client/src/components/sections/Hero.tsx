@@ -1,4 +1,6 @@
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { useState } from "react";
+import { pixelTrack } from "@/lib/pixel";
 
 const logosRow1 = [
   "Real Estate", "Healthcare", "Professional Services", "Finance", "Retail",
@@ -11,6 +13,32 @@ const logosRow2 = [
 ];
 
 export function Hero() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  async function handleEmailSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!email) return;
+    setStatus("loading");
+    try {
+      const res = await fetch("/api/lead-magnet", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ firstName: "", email }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        pixelTrack("Lead", { content_name: "Hero Email Capture" });
+        setStatus("success");
+        setEmail("");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  }
+
   return (
     <section 
       className="relative min-h-screen flex items-center pt-20"
@@ -41,33 +69,49 @@ export function Hero() {
             </h1>
 
             <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-3 sm:mb-4 leading-relaxed" itemProp="text">
-              When someone asks ChatGPT, Perplexity or Google who's the best in your industry — is your business the answer? If not, you're handing those leads to your competition every single day.
+              Stop wasting time thinking about what you can do with AI. Get us to give you a clear path to implement and get started today. From custom AI lead generation, Voice Clone, Video Avatars, to automated workflows.
             </p>
 
             <p className="text-sm sm:text-base text-primary font-semibold max-w-xl mx-auto mb-8 sm:mb-10">
               ★★★★★ Guaranteed results for Australian businesses in 60 days or less
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-              <a 
-                href="#contact" 
-                className="btn btn-primary text-sm sm:text-base md:text-lg px-5 sm:px-6 md:px-8 py-3 sm:py-4 w-full sm:w-auto justify-center"
-                data-testid="hero-cta-consultation"
-                aria-label="Book your free AI growth map call"
+            {/* Email capture bar */}
+            {status === "success" ? (
+              <div className="max-w-xl mx-auto flex items-center justify-center gap-3 bg-primary/10 border border-primary/30 rounded-full px-6 py-4">
+                <span className="text-2xl">🎉</span>
+                <p className="text-foreground font-semibold">Done! Check your inbox — your clear path is on its way.</p>
+              </div>
+            ) : (
+              <form
+                onSubmit={handleEmailSubmit}
+                className="max-w-xl mx-auto flex items-center gap-0 bg-foreground/10 border border-foreground/20 rounded-full overflow-hidden pl-4 pr-1 py-1"
+                data-testid="hero-email-form"
               >
-                Book Your Free Growth Map Call
-                <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
-              </a>
-              <a 
-                href="#method" 
-                className="btn btn-outline text-sm sm:text-base md:text-lg px-5 sm:px-6 md:px-8 py-3 sm:py-4 w-full sm:w-auto justify-center"
-                data-testid="hero-cta-method"
-                aria-label="Learn about our AI implementation method"
-              >
-                <Play className="mr-2 w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
-                See How It Works
-              </a>
-            </div>
+                <span className="text-xl mr-3 flex-shrink-0" aria-hidden="true">👋</span>
+                <input
+                  type="email"
+                  required
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  placeholder="Enter your email and we'll send you a clear path..."
+                  className="flex-1 bg-transparent text-foreground placeholder:text-muted-foreground text-sm sm:text-base outline-none min-w-0"
+                  data-testid="hero-email-input"
+                  aria-label="Enter your email address"
+                />
+                <button
+                  type="submit"
+                  disabled={status === "loading"}
+                  className="flex-shrink-0 bg-[#b8f000] hover:bg-[#caff00] text-black font-bold text-sm sm:text-base px-5 py-3 rounded-full transition-colors disabled:opacity-60 whitespace-nowrap flex items-center gap-1"
+                  data-testid="hero-email-submit"
+                >
+                  {status === "loading" ? "Sending…" : <>Do it <ArrowRight className="w-4 h-4" /></>}
+                </button>
+              </form>
+            )}
+            {status === "error" && (
+              <p className="text-red-400 text-sm mt-3 text-center">Something went wrong — try again or <a href="#contact" className="underline">book a call</a>.</p>
+            )}
           </div>
 
           {/* Logo Marquee */}
