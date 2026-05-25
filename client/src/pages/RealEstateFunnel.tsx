@@ -438,12 +438,17 @@ export default function RealEstateFunnel() {
             </div>
 
             {/* RIGHT — 45% Duku (desktop) */}
-            <div className="hidden lg:flex items-center justify-center"
-              style={{ width: "45%", minHeight: "400px", paddingRight: "40px" }}>
+            <div className="hidden lg:block"
+              style={{ width: "45%", minHeight: "560px", paddingRight: "40px", flexShrink: 0 }}>
               <img
                 src="/duku-re.png"
                 alt="Duku AI character"
-                style={{ width: "100%", height: "100%", minHeight: "500px", objectFit: "contain" }}
+                style={{
+                  width: "100%",
+                  height: "560px",
+                  objectFit: "cover",
+                  objectPosition: "right center",
+                }}
               />
             </div>
 
