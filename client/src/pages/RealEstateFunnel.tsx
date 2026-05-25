@@ -74,8 +74,8 @@ function VideoCinematic({ id, label, sublabel, youtubeId, src }: {
   }
 
   const containerStyle = {
-    boxShadow: "0 0 60px rgba(14,165,233,0.10), 0 0 120px rgba(14,165,233,0.05)",
-    border: "1px solid rgba(14,165,233,0.18)",
+    boxShadow: "0 0 60px rgba(255,69,0,0.10), 0 0 120px rgba(255,69,0,0.05)",
+    border: "1px solid rgba(255,69,0,0.18)",
   };
 
   // ── YouTube embed ──────────────────────────────────────────────────────────
@@ -125,12 +125,12 @@ function VideoCinematic({ id, label, sublabel, youtubeId, src }: {
               <div
                 className="w-20 h-20 rounded-full flex items-center justify-center mb-4 transition-transform group-hover:scale-110"
                 style={{
-                  background: "rgba(14,165,233,0.15)",
-                  border: "2px solid rgba(14,165,233,0.5)",
-                  boxShadow: "0 0 40px rgba(14,165,233,0.3)",
+                  background: "rgba(255,69,0,0.15)",
+                  border: "2px solid rgba(255,69,0,0.5)",
+                  boxShadow: "0 0 40px rgba(255,69,0,0.3)",
                 }}
               >
-                <svg className="w-8 h-8 ml-1" fill="#0ea5e9" viewBox="0 0 24 24">
+                <svg className="w-8 h-8 ml-1" fill="#FF4500" viewBox="0 0 24 24">
                   <path d="M8 5v14l11-7z" />
                 </svg>
               </div>
@@ -148,24 +148,24 @@ function VideoCinematic({ id, label, sublabel, youtubeId, src }: {
       className="relative w-full aspect-video rounded-2xl overflow-hidden flex items-center justify-center"
       style={{
         background: "linear-gradient(135deg, #07090f 0%, #0c1420 50%, #07090f 100%)",
-        boxShadow: "0 0 60px rgba(14,165,233,0.08), 0 0 120px rgba(14,165,233,0.04), inset 0 1px 0 rgba(255,255,255,0.04)",
-        border: "1px solid rgba(14,165,233,0.15)",
+        boxShadow: "0 0 60px rgba(255,69,0,0.08), 0 0 120px rgba(255,69,0,0.04), inset 0 1px 0 rgba(255,255,255,0.04)",
+        border: "1px solid rgba(255,69,0,0.15)",
       }}
     >
       <div className="absolute inset-0 opacity-[0.03]" style={{
         backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.5) 2px, rgba(255,255,255,0.5) 3px)",
       }} />
-      <div className="absolute top-4 left-4 w-6 h-6 border-t-2 border-l-2 border-[#0ea5e9]/40 rounded-tl" />
-      <div className="absolute top-4 right-4 w-6 h-6 border-t-2 border-r-2 border-[#0ea5e9]/40 rounded-tr" />
-      <div className="absolute bottom-4 left-4 w-6 h-6 border-b-2 border-l-2 border-[#0ea5e9]/40 rounded-bl" />
-      <div className="absolute bottom-4 right-4 w-6 h-6 border-b-2 border-r-2 border-[#0ea5e9]/40 rounded-br" />
+      <div className="absolute top-4 left-4 w-6 h-6 border-t-2 border-l-2 border-[#FF4500]/40 rounded-tl" />
+      <div className="absolute top-4 right-4 w-6 h-6 border-t-2 border-r-2 border-[#FF4500]/40 rounded-tr" />
+      <div className="absolute bottom-4 left-4 w-6 h-6 border-b-2 border-l-2 border-[#FF4500]/40 rounded-bl" />
+      <div className="absolute bottom-4 right-4 w-6 h-6 border-b-2 border-r-2 border-[#FF4500]/40 rounded-br" />
       <div className="relative z-10 text-center px-8">
         <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-5" style={{
-          background: "rgba(14,165,233,0.12)",
-          border: "2px solid rgba(14,165,233,0.4)",
-          boxShadow: "0 0 30px rgba(14,165,233,0.2)",
+          background: "rgba(255,69,0,0.12)",
+          border: "2px solid rgba(255,69,0,0.4)",
+          boxShadow: "0 0 30px rgba(255,69,0,0.2)",
         }}>
-          <svg className="w-8 h-8 ml-1" fill="#0ea5e9" viewBox="0 0 24 24">
+          <svg className="w-8 h-8 ml-1" fill="#FF4500" viewBox="0 0 24 24">
             <path d="M8 5v14l11-7z" />
           </svg>
         </div>
@@ -191,10 +191,11 @@ function CtaButton({ href, children, size = "md", className = "" }: {
   return (
     <a
       href={href}
-      className={`inline-block font-bold rounded-xl transition-all ${sizes[size]} ${className}`}
+      className={`inline-block font-bold rounded-xl transition-all hover:opacity-90 ${sizes[size]} ${className}`}
       style={{
-        background: "linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%)",
-        boxShadow: "0 4px 24px rgba(14,165,233,0.35), 0 1px 0 rgba(255,255,255,0.1) inset",
+        background: "#FF4500",
+        color: "#141413",
+        boxShadow: "0 4px 24px rgba(255,69,0,0.35), 0 1px 0 rgba(255,255,255,0.1) inset",
       }}
     >
       {children}
@@ -205,10 +206,10 @@ function CtaButton({ href, children, size = "md", className = "" }: {
 // ─── SECTION LABEL ───────────────────────────────────────────────────────────
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-[#0ea5e9] font-bold text-xs uppercase tracking-[0.2em] mb-5 flex items-center gap-3">
-      <span className="w-6 h-px bg-[#0ea5e9]/50" />
+    <p className="text-[#FF4500] font-bold text-xs uppercase tracking-[0.2em] mb-5 flex items-center gap-3">
+      <span className="w-6 h-px bg-[#FF4500]/50" />
       {children}
-      <span className="w-6 h-px bg-[#0ea5e9]/50" />
+      <span className="w-6 h-px bg-[#FF4500]/50" />
     </p>
   );
 }
@@ -223,7 +224,7 @@ function Field({ label, error, required, children }: {
   return (
     <div>
       <label className="block text-sm font-semibold text-slate-300 mb-2">
-        {label}{required && <span className="text-[#0ea5e9] ml-1">*</span>}
+        {label}{required && <span className="text-[#FF4500] ml-1">*</span>}
       </label>
       {children}
       {error && <p className="text-red-400 text-xs mt-1.5">{error}</p>}
@@ -232,7 +233,7 @@ function Field({ label, error, required, children }: {
 }
 
 const inputCls = "w-full rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none transition-colors text-sm"
-  + " bg-[#0c1018] border border-white/8 focus:border-[#0ea5e9]/60";
+  + " bg-[#0c1018] border border-white/8 focus:border-[#FF4500]/60";
 
 // ─── MAIN PAGE ───────────────────────────────────────────────────────────────
 export default function RealEstateFunnel() {
@@ -323,19 +324,19 @@ export default function RealEstateFunnel() {
   // ── THANK-YOU STATE ───────────────────────────────────────────────────────
   if (submitted) {
     return (
-      <div className="min-h-screen bg-[#07090f] flex items-center justify-center px-4 py-20">
+      <div className="min-h-screen bg-[#141413] flex items-center justify-center px-4 py-20">
         <div className="max-w-lg text-center">
           <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-8" style={{
-            background: "rgba(14,165,233,0.1)",
-            border: "2px solid rgba(14,165,233,0.4)",
-            boxShadow: "0 0 40px rgba(14,165,233,0.2)",
+            background: "rgba(255,69,0,0.1)",
+            border: "2px solid rgba(255,69,0,0.4)",
+            boxShadow: "0 0 40px rgba(255,69,0,0.2)",
           }}>
-            <svg className="w-10 h-10 text-[#0ea5e9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-10 h-10 text-[#FF4500]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
           </div>
 
-          <p className="text-[#0ea5e9] text-xs font-bold uppercase tracking-[0.2em] mb-4">Application Received</p>
+          <p className="text-[#FF4500] text-xs font-bold uppercase tracking-[0.2em] mb-4">Application Received</p>
           <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6 leading-tight">
             Application Received.<br />Nice.
           </h1>
@@ -348,10 +349,10 @@ export default function RealEstateFunnel() {
 
           <a
             href={CONFIG.bookingUrl}
-            className="inline-block font-bold text-white text-lg px-10 py-5 rounded-xl w-full sm:w-auto"
+            className="inline-block font-bold text-[#141413] text-lg px-10 py-5 rounded-xl w-full sm:w-auto hover:opacity-90 transition-all"
             style={{
-              background: "linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%)",
-              boxShadow: "0 4px 24px rgba(14,165,233,0.4)",
+              background: "#FF4500",
+              boxShadow: "0 4px 24px rgba(255,69,0,0.4)",
             }}
           >
             Book My Strategy Call →
@@ -366,7 +367,7 @@ export default function RealEstateFunnel() {
   return (
     <div
       className="min-h-screen text-white"
-      style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif", background: "#07090f" }}
+      style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif", background: "#141413" }}
     >
 
       {/* ── BACK LINK ────────────────────────────────────────────────────── */}
@@ -385,19 +386,19 @@ export default function RealEstateFunnel() {
         {/* Background glow */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] rounded-full opacity-[0.07]"
-            style={{ background: "radial-gradient(ellipse, #0ea5e9 0%, transparent 70%)" }} />
+            style={{ background: "radial-gradient(ellipse, #FF4500 0%, transparent 70%)" }} />
         </div>
 
         <div className="relative max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-[#0ea5e9] text-xs font-bold uppercase tracking-widest mb-10"
-            style={{ background: "rgba(14,165,233,0.08)", border: "1px solid rgba(14,165,233,0.2)" }}>
-            <span className="w-1.5 h-1.5 rounded-full bg-[#0ea5e9] animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-[#FF4500] text-xs font-bold uppercase tracking-widest mb-10"
+            style={{ background: "rgba(255,69,0,0.08)", border: "1px solid rgba(255,69,0,0.2)" }}>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#FF4500] animate-pulse" />
             {COPY.badge}
           </div>
 
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight mb-8">
             {COPY.heroHeadline[0]}<br />
-            <span style={{ color: "#0ea5e9" }}>{COPY.heroHeadline[1]}</span>
+            <span style={{ color: "#FF4500" }}>{COPY.heroHeadline[1]}</span>
           </h1>
 
           <p className="text-xl sm:text-2xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed">
@@ -408,8 +409,8 @@ export default function RealEstateFunnel() {
             {COPY.heroBullets.map(b => (
               <li key={b} className="flex items-start gap-3 flex-1">
                 <span className="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center"
-                  style={{ background: "rgba(14,165,233,0.15)", border: "1px solid rgba(14,165,233,0.4)" }}>
-                  <svg className="w-3 h-3 text-[#0ea5e9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  style={{ background: "rgba(255,69,0,0.15)", border: "1px solid rgba(255,69,0,0.4)" }}>
+                  <svg className="w-3 h-3 text-[#FF4500]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                   </svg>
                 </span>
@@ -419,7 +420,7 @@ export default function RealEstateFunnel() {
           </ul>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-5">
-            <CtaButton href="#apply" size="lg" className="text-white w-full sm:w-auto">
+            <CtaButton href="#apply" size="lg" className="w-full sm:w-auto">
               {COPY.heroCta}
             </CtaButton>
             <a href="#video1" className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors text-sm font-medium">
@@ -457,7 +458,7 @@ export default function RealEstateFunnel() {
             <p>Every month, agents pour serious money into portals, paid ads, socials, signboards and websites.</p>
             <p>Then the enquiry comes in at the worst possible time — during an open, on the road, at dinner, or buried under a hundred other things.</p>
             <p className="text-xl text-white font-semibold">By the time you call them back, they've already spoken to another agent… or gone cold.</p>
-            <div className="pl-6 border-l-4 border-[#0ea5e9] py-2 space-y-3">
+            <div className="pl-6 border-l-4 border-[#FF4500] py-2 space-y-3">
               <p className="text-slate-300">That's the brutal truth:</p>
               <p className="text-white font-bold text-xl">Most agents do not have a lead problem.<br />They have a follow-up problem.</p>
               <p className="text-slate-400">And that problem is quietly costing them listings, appraisals and commission.</p>
@@ -465,15 +466,15 @@ export default function RealEstateFunnel() {
           </div>
 
           <div className="mt-12 rounded-2xl p-8"
-            style={{ background: "#0c1018", border: "1px solid rgba(14,165,233,0.12)" }}>
-            <p className="text-[#0ea5e9] font-bold text-xl leading-snug">
+            style={{ background: "#0c1018", border: "1px solid rgba(255,69,0,0.12)" }}>
+            <p className="text-[#FF4500] font-bold text-xl leading-snug">
               You don't need more leads.<br />
               <span className="text-white">You need more conversations with the leads you already have.</span>
             </p>
           </div>
 
           <div className="mt-12 text-center">
-            <CtaButton href="#apply" size="md" className="text-white">Get My Free Growth Map</CtaButton>
+            <CtaButton href="#apply" size="md">Get My Free Growth Map</CtaButton>
           </div>
         </div>
       </section>
@@ -516,8 +517,8 @@ export default function RealEstateFunnel() {
           <div className="max-w-3xl mx-auto space-y-6 text-lg text-slate-300">
             <p>Most agents waste all their budget chasing the tiny 3% and completely ignore the 97% that needs to be warmed up, educated and followed up properly.</p>
             <p className="text-slate-400 italic">That's why their marketing feels inconsistent. It's not because the portals are broken. It's because the system is.</p>
-            <div className="rounded-2xl p-7" style={{ background: "#0c1018", border: "1px solid rgba(14,165,233,0.12)" }}>
-              <p className="text-[#0ea5e9] font-bold text-lg mb-2">AiPivot helps you work the 3% fast —</p>
+            <div className="rounded-2xl p-7" style={{ background: "#0c1018", border: "1px solid rgba(255,69,0,0.12)" }}>
+              <p className="text-[#FF4500] font-bold text-lg mb-2">AiPivot helps you work the 3% fast —</p>
               <p className="text-white">and nurture the other 97% until they're ready to raise their hand.</p>
             </div>
           </div>
@@ -530,7 +531,7 @@ export default function RealEstateFunnel() {
           <SectionLabel>The Solution</SectionLabel>
           <h2 className="text-3xl sm:text-5xl font-bold leading-tight mb-6">
             AiPivot Is The Follow-Up Machine<br />
-            <span style={{ color: "#0ea5e9" }}>Your Agency Never Had</span>
+            <span style={{ color: "#FF4500" }}>Your Agency Never Had</span>
           </h2>
 
           <p className="text-slate-300 text-lg mb-10 max-w-2xl">
@@ -540,7 +541,7 @@ export default function RealEstateFunnel() {
           <div className="flex flex-wrap gap-3 mb-14">
             {["REA & Domain", "Your website", "Social DMs", "Open-home registrations", "Referral enquiries"].map(s => (
               <span key={s} className="px-4 py-2 rounded-full text-sm font-medium text-slate-300"
-                style={{ background: "#0c1018", border: "1px solid rgba(14,165,233,0.15)" }}>
+                style={{ background: "#0c1018", border: "1px solid rgba(255,69,0,0.15)" }}>
                 {s}
               </span>
             ))}
@@ -570,8 +571,8 @@ export default function RealEstateFunnel() {
 
           <div className="rounded-2xl p-8 text-center"
             style={{
-              background: "linear-gradient(135deg, rgba(14,165,233,0.08) 0%, rgba(2,132,199,0.06) 100%)",
-              border: "1px solid rgba(14,165,233,0.2)",
+              background: "linear-gradient(135deg, rgba(255,69,0,0.08) 0%, rgba(204,55,0,0.06) 100%)",
+              border: "1px solid rgba(255,69,0,0.2)",
             }}>
             <p className="text-white font-bold text-xl">You get a simple, brutal system that works every lead like gold.</p>
           </div>
@@ -613,8 +614,8 @@ export default function RealEstateFunnel() {
               <div key={step} className="flex gap-6 rounded-2xl p-8"
                 style={{ background: "#0c1018", border: "1px solid rgba(255,255,255,0.05)" }}>
                 <div className="flex-shrink-0">
-                  <div className="w-14 h-14 rounded-full flex items-center justify-center text-[#0ea5e9] font-bold text-lg"
-                    style={{ background: "rgba(14,165,233,0.08)", border: "2px solid rgba(14,165,233,0.3)" }}>
+                  <div className="w-14 h-14 rounded-full flex items-center justify-center text-[#FF4500] font-bold text-lg"
+                    style={{ background: "rgba(255,69,0,0.08)", border: "2px solid rgba(255,69,0,0.3)" }}>
                     {step}
                   </div>
                 </div>
@@ -624,7 +625,7 @@ export default function RealEstateFunnel() {
                   <ul className="space-y-2">
                     {items.map(item => (
                       <li key={item} className="flex items-center gap-3 text-slate-300 text-sm">
-                        <svg className="w-4 h-4 text-[#0ea5e9] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-4 h-4 text-[#FF4500] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                         </svg>
                         {item}
@@ -637,7 +638,7 @@ export default function RealEstateFunnel() {
           </div>
 
           <div className="rounded-2xl p-7 mb-12"
-            style={{ background: "#0c1018", border: "1px solid rgba(14,165,233,0.12)" }}>
+            style={{ background: "#0c1018", border: "1px solid rgba(255,69,0,0.12)" }}>
             <p className="text-white font-semibold text-lg mb-4">You also walk away knowing:</p>
             <ul className="grid sm:grid-cols-2 gap-3">
               {[
@@ -647,7 +648,7 @@ export default function RealEstateFunnel() {
                 "What AiPivot would automate if you want us to build it",
               ].map(o => (
                 <li key={o} className="flex items-start gap-3 text-slate-300 text-sm">
-                  <span className="text-[#0ea5e9] mt-0.5 flex-shrink-0">✓</span>
+                  <span className="text-[#FF4500] mt-0.5 flex-shrink-0">✓</span>
                   {o}
                 </li>
               ))}
@@ -655,7 +656,7 @@ export default function RealEstateFunnel() {
           </div>
 
           <div className="text-center">
-            <CtaButton href="#apply" size="lg" className="text-white">Yes, I Want My Pipeline Growth Map</CtaButton>
+            <CtaButton href="#apply" size="lg">Yes, I Want My Pipeline Growth Map</CtaButton>
           </div>
         </div>
       </section>
@@ -751,16 +752,16 @@ export default function RealEstateFunnel() {
         <div className="max-w-3xl mx-auto">
           <div className="rounded-2xl p-10 text-center relative overflow-hidden"
             style={{
-              background: "linear-gradient(135deg, #07090f 0%, #0c1420 100%)",
-              border: "1px solid rgba(14,165,233,0.25)",
-              boxShadow: "0 0 80px rgba(14,165,233,0.07)",
+              background: "linear-gradient(135deg, #141413 0%, #1a1714 100%)",
+              border: "1px solid rgba(255,69,0,0.25)",
+              boxShadow: "0 0 80px rgba(255,69,0,0.07)",
             }}>
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-px"
-              style={{ background: "linear-gradient(90deg, transparent, #0ea5e9, transparent)" }} />
-            <p className="text-[#0ea5e9] text-xs font-bold uppercase tracking-[0.2em] mb-5">The AiPivot Promise</p>
+              style={{ background: "linear-gradient(90deg, transparent, #FF4500, transparent)" }} />
+            <p className="text-[#FF4500] text-xs font-bold uppercase tracking-[0.2em] mb-5">The AiPivot Promise</p>
             <h2 className="text-2xl sm:text-4xl font-bold text-white mb-6 leading-tight">
               If You Don't Walk Away With At Least<br />
-              <span style={{ color: "#0ea5e9" }}>One Clear, Actionable Insight</span> From<br />
+              <span style={{ color: "#FF4500" }}>One Clear, Actionable Insight</span> From<br />
               Your Growth Map Session —<br />
               We'll Give You Back The Hour.
             </h2>
@@ -775,8 +776,8 @@ export default function RealEstateFunnel() {
               ].map(p => (
                 <div key={p} className="flex items-center gap-2 text-slate-300">
                   <span className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
-                    style={{ background: "rgba(14,165,233,0.15)", border: "1px solid rgba(14,165,233,0.4)" }}>
-                    <svg className="w-3 h-3 text-[#0ea5e9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    style={{ background: "rgba(255,69,0,0.15)", border: "1px solid rgba(255,69,0,0.4)" }}>
+                    <svg className="w-3 h-3 text-[#FF4500]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                     </svg>
                   </span>
@@ -867,7 +868,7 @@ export default function RealEstateFunnel() {
                     onClick={() => set("leadSource", s)}
                     className="px-4 py-2 rounded-full text-xs font-semibold border transition-all"
                     style={form.leadSource === s
-                      ? { background: "#0ea5e9", borderColor: "#0ea5e9", color: "#fff" }
+                      ? { background: "#FF4500", borderColor: "#FF4500", color: "#141413" }
                       : { background: "transparent", borderColor: "rgba(255,255,255,0.1)", color: "#94a3b8" }}>
                     {s}
                   </button>
@@ -892,10 +893,10 @@ export default function RealEstateFunnel() {
             )}
 
             <button data-testid="button-submit" type="submit" disabled={mutation.isPending}
-              className="w-full font-bold text-white text-lg py-5 rounded-xl transition-all disabled:opacity-50"
+              className="w-full font-bold text-[#141413] text-lg py-5 rounded-xl transition-all hover:opacity-90 disabled:opacity-50"
               style={{
-                background: "linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%)",
-                boxShadow: "0 4px 24px rgba(14,165,233,0.35)",
+                background: "#FF4500",
+                boxShadow: "0 4px 24px rgba(255,69,0,0.35)",
               }}>
               {mutation.isPending ? "Submitting…" : COPY.formCta}
             </button>
@@ -916,11 +917,11 @@ export default function RealEstateFunnel() {
       {/* ── STICKY MOBILE CTA ────────────────────────────────────────────── */}
       <div
         className={`fixed bottom-0 left-0 right-0 z-50 p-4 sm:hidden transition-transform duration-300 ${showSticky ? "translate-y-0" : "translate-y-full"}`}
-        style={{ background: "rgba(7,9,15,0.95)", backdropFilter: "blur(12px)", borderTop: "1px solid rgba(14,165,233,0.15)" }}
+        style={{ background: "rgba(20,20,19,0.95)", backdropFilter: "blur(12px)", borderTop: "1px solid rgba(255,69,0,0.15)" }}
       >
         <a href="#apply"
-          className="block w-full text-center font-bold text-white py-4 rounded-xl"
-          style={{ background: "linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%)", boxShadow: "0 4px 20px rgba(14,165,233,0.4)" }}>
+          className="block w-full text-center font-bold text-[#141413] py-4 rounded-xl hover:opacity-90 transition-all"
+          style={{ background: "#FF4500", boxShadow: "0 4px 20px rgba(255,69,0,0.4)" }}>
           Get My Free Growth Map
         </a>
       </div>
