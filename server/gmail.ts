@@ -292,7 +292,7 @@ export async function sendRealEstateFunnelNotification(data: RealEstateFunnelDat
       </div>
     </div>
   `;
-  await sendGmail("nick@avaire.com.au, nick@nickgriffiths.com.au", subject, htmlBody);
+  await sendGmail("nick@avaire.com.au, nick@nickgriffiths.com.au, info@aivare.com.au", subject, htmlBody);
   console.log(`Real estate funnel application: ${fullName} (${data.email}) — ${data.agency}, ${data.suburb}`);
 }
 
