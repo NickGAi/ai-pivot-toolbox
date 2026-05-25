@@ -11,7 +11,7 @@ export async function addToSendGridList(data: {
   const response = await fetch("https://api.sendgrid.com/v3/marketing/contacts", {
     method: "PUT",
     headers: {
-      "Authorization": `Bearer ${process.env.}`,
+      "Authorization": `Bearer ${process.env.SENDGRID_MARKETING_KEY}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
