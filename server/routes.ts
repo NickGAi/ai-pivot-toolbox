@@ -169,23 +169,19 @@ export async function registerRoutes(
       if (!firstName || !lastName || !mobile || !email || !agency || !suburb || !dealsPerMonth) {
         return res.status(400).json({ success: false, error: "Missing required fields." });
       }
+      await storage.createRealEstateFunnelSubmission({
+        firstName, lastName, email, mobile, agency, suburb, dealsPerMonth,
+        leadSource: leadSource || null,
+        pipelineProblem: pipelineProblem || null,
+        utmSource: utm_source || null,
+        utmMedium: utm_medium || null,
+        utmCampaign: utm_campaign || null,
+        referrer: referrer || null,
+      });
       try {
         await sendRealEstateFunnelNotification({ firstName, lastName, email, mobile, agency, suburb, dealsPerMonth, leadSource: leadSource || "", pipelineProblem: pipelineProblem || "", utm_source, utm_medium, utm_campaign, referrer });
       } catch (emailError) {
         console.error("Failed to send real estate funnel notification:", emailError);
-      }
-      try {
-        await sendToGHL({
-          firstName,
-          lastName,
-          email,
-          phone: mobile,
-          industry: "Real Estate",
-          businessName: agency,
-          message: `Suburb: ${suburb} | Deals/mo: ${dealsPerMonth} | Lead source: ${leadSource || "—"} | Problem: ${pipelineProblem || "—"} | UTM: ${utm_source}/${utm_medium}/${utm_campaign}`,
-        });
-      } catch (ghlError) {
-        console.error("Failed to send real estate funnel lead to GHL:", ghlError);
       }
       res.json({ success: true, message: "Application received. We'll be in touch within 24 hours." });
     } catch (error) {

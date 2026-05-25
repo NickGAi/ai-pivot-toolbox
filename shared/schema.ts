@@ -28,6 +28,32 @@ export const insertContactSubmissionSchema = createInsertSchema(contactSubmissio
 export type InsertContactSubmission = z.infer<typeof insertContactSubmissionSchema>;
 export type ContactSubmission = typeof contactSubmissions.$inferSelect;
 
+export const realEstateFunnelSubmissions = pgTable("real_estate_funnel_submissions", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  firstName: text("first_name").notNull(),
+  lastName: text("last_name").notNull(),
+  email: text("email").notNull(),
+  mobile: text("mobile").notNull(),
+  agency: text("agency").notNull(),
+  suburb: text("suburb").notNull(),
+  dealsPerMonth: text("deals_per_month").notNull(),
+  leadSource: text("lead_source"),
+  pipelineProblem: text("pipeline_problem"),
+  utmSource: text("utm_source"),
+  utmMedium: text("utm_medium"),
+  utmCampaign: text("utm_campaign"),
+  referrer: text("referrer"),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const insertRealEstateFunnelSchema = createInsertSchema(realEstateFunnelSubmissions).omit({
+  id: true,
+  createdAt: true,
+});
+
+export type InsertRealEstateFunnel = z.infer<typeof insertRealEstateFunnelSchema>;
+export type RealEstateFunnelSubmission = typeof realEstateFunnelSubmissions.$inferSelect;
+
 export const leadMagnetSubmissions = pgTable("lead_magnet_submissions", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   firstName: text("first_name").notNull(),
