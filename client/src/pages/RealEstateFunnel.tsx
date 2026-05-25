@@ -443,7 +443,7 @@ export default function RealEstateFunnel() {
               <img
                 src="/duku-re.png"
                 alt="Duku AI character"
-                style={{ maxWidth: "380px", width: "100%", height: "100%", minHeight: "400px", objectFit: "contain" }}
+                style={{ width: "100%", height: "100%", minHeight: "500px", objectFit: "contain" }}
               />
             </div>
 
