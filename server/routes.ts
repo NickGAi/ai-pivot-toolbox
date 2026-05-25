@@ -53,6 +53,10 @@ export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
+  // 301 redirect: /map → /real-estate-pipeline-growth-map
+  app.get("/map", (_req, res) => {
+    res.redirect(301, "/real-estate-pipeline-growth-map");
+  });
   // Proxy /__mockup/* to the mockup sandbox dev server (port 23636)
   app.use(
     "/__mockup",
