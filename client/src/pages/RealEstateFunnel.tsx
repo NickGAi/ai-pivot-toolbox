@@ -440,16 +440,19 @@ export default function RealEstateFunnel() {
             {/* RIGHT — 45% Duku (desktop) */}
             <div className="hidden lg:block"
               style={{ width: "45%", minHeight: "560px", paddingRight: "40px", flexShrink: 0 }}>
-              <img
-                src="/duku-re.png"
-                alt="Duku AI character"
-                style={{
-                  width: "100%",
-                  height: "560px",
-                  objectFit: "cover",
-                  objectPosition: "right center",
-                }}
-              />
+              <picture>
+                <source srcSet="/duku-re.webp" type="image/webp" />
+                <img
+                  src="/duku-re.png"
+                  alt="Duku AI character"
+                  style={{
+                    width: "100%",
+                    height: "560px",
+                    objectFit: "cover",
+                    objectPosition: "right center",
+                  }}
+                />
+              </picture>
             </div>
 
           </div>
