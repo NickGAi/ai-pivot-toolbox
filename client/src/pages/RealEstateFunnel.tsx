@@ -490,11 +490,14 @@ export default function RealEstateFunnel() {
 
             {/* Mobile Duku — below CTA */}
             <div className="flex justify-center mt-8 mb-4">
-              <img
-                src="/duku-re.png"
-                alt="Duku AI character"
-                style={{ maxWidth: "300px", width: "100%", margin: "0 auto", opacity: 0.85 }}
-              />
+              <picture>
+                <source srcSet="/duku-re.webp" type="image/webp" />
+                <img
+                  src="/duku-re.png"
+                  alt="Duku AI character"
+                  style={{ maxWidth: "300px", width: "100%", margin: "0 auto", opacity: 0.85 }}
+                />
+              </picture>
             </div>
 
             <p className="text-slate-500 text-sm mt-4 mb-8">{COPY.heroTrust}</p>
