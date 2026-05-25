@@ -13,7 +13,7 @@ const CONFIG = {
 const COPY = {
   badge: "For Australian Real Estate Agents Only",
   heroHeadline: ["Stop Torching", "Your Portal Leads."],
-  heroSub: "Turn the leads you already have into 90 days of extra listing appointments with AiPivot's free Pipeline Growth Map.",
+  heroSub: "Find out how many extra listings are sitting in your existing database — and get a 90-day AI-powered plan to pull them out.",
   heroBullets: [
     "See exactly where your pipeline is leaking",
     "Find out how many extra listings you could squeeze from your current leads",
