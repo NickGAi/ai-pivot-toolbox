@@ -4,6 +4,7 @@ import { storage } from "./storage";
 import { insertContactSubmissionSchema, insertLeadMagnetSchema } from "@shared/schema";
 import { fromError } from "zod-validation-error";
 import { sendContactNotification, sendLeadMagnetNotification, sendLeadMagnetDelivery, sendRealEstateFunnelNotification, sendRealEstateFunnelConfirmation } from "./gmail";
+import { addToSendGridList } from "./sendgrid";
 import { legacyCreateProxyMiddleware } from "http-proxy-middleware";
 
 async function sendToGHL(data: {
@@ -178,6 +179,11 @@ export async function registerRoutes(
         utmCampaign: utm_campaign || null,
         referrer: referrer || null,
       });
+      try {
+        await addToSendGridList({ email, firstName, lastName, mobile, agency, suburb, dealsPerMonth, leadSource: leadSource || "" });
+      } catch (sgError) {
+        console.error("SendGrid contact upsert failed:", sgError);
+      }
       try {
         await sendRealEstateFunnelNotification({ firstName, lastName, email, mobile, agency, suburb, dealsPerMonth, leadSource: leadSource || "", pipelineProblem: pipelineProblem || "", utm_source, utm_medium, utm_campaign, referrer });
       } catch (emailError) {
