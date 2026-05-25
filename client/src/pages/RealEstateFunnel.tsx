@@ -382,7 +382,7 @@ export default function RealEstateFunnel() {
       </div>
 
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
-      <section className="relative px-4 overflow-hidden" style={{ minHeight: "600px" }}>
+      <section className="relative pl-4 overflow-hidden" style={{ minHeight: "600px", paddingRight: "30px" }}>
         {/* Background glow */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] rounded-full opacity-[0.07]"
