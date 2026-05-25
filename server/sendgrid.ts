@@ -22,9 +22,9 @@ export async function addToSendGridList(data: {
         last_name: data.lastName,
         phone_number: data.mobile,
         custom_fields: {
-          e4_T: data.agency,
-          e5_T: data.suburb,
-          e6_T: data.dealsPerMonth,
+          e6_T: data.agency,
+          e7_T: data.suburb,
+          w5_T: data.dealsPerMonth,
           w4_T: data.leadSource,
         },
       }],
