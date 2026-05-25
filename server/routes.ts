@@ -174,6 +174,19 @@ export async function registerRoutes(
       } catch (emailError) {
         console.error("Failed to send real estate funnel notification:", emailError);
       }
+      try {
+        await sendToGHL({
+          firstName,
+          lastName,
+          email,
+          phone: mobile,
+          industry: "Real Estate",
+          businessName: agency,
+          message: `Suburb: ${suburb} | Deals/mo: ${dealsPerMonth} | Lead source: ${leadSource || "—"} | Problem: ${pipelineProblem || "—"} | UTM: ${utm_source}/${utm_medium}/${utm_campaign}`,
+        });
+      } catch (ghlError) {
+        console.error("Failed to send real estate funnel lead to GHL:", ghlError);
+      }
       res.json({ success: true, message: "Application received. We'll be in touch within 24 hours." });
     } catch (error) {
       console.error("Real estate funnel error:", error);
