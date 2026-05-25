@@ -382,14 +382,14 @@ export default function RealEstateFunnel() {
       </div>
 
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
-      <section className="relative pt-16 pb-0 px-4">
-        {/* Background glow — clipped independently so Duku can overflow */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <section className="relative px-4 overflow-hidden" style={{ minHeight: "600px" }}>
+        {/* Background glow */}
+        <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] rounded-full opacity-[0.07]"
             style={{ background: "radial-gradient(ellipse, #FF4500 0%, transparent 70%)" }} />
         </div>
 
-        <div className="relative max-w-6xl mx-auto">
+        <div className="relative max-w-6xl mx-auto pt-16">
 
           {/* Badge — centred above columns */}
           <div className="text-center mb-10">
@@ -400,23 +400,23 @@ export default function RealEstateFunnel() {
             </div>
           </div>
 
-          {/* Two-column layout */}
-          <div className="flex flex-col lg:flex-row lg:items-center">
+          {/* Two-column layout — normal document flow, no absolute positioning */}
+          <div style={{ display: "flex", alignItems: "center", gap: "0" }}>
 
             {/* LEFT — 55% text */}
-            <div className="lg:w-[55%] text-center lg:text-left lg:pr-10">
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight mb-8">
-                {COPY.heroHeadline[0]}<br />
-                <span style={{ color: "#FF4500" }}>{COPY.heroHeadline[1]}</span>
+            <div style={{ width: "55%", paddingRight: "48px" }} className="hidden lg:block">
+              <h1 className="font-bold leading-[1.05] tracking-tight mb-8"
+                style={{ fontSize: "clamp(2.5rem, 4vw, 4.5rem)", whiteSpace: "nowrap" }}>
+                {COPY.heroHeadline[0]}&nbsp;<span style={{ color: "#FF4500" }}>{COPY.heroHeadline[1]}</span>
               </h1>
 
-              <p className="text-xl sm:text-2xl text-slate-300 max-w-2xl lg:max-w-none mx-auto mb-10 leading-relaxed">
+              <p className="text-xl text-slate-300 mb-10 leading-relaxed">
                 {COPY.heroSub}
               </p>
 
-              <ul className="flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-4 justify-center lg:justify-start mb-12 max-w-2xl mx-auto lg:mx-0 text-left">
+              <ul className="flex flex-col gap-4 mb-12 text-left">
                 {COPY.heroBullets.map(b => (
-                  <li key={b} className="flex items-start gap-3 flex-1">
+                  <li key={b} className="flex items-start gap-3">
                     <span className="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center"
                       style={{ background: "rgba(255,69,0,0.15)", border: "1px solid rgba(255,69,0,0.4)" }}>
                       <svg className="w-3 h-3 text-[#FF4500]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -428,12 +428,12 @@ export default function RealEstateFunnel() {
                 ))}
               </ul>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center mb-5">
-                <CtaButton href="#apply" size="lg" className="w-full sm:w-auto">
+              <div className="flex flex-row gap-4 items-center mb-6">
+                <CtaButton href="#apply" size="lg">
                   {COPY.heroCta}
                 </CtaButton>
                 <a href="#video1" className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors text-sm font-medium">
-                  <span className="w-10 h-10 rounded-full flex items-center justify-center"
+                  <span className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
                     style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>
                     <svg className="w-4 h-4 ml-0.5" fill="white" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
                   </span>
@@ -441,38 +441,73 @@ export default function RealEstateFunnel() {
                 </a>
               </div>
 
-              {/* Mobile: Duku drops below CTA */}
-              <div className="lg:hidden flex justify-center mt-8 mb-4">
-                <img
-                  src="/duku-re.png"
-                  alt="Duku AI character"
-                  style={{ maxWidth: "280px", width: "100%", opacity: 0.85 }}
-                />
-              </div>
-
-              <p className="text-slate-500 text-sm mb-16">{COPY.heroTrust}</p>
+              <p className="text-slate-500 text-sm">{COPY.heroTrust}</p>
             </div>
 
-            {/* RIGHT — 45% Duku (desktop only) */}
-            <div className="hidden lg:flex lg:w-[45%] items-end justify-center relative" style={{ minHeight: "480px" }}>
+            {/* RIGHT — 45% Duku (desktop) */}
+            <div className="hidden lg:flex items-center justify-center"
+              style={{ width: "45%", minHeight: "400px" }}>
               <img
                 src="/duku-re.png"
                 alt="Duku AI character"
-                style={{
-                  width: "100%",
-                  maxWidth: "520px",
-                  position: "absolute",
-                  bottom: "-60px",
-                  left: "50%",
-                  transform: "translateX(-50%)",
-                }}
+                style={{ width: "100%", height: "100%", minHeight: "400px", objectFit: "contain" }}
               />
             </div>
 
           </div>
 
-          {/* VIDEO 1 — full width below both columns */}
-          <div className="max-w-3xl mx-auto mt-24 pb-20">
+          {/* Mobile layout — single column, shown only below lg */}
+          <div className="lg:hidden text-center pb-4">
+            <h1 className="text-5xl sm:text-6xl font-bold leading-[1.05] tracking-tight mb-8">
+              {COPY.heroHeadline[0]}<br />
+              <span style={{ color: "#FF4500" }}>{COPY.heroHeadline[1]}</span>
+            </h1>
+
+            <p className="text-xl text-slate-300 max-w-xl mx-auto mb-10 leading-relaxed">
+              {COPY.heroSub}
+            </p>
+
+            <ul className="flex flex-col gap-4 mb-12 max-w-sm mx-auto text-left">
+              {COPY.heroBullets.map(b => (
+                <li key={b} className="flex items-start gap-3">
+                  <span className="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center"
+                    style={{ background: "rgba(255,69,0,0.15)", border: "1px solid rgba(255,69,0,0.4)" }}>
+                    <svg className="w-3 h-3 text-[#FF4500]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </span>
+                  <span className="text-slate-300 text-sm leading-snug">{b}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-5">
+              <CtaButton href="#apply" size="lg" className="w-full sm:w-auto">
+                {COPY.heroCta}
+              </CtaButton>
+              <a href="#video1" className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors text-sm font-medium">
+                <span className="w-10 h-10 rounded-full flex items-center justify-center"
+                  style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>
+                  <svg className="w-4 h-4 ml-0.5" fill="white" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                </span>
+                {COPY.heroSecondaryCta}
+              </a>
+            </div>
+
+            {/* Mobile Duku — below CTA */}
+            <div className="flex justify-center mt-8 mb-4">
+              <img
+                src="/duku-re.png"
+                alt="Duku AI character"
+                style={{ maxWidth: "300px", width: "100%", margin: "0 auto", opacity: 0.85 }}
+              />
+            </div>
+
+            <p className="text-slate-500 text-sm mt-4 mb-8">{COPY.heroTrust}</p>
+          </div>
+
+          {/* VIDEO 1 — below both columns */}
+          <div className="max-w-3xl mx-auto mt-16 pb-20">
             <VideoCinematic
               id="video1"
               label="Stop Torching Your Portal Leads"
