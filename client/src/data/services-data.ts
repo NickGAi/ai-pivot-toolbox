@@ -63,7 +63,7 @@ export const servicesData: ServiceData[] = [
       { q: "Can the AI voice agent integrate with my existing systems?", a: "Yes. We integrate with HubSpot, Salesforce, Zoho, Go High Level, Google Calendar, Calendly, and most major CRM and booking systems via API. We also support custom integrations for industry-specific software." },
     ],
     relatedSlugs: ["ai-chatbot-australia", "ai-integrations", "workflow-automation"],
-    metaTitle: "AI Voice Agents Australia | 24/7 Call Handling from $997/mo | AI Pivot Toolbox",
+    metaTitle: "AI Voice Agents Australia | 24/7 Calls from $997/mo | AI Pivot Toolbox",
     metaDescription: "Fully managed AI voice agents for Australian businesses. Inbound calls, lead qualification, appointment booking — 24/7. From $997/month. 40–60% below agency rates. Free strategy call.",
   },
   {
@@ -110,7 +110,7 @@ export const servicesData: ServiceData[] = [
       { q: "How much does workflow automation cost compared to hiring staff?", a: "AI Pivot Toolbox's workflow automation service starts at $1,497/month — less than 10% of the cost of a full-time admin employee. Most clients see full ROI within the first 30 days through time savings alone, before even accounting for error reduction and faster turnaround." },
     ],
     relatedSlugs: ["ai-voice-agents", "ai-integrations", "ai-chatbot-australia"],
-    metaTitle: "Workflow Automation Australia | Business Process Automation from $1,497/mo | AI Pivot Toolbox",
+    metaTitle: "Workflow Automation Australia | From $1,497/mo | AI Pivot Toolbox",
     metaDescription: "Custom workflow automation for Australian businesses. Eliminate manual tasks, integrate your systems, save 40+ hours per week. From $1,497/month. Free strategy call.",
   },
   {
@@ -157,7 +157,7 @@ export const servicesData: ServiceData[] = [
       { q: "Do I need to write the content myself?", a: "No. Our AI SEO package includes 4 GEO/AEO-optimised articles per month, written and published for you. Content is structured with answer-first paragraphs, statistics, named sources, and schema markup — exactly the format AI engines prefer to cite." },
     ],
     relatedSlugs: ["aeo-answer-engine-optimisation", "geo-generative-engine-optimisation", "ai-content-machine"],
-    metaTitle: "AI SEO Services Australia | GEO, AEO & Google Rankings from $1,497/mo | AI Pivot Toolbox",
+    metaTitle: "AI SEO Agency Australia | GEO, AEO & Rankings | AI Pivot Toolbox",
     metaDescription: "AI SEO for Australian businesses. Rank on Google AND get cited by ChatGPT, Perplexity & AI Overviews. GEO, AEO, technical SEO — fully managed from $1,497/month.",
   },
   {
@@ -204,7 +204,7 @@ export const servicesData: ServiceData[] = [
       { q: "Which Australian businesses benefit most from AEO?", a: "Any business in a professional services industry where potential clients ask AI engines for recommendations. This includes legal, accounting, financial services, healthcare, real estate, and technology businesses. If your clients ask 'what's the best [service] in [city]?' to ChatGPT, AEO can get your business as the answer." },
     ],
     relatedSlugs: ["ai-seo-australia", "geo-generative-engine-optimisation"],
-    metaTitle: "Answer Engine Optimisation (AEO) Australia | Get Found on ChatGPT & Perplexity | AI Pivot Toolbox",
+    metaTitle: "AEO Australia | Get Found on ChatGPT & Perplexity | AI Pivot Toolbox",
     metaDescription: "AEO services for Australian businesses. Get your business cited by ChatGPT, Perplexity, and Google AI Overviews. Structured content, FAQ schema, and AI visibility tracking. Free strategy call.",
   },
   {
@@ -251,7 +251,7 @@ export const servicesData: ServiceData[] = [
       { q: "How quickly can GEO improve my AI search visibility?", a: "Most clients see AI citation improvements within 45–90 days. The timeline depends on your domain authority, existing content quality, and the competitiveness of your target queries. Technical fixes and schema markup show the fastest improvements; content-driven citation building takes longer but produces more durable results." },
     ],
     relatedSlugs: ["ai-seo-australia", "aeo-answer-engine-optimisation"],
-    metaTitle: "GEO — Generative Engine Optimisation Australia | Get Cited by AI Search | AI Pivot Toolbox",
+    metaTitle: "GEO Agency Australia | Get Cited by AI Search | AI Pivot Toolbox",
     metaDescription: "GEO services for Australian businesses. Get cited by Google AI Overviews, ChatGPT, and Perplexity. Research-backed generative engine optimisation from $1,497/month.",
   },
   {
@@ -298,7 +298,7 @@ export const servicesData: ServiceData[] = [
       { q: "What happens when the chatbot can't answer a question?", a: "The chatbot is configured with handoff logic — when it encounters a question outside its training or when a user requests human assistance, it collects their details and either transfers to live chat, sends an email notification to your team, or books a callback. No visitor falls through the cracks." },
     ],
     relatedSlugs: ["ai-voice-agents", "ai-integrations", "workflow-automation"],
-    metaTitle: "AI Chatbot Australia | Custom Website Chatbot from $597/mo | AI Pivot Toolbox",
+    metaTitle: "AI Chatbot Australia | Website Chatbot from $597/mo | AI Pivot Toolbox",
     metaDescription: "Custom AI chatbots for Australian business websites. Capture leads, answer questions, and book appointments 24/7. Trained on your business. From $597/month. Free strategy call.",
   },
   {
@@ -345,7 +345,7 @@ export const servicesData: ServiceData[] = [
       { q: "What platform is the website built on?", a: "We build on React with a Node.js backend for maximum performance and flexibility, or WordPress/Webflow for clients who want to manage their own content. The platform recommendation depends on your specific requirements, technical team, and long-term goals. All builds are mobile-first and performance-optimised." },
     ],
     relatedSlugs: ["ai-chatbot-australia", "ai-seo-australia", "app-development-australia"],
-    metaTitle: "Website Design with AI Australia | Custom Websites from $3,497 | AI Pivot Toolbox",
+    metaTitle: "Website Design with AI Australia | From $3,497 | AI Pivot Toolbox",
     metaDescription: "Custom website design for Australian businesses with AI chatbot, SEO, and lead capture built in. From $3,497 once-off — 40–60% below agency rates. 4–6 week delivery. Free strategy call.",
   },
   {
@@ -392,7 +392,7 @@ export const servicesData: ServiceData[] = [
       { q: "Do you build mobile apps?", a: "Yes. We build mobile apps for iOS and Android using React Native, which allows a single codebase to run on both platforms — significantly reducing build time and cost versus native development. Mobile apps start from $12,000 for a defined-scope MVP." },
     ],
     relatedSlugs: ["website-design-ai", "ai-integrations", "workflow-automation"],
-    metaTitle: "App Development Australia | Custom AI Apps from $7,997 | AI Pivot Toolbox",
+    metaTitle: "Custom AI App Development Australia | From $7,997 | AI Pivot Toolbox",
     metaDescription: "Custom web and mobile app development for Australian businesses. AI features, fast delivery, fixed price. MVPs from $7,997 — 40–60% below agency rates. Free strategy call.",
   },
   {
@@ -439,7 +439,7 @@ export const servicesData: ServiceData[] = [
       { q: "How is this different from just using Zapier myself?", a: "Zapier and Make are excellent tools, but they have limitations — they struggle with complex data transformations, break when APIs update, have per-task pricing that adds up fast, and require ongoing maintenance that most businesses don't prioritise. AI Pivot Toolbox builds more robust integrations, handles the maintenance, monitors for failures, and includes error alerting. You focus on your business; we make sure the systems keep talking." },
     ],
     relatedSlugs: ["workflow-automation", "ai-chatbot-australia", "ai-voice-agents"],
-    metaTitle: "CRM & AI Integrations Australia | Connect Your Business Systems from $997/mo | AI Pivot Toolbox",
+    metaTitle: "CRM & AI Integrations Australia | From $997/mo | AI Pivot Toolbox",
     metaDescription: "Custom CRM and software integrations for Australian businesses. Connect Xero, Salesforce, HubSpot, and 100+ tools. Fully managed from $997/month. Free strategy call.",
   },
 ];

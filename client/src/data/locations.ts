@@ -49,7 +49,7 @@ export const locations: LocationData[] = [
       { q: "Do you work with Brisbane businesses in person?", a: "Yes. While most of our work is delivered remotely (faster and more efficient), we're Brisbane-based and available for on-site meetings with clients across Greater Brisbane, Gold Coast, and the Sunshine Coast." },
       { q: "Which Brisbane industries benefit most from AI automation?", a: "Real estate, professional services, healthcare, legal, and hospitality businesses in Brisbane see the fastest ROI. These industries typically have high-volume repetitive tasks — enquiry handling, appointment booking, invoicing — that AI automates completely." },
     ],
-    metaTitle: "AI Automation Agency Brisbane | AI Voice Agents, SEO & Workflow Automation | AI Pivot Toolbox",
+    metaTitle: "AI Automation Agency Brisbane | Voice Agents & SEO | AI Pivot Toolbox",
     metaDescription: "Brisbane's AI automation specialist. AI voice agents, workflow automation, AI SEO and GEO — 40–60% below agency rates. Serving Brisbane CBD, Gold Coast and Sunshine Coast. Free strategy call.",
   },
   {
@@ -81,7 +81,7 @@ export const locations: LocationData[] = [
       { q: "Can you integrate AI with Sydney-based systems like Salesforce, HubSpot or Xero?", a: "Yes. We integrate with Salesforce, HubSpot, Zoho, Xero, MYOB, Microsoft 365, Google Workspace, and hundreds of other platforms commonly used by Sydney businesses. All integrations are custom-built to your existing workflow." },
       { q: "Do you serve businesses outside Sydney CBD?", a: "We serve businesses across all of Greater Sydney and NSW — including Parramatta, North Sydney, Wollongong, and Newcastle. All services are delivered remotely with video strategy sessions." },
     ],
-    metaTitle: "AI Automation Agency Sydney | AI Voice Agents, Workflow Automation & AI SEO | AI Pivot Toolbox",
+    metaTitle: "AI Automation Agency Sydney | Voice Agents & SEO | AI Pivot Toolbox",
     metaDescription: "Sydney AI automation specialist. AI voice agents, workflow automation, AI SEO — 40–60% below Sydney agency rates. Serving CBD, Parramatta, North Sydney and all of NSW. Free strategy call.",
   },
   {
@@ -113,7 +113,7 @@ export const locations: LocationData[] = [
       { q: "How does AI SEO help Melbourne businesses rank on Google?", a: "Our AI SEO service combines technical SEO, GEO (Generative Engine Optimisation), and AEO (Answer Engine Optimisation) to get Melbourne businesses ranking on Google AND appearing in AI-generated answers on ChatGPT, Perplexity, and Google AI Overviews — where Semrush data shows visitors convert 4.4x higher than from organic search." },
       { q: "Can you work with Melbourne businesses across Victoria?", a: "Yes. We serve businesses across Greater Melbourne and regional Victoria including Geelong, Ballarat, and Bendigo. All services are delivered remotely with dedicated video strategy sessions." },
     ],
-    metaTitle: "AI Automation Agency Melbourne | AI Voice Agents, SEO & Workflow Automation | AI Pivot Toolbox",
+    metaTitle: "AI Automation Agency Melbourne | Voice Agents & SEO | AI Pivot Toolbox",
     metaDescription: "Melbourne AI automation specialist. AI voice agents, workflow automation, AI SEO and GEO — 40–60% below Melbourne agency rates. Serving CBD, Geelong and all of VIC. Free strategy call.",
   },
   {
@@ -145,7 +145,7 @@ export const locations: LocationData[] = [
       { q: "Is AI automation affordable for small Perth businesses?", a: "Absolutely. Our AI chatbot starts at $597/month and AI analytics dashboard at $397/month. For a solo operator or small team, even one tool typically saves more in time than it costs. Most Perth clients see clear ROI within the first month." },
       { q: "Can you help Perth businesses get found on Google and AI search?", a: "Yes. Our AI SEO service ($1,497/month) is specifically designed for Australian local businesses. We optimise for Google, Google AI Overviews, ChatGPT, and Perplexity — targeting Perth-specific search terms to drive local enquiries." },
     ],
-    metaTitle: "AI Automation Agency Perth | AI Voice Agents, SEO & Workflow Automation | AI Pivot Toolbox",
+    metaTitle: "AI Automation Agency Perth | Voice Agents & SEO | AI Pivot Toolbox",
     metaDescription: "Perth AI automation specialist. AI voice agents, workflow automation, AI SEO — 40–60% below Perth agency rates. Serving CBD, Fremantle, Joondalup and all of WA. Free strategy call.",
   },
   {
@@ -177,7 +177,7 @@ export const locations: LocationData[] = [
       { q: "Can you help Adelaide businesses rank on Google with AI SEO?", a: "Yes. Adelaide is one of the best cities in Australia for AI SEO right now — search competition is lower than Sydney and Melbourne, meaning you can achieve page 1 rankings faster. Our AI SEO service targets Adelaide-specific keywords across Google, ChatGPT, Perplexity, and Google AI Overviews." },
       { q: "Do you work with Adelaide defence and manufacturing businesses?", a: "Yes. We work with businesses across Adelaide's defence, manufacturing, and agriculture sectors. Common use cases include document processing, supplier automation, compliance reporting, and workforce communication tools." },
     ],
-    metaTitle: "AI Automation Agency Adelaide | AI Voice Agents, SEO & Workflow Automation | AI Pivot Toolbox",
+    metaTitle: "AI Automation Agency Adelaide | Voice Agents & SEO | AI Pivot Toolbox",
     metaDescription: "Adelaide AI automation specialist. AI voice agents, workflow automation, AI SEO — 40–60% below Adelaide agency rates. Serving CBD, Glenelg, Port Adelaide and all of SA. Free strategy call.",
   },
   {
@@ -209,7 +209,7 @@ export const locations: LocationData[] = [
       { q: "How much does AI automation cost for a Gold Coast small business?", a: "AI Pivot Toolbox services start from $597/month for an AI chatbot through to $1,497/month for full workflow automation or AI SEO. There are no setup fees and no lock-in contracts. For most Gold Coast businesses, the investment pays for itself within 30–60 days through improved lead conversion and time savings." },
       { q: "Can you help Gold Coast businesses rank on Google?", a: "Yes. Our AI SEO service targets Gold Coast-specific keywords across Google, ChatGPT, Perplexity, and Google AI Overviews. Gold Coast is a strong market for local SEO because search intent is high (tourism, services, real estate) but the competition is less saturated than Sydney or Melbourne." },
     ],
-    metaTitle: "AI Automation Agency Gold Coast | AI Voice Agents, SEO & Workflow Automation | AI Pivot Toolbox",
+    metaTitle: "AI Automation Gold Coast | Voice Agents & SEO | AI Pivot Toolbox",
     metaDescription: "Gold Coast AI automation specialist. AI voice agents, chatbots, workflow automation, AI SEO — 40–60% below agency rates. Serving Surfers Paradise, Broadbeach, Robina and all of GC. Free strategy call.",
   },
   {
@@ -241,7 +241,7 @@ export const locations: LocationData[] = [
       { q: "Which Canberra industries benefit most from AI automation?", a: "Consulting firms, legal practices, healthcare providers, and professional services businesses in Canberra see the strongest ROI. These industries typically have high administrative overhead, compliance documentation requirements, and client communication workflows that are ideal for AI automation." },
       { q: "How does AI SEO work for Canberra businesses?", a: "Our AI SEO service targets Canberra-specific keywords across Google, ChatGPT, Perplexity, and Google AI Overviews. Canberra is a relatively low-competition market for local SEO, which means businesses that invest now can achieve strong rankings faster than in Sydney or Melbourne. We also optimise for suburb-level keywords across all ACT suburbs." },
     ],
-    metaTitle: "AI Automation Agency Canberra | AI Voice Agents, SEO & Workflow Automation | AI Pivot Toolbox",
+    metaTitle: "AI Automation Agency Canberra | Voice Agents & SEO | AI Pivot Toolbox",
     metaDescription: "Canberra AI automation specialist. AI voice agents, workflow automation, AI SEO — for government, defence, and professional services businesses in the ACT. Free strategy call.",
   },
   {
@@ -273,7 +273,7 @@ export const locations: LocationData[] = [
       { q: "Do you serve businesses across the Hunter Valley region?", a: "Yes. We serve businesses across Newcastle CBD, Lake Macquarie, Maitland, Cessnock, the Hunter Valley wine region, and down to Gosford and the Central Coast. All services are delivered remotely — no travel time delays for regional clients." },
       { q: "Can Newcastle businesses rank above Sydney competitors on Google?", a: "Yes — for local keywords. A Newcastle accountant can absolutely rank above a Sydney accountant for searches like 'accountant Newcastle' or 'tax agent Hunter Valley'. Our AI SEO service specifically targets Newcastle and Hunter Valley keywords across Google, AI Overviews, and Perplexity." },
     ],
-    metaTitle: "AI Automation Agency Newcastle | AI Voice Agents, SEO & Workflow Automation | AI Pivot Toolbox",
+    metaTitle: "AI Automation Agency Newcastle | Voice Agents & SEO | AI Pivot Toolbox",
     metaDescription: "Newcastle AI automation specialist. AI voice agents, workflow automation, AI SEO — 40–60% below Sydney agency rates. Serving Newcastle CBD, Hunter Valley, Lake Macquarie. Free strategy call.",
   },
   {
@@ -305,7 +305,7 @@ export const locations: LocationData[] = [
       { q: "Can you help Hobart businesses rank on Google above mainland competitors?", a: "Yes. For local Hobart searches — 'accountant Hobart', 'plumber Sandy Bay', 'marketing agency Hobart' — local Tasmanian businesses have a natural advantage over mainland competitors. Our AI SEO service amplifies that advantage with technical SEO, local schema markup, and GEO/AEO optimisation targeting Hobart and Tasmanian keywords." },
       { q: "Do you work with tourism and hospitality businesses in Tasmania?", a: "Yes — tourism and hospitality is one of our strongest industry verticals for Tasmanian businesses. AI automation for bookings, guest enquiries, review management, and seasonal staffing workflows delivers strong ROI for hotels, tour operators, restaurants, and accommodation providers in Hobart and across Tasmania." },
     ],
-    metaTitle: "AI Automation Agency Hobart | AI Voice Agents, SEO & Workflow Automation | AI Pivot Toolbox",
+    metaTitle: "AI Automation Agency Hobart | Voice Agents & SEO | AI Pivot Toolbox",
     metaDescription: "Hobart AI automation specialist. First-mover advantage in Tasmania — AI voice agents, workflow automation, AI SEO before your competitors have it. Free strategy call.",
   },
 ];

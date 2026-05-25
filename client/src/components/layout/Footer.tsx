@@ -25,6 +25,17 @@ const serviceLinks = [
   { label: "AI Integrations", href: "/ai-integrations" },
 ];
 
+const blogLinks = [
+  { label: "How to Choose an AI SEO Agency", href: "/blog/how-to-choose-ai-seo-agency-australia" },
+  { label: "SEO Agency vs AI SEO Agency", href: "/blog/seo-agency-vs-ai-seo-agency-australia" },
+  { label: "What Is a GEO Agency?", href: "/blog/what-is-a-geo-agency" },
+  { label: "What Is GEO?", href: "/blog/what-is-geo-generative-engine-optimisation" },
+  { label: "AEO vs SEO Australia", href: "/blog/aeo-vs-seo-australia" },
+  { label: "AI Automation for Small Business", href: "/blog/ai-automation-small-business-australia" },
+  { label: "Best AI Tools 2026", href: "/blog/best-ai-tools-australian-small-business-2026" },
+  { label: "AI Workflows for Accountants", href: "/blog/ai-for-australian-accountants" },
+];
+
 const industryLinks = [
   { label: "AI for Real Estate", href: "/ai-for-real-estate" },
   { label: "AI for Healthcare", href: "/ai-for-healthcare" },
@@ -69,6 +80,15 @@ export function Footer() {
             <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wider text-center mb-3">Services</p>
             <nav className="flex flex-wrap items-center justify-center gap-3 sm:gap-5 text-xs text-muted-foreground" role="navigation" aria-label="Service pages">
               {serviceLinks.map(link => (
+                <Link key={link.href} href={link.href} className="hover:text-foreground transition-colors">{link.label}</Link>
+              ))}
+            </nav>
+          </div>
+
+          <div className="border-t border-border pt-6">
+            <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wider text-center mb-3">Blog</p>
+            <nav className="flex flex-wrap items-center justify-center gap-3 sm:gap-5 text-xs text-muted-foreground" role="navigation" aria-label="Blog posts">
+              {blogLinks.map(link => (
                 <Link key={link.href} href={link.href} className="hover:text-foreground transition-colors">{link.label}</Link>
               ))}
             </nav>

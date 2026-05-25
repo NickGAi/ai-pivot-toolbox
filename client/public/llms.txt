@@ -1,0 +1,53 @@
+# AI Pivot Toolbox
+
+> AI SEO and automation agency serving Australian businesses. Services include AI voice agents, workflow automation, AI SEO, GEO (Generative Engine Optimisation), AEO (Answer Engine Optimisation), AI chatbots, website design, app development, and CRM integrations — priced 40–60% below traditional agency rates as a solo AI-powered operator based in Brisbane, Australia.
+
+## Services
+
+- [AI Voice Agents](https://aipivot.com.au/ai-voice-agents): 24/7 inbound call handling, lead qualification, and appointment booking — from $997/month
+- [Workflow Automation](https://aipivot.com.au/workflow-automation): Business process automation to eliminate manual tasks — from $1,497/month
+- [AI SEO Australia](https://aipivot.com.au/ai-seo-australia): Full-service AI SEO covering Google rankings, GEO, and AEO — from $1,497/month
+- [AEO — Answer Engine Optimisation](https://aipivot.com.au/aeo-answer-engine-optimisation): Get cited by ChatGPT, Perplexity, and Google AI Overviews
+- [GEO — Generative Engine Optimisation](https://aipivot.com.au/geo-generative-engine-optimisation): Structured content and technical setup for AI search citation
+- [AI Chatbot Australia](https://aipivot.com.au/ai-chatbot-australia): Custom website chatbot trained on your business — from $597/month
+- [Website Design with AI](https://aipivot.com.au/website-design-ai): Custom websites with AI chatbot and SEO built in — from $3,497 once-off
+- [App Development Australia](https://aipivot.com.au/app-development-australia): Custom AI-powered web and mobile apps — from $7,997
+- [CRM & AI Integrations](https://aipivot.com.au/ai-integrations): Connect Xero, Salesforce, HubSpot, and 100+ tools — from $997/month
+
+## Industries
+
+- [AI for Real Estate](https://aipivot.com.au/ai-for-real-estate): Handle 400+ enquiries monthly, book inspections 24/7, automate CRM
+- [AI for Healthcare](https://aipivot.com.au/ai-for-healthcare): Reduce no-shows by 60%, save 10–20 hours of admin weekly
+- [AI for Legal](https://aipivot.com.au/ai-for-legal): Automate client intake, document collection, and billing prep
+- [AI for Accounting](https://aipivot.com.au/ai-for-accounting): Automate Xero/MYOB reconciliation and client communication
+- [AI for Hospitality](https://aipivot.com.au/ai-for-hospitality): Handle reservations 24/7, automate review management
+- [AI for Construction](https://aipivot.com.au/ai-for-construction): Faster quotes, automated invoicing, compliance document management
+- [AI for Finance Brokers](https://aipivot.com.au/ai-for-finance): Pre-qualify 200+ leads monthly, automate document collection
+- [AI for Retail & eCommerce](https://aipivot.com.au/ai-for-retail): Handle 1,000+ customer queries monthly, automate cart recovery
+
+## Locations
+
+- [AI Automation Brisbane](https://aipivot.com.au/ai-automation-brisbane)
+- [AI Automation Sydney](https://aipivot.com.au/ai-automation-sydney)
+- [AI Automation Melbourne](https://aipivot.com.au/ai-automation-melbourne)
+- [AI Automation Perth](https://aipivot.com.au/ai-automation-perth)
+- [AI Automation Adelaide](https://aipivot.com.au/ai-automation-adelaide)
+- [AI Automation Gold Coast](https://aipivot.com.au/ai-automation-gold-coast)
+- [AI Automation Canberra](https://aipivot.com.au/ai-automation-canberra)
+- [AI Automation Newcastle](https://aipivot.com.au/ai-automation-newcastle)
+- [AI Automation Hobart](https://aipivot.com.au/ai-automation-hobart)
+
+## Blog
+
+- [What Is GEO (Generative Engine Optimisation)?](https://aipivot.com.au/blog/what-is-geo-generative-engine-optimisation)
+- [AEO vs SEO Australia: What's the Difference?](https://aipivot.com.au/blog/aeo-vs-seo-australia)
+- [How to Get Recommended by ChatGPT & Perplexity](https://aipivot.com.au/blog/get-business-recommended-chatgpt)
+- [AI Voice Agent Cost Australia 2026](https://aipivot.com.au/blog/ai-voice-agent-cost-australia)
+- [AI Automation for Small Business Australia](https://aipivot.com.au/blog/ai-automation-small-business-australia)
+- [10 Business Tasks to Automate With AI in Australia](https://aipivot.com.au/blog/workflow-automation-tasks-australia)
+- [Best AI Tools for Australian Small Business 2026](https://aipivot.com.au/blog/best-ai-tools-australian-small-business-2026)
+- [How to Automate Xero With AI in Australia](https://aipivot.com.au/blog/automate-xero-with-ai-australia)
+- [7 AI Workflows for Australian Accountants](https://aipivot.com.au/blog/ai-for-australian-accountants)
+- [How to Choose an AI SEO Agency in Australia](https://aipivot.com.au/blog/how-to-choose-ai-seo-agency-australia)
+- [SEO Agency vs AI SEO Agency Australia](https://aipivot.com.au/blog/seo-agency-vs-ai-seo-agency-australia)
+- [What Is a GEO Agency?](https://aipivot.com.au/blog/what-is-a-geo-agency)

@@ -50,7 +50,7 @@ export const industriesData: IndustryData[] = [
       { q: "Which real estate CRMs does the AI integrate with?", a: "We integrate with REX, Agentbox, Vault RE, PropertyMe, Console Cloud, Salesforce, and most major real estate CRMs. Integration includes automated contact creation, lead source tracking, and follow-up sequence triggers based on lead status." },
       { q: "Can AI automation help with property management as well as sales?", a: "Yes. For property management, the most impactful automations are: maintenance request triage and dispatch, rent arrears reminder sequences, lease renewal workflows, and routine inspection scheduling. These typically save property managers 8–12 hours per week." },
     ],
-    metaTitle: "AI Automation for Real Estate Australia | AI Voice Agents & CRM Integration | AI Pivot Toolbox",
+    metaTitle: "AI Automation for Real Estate Agencies Australia | AI Pivot Toolbox",
     metaDescription: "AI automation for Australian real estate agencies. Handle 400+ enquiries monthly, book inspections 24/7, and automate CRM updates — without extra staff. Free strategy call.",
   },
   {
@@ -88,7 +88,7 @@ export const industriesData: IndustryData[] = [
       { q: "Which practice management systems do you integrate with?", a: "We integrate with Best Practice, Medical Director, Genie Solutions, Cliniko, Power Diary, Nookal, Coreplus, and most major Australian practice management systems. Integration enables automated appointment reminders, real-time availability checking, and patient record syncing without manual data entry." },
       { q: "Can AI handle Medicare and billing processes?", a: "AI can automate the preparation and routing of billing data, but cannot submit Medicare claims directly (this requires a registered provider). We automate the billing preparation workflow — extracting consultation codes, matching to patient records, and preparing claim batches for review — reducing the time required for billing by 60–80%." },
     ],
-    metaTitle: "AI Automation for Healthcare Practices Australia | Reduce No-Shows & Admin | AI Pivot Toolbox",
+    metaTitle: "AI Automation for Healthcare Practices Australia | AI Pivot Toolbox",
     metaDescription: "AI automation for Australian healthcare and allied health practices. Reduce no-shows by 60%, save 10–20 hours of admin weekly, and automate referral and billing workflows. Free strategy call.",
   },
   {
@@ -126,7 +126,7 @@ export const industriesData: IndustryData[] = [
       { q: "Can AI handle conflict of interest checks?", a: "AI can automate the data collection phase of conflict checking — capturing new client and matter details, searching against your existing client database, and flagging potential conflicts for review. The final conflict determination remains with the supervising solicitor. This typically reduces conflict check time from 30 minutes to under 5 minutes." },
       { q: "What practice management systems do you integrate with?", a: "We integrate with LEAP, Actionstep, Smokeball, FilePro, Clio, and most major Australian legal practice management systems. We also integrate with document management systems (NetDocuments, iManage) and e-signing platforms (DocuSign, Adobe Sign)." },
     ],
-    metaTitle: "AI Automation for Law Firms Australia | Legal Admin Automation | AI Pivot Toolbox",
+    metaTitle: "AI for Law Firms Australia | Legal Admin Automation | AI Pivot Toolbox",
     metaDescription: "AI automation for Australian law firms. Automate client intake, document collection, and billing prep. Save 28+ hours of non-billable admin weekly. Privacy Act compliant. Free strategy call.",
   },
   {
@@ -164,7 +164,7 @@ export const industriesData: IndustryData[] = [
       { q: "Is automated accounting compliant with ATO requirements?", a: "All our accounting automations maintain full audit trails and human review checkpoints before any data is submitted to the ATO. Automated processes handle data collection and preparation; a licensed accountant reviews and approves before lodgement. This meets ATO requirements for registered tax agents." },
       { q: "Can AI help with BAS preparation?", a: "AI can significantly streamline BAS preparation by automating transaction categorisation, GST calculation, and data aggregation from Xero or MYOB. The AI prepares a draft BAS with all figures populated and flags unusual transactions for review — reducing prep time by 60–80% while maintaining the accountant's review and lodgement responsibility." },
     ],
-    metaTitle: "AI Automation for Accounting Firms Australia | Xero & MYOB Integration | AI Pivot Toolbox",
+    metaTitle: "AI for Accounting Firms Australia | Xero & MYOB | AI Pivot Toolbox",
     metaDescription: "AI automation for Australian accounting firms. Automate Xero/MYOB reconciliation, document collection, and client communication. Save 20+ hours monthly. Free strategy call.",
   },
   {
@@ -202,7 +202,7 @@ export const industriesData: IndustryData[] = [
       { q: "How does AI review management work?", a: "Our reputation management system monitors your Google, TripAdvisor, and Facebook reviews in real time. When a new review is posted, AI generates a context-aware response that matches your brand voice — acknowledging specific points from the review, thanking positive reviewers, and professionally addressing criticism. Responses are either auto-posted or sent for approval before posting, depending on your preference." },
       { q: "Can AI help with staff scheduling?", a: "AI can automate the communication side of scheduling — shift notifications, availability collection, and roster change requests via SMS or a staff app. For full scheduling optimisation (demand forecasting, labour cost minimisation), we integrate with dedicated workforce management tools like Deputy or Tanda." },
     ],
-    metaTitle: "AI Automation for Hospitality Australia | Reservations, Reviews & Guest Comms | AI Pivot Toolbox",
+    metaTitle: "AI Automation for Hospitality Australia | AI Pivot Toolbox",
     metaDescription: "AI automation for Australian restaurants, hotels, and hospitality businesses. Handle reservations 24/7, manage reviews automatically, reduce no-shows. Free strategy call.",
   },
   {
@@ -240,7 +240,7 @@ export const industriesData: IndustryData[] = [
       { q: "What construction software can you integrate with?", a: "We integrate with Buildxact, Procore, Aconex, Jobpac, Timberline, Xero, MYOB, and most major Australian construction and accounting platforms. We also build integrations with supplier portals and procurement systems." },
       { q: "Can AI help with compliance documentation on construction sites?", a: "AI can automate the routing, tracking, and reminder processes for compliance documents — ensuring SWMS are reviewed before work starts, inductions are completed, and certifications are current. Document management integrates with your existing systems and sends automated alerts when compliance items are due for renewal." },
     ],
-    metaTitle: "AI Automation for Construction Businesses Australia | Quote & Invoice Automation | AI Pivot Toolbox",
+    metaTitle: "AI for Construction Australia | Quote Automation | AI Pivot Toolbox",
     metaDescription: "AI automation for Australian builders and construction companies. Faster quotes, automated invoicing, compliance document management. Save 40+ hours monthly. Free strategy call.",
   },
   {
@@ -278,7 +278,7 @@ export const industriesData: IndustryData[] = [
       { q: "Which broker CRMs do you integrate with?", a: "We integrate with Salestrekker, MyCRM, Mercury, Connective Essentials, Broker Engine, and most major Australian mortgage broking CRMs. We also integrate with ApplyOnline, Lender portals, and document management systems." },
       { q: "Can AI help with the document collection required for loan applications?", a: "Yes. We build automated document collection workflows that send clients a branded request with a secure upload portal, send reminders for outstanding documents, check document completeness and legibility, and route completed packages to the broker and relevant lender portal. This typically reduces document collection time by 70%." },
     ],
-    metaTitle: "AI Automation for Finance Brokers Australia | Lead Qualification & Document Automation | AI Pivot Toolbox",
+    metaTitle: "AI for Finance & Mortgage Brokers Australia | AI Pivot Toolbox",
     metaDescription: "AI automation for Australian finance brokers and financial planners. Pre-qualify 200+ leads monthly, automate document collection, respond in 90 seconds. Free strategy call.",
   },
   {
@@ -316,7 +316,7 @@ export const industriesData: IndustryData[] = [
       { q: "How does cart abandonment automation work?", a: "When a shopper adds items to their cart and leaves without purchasing, the automation triggers a sequence — typically a reminder email at 1 hour, a second email at 24 hours with social proof, and optionally an SMS at 48 hours. Each message is personalised to the specific cart contents. Average cart recovery improvement is 10–18% for Australian retailers." },
       { q: "Can AI help manage a large product catalogue?", a: "AI can automate several catalogue management tasks — generating product descriptions from specifications, identifying pricing errors or outliers, syncing inventory across platforms, and flagging out-of-stock products for reorder. For businesses with large SKU counts, this alone saves dozens of hours per week." },
     ],
-    metaTitle: "AI Automation for Retail & eCommerce Australia | Chatbot, Shopify & Workflow Automation | AI Pivot Toolbox",
+    metaTitle: "AI Automation for Retail & eCommerce Australia | AI Pivot Toolbox",
     metaDescription: "AI automation for Australian retailers and eCommerce businesses. Handle 1,000+ customer queries monthly, automate cart recovery, and reduce support workload by 40%. Free strategy call.",
   },
 ];

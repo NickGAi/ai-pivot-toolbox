@@ -25,7 +25,7 @@ export const blogPosts: BlogPost[] = [
     category: "GEO & AI Search",
     readTime: "6 min read",
     publishDate: "2026-05-01",
-    metaTitle: "What Is GEO (Generative Engine Optimisation)? Guide for Australian Businesses | AI Pivot Toolbox",
+    metaTitle: "What Is GEO (Generative Engine Optimisation)? | AI Pivot Toolbox",
     metaDescription: "GEO explained for Australian businesses. Learn how Generative Engine Optimisation gets your business cited by ChatGPT, Perplexity, and Google AI Overviews — and why it matters more than traditional SEO.",
     content: [
       { type: "p", text: "You've heard of SEO. You've probably heard of AEO. But there's a newer discipline that's now more important than either for Australian businesses competing online in 2026 — GEO, or Generative Engine Optimisation." },
@@ -166,7 +166,7 @@ export const blogPosts: BlogPost[] = [
     category: "GEO & AI Search",
     readTime: "8 min read",
     publishDate: "2026-04-15",
-    metaTitle: "How to Get Recommended by ChatGPT & Perplexity — Guide for Australian Businesses | AI Pivot Toolbox",
+    metaTitle: "How to Get Recommended by ChatGPT & Perplexity | AI Pivot Toolbox",
     metaDescription: "How to get your Australian business recommended by ChatGPT, Perplexity, and Google AI. Step-by-step GEO guide with research-backed techniques and real examples.",
     content: [
       { type: "p", text: "Australian consumers are increasingly using AI chatbots to get business recommendations. 'What's the best mortgage broker in Sydney?' 'Which AI automation agency works with small businesses in Brisbane?' 'Who does the best workflow automation in Melbourne?'" },
@@ -213,7 +213,7 @@ export const blogPosts: BlogPost[] = [
     category: "AI Automation",
     readTime: "7 min read",
     publishDate: "2026-04-08",
-    metaTitle: "AI Automation for Small Business Australia — Where to Start | AI Pivot Toolbox",
+    metaTitle: "AI Automation for Small Business Australia | AI Pivot Toolbox",
     metaDescription: "A practical guide to AI automation for Australian small businesses. Which tools to start with, what to avoid, and how to get ROI within 30 days. From $397/month.",
     content: [
       { type: "p", text: "AI automation is one of the most significant competitive advantages available to small Australian businesses right now — but most SMBs waste their first few months on the wrong tools, or get sold expensive packages that deliver minimal ROI." },
@@ -261,7 +261,7 @@ export const blogPosts: BlogPost[] = [
     category: "AI Automation",
     readTime: "6 min read",
     publishDate: "2026-04-01",
-    metaTitle: "10 Business Tasks to Automate With AI in Australia (2026) | AI Pivot Toolbox",
+    metaTitle: "10 Business Automations for Australian SMBs in 2026 | AI Pivot Toolbox",
     metaDescription: "The 10 highest-ROI workflow automations for Australian businesses. What to automate, what tools to use, and what each one costs. Save 40+ hours per week.",
     content: [
       { type: "p", text: "The average Australian business is spending 40+ hours per week on tasks that could be fully automated with AI. That's a full-time employee's worth of productivity being consumed by manual admin — data entry, follow-up emails, invoice processing, report generation, and appointment scheduling." },
@@ -355,7 +355,7 @@ export const blogPosts: BlogPost[] = [
     category: "AI Automation",
     readTime: "8 min read",
     publishDate: "2026-04-19",
-    metaTitle: "How to Automate Xero With AI in Australia (2026 Guide) | AI Pivot Toolbox",
+    metaTitle: "How to Automate Xero With AI in Australia (2026) | AI Pivot Toolbox",
     metaDescription: "8 high-ROI ways to automate Xero with AI for Australian businesses. Bank reconciliation, invoice processing, debtor follow-up, and more. Tools, costs, and ROI explained.",
     content: [
       { type: "p", text: "Xero is the dominant accounting platform for Australian small businesses — and it's also one of the most automatable. Combined with the right AI tools, Xero can eliminate 10–20 hours per week of manual finance and admin work for a typical SMB." },
@@ -402,7 +402,7 @@ export const blogPosts: BlogPost[] = [
     category: "AI Automation",
     readTime: "7 min read",
     publishDate: "2026-04-12",
-    metaTitle: "AI for Australian Accountants: 7 Workflows to Automate (2026) | AI Pivot Toolbox",
+    metaTitle: "7 AI Workflows for Australian Accountants (2026) | AI Pivot Toolbox",
     metaDescription: "How Australian accounting firms are using AI to automate client onboarding, BAS prep, advisory work, and compliance. 7 specific workflows with tools and ROI for 2026.",
     content: [
       { type: "p", text: "AI is quietly transforming Australian accounting practices. The firms that move first are increasing capacity per accountant by 30–50%, freeing up time for higher-value advisory work — and locking in a margin advantage that's going to be very hard for laggards to close." },
@@ -439,7 +439,7 @@ export const blogPosts: BlogPost[] = [
     category: "AI SEO",
     readTime: "7 min read",
     publishDate: "2026-05-06",
-    metaTitle: "How to Choose an AI SEO Agency in Australia (2026 Guide) | AI Pivot Toolbox",
+    metaTitle: "How to Choose an AI SEO Agency in Australia (2026) | AI Pivot Toolbox",
     metaDescription: "7-point checklist for choosing the right AI SEO agency in Australia. What to look for, red flags to avoid, questions to ask, and how to compare pricing. 2026 buyer's guide.",
     content: [
       { type: "p", text: "An AI SEO agency in Australia should combine traditional technical SEO with GEO (Generative Engine Optimisation) and AEO (Answer Engine Optimisation) — the disciplines that get your business cited by ChatGPT, Perplexity, and Google AI Overviews. In 2026, any agency that only targets Google's blue links is already behind." },
@@ -490,7 +490,7 @@ export const blogPosts: BlogPost[] = [
     category: "AI SEO",
     readTime: "6 min read",
     publishDate: "2026-05-13",
-    metaTitle: "SEO Agency vs AI SEO Agency Australia: Which Is Right for Your Business? | AI Pivot Toolbox",
+    metaTitle: "Traditional SEO Agency vs AI SEO Agency Australia | AI Pivot Toolbox",
     metaDescription: "Honest comparison of traditional SEO agencies vs AI SEO agencies for Australian businesses in 2026. Pricing, deliverables, results, and which one suits your goals.",
     content: [
       { type: "p", text: "A traditional SEO agency or SEO marketing agency targets Google's ten blue-link results. An AI SEO agency targets those results plus Google AI Overviews, ChatGPT, and Perplexity — where 39% of Australian searches now appear. In 2026, Australian businesses in competitive industries need both strategies running simultaneously, which is why the AI SEO agency model has emerged as the clear successor to traditional SEO." },
@@ -531,7 +531,7 @@ export const blogPosts: BlogPost[] = [
     category: "GEO",
     readTime: "5 min read",
     publishDate: "2026-05-20",
-    metaTitle: "What Is a GEO Agency? Generative Engine Optimisation Explained | AI Pivot Toolbox",
+    metaTitle: "What Is a GEO Agency? GEO for Australian Businesses | AI Pivot Toolbox",
     metaDescription: "What a GEO agency is, what they do, and whether your Australian business needs one in 2026. Includes pricing, deliverables, and how GEO differs from traditional SEO.",
     content: [
       { type: "p", text: "A GEO agency (Generative Engine Optimisation agency) specialises in getting businesses cited and recommended by AI search engines — including Google AI Overviews, ChatGPT, and Perplexity. Unlike a traditional SEO agency that targets Google's ranked links, a GEO agency targets the AI-generated answers that now appear for 39% of Australian searches, and which convert at 4.4x the rate of traditional organic results." },
