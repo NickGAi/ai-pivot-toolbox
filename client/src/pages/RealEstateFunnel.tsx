@@ -405,9 +405,9 @@ export default function RealEstateFunnel() {
 
             {/* LEFT — 55% text */}
             <div style={{ width: "55%", paddingRight: "48px" }} className="hidden lg:block">
-              <h1 className="font-bold leading-[1.05] tracking-tight mb-8"
-                style={{ fontSize: "clamp(2.5rem, 4vw, 4.5rem)", whiteSpace: "nowrap" }}>
-                {COPY.heroHeadline[0]}&nbsp;<span style={{ color: "#FF4500" }}>{COPY.heroHeadline[1]}</span>
+              <h1 className="leading-[1.05] tracking-tight mb-8" style={{ fontSize: "68px", fontWeight: 900 }}>
+                {COPY.heroHeadline[0]}<br />
+                <span style={{ color: "#FF4500" }}>{COPY.heroHeadline[1]}</span>
               </h1>
 
               <p className="text-xl text-slate-300 mb-10 leading-relaxed">
@@ -428,17 +428,10 @@ export default function RealEstateFunnel() {
                 ))}
               </ul>
 
-              <div className="flex flex-row gap-4 items-center mb-6">
-                <CtaButton href="#apply" size="lg">
+              <div className="mb-6">
+                <CtaButton href="#apply" size="lg" className="w-full">
                   {COPY.heroCta}
                 </CtaButton>
-                <a href="#video1" className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors text-sm font-medium">
-                  <span className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
-                    style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>
-                    <svg className="w-4 h-4 ml-0.5" fill="white" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                  </span>
-                  {COPY.heroSecondaryCta}
-                </a>
               </div>
 
               <p className="text-slate-500 text-sm">{COPY.heroTrust}</p>
@@ -446,11 +439,11 @@ export default function RealEstateFunnel() {
 
             {/* RIGHT — 45% Duku (desktop) */}
             <div className="hidden lg:flex items-center justify-center"
-              style={{ width: "45%", minHeight: "400px" }}>
+              style={{ width: "45%", minHeight: "400px", paddingRight: "40px" }}>
               <img
                 src="/duku-re.png"
                 alt="Duku AI character"
-                style={{ width: "100%", height: "100%", minHeight: "400px", objectFit: "contain" }}
+                style={{ maxWidth: "380px", width: "100%", height: "100%", minHeight: "400px", objectFit: "contain" }}
               />
             </div>
 
@@ -481,17 +474,10 @@ export default function RealEstateFunnel() {
               ))}
             </ul>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-5">
-              <CtaButton href="#apply" size="lg" className="w-full sm:w-auto">
+            <div className="mb-5">
+              <CtaButton href="#apply" size="lg" className="w-full">
                 {COPY.heroCta}
               </CtaButton>
-              <a href="#video1" className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors text-sm font-medium">
-                <span className="w-10 h-10 rounded-full flex items-center justify-center"
-                  style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>
-                  <svg className="w-4 h-4 ml-0.5" fill="white" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                </span>
-                {COPY.heroSecondaryCta}
-              </a>
             </div>
 
             {/* Mobile Duku — below CTA */}
