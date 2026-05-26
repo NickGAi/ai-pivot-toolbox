@@ -553,8 +553,9 @@ export default function RealEstateFunnel() {
       </section>
 
       {/* ── EDUCATION — 3% ───────────────────────────────────────────────── */}
-      <section className="py-24 px-4">
-        <div className="max-w-4xl mx-auto">
+      <section className="py-24 px-4 relative overflow-hidden">
+        <img src="/images/features-bg-circuit.webp" alt="" className="absolute inset-0 w-full h-full object-cover opacity-15 pointer-events-none" />
+        <div className="relative max-w-4xl mx-auto">
           <SectionLabel>Market Education</SectionLabel>
           <h2 className="text-3xl sm:text-5xl font-bold leading-tight mb-6">
             Only 3% Of Your Market Is<br />Ready To List Right Now.
@@ -599,8 +600,9 @@ export default function RealEstateFunnel() {
       </section>
 
       {/* ── SOLUTION ─────────────────────────────────────────────────────── */}
-      <section className="py-24 px-4" style={{ background: "#0b0e16" }}>
-        <div className="max-w-4xl mx-auto">
+      <section className="py-24 px-4 relative overflow-hidden" style={{ background: "#0b0e16" }}>
+        <img src="/images/features-bg-circuit.webp" alt="" className="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none" />
+        <div className="relative max-w-4xl mx-auto">
           <SectionLabel>The Solution</SectionLabel>
           <h2 className="text-3xl sm:text-5xl font-bold leading-tight mb-6">
             AiPivot Is The Follow-Up Machine<br />
@@ -653,8 +655,9 @@ export default function RealEstateFunnel() {
       </section>
 
       {/* ── GROWTH MAP ───────────────────────────────────────────────────── */}
-      <section className="py-24 px-4">
-        <div className="max-w-4xl mx-auto">
+      <section className="py-24 px-4 relative overflow-hidden">
+        <img src="/images/features-bg-circuit.webp" alt="" className="absolute inset-0 w-full h-full object-cover opacity-15 pointer-events-none" />
+        <div className="relative max-w-4xl mx-auto">
           <SectionLabel>What's Included</SectionLabel>
           <h2 className="text-3xl sm:text-5xl font-bold leading-tight mb-6">
             What You Get In The<br />90-Day Pipeline Growth Map
@@ -735,8 +738,9 @@ export default function RealEstateFunnel() {
       </section>
 
       {/* ── WHO IT'S FOR ─────────────────────────────────────────────────── */}
-      <section className="py-24 px-4" style={{ background: "#0b0e16" }}>
-        <div className="max-w-3xl mx-auto">
+      <section className="py-24 px-4 relative overflow-hidden" style={{ background: "#0b0e16" }}>
+        <img src="/images/features-bg-circuit.webp" alt="" className="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none" />
+        <div className="relative max-w-3xl mx-auto">
           <SectionLabel>Is This For You?</SectionLabel>
           <h2 className="text-3xl sm:text-5xl font-bold leading-tight mb-16">
             Who This Is For.<br />Who It's Not.
@@ -784,8 +788,9 @@ export default function RealEstateFunnel() {
       </section>
 
       {/* ── TRUST / WHY ──────────────────────────────────────────────────── */}
-      <section className="py-24 px-4">
-        <div className="max-w-4xl mx-auto">
+      <section className="py-24 px-4 relative overflow-hidden">
+        <img src="/images/features-bg-circuit.webp" alt="" className="absolute inset-0 w-full h-full object-cover opacity-15 pointer-events-none" />
+        <div className="relative max-w-4xl mx-auto">
           <SectionLabel>Why This Works</SectionLabel>
           <h2 className="text-3xl sm:text-5xl font-bold leading-tight mb-12">
             The Game Isn't Just<br />Lead Generation Anymore.
@@ -821,8 +826,9 @@ export default function RealEstateFunnel() {
       </section>
 
       {/* ── GUARANTEE ────────────────────────────────────────────────────── */}
-      <section className="py-16 px-4">
-        <div className="max-w-3xl mx-auto">
+      <section className="py-16 px-4 relative overflow-hidden">
+        <img src="/images/cta-bg-orange-glow.webp" alt="" className="absolute inset-0 w-full h-full object-cover opacity-25 pointer-events-none" />
+        <div className="relative max-w-3xl mx-auto">
           <div className="rounded-2xl p-10 text-center relative overflow-hidden"
             style={{
               background: "linear-gradient(135deg, #141413 0%, #1a1714 100%)",
@@ -863,8 +869,9 @@ export default function RealEstateFunnel() {
       </section>
 
       {/* ── FORM ─────────────────────────────────────────────────────────── */}
-      <section id="apply" className="py-24 px-4" style={{ background: "#0b0e16" }}>
-        <div className="max-w-2xl mx-auto">
+      <section id="apply" className="py-24 px-4 relative overflow-hidden" style={{ background: "#0b0e16" }}>
+        <img src="/images/cta-bg-orange-glow.webp" alt="" className="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none" />
+        <div className="relative max-w-2xl mx-auto">
           <div className="text-center mb-14">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest mb-6"
               style={{ background: "rgba(239,68,68,0.1)", border: "1px solid rgba(239,68,68,0.25)", color: "#f87171" }}>
