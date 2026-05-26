@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Check, Clock, Shield, Phone, ArrowRight, Star } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
-import { useToast } from "@/hooks/use-toast";
 import { trackEvent, GA_EVENTS } from "@/lib/analytics";
 
+const BOOKING_URL = "https://calendar.app.google/8HNfmaHndEKnMKpp8";
+
 const benefits = [
-  { icon: Clock, title: "30 minutes, max", text: "No slides, no sales theatre. We diagnose your highest-value automation, you decide what to do with it." },
-  { icon: Check, title: "3 specific recommendations", text: "Walk away with the 3 AI workflows that would save you the most time in your business — whether you hire us or not." },
+  { icon: Clock, title: "30 minutes, max", text: "No slides, no sales theatre. We look at your pipeline together and map out exactly where follow-up is leaking." },
+  { icon: Check, title: "A clear plan you own", text: "Walk away with a specific action plan for your pipeline — whether you hire us or not." },
   { icon: Shield, title: "No-pressure guarantee", text: "If we're not the right fit for you, we'll tell you straight up — and refer you to someone who is." },
 ];
 
@@ -16,30 +17,22 @@ const proofPoints = [
   "40–60% below traditional AI agency pricing",
   "Live in 7–14 days, not 4–12 weeks",
   "Month-to-month, no lock-in contracts",
-  "Brisbane-based, working with clients across Australia",
+  "Working with real estate agents across Australia",
 ];
 
 const faqs = [
   { q: "Is this actually free, or is there a catch?", a: "Genuinely free. Two reasons: (1) most businesses I speak to aren't a fit for what I do — and I'd rather find that out in 30 minutes than waste your time and mine. (2) For the businesses that ARE a fit, the call is the start of a working relationship — there's no incentive for me to dress it up." },
-  { q: "What happens on the call?", a: "I ask you 5–10 questions about your business — what's eating your time, where leads are leaking, what tools you use, what you've already tried. Then I tell you the 3 specific AI workflows that would have the biggest impact for you. If you want me to build them, we talk pricing and timeline. If not, you've still got a free roadmap to do it yourself or with someone else." },
+  { q: "What happens on the call?", a: "We look at your pipeline together — where leads are coming in, where they're falling through, and where follow-up is inconsistent. I show you what a proper automated follow-up system looks like for your market. If you want me to build it, we talk pricing and timeline. If not, you've still got a clear picture of what's possible." },
   { q: "Will you try to sell me on the call?", a: "If we're a clear fit, I'll let you know what it would cost and what's involved. If we're not a fit, I'll say so and point you somewhere better. I'm a solo operator — I don't have a sales team or quotas. The call works because I only take on clients I can deliver real results for." },
-  { q: "Do I need to know anything about AI before the call?", a: "No. Most clients come in saying 'I keep hearing about AI but don't know where to start' — that's exactly the right starting point. I do the technical work; you focus on running your business." },
-  { q: "What if I'm just curious and not ready to buy?", a: "That's fine. About 40% of strategy calls don't end with a purchase — they end with the business owner having a clear plan they can act on whenever they're ready. Some come back 6 months later, some never do, both are fine." },
+  { q: "Do I need to know anything about AI before the call?", a: "No. Most agents come in saying 'I know I should be doing more follow-up but I just don't have the time' — that's exactly the right starting point. I do the technical work; you focus on listing and selling." },
+  { q: "What if I'm just curious and not ready to commit?", a: "That's fine. About 40% of strategy calls don't end with a purchase — they end with the agent having a clear plan they can act on whenever they're ready. Some come back 6 months later, some never do, both are fine." },
 ];
 
 export default function StrategyCall() {
-  const { toast } = useToast();
-  const [submitting, setSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-  const [utm, setUtm] = useState({ source: "", medium: "", campaign: "" });
-  const [form, setForm] = useState({
-    firstName: "", lastName: "", email: "", phone: "", businessName: "", industry: "", message: "",
-  });
-
   useEffect(() => {
-    document.title = "Free 30-Min AI Strategy Call | AI Pivot Toolbox";
+    document.title = "Free 30-Min Strategy Call | AI Pivot Toolbox";
     const desc = document.querySelector('meta[name="description"]');
-    if (desc) desc.setAttribute("content", "Book a free 30-minute AI strategy call. Walk away with 3 specific AI workflows that would save you the most time in your business — whether you hire us or not.");
+    if (desc) desc.setAttribute("content", "Book a free 30-minute strategy call. We look at your pipeline together and you walk away with a clear plan — whether you hire us or not.");
     let robots = document.querySelector('meta[name="robots"]');
     if (!robots) {
       robots = document.createElement("meta");
@@ -47,60 +40,19 @@ export default function StrategyCall() {
       document.head.appendChild(robots);
     }
     robots.setAttribute("content", "noindex, nofollow");
-    const params = new URLSearchParams(window.location.search);
-    setUtm({
-      source: params.get("utm_source") || "",
-      medium: params.get("utm_medium") || "",
-      campaign: params.get("utm_campaign") || "",
-    });
     return () => {
       document.title = "AI Pivot Toolbox | AI Automation Agency Australia";
       robots?.setAttribute("content", "index, follow");
     };
   }, []);
 
-  const submit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitting(true);
-    try {
-      const utmTag = utm.source ? `\n\n[Source: ${utm.source} / ${utm.medium} / ${utm.campaign}]` : "";
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          firstName: form.firstName,
-          lastName: form.lastName,
-          email: form.email,
-          phone: form.phone,
-          industry: form.industry || "Strategy Call",
-          businessName: form.businessName,
-          preferredDate: "",
-          message: `STRATEGY CALL REQUEST\nBusiness: ${form.businessName}\n\n${form.message}${utmTag}`,
-        }),
-      });
-      const data = await res.json();
-      if (data.success) {
-        trackEvent(GA_EVENTS.STRATEGY_CALL, {
-          form_location: "strategy_call_page",
-          industry: form.industry || "unspecified",
-          utm_source: utm.source || "direct",
-          utm_campaign: utm.campaign || "none",
-        });
-        setSubmitted(true);
-        toast({ title: "Booked!", description: "Nick will be in touch within 1 business day to confirm a time." });
-      } else {
-        throw new Error(data.message || "Submission failed");
-      }
-    } catch (err: any) {
-      toast({ title: "Something went wrong", description: err.message || "Please call 0415 685 544 directly.", variant: "destructive" });
-    } finally {
-      setSubmitting(false);
-    }
+  const handleBook = () => {
+    trackEvent(GA_EVENTS.STRATEGY_CALL, { form_location: "strategy_call_page" });
+    window.open(BOOKING_URL, "_blank", "noopener,noreferrer");
   };
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Stripped header — no nav distractions */}
       <header className="border-b border-border">
         <div className="container-main px-4 sm:px-6 py-4 flex items-center justify-between">
           <a href="/" data-testid="link-home"><Logo size="md" /></a>
@@ -121,17 +73,21 @@ export default function StrategyCall() {
                 Free strategy call · Limited spots this week
               </div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
-                Get the 3 AI workflows that would save you the most time in your business.
+                After 24 years in real estate, I built the follow-up system I wish I'd had.
               </h1>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-2">
-                30 minutes. No slides. No sales pitch. You walk away with a clear plan — whether you hire us or not.
+                30 minutes. No slides. No pitch. We look at your pipeline together and you walk away with a clear plan — whether you hire us or not.
               </p>
               <p className="text-sm text-muted-foreground mb-8">
-                Built for Australian small businesses · Brisbane-based · Working across the country
+                Built for real estate agents across Australia · Brisbane-based
               </p>
-              <a href="#book" className="btn btn-primary text-lg px-8 py-4 inline-flex items-center" data-testid="cta-book-hero">
+              <button
+                onClick={handleBook}
+                className="btn btn-primary text-lg px-8 py-4 inline-flex items-center"
+                data-testid="cta-book-hero"
+              >
                 Book My Free Strategy Call <ArrowRight className="ml-2 w-5 h-5" />
-              </a>
+              </button>
             </motion.div>
           </div>
         </section>
@@ -176,7 +132,7 @@ export default function StrategyCall() {
           </div>
         </section>
 
-        {/* Honest expectation setting */}
+        {/* Honest note */}
         <section className="py-12">
           <div className="container-main px-4 sm:px-6 max-w-3xl">
             <div className="p-6 sm:p-8 rounded-2xl bg-primary/5 border border-primary/20">
@@ -194,71 +150,20 @@ export default function StrategyCall() {
           </div>
         </section>
 
-        {/* Booking form */}
+        {/* Booking CTA */}
         <section id="book" className="py-16 scroll-mt-8">
           <div className="container-main px-4 sm:px-6 max-w-2xl">
-            <div className="rounded-2xl bg-card border border-border p-6 sm:p-10">
-              {submitted ? (
-                <div className="text-center py-8">
-                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                    <Check className="w-8 h-8 text-primary" />
-                  </div>
-                  <h2 className="text-2xl font-bold text-foreground mb-2">You're in.</h2>
-                  <p className="text-muted-foreground">Nick will be in touch within 1 business day to confirm a time. If it's urgent, give him a call directly on 0415 685 544.</p>
-                </div>
-              ) : (
-                <>
-                  <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">Book your free strategy call</h2>
-                  <p className="text-muted-foreground mb-6">Takes 30 seconds. Nick replies within 1 business day to confirm a time.</p>
-                  <form onSubmit={submit} className="space-y-4">
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="sc-firstName" className="text-sm font-medium text-foreground mb-1.5 block">First name</label>
-                        <input id="sc-firstName" required value={form.firstName} onChange={e => setForm({...form, firstName: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground focus:ring-2 focus:ring-primary outline-none" data-testid="input-first-name" />
-                      </div>
-                      <div>
-                        <label htmlFor="sc-lastName" className="text-sm font-medium text-foreground mb-1.5 block">Last name</label>
-                        <input id="sc-lastName" required value={form.lastName} onChange={e => setForm({...form, lastName: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground focus:ring-2 focus:ring-primary outline-none" data-testid="input-last-name" />
-                      </div>
-                    </div>
-                    <div>
-                      <label htmlFor="sc-email" className="text-sm font-medium text-foreground mb-1.5 block">Email</label>
-                      <input id="sc-email" type="email" required value={form.email} onChange={e => setForm({...form, email: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground focus:ring-2 focus:ring-primary outline-none" data-testid="input-email" />
-                    </div>
-                    <div>
-                      <label htmlFor="sc-phone" className="text-sm font-medium text-foreground mb-1.5 block">Phone (mobile preferred)</label>
-                      <input id="sc-phone" type="tel" required value={form.phone} onChange={e => setForm({...form, phone: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground focus:ring-2 focus:ring-primary outline-none" data-testid="input-phone" />
-                    </div>
-                    <div>
-                      <label htmlFor="sc-business" className="text-sm font-medium text-foreground mb-1.5 block">Business name</label>
-                      <input id="sc-business" required value={form.businessName} onChange={e => setForm({...form, businessName: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground focus:ring-2 focus:ring-primary outline-none" data-testid="input-business" />
-                    </div>
-                    <div>
-                      <label htmlFor="sc-industry" className="text-sm font-medium text-foreground mb-1.5 block">Industry</label>
-                      <select id="sc-industry" value={form.industry} onChange={e => setForm({...form, industry: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground focus:ring-2 focus:ring-primary outline-none" data-testid="select-industry">
-                        <option value="">Select your industry</option>
-                        <option>Mortgage / Finance Broking</option>
-                        <option>Construction / Trades</option>
-                        <option>Legal</option>
-                        <option>Real Estate</option>
-                        <option>Healthcare</option>
-                        <option>Accounting / Bookkeeping</option>
-                        <option>Hospitality</option>
-                        <option>Retail / eCommerce</option>
-                        <option>Other</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label htmlFor="sc-message" className="text-sm font-medium text-foreground mb-1.5 block">What's the #1 thing eating your time right now? <span className="text-muted-foreground font-normal">(optional, but helps)</span></label>
-                      <textarea id="sc-message" rows={3} value={form.message} onChange={e => setForm({...form, message: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground focus:ring-2 focus:ring-primary outline-none resize-none" data-testid="input-message" />
-                    </div>
-                    <button type="submit" disabled={submitting} className="btn btn-primary w-full text-lg py-4 disabled:opacity-50" data-testid="button-submit">
-                      {submitting ? "Sending..." : "Book My Free Strategy Call"}
-                    </button>
-                    <p className="text-xs text-muted-foreground text-center">No spam. No newsletter signup. We use your details once to confirm the call.</p>
-                  </form>
-                </>
-              )}
+            <div className="rounded-2xl bg-card border border-border p-6 sm:p-10 text-center">
+              <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">Book your free strategy call</h2>
+              <p className="text-muted-foreground mb-8">Pick a time that suits you. 30 minutes on Google Meet.</p>
+              <button
+                onClick={handleBook}
+                className="btn btn-primary text-lg px-8 py-4 inline-flex items-center w-full sm:w-auto justify-center"
+                data-testid="button-book"
+              >
+                Book My Free Strategy Call <ArrowRight className="ml-2 w-5 h-5" />
+              </button>
+              <p className="text-xs text-muted-foreground mt-4">Opens Google Calendar booking · No sign-up required</p>
             </div>
           </div>
         </section>
@@ -282,10 +187,14 @@ export default function StrategyCall() {
         <section className="py-16 bg-card border-t border-border">
           <div className="container-main px-4 sm:px-6 max-w-2xl text-center">
             <h2 className="text-3xl font-bold text-foreground mb-4">Still reading?</h2>
-            <p className="text-muted-foreground mb-8">The call costs nothing and takes 30 minutes. Worst case you walk away with 3 specific ideas. Best case you save 10+ hours a week.</p>
-            <a href="#book" className="btn btn-primary text-lg px-8 py-4 inline-flex items-center" data-testid="cta-book-final">
+            <p className="text-muted-foreground mb-8">The call costs nothing and takes 30 minutes. Worst case you walk away with a clear picture of your pipeline. Best case it changes how you run your business.</p>
+            <button
+              onClick={handleBook}
+              className="btn btn-primary text-lg px-8 py-4 inline-flex items-center"
+              data-testid="cta-book-final"
+            >
               Book My Free Strategy Call <ArrowRight className="ml-2 w-5 h-5" />
-            </a>
+            </button>
           </div>
         </section>
       </main>
