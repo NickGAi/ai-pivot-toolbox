@@ -54,7 +54,7 @@ export function About() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <div className="rounded-3xl bg-gradient-to-br from-primary/20 to-cyan-500/20 p-1">
+            <div className="rounded-3xl bg-gradient-to-br from-primary/20 to-orange-500/20 p-1">
               <div className="rounded-3xl bg-background p-8">
                 <h3 className="text-xl font-bold text-foreground mb-6">This is not for everyone</h3>
                 <p className="text-muted-foreground mb-6">

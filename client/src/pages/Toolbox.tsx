@@ -172,7 +172,7 @@ export default function Toolbox() {
           </div>
 
           <motion.div
-            className="mt-16 rounded-3xl bg-gradient-to-br from-primary/20 to-cyan-500/20 border border-primary/20 p-8 sm:p-12 text-center"
+            className="mt-16 rounded-3xl bg-gradient-to-br from-primary/20 to-orange-500/20 border border-primary/20 p-8 sm:p-12 text-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
