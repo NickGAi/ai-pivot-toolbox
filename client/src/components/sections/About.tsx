@@ -20,12 +20,14 @@ export function About() {
   return (
     <section 
       id="about" 
-      className="py-24 bg-card"
+      className="py-24 relative overflow-hidden"
       aria-labelledby="about-heading"
       itemScope
       itemType="https://schema.org/AboutPage"
     >
-      <div className="container-main">
+      <img src="/images/features-bg-circuit.webp" alt="" className="absolute inset-0 w-full h-full object-cover" aria-hidden="true" />
+      <div className="absolute inset-0 bg-card/92" aria-hidden="true" />
+      <div className="container-main relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}

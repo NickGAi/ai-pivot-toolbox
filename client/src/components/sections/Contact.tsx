@@ -82,12 +82,14 @@ export function Contact() {
   return (
     <section 
       id="contact" 
-      className="py-24"
+      className="py-24 relative overflow-hidden"
       aria-labelledby="contact-heading"
       itemScope
       itemType="https://schema.org/ContactPage"
     >
-      <div className="container-main">
+      <img src="/images/cta-bg-orange-glow.webp" alt="" className="absolute inset-0 w-full h-full object-cover" aria-hidden="true" />
+      <div className="absolute inset-0 bg-background/80" aria-hidden="true" />
+      <div className="container-main relative z-10">
         <div className="max-w-xl mx-auto">
           <motion.div 
             className="text-center mb-12"

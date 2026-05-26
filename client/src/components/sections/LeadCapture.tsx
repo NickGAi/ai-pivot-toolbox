@@ -81,8 +81,10 @@ export function LeadCapture() {
 
   return (
     <>
-      <section className="py-20 bg-primary" data-testid="lead-capture-section">
-        <div className="container-main">
+      <section className="py-20 relative overflow-hidden" data-testid="lead-capture-section">
+        <img src="/images/cta-bg-orange-glow.webp" alt="" className="absolute inset-0 w-full h-full object-cover" aria-hidden="true" />
+        <div className="absolute inset-0 bg-black/30" aria-hidden="true" />
+        <div className="container-main relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}

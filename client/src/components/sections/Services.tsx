@@ -70,10 +70,12 @@ export function Services() {
   return (
     <section
       id="services"
-      className="py-24 bg-card"
+      className="py-24 relative overflow-hidden"
       aria-labelledby="services-heading"
     >
-      <div className="container-main">
+      <img src="/images/features-bg-circuit.webp" alt="" className="absolute inset-0 w-full h-full object-cover" aria-hidden="true" />
+      <div className="absolute inset-0 bg-card/92" aria-hidden="true" />
+      <div className="container-main relative z-10">
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
