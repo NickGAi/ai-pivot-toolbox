@@ -4,8 +4,8 @@
   "description": "AI automation and SEO agency for Australian businesses",
   "start_url": "/",
   "display": "browser",
-  "background_color": "#0a0a0f",
-  "theme_color": "#0ea5e9",
+  "background_color": "#141413",
+  "theme_color": "#FF4500",
   "icons": [
     {
       "src": "/icon-192.png",
