@@ -1,9 +1,9 @@
 import { storage } from "./storage";
 import { sendSubscriberEmail } from "./gmail";
 
-const BRAND_COLOR = "#0ea5e9";
+const BRAND_COLOR = "#FF4500";
 const SITE_URL = "https://aipivot.com.au";
-const BOOKING_URL = "https://aipivot.com.au/#book";
+const BOOKING_URL = "https://calendar.app.google/8HNfmaHndEKnMKpp8";
 
 function emailWrapper(firstName: string, body: string): string {
   return `<!DOCTYPE html>
@@ -118,7 +118,7 @@ export function buildDay7Email(firstName: string): { subject: string; html: stri
 }
 
 export function buildDay14Email(firstName: string): { subject: string; html: string } {
-  const subject = "Free 30-min call: let's map out your AI opportunity";
+  const subject = "After 24 years in real estate, I built this for businesses like yours";
   const body = `
     <h2>Ready to put AI to work in your business?</h2>
     <p>You've had a look at the checklist, you've seen what's possible. Now it's time to answer the practical question:</p>
