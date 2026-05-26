@@ -383,8 +383,10 @@ export default function RealEstateFunnel() {
 
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
       <section className="relative pl-4 overflow-hidden" style={{ minHeight: "600px", paddingRight: "30px" }}>
-        {/* Background glow */}
+        {/* Background image + glow */}
         <div className="absolute inset-0 pointer-events-none">
+          <img src="/images/hero-bg-dark-tech.webp" alt="" className="absolute inset-0 w-full h-full object-cover" />
+          <div className="absolute inset-0" style={{ background: "rgba(20,20,19,0.60)" }} />
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] rounded-full opacity-[0.07]"
             style={{ background: "radial-gradient(ellipse, #FF4500 0%, transparent 70%)" }} />
         </div>
@@ -517,8 +519,9 @@ export default function RealEstateFunnel() {
       </section>
 
       {/* ── PAIN ─────────────────────────────────────────────────────────── */}
-      <section className="py-24 px-4" style={{ background: "#0b0e16" }}>
-        <div className="max-w-3xl mx-auto">
+      <section className="py-24 px-4 relative overflow-hidden" style={{ background: "#0b0e16" }}>
+        <img src="/images/features-bg-circuit.webp" alt="" className="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none" />
+        <div className="relative max-w-3xl mx-auto">
           <SectionLabel>Brutal Honesty</SectionLabel>
           <h2 className="text-3xl sm:text-5xl font-bold leading-tight mb-12">
             Be Honest… How Many Of<br />Your Leads Never Hear<br />From You?
