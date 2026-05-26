@@ -53,18 +53,23 @@ export function Hero() {
 
   return (
     <section 
-      className="relative min-h-screen flex items-center pt-20"
+      className="relative min-h-screen flex flex-col justify-center pt-20"
       aria-labelledby="hero-heading"
       itemScope
       itemType="https://schema.org/WPHeader"
     >
+      {/* Background glows */}
       <div className="absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
       </div>
+
       <div className="container-main relative z-10 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="animate-hero-fade-up">
+        {/* Split layout: text left, Duku right */}
+        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+
+          {/* LEFT — content */}
+          <div className="flex-1 animate-hero-fade-up lg:text-left text-center">
             <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs sm:text-sm font-medium mb-6 sm:mb-8" role="status">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" aria-hidden="true" />
               <span itemProp="description">AI Automation & SEO Agency, Australia Wide</span>
@@ -72,7 +77,7 @@ export function Hero() {
 
             <h1 
               id="hero-heading" 
-              className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-[1.0] tracking-tight uppercase"
+              className="text-3xl sm:text-5xl md:text-6xl lg:text-6xl font-bold text-foreground mb-6 leading-[1.0] tracking-tight uppercase"
               itemProp="headline"
             >
               AI Business Automation Tools —{" "}
@@ -80,22 +85,22 @@ export function Hero() {
               We'll Get It Done.
             </h1>
 
-            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-3 sm:mb-4 leading-relaxed" itemProp="text">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl lg:mx-0 mx-auto mb-3 sm:mb-4 leading-relaxed" itemProp="text">
               Stop wasting time thinking about what you can do with AI. Get us to give you a clear path to implement and get started today. From custom AI lead generation, Voice Clone, Video Avatars, to automated workflows.
             </p>
 
-            <p className="text-sm sm:text-base text-primary font-semibold max-w-xl mx-auto mb-8 sm:mb-10">
+            <p className="text-sm sm:text-base text-primary font-semibold max-w-xl lg:mx-0 mx-auto mb-8 sm:mb-10">
               ★★★★★ Guaranteed results for Australian businesses in 60 days or less
             </p>
 
             {/* Email + Name capture bar */}
             {step === "success" ? (
-              <div className="max-w-xl mx-auto flex items-center justify-center gap-3 bg-primary/10 border border-primary/30 rounded-full px-6 py-4">
+              <div className="max-w-xl flex items-center justify-center gap-3 bg-primary/10 border border-primary/30 rounded-full px-6 py-4 lg:mx-0 mx-auto">
                 <span className="text-2xl">🎉</span>
                 <p className="text-foreground font-semibold">Done! Check your inbox — your clear path is on its way.</p>
               </div>
             ) : (
-              <div className="max-w-xl mx-auto">
+              <div className="max-w-xl lg:mx-0 mx-auto">
                 <div className="relative overflow-hidden rounded-full">
                   {/* Step 1 — Email */}
                   <form
@@ -166,44 +171,75 @@ export function Hero() {
               </div>
             )}
             {step === "error" && (
-              <p className="text-red-400 text-sm mt-3 text-center">Something went wrong — try again or <a href="#contact" className="underline">book a call</a>.</p>
+              <p className="text-red-400 text-sm mt-3 lg:text-left text-center">Something went wrong — try again or <a href="#contact" className="underline">book a call</a>.</p>
             )}
+
+            {/* Mobile Duku — below CTA on small screens */}
+            <div className="lg:hidden flex justify-center mt-10">
+              <picture>
+                <source srcSet="/duku-re.webp" type="image/webp" />
+                <img
+                  src="/duku-re.png"
+                  alt="Duku AI character"
+                  width={280}
+                  height={280}
+                  className="w-56 sm:w-64 drop-shadow-2xl"
+                  loading="eager"
+                />
+              </picture>
+            </div>
           </div>
 
-          {/* Logo Marquee */}
-          <div className="animate-hero-fade-in mt-12 sm:mt-20 pt-8 sm:pt-12 border-t border-border overflow-hidden">
-            <p className="text-sm text-muted-foreground mb-6 sm:mb-8 uppercase tracking-wider">
-              Trusted Across Industries
-            </p>
-            
-            {/* Mobile: Wrapped grid */}
-            <div className="flex flex-wrap justify-center gap-3 sm:hidden">
-              {[...logosRow1, ...logosRow2.slice(0, 4)].map((logo, i) => (
-                <div key={i} className="text-xs font-bold text-foreground/60 px-2 py-1">
-                  {logo}
-                </div>
-              ))}
-            </div>
+          {/* RIGHT — Duku (desktop only) */}
+          <div className="hidden lg:flex flex-shrink-0 w-[420px] items-end justify-center animate-hero-fade-in">
+            <picture>
+              <source srcSet="/duku-re.webp" type="image/webp" />
+              <img
+                src="/duku-re.png"
+                alt="Duku AI character"
+                width={420}
+                height={420}
+                className="w-full drop-shadow-2xl"
+                loading="eager"
+              />
+            </picture>
+          </div>
 
-            {/* Desktop: Scrolling marquee */}
-            <div className="hidden sm:block">
-              <div className="relative overflow-hidden mb-6">
-                <div className="flex animate-marquee-left whitespace-nowrap">
-                  {[...logosRow1, ...logosRow1].map((logo, i) => (
-                    <div key={i} className="mx-8 text-xl font-bold text-foreground/60 hover:text-foreground/80 transition-colors flex-shrink-0">
-                      {logo}
-                    </div>
-                  ))}
-                </div>
+        </div>
+
+        {/* Logo Marquee */}
+        <div className="animate-hero-fade-in mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-border overflow-hidden">
+          <p className="text-sm text-muted-foreground mb-6 sm:mb-8 uppercase tracking-wider text-center">
+            Trusted Across Industries
+          </p>
+          
+          {/* Mobile: Wrapped grid */}
+          <div className="flex flex-wrap justify-center gap-3 sm:hidden">
+            {[...logosRow1, ...logosRow2.slice(0, 4)].map((logo, i) => (
+              <div key={i} className="text-xs font-bold text-foreground/60 px-2 py-1">
+                {logo}
               </div>
-              <div className="relative overflow-hidden">
-                <div className="flex animate-marquee-right whitespace-nowrap">
-                  {[...logosRow2, ...logosRow2].map((logo, i) => (
-                    <div key={i} className="mx-8 text-xl font-bold text-foreground/60 hover:text-foreground/80 transition-colors flex-shrink-0">
-                      {logo}
-                    </div>
-                  ))}
-                </div>
+            ))}
+          </div>
+
+          {/* Desktop: Scrolling marquee */}
+          <div className="hidden sm:block">
+            <div className="relative overflow-hidden mb-6">
+              <div className="flex animate-marquee-left whitespace-nowrap">
+                {[...logosRow1, ...logosRow1].map((logo, i) => (
+                  <div key={i} className="mx-8 text-xl font-bold text-foreground/60 hover:text-foreground/80 transition-colors flex-shrink-0">
+                    {logo}
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="relative overflow-hidden">
+              <div className="flex animate-marquee-right whitespace-nowrap">
+                {[...logosRow2, ...logosRow2].map((logo, i) => (
+                  <div key={i} className="mx-8 text-xl font-bold text-foreground/60 hover:text-foreground/80 transition-colors flex-shrink-0">
+                    {logo}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
