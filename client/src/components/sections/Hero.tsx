@@ -191,15 +191,19 @@ export function Hero() {
           </div>
 
           {/* RIGHT — Duku (desktop only) */}
-          <div className="hidden lg:flex flex-shrink-0 w-[420px] items-end justify-center animate-hero-fade-in">
+          <div className="hidden lg:block animate-hero-fade-in flex-shrink-0"
+            style={{ width: "45%", minHeight: "560px", paddingRight: "40px" }}>
             <picture>
               <source srcSet="/duku-re.webp" type="image/webp" />
               <img
                 src="/duku-re.png"
                 alt="Duku AI character"
-                width={420}
-                height={420}
-                className="w-full drop-shadow-2xl"
+                style={{
+                  width: "100%",
+                  height: "560px",
+                  objectFit: "cover",
+                  objectPosition: "right center",
+                }}
                 loading="eager"
               />
             </picture>
