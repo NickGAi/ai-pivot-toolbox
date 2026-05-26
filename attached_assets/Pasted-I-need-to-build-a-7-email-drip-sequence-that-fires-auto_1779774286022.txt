@@ -1,0 +1,67 @@
+I need to build a 7-email drip sequence 
+that fires automatically after someone 
+submits the Growth Map form.
+
+SendGrid Automations are paywalled so 
+we'll handle the scheduling in the app.
+
+STEP 1 — Create a new database table 
+called "nurture_sequence" with these fields:
+- id (primary key, auto increment)
+- email (text)
+- first_name (text)
+- last_name (text)
+- agency (text)
+- suburb (text)
+- created_at (timestamp, default now)
+- emails_sent (integer, default 0)
+- next_send_at (timestamp, default now)
+- completed (boolean, default false)
+
+STEP 2 — When the Growth Map form is 
+submitted, INSERT a new row into 
+nurture_sequence with the lead's details.
+Set next_send_at to NOW().
+Do this AFTER the existing SendGrid 
+contact push — don't replace it.
+
+STEP 3 — Create a background job that 
+runs every 60 minutes and:
+1. Queries nurture_sequence where 
+   completed = false AND 
+   next_send_at <= NOW()
+2. For each contact found, sends the 
+   next email based on emails_sent value:
+
+emails_sent = 0 → send Email 1, 
+  set next_send_at = NOW() + 2 days
+emails_sent = 1 → send Email 2, 
+  set next_send_at = NOW() + 2 days
+emails_sent = 2 → send Email 3, 
+  set next_send_at = NOW() + 3 days
+emails_sent = 3 → send Email 4, 
+  set next_send_at = NOW() + 3 days
+emails_sent = 4 → send Email 5, 
+  set next_send_at = NOW() + 4 days
+emails_sent = 5 → send Email 6, 
+  set next_send_at = NOW() + 7 days
+emails_sent = 6 → send Email 7, 
+  set completed = true
+
+3. After sending each email increment 
+   emails_sent by 1
+4. Use the existing SENDGRID_API_KEY 
+   to send via /v3/mail/send
+5. Sender email: nick@aipivot.com.au
+   Sender name: Nick Griffiths — AI Pivot Toolbox
+
+STEP 4 — Create a placeholder function 
+for each email (1-7) that returns the 
+subject and HTML body. Use the first 
+name, agency and suburb as variables.
+Leave the body as "PLACEHOLDER - Email X" 
+for now — I will paste the content after.
+
+Show me the database schema and 
+background job code before applying.
+Do not apply until I confirm.
