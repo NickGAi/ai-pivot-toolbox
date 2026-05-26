@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { pgTable, text, varchar, timestamp, integer } from "drizzle-orm/pg-core";
+import { pgTable, text, varchar, timestamp, integer, boolean } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -75,3 +75,16 @@ export const insertLeadMagnetSchema = createInsertSchema(leadMagnetSubmissions).
 
 export type InsertLeadMagnet = z.infer<typeof insertLeadMagnetSchema>;
 export type LeadMagnetSubmission = typeof leadMagnetSubmissions.$inferSelect;
+
+export const nurtureSequence = pgTable("nurture_sequence", {
+  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
+  email: text("email").notNull(),
+  firstName: text("first_name").notNull(),
+  lastName: text("last_name").notNull(),
+  agency: text("agency").notNull(),
+  suburb: text("suburb").notNull(),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  emailsSent: integer("emails_sent").notNull().default(0),
+  nextSendAt: timestamp("next_send_at").notNull().default(sql`now()`),
+  completed: boolean("completed").notNull().default(false),
+});

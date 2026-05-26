@@ -5,6 +5,7 @@ import { insertContactSubmissionSchema, insertLeadMagnetSchema } from "@shared/s
 import { fromError } from "zod-validation-error";
 import { sendContactNotification, sendLeadMagnetNotification, sendLeadMagnetDelivery, sendRealEstateFunnelNotification, sendRealEstateFunnelConfirmation } from "./gmail";
 import { addToSendGridList } from "./sendgrid";
+import { enrolInNurture } from "./nurture-sequence";
 import { legacyCreateProxyMiddleware } from "http-proxy-middleware";
 
 async function sendToGHL(data: {
@@ -183,6 +184,11 @@ export async function registerRoutes(
         await addToSendGridList({ email, firstName, lastName, mobile, agency, suburb, dealsPerMonth, leadSource: leadSource || "" });
       } catch (sgError) {
         console.error("SendGrid contact upsert failed:", sgError);
+      }
+      try {
+        await enrolInNurture({ email, firstName, lastName, agency, suburb });
+      } catch (nurtureErr) {
+        console.error("Nurture enrol failed:", nurtureErr);
       }
       try {
         await sendRealEstateFunnelNotification({ firstName, lastName, email, mobile, agency, suburb, dealsPerMonth, leadSource: leadSource || "", pipelineProblem: pipelineProblem || "", utm_source, utm_medium, utm_campaign, referrer });
