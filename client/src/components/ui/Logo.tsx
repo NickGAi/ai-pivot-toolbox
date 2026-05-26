@@ -22,8 +22,8 @@ export function Logo({ size = "md", className = "" }: LogoProps) {
         aria-hidden="true"
         style={{ flexShrink: 0 }}
       >
-        {/* Sky-blue rounded square background */}
-        <rect width="40" height="40" rx="9" fill="#0ea5e9" />
+        {/* Orange rounded square background */}
+        <rect width="40" height="40" rx="9" fill="#FF4500" />
 
         {/* Briefcase handle — arch above body */}
         <path
