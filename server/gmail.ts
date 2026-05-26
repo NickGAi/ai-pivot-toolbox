@@ -316,7 +316,7 @@ export async function sendRealEstateFunnelConfirmation(data: RealEstateFunnelDat
             <li>We map out your 90-day pipeline strategy together — no cost, no obligation</li>
           </ol>
         </div>
-        <p style="font-size:14px;color:#64748b;margin:0">Questions in the meantime? Reply to this email or call <a href="tel:0424054220" style="color:#FF4500">0424 054 220</a>.</p>
+        <p style="font-size:14px;color:#64748b;margin:0">Questions in the meantime? Reply to this email or call <a href="tel:0415685544" style="color:#FF4500">0415 685 544</a>.</p>
         <p style="font-size:14px;color:#64748b;margin:16px 0 0">— Nick<br><span style="color:#94a3b8">AI Pivot Toolbox</span></p>
       </div>
     </div>
