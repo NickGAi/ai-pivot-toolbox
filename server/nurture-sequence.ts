@@ -2,7 +2,7 @@ import { db } from "./db";
 import { nurtureSequence } from "@shared/schema";
 import { eq, lte, and } from "drizzle-orm";
 
-const SENDER = { email: "nick@aipivot.com.au", name: "Nick Griffiths — AI Pivot Toolbox" };
+const SENDER = { email: "nick@aipivot.com.au", name: "Nick Griffiths — AI Pivot" };
 
 const SCHEDULE = [2, 2, 3, 3, 4, 7];
 
@@ -16,7 +16,7 @@ function getEmail(step: number, firstName: string, agency: string, suburb: strin
 <p>Over the next few days I'm going to send you 3 short insights that show you exactly where most agents are leaking listings — and how to plug the gaps with a system that runs automatically.</p>
 <p>No fluff. No theory. Just what's actually working for agents in Australia right now.</p>
 <p>First one lands tomorrow.</p>
-<p>— Nick<br>AI Pivot Toolbox<br>0415 685 544</p>`,
+<p>— Nick<br>AI Pivot<br>0415 685 544</p>`,
     },
     1: {
       subject: `The dirty little secret about real estate marketing`,
@@ -28,8 +28,8 @@ function getEmail(step: number, firstName: string, agency: string, suburb: strin
 <p>Here's the play the top agents are running:</p>
 <p>They go after the 3%. But they also capture and nurture the other 97% — so when those people ARE ready, there's only one agent they've been hearing from for the last 6 months.</p>
 <p>That's not luck. That's a system.</p>
-<p>Tomorrow I'll show you exactly what that system looks like — and how it runs without you lifting a finger.</p>
-<p>— Nick<br>AI Pivot Toolbox<br>0415 685 544</p>`,
+<p>Next, I'll show you exactly what that system looks like — and how it runs without you lifting a finger.</p>
+<p>— Nick<br>AI Pivot<br>0415 685 544</p>`,
     },
     2: {
       subject: `A lead came in at 9:47pm...`,
@@ -39,10 +39,10 @@ function getEmail(step: number, firstName: string, agency: string, suburb: strin
 <p>By 9am the next morning, that buyer had already spoken to two other agents and booked an appraisal with one of them.</p>
 <p>The first agent never even knew they existed.</p>
 <p>This happens hundreds of times a day across Australia. Not because agents don't care — but because they don't have a system that works when they're not working.</p>
-<p>AiPivot plugs into every lead you're already getting — portals, open homes, website, socials — and automatically replies within seconds, follows up over weeks, and books them into your calendar.</p>
+<p>AI Pivot plugs into every lead you're already getting — portals, open homes, website, socials — and automatically replies within seconds, follows up over weeks, and books them into your calendar.</p>
 <p>No extra staff. No manual work. Just a system that runs while you sleep.</p>
 <p>Hit reply if you want to see what this looks like for <strong>${agency}</strong> specifically.</p>
-<p>— Nick<br>AI Pivot Toolbox<br>0415 685 544</p>`,
+<p>— Nick<br>AI Pivot<br>0415 685 544</p>`,
     },
     3: {
       subject: `What agents are saying after 90 days`,
@@ -52,21 +52,22 @@ function getEmail(step: number, firstName: string, agency: string, suburb: strin
 <p>The leads weren't bad. The follow-up was missing.</p>
 <p>An enquiry comes in at the wrong time. Gets missed. Goes cold. That agent never knew how close they were to a listing.</p>
 <p>The Growth Map session shows you exactly where this is happening in <strong>${agency}</strong> right now — in black and white. Which leads came in, which got followed up, which ones slipped through.</p>
+<p>In a typical agent's pipeline, the Growth Map process usually surfaces between 8 and 15 leads that came in but never got the right follow-up.</p>
 <p>Most agents are surprised by what they see.</p>
 <p>Ready to look at your numbers? Hit reply and I'll send you a booking link.</p>
-<p>— Nick<br>AI Pivot Toolbox<br>0415 685 544</p>`,
+<p>— Nick<br>AI Pivot<br>0415 685 544</p>`,
     },
     4: {
       subject: `AI sounds complicated...`,
       html: `<p>Hi ${firstName},</p>
-<p>The most common thing I hear from agents before they try AiPivot:</p>
+<p>The most common thing I hear from agents before they try AI Pivot:</p>
 <p><em>"AI sounds complicated. I'm not a tech person."</em></p>
 <p>Here's the truth — you don't touch the technology. That's our job.</p>
 <p>We build it, connect it to your existing leads, test it, and hand you something that just works. You see the results in your calendar — more bookings, more appraisals, more listings.</p>
-<p>The agents using AiPivot aren't tech people. They're just agents who got sick of watching leads go cold and decided to do something about it.</p>
+<p>The agents using AI Pivot aren't tech people. They're just agents who got sick of watching leads go cold and decided to do something about it.</p>
 <p>After 24 years in real estate, I built this because I lived the problem firsthand. If you're doing 3-5 deals a month and want to squeeze more listings out of the pipeline you already have — this was built for you.</p>
 <p>Reply to this email or call me directly on <strong>0415 685 544</strong>.</p>
-<p>— Nick<br>AI Pivot Toolbox</p>`,
+<p>— Nick<br>AI Pivot<br>0415 685 544</p>`,
     },
     5: {
       subject: `Still thinking about it, ${firstName}?`,
@@ -79,7 +80,7 @@ function getEmail(step: number, firstName: string, agency: string, suburb: strin
 <p>You walk away with 3 specific things you can do immediately — whether you work with us or not.</p>
 <p>No pitch. No pressure. No obligation.</p>
 <p><a href="https://calendar.app.google/8HNfmaHndEKnMKpp8" style="background:#FF4500;color:#141413;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:bold;display:inline-block;margin-top:8px;">Book My Free Strategy Call →</a></p>
-<p>— Nick<br>AI Pivot Toolbox<br>0415 685 544</p>`,
+<p>— Nick<br>AI Pivot<br>0415 685 544</p>`,
     },
     6: {
       subject: `Closing your file, ${firstName}`,
@@ -90,7 +91,7 @@ function getEmail(step: number, firstName: string, agency: string, suburb: strin
 <p>Or book straight in here:</p>
 <p><a href="https://calendar.app.google/8HNfmaHndEKnMKpp8" style="background:#FF4500;color:#141413;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:bold;display:inline-block;margin-top:8px;">Book My Free Strategy Call →</a></p>
 <p>If the timing isn't right, no worries at all. I'll be here when it is.</p>
-<p>— Nick<br>AI Pivot Toolbox<br>0415 685 544</p>`,
+<p>— Nick<br>AI Pivot<br>0415 685 544</p>`,
     },
   };
   return emails[step];
