@@ -93,7 +93,7 @@ export function LeadCapture() {
             >
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
                 Discover Your Business's <br />
-                <span className="text-orange-400">Hidden Automation Potential</span>
+                <span className="text-[#FF4500]">Hidden Automation Potential</span>
               </h2>
               <p className="text-xl text-white/90 mb-6">
                 Find out with our <strong>FREE AI-Powered Assessment</strong> that reveals exactly where automation can save you time and money.
@@ -101,7 +101,7 @@ export function LeadCapture() {
               <div className="space-y-3 mb-8">
                 {benefits.map((benefit, i) => (
                   <div key={i} className="flex items-center gap-3" data-testid={`lead-benefit-${i}`}>
-                    <CheckCircle className="w-5 h-5 text-orange-400 shrink-0" />
+                    <CheckCircle className="w-5 h-5 text-[#FF4500] shrink-0" />
                     <span className="text-white">{benefit}</span>
                   </div>
                 ))}
@@ -127,7 +127,7 @@ export function LeadCapture() {
                   <div className="text-7xl font-bold text-white mb-4">5 min</div>
                   <div className="text-xl text-white/80">Quick Assessment</div>
                   <div className="mt-6 pt-6 border-t border-white/20">
-                    <div className="text-3xl font-bold text-orange-400">$0</div>
+                    <div className="text-3xl font-bold text-[#FF4500]">$0</div>
                     <div className="text-white/70">No obligation</div>
                   </div>
                 </div>
