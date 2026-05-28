@@ -1,0 +1,73 @@
+
+−1,706 KiB Fix logo-icon.png — it's destroying LCP
+
+The logo is being loaded at 1,248×1,248px but displayed at 71×71px. It's also PNG not WebP. This single file is 1,524 KiB and is killing LCP (12.4s). It's also being loaded 3 times (logo-icon.png, logo-icon.png?v=4, favicon.png?v=4).
+
+1. Export logo at 142×142px (2× for retina) as WebP
+2. Replace /logo-icon.png with /logo-icon.webp (~5 KiB)
+3. Fix favicon: generate proper .ico or 32×32 .png — don't reuse the full logo
+4. Remove the duplicate ?v=4 cache-busted copies if they're the same file
+−112 KiB Resize duku-re.webp
+
+Served at 2,754×1,536px, displayed at 396×221px. Already WebP — just needs responsive sizing.
+
+Add width/height + srcset to the img tag:
+<img src="/duku-re.webp" width="396" height="221"
+  srcset="/duku-re-400.webp 400w, /duku-re-800.webp 800w"
+  sizes="(max-width: 640px) 100vw, 396px" />
+
+Or just resize the source to 800px wide max.
+−62 KiB Compress hero-bg-dark-tech.webp
+
+145 KiB — increase WebP compression factor. Target under 80 KiB for a background image.
+
+Re-export at quality 75–80 in Squoosh or sharp:
+sharp('hero-bg-dark-tech.webp').webp({ quality: 75 }).toFile('...')
+−86 KiB Tree-shake / code-split the main JS bundle
+
+index-DaNuG6wg.js is 213 KiB with 86 KiB unused. Split routes so non-critical code loads lazily.
+
+In Vite config — enable manual chunks:
+build: {
+  rollupOptions: {
+    output: {
+      manualChunks: { vendor: ['react', 'react-dom'] }
+    }
+  }
+}
+Also add React.lazy() + Suspense for below-fold components.
+−27 KiB Defer Facebook Pixel
+
+fbevents.js loads 70 KiB on the main thread. Load it after user interaction or with a delay.
+
+Load FB pixel after first user interaction:
+document.addEventListener('click', loadFBPixel, { once: true });
+// or use setTimeout(() => loadFBPixel(), 3000)
+ accessibility (score 97 — minor)
+A11y Fix contrast on the floating CTA button
+
+The fixed bottom-right button (bg-primary / text-primary-foreground) is failing contrast. Check the orange button text — white on #FF4500 passes, but light orange on orange won't.
+
+Audit the button in DevTools → Accessibility → Color contrast.
+Ensure text color has 4.5:1 ratio against button background.
+White (#fff) on #FF4500 = 3.0:1 — FAILS. Use #141413 (dark) instead.
+ best practices (score 81)
+Security Add security headers
+
+Missing: CSP, HSTS, COOP, X-Frame-Options, Trusted Types. Add these in Express or Cloudflare.
+
+In Express (server/index.ts) — add helmet:
+import helmet from 'helmet';
+app.use(helmet({
+  contentSecurityPolicy: { directives: { defaultSrc: ["'self'"], ... } },
+  hsts: { maxAge: 31536000, includeSubDomains: true },
+  crossOriginOpenerPolicy: { policy: 'same-origin' },
+  frameguard: { action: 'deny' }
+}));
+Dev Add source maps for production debugging
+
+index-DaNuG6wg.js has no source map. Low priority but useful for debugging prod errors.
+
+In vite.config.ts:
+build: { sourcemap: true }
+// or 'hidden' to generate maps without exposing them publicly

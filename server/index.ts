@@ -1,4 +1,5 @@
 import express, { type Request, Response, NextFunction } from "express";
+import helmet from "helmet";
 import { registerRoutes } from "./routes";
 import { serveStatic } from "./static";
 import { createServer } from "http";
@@ -7,6 +8,16 @@ import { startNurtureScheduler } from "./nurture-sequence";
 
 const app = express();
 const httpServer = createServer(app);
+
+app.use(helmet({
+  contentSecurityPolicy: false,
+  crossOriginOpenerPolicy: { policy: "same-origin-allow-popups" },
+  crossOriginEmbedderPolicy: false,
+  hsts: { maxAge: 31536000, includeSubDomains: true, preload: true },
+  frameguard: { action: "sameorigin" },
+  xContentTypeOptions: true,
+  referrerPolicy: { policy: "strict-origin-when-cross-origin" },
+}));
 
 declare module "http" {
   interface IncomingMessage {

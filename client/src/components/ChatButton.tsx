@@ -31,10 +31,10 @@ export function ChatButton() {
       onClick={handleClick}
       data-testid="chat-button"
       aria-label="Open chat"
-      className="fixed bottom-5 right-5 z-50 flex items-center gap-2 bg-primary text-primary-foreground rounded-full shadow-lg shadow-primary/30 px-4 py-3 font-semibold text-sm transition-all hover:scale-105 hover:shadow-xl hover:shadow-primary/40 active:scale-95"
+      className="fixed bottom-5 right-5 z-50 flex items-center gap-2 bg-primary text-[#141413] rounded-full shadow-lg shadow-primary/30 px-4 py-3 font-semibold text-sm transition-all hover:scale-105 hover:shadow-xl hover:shadow-primary/40 active:scale-95"
     >
       {loading ? (
-        <span className="w-5 h-5 rounded-full border-2 border-primary-foreground/40 border-t-primary-foreground animate-spin" />
+        <span className="w-5 h-5 rounded-full border-2 border-[#141413]/40 border-t-[#141413] animate-spin" />
       ) : (
         <MessageCircle className="w-5 h-5 flex-shrink-0" />
       )}

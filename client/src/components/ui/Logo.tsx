@@ -14,7 +14,7 @@ export function Logo({ size = "md", className = "" }: LogoProps) {
   return (
     <span className={`flex items-center ${s.gap} ${className}`}>
       <img
-        src="/logo-icon.png"
+        src="/logo-icon.webp"
         alt="AI Pivot Toolbox icon"
         width={s.mark}
         height={s.mark}
