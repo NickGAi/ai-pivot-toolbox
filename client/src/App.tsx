@@ -7,7 +7,6 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "next-themes";
 import { CartProvider } from "@/context/CartContext";
 import { CartSidebar } from "@/components/cart/CartSidebar";
-import { ChatButton } from "@/components/ChatButton";
 import { getLocationBySlug } from "@/data/locations";
 import { getServiceBySlug } from "@/data/services-data";
 import { getIndustryBySlug } from "@/data/industries-data";
@@ -129,7 +128,6 @@ function App() {
             <Toaster />
             <Router />
             <CartSidebar />
-            <ChatButton />
             <Suspense fallback={null}>
               <CookieConsent />
             </Suspense>
