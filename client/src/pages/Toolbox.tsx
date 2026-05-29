@@ -72,24 +72,24 @@ function ToolCard({ tool }: { tool: Tool }) {
         </ul>
 
         <div className="border-t border-border pt-5">
-          <div className="mb-3 text-sm font-medium text-center text-foreground/80 tracking-tight">
+          <div className="mb-3 text-sm font-medium text-center tracking-tight">
             {tool.billing === "once" ? (
-              <span>${tool.price.toLocaleString()} <span className="text-muted-foreground font-normal">one-time</span></span>
+              <span style={{ color: "#84cc16" }}>${tool.price.toLocaleString()} <span className="text-muted-foreground font-normal">one-time</span></span>
             ) : tool.setup != null && tool.setup > 0 ? (
               <span>
-                <span className="text-foreground font-semibold">${tool.setup} setup</span>
+                <span style={{ color: "#84cc16" }} className="font-semibold">${tool.setup} setup</span>
                 <span className="text-muted-foreground"> · then </span>
-                <span className="text-foreground font-semibold">${tool.price}/mo</span>
+                <span style={{ color: "#84cc16" }} className="font-semibold">${tool.price}/mo</span>
                 <span className="text-muted-foreground"> · Cancel anytime</span>
               </span>
             ) : tool.setup === 0 ? (
               <span>
-                <span className="text-foreground font-semibold">${tool.price}/mo</span>
+                <span style={{ color: "#84cc16" }} className="font-semibold">${tool.price}/mo</span>
                 <span className="text-muted-foreground"> · No setup fee · Cancel anytime</span>
               </span>
             ) : (
               <span>
-                <span className="text-foreground font-semibold">From ${tool.price}/mo</span>
+                <span style={{ color: "#84cc16" }} className="font-semibold">From ${tool.price}/mo</span>
                 <span className="text-muted-foreground"> · Cancel anytime</span>
               </span>
             )}
