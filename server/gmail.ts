@@ -323,3 +323,82 @@ export async function sendRealEstateFunnelConfirmation(data: RealEstateFunnelDat
   `;
   await sendGmail(data.email, subject, htmlBody);
 }
+
+interface CallbackRequestData {
+  name: string;
+  email: string;
+  phone: string;
+  businessName?: string;
+  message?: string;
+}
+
+export async function sendCallbackNotification(data: CallbackRequestData): Promise<void> {
+  const subject = `📞 Call Back Request: ${data.name}${data.businessName ? ` — ${data.businessName}` : ""}`;
+  const htmlBody = `
+    <div style="font-family:sans-serif;max-width:600px;margin:0 auto">
+      <div style="background:#141413;padding:24px 32px;border-radius:8px 8px 0 0">
+        <h2 style="color:#84cc16;margin:0;font-size:20px">📞 New Call Back Request</h2>
+        <p style="color:#94a3b8;margin:6px 0 0;font-size:14px">AI Pivot — aipivot.com.au</p>
+      </div>
+      <div style="background:#ffffff;padding:32px;border-radius:0 0 8px 8px;border:1px solid #e2e8f0">
+        <table style="width:100%;border-collapse:collapse;font-size:15px">
+          <tr style="border-bottom:1px solid #f1f5f9">
+            <td style="padding:12px 0;color:#64748b;font-weight:600;width:40%">Name</td>
+            <td style="padding:12px 0;color:#0f172a;font-weight:700">${data.name}</td>
+          </tr>
+          <tr style="border-bottom:1px solid #f1f5f9">
+            <td style="padding:12px 0;color:#64748b;font-weight:600">Call Them On</td>
+            <td style="padding:12px 0"><a href="tel:${data.phone.replace(/\s/g, "")}" style="color:#84cc16;font-weight:700;font-size:18px">${data.phone}</a></td>
+          </tr>
+          <tr style="border-bottom:1px solid #f1f5f9">
+            <td style="padding:12px 0;color:#64748b;font-weight:600">Email</td>
+            <td style="padding:12px 0"><a href="mailto:${data.email}" style="color:#0ea5e9">${data.email}</a></td>
+          </tr>
+          <tr style="border-bottom:1px solid #f1f5f9">
+            <td style="padding:12px 0;color:#64748b;font-weight:600">Business</td>
+            <td style="padding:12px 0;color:#0f172a">${data.businessName || "Not provided"}</td>
+          </tr>
+          <tr>
+            <td style="padding:12px 0;color:#64748b;font-weight:600;vertical-align:top">Message</td>
+            <td style="padding:12px 0;color:#0f172a">${data.message || "No message provided"}</td>
+          </tr>
+        </table>
+        <div style="margin-top:24px;padding:16px;background:#f0fdf4;border-left:4px solid #84cc16;border-radius:4px">
+          <p style="margin:0;color:#166534;font-size:14px;font-weight:600">Action: Call ${data.name} on <a href="tel:${data.phone.replace(/\s/g, "")}" style="color:#166534">${data.phone}</a> within 24 hours.</p>
+        </div>
+      </div>
+    </div>
+  `;
+  await sendGmail("nick@avaire.com.au, nick@nickgriffiths.com.au", subject, htmlBody);
+  console.log(`Callback notification sent for ${data.name} (${data.email})`);
+}
+
+export async function sendCallbackConfirmation(data: CallbackRequestData): Promise<void> {
+  const firstName = data.name.split(" ")[0];
+  const subject = `We'll call you back, ${firstName} — AI Pivot`;
+  const htmlBody = `
+    <div style="font-family:sans-serif;max-width:600px;margin:0 auto">
+      <div style="background:#141413;padding:24px 32px;border-radius:8px 8px 0 0">
+        <h2 style="color:#84cc16;margin:0;font-size:20px">Call Back Confirmed ✓</h2>
+        <p style="color:#94a3b8;margin:6px 0 0;font-size:14px">AI Pivot — aipivot.com.au</p>
+      </div>
+      <div style="background:#ffffff;padding:32px;border-radius:0 0 8px 8px;border:1px solid #e2e8f0">
+        <p style="font-size:16px;color:#0f172a;margin:0 0 16px">G'day ${firstName},</p>
+        <p style="font-size:15px;color:#334155;margin:0 0 16px">Thanks for getting in touch — we've received your call back request.</p>
+        <p style="font-size:15px;color:#334155;margin:0 0 16px">Nick will call you on <strong style="color:#0f172a">${data.phone}</strong> within 24 hours for a no-pressure chat about your business.</p>
+        <div style="margin:24px 0;padding:20px;background:#f0fdf4;border-left:4px solid #84cc16;border-radius:4px">
+          <p style="margin:0;color:#166534;font-size:14px;font-weight:600">What to expect on the call</p>
+          <ul style="margin:8px 0 0;padding-left:20px;color:#334155;font-size:14px;line-height:1.9">
+            <li>A genuine conversation about your business — no script, no hard sell</li>
+            <li>A clear picture of where AI could save you time or make you money</li>
+            <li>Honest advice on whether we're the right fit — or not</li>
+          </ul>
+        </div>
+        <p style="font-size:14px;color:#64748b;margin:0 0 16px">Can't wait for the call? Reply to this email and we'll get back to you sooner.</p>
+        <p style="font-size:14px;color:#64748b;margin:16px 0 0">— Nick<br><span style="color:#94a3b8">AI Pivot<br>0415 685 544</span></p>
+      </div>
+    </div>
+  `;
+  await sendGmail(data.email, subject, htmlBody);
+  console.log(`Callback confirmation sent to ${data.email}`);
+}

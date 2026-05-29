@@ -1,10 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
-import { Menu, X, ShoppingCart, Wrench, ChevronDown, LayoutGrid, MapPin } from "lucide-react";
+import { Menu, X, ShoppingCart, Wrench, ChevronDown, LayoutGrid, MapPin, Phone } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
 import { useCart } from "@/context/CartContext";
 import { Link } from "wouter";
+import { ContactCallbackModal } from "@/components/ContactCallbackModal";
 
 const toolboxItems = [
   { href: "/toolbox", label: "AI Toolbox", description: "Browse & build your quote", icon: LayoutGrid },
@@ -15,6 +16,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [toolboxOpen, setToolboxOpen] = useState(false);
+  const [callbackOpen, setCallbackOpen] = useState(false);
   const toolboxRef = useRef<HTMLDivElement>(null);
   const { totalItems, openCart } = useCart();
 
@@ -133,6 +135,17 @@ export function Navbar() {
               )}
             </button>
 
+            <button
+              onClick={() => setCallbackOpen(true)}
+              className="flex items-center gap-1.5 font-semibold text-sm px-4 py-2 rounded-full transition-opacity hover:opacity-90 text-[#141413]"
+              style={{ background: "#84cc16" }}
+              data-testid="nav-cta-callback"
+              aria-label="Request a call back"
+            >
+              <Phone className="w-3.5 h-3.5" />
+              Talk to Us
+            </button>
+
             <a
               href="/#contact"
               className="btn btn-primary"
@@ -209,7 +222,17 @@ export function Navbar() {
                 );
               })}
             </div>
-            <a href="/#contact" className="btn btn-primary mt-2" onClick={() => setMobileOpen(false)}
+            <button
+              onClick={() => { setMobileOpen(false); setCallbackOpen(true); }}
+              className="flex items-center justify-center gap-2 w-full font-semibold px-5 py-3 rounded-full transition-opacity hover:opacity-90 text-[#141413]"
+              style={{ background: "#84cc16" }}
+              data-testid="nav-cta-callback-mobile"
+            >
+              <Phone className="w-4 h-4" />
+              Talk to Us
+            </button>
+
+            <a href="/#contact" className="btn btn-primary mt-1" onClick={() => setMobileOpen(false)}
               aria-label="Book your free AI growth map call"
             >
               Book Your Free Growth Map Call
@@ -217,6 +240,8 @@ export function Navbar() {
           </nav>
         </div>
       )}
+
+      <ContactCallbackModal isOpen={callbackOpen} onClose={() => setCallbackOpen(false)} />
     </header>
   );
 }

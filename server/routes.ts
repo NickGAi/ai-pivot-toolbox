@@ -3,7 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertContactSubmissionSchema, insertLeadMagnetSchema } from "@shared/schema";
 import { fromError } from "zod-validation-error";
-import { sendContactNotification, sendLeadMagnetNotification, sendLeadMagnetDelivery, sendRealEstateFunnelNotification, sendRealEstateFunnelConfirmation } from "./gmail";
+import { sendContactNotification, sendLeadMagnetNotification, sendLeadMagnetDelivery, sendRealEstateFunnelNotification, sendRealEstateFunnelConfirmation, sendCallbackNotification, sendCallbackConfirmation } from "./gmail";
 import { addToSendGridList } from "./sendgrid";
 import { enrolInNurture } from "./nurture-sequence";
 import { legacyCreateProxyMiddleware } from "http-proxy-middleware";
@@ -203,6 +203,29 @@ export async function registerRoutes(
       res.json({ success: true, message: "Application received. We'll be in touch within 24 hours." });
     } catch (error) {
       console.error("Real estate funnel error:", error);
+      res.status(500).json({ success: false, error: "An error occurred. Please try again." });
+    }
+  });
+
+  app.post("/api/callback-request", async (req, res) => {
+    try {
+      const { name, email, phone, businessName, message } = req.body;
+      if (!name || !email || !phone) {
+        return res.status(400).json({ success: false, error: "Name, email and phone are required." });
+      }
+      try {
+        await sendCallbackNotification({ name, email, phone, businessName, message });
+      } catch (err) {
+        console.error("Callback notification failed:", err);
+      }
+      try {
+        await sendCallbackConfirmation({ name, email, phone, businessName, message });
+      } catch (err) {
+        console.error("Callback confirmation failed:", err);
+      }
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Callback request error:", error);
       res.status(500).json({ success: false, error: "An error occurred. Please try again." });
     }
   });
