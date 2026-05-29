@@ -6,6 +6,7 @@ export interface Tool {
   tagline: string;
   description: string;
   price: number;
+  setup?: number;
   billing: BillingType;
   category: string;
   badge?: string;
@@ -20,7 +21,8 @@ export const tools: Tool[] = [
     name: "AI Voice Agent",
     tagline: "Never miss a call again",
     description: "Human-like AI that answers, qualifies and books appointments 24/7 — integrated with your CRM and calendar. Fully managed, no tech skills needed.",
-    price: 997,
+    price: 497,
+    setup: 497,
     agencyPrice: 2500,
     billing: "monthly",
     category: "Lead Conversion",
@@ -33,7 +35,8 @@ export const tools: Tool[] = [
     name: "AI SEO Package",
     tagline: "Rank on Google & AI search",
     description: "Full AI SEO and GEO strategy — get found on Google, ChatGPT, Perplexity and every AI search engine. Done-for-you by an AI-powered Australian specialist.",
-    price: 1497,
+    price: 797,
+    setup: 0,
     agencyPrice: 3000,
     billing: "monthly",
     category: "SEO & Visibility",
@@ -46,7 +49,8 @@ export const tools: Tool[] = [
     name: "AI Lead Nurturing",
     tagline: "Convert leads while you sleep",
     description: "Instantly engage and qualify leads across SMS, email, live chat and webforms with intelligent 24/7 follow-ups. Fully managed system, set and forget.",
-    price: 997,
+    price: 397,
+    setup: 297,
     agencyPrice: 2000,
     billing: "monthly",
     category: "Lead Conversion",
