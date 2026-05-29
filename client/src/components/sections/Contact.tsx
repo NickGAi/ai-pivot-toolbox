@@ -12,14 +12,12 @@ export function Contact() {
   useEffect(() => {
     pixelTrack("Contact");
   }, []);
+
   const [formData, setFormData] = useState({
     firstName: "",
-    lastName: "",
     email: "",
     phone: "",
     industry: "",
-    preferredDate: "",
-    message: "",
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -45,15 +43,7 @@ export function Contact() {
           title: "Success!",
           description: data.message,
         });
-        setFormData({
-          firstName: "",
-          lastName: "",
-          email: "",
-          phone: "",
-          industry: "",
-          preferredDate: "",
-          message: "",
-        });
+        setFormData({ firstName: "", email: "", phone: "", industry: "" });
       } else {
         toast({
           title: "Error",
@@ -72,16 +62,13 @@ export function Contact() {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   return (
-    <section 
-      id="contact" 
+    <section
+      id="contact"
       className="py-24 relative overflow-hidden"
       aria-labelledby="contact-heading"
       itemScope
@@ -91,14 +78,14 @@ export function Contact() {
       <div className="absolute inset-0 bg-background/80" aria-hidden="true" />
       <div className="container-main relative z-10">
         <div className="max-w-xl mx-auto">
-          <motion.div 
+          <motion.div
             className="text-center mb-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
             <h2 id="contact-heading" className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-              Book Your Strategy Call
+              Book Your Growth Map Call
             </h2>
             <p className="text-xl text-muted-foreground mb-6">
               A 30-minute call to map out your automation opportunities
@@ -132,33 +119,19 @@ export function Contact() {
             viewport={{ once: true }}
           >
             <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="contact-firstName" className="sr-only">First Name</label>
-                  <input
-                    id="contact-firstName"
-                    type="text"
-                    name="firstName"
-                    placeholder="First Name"
-                    value={formData.firstName}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="contact-lastName" className="sr-only">Last Name</label>
-                  <input
-                    id="contact-lastName"
-                    type="text"
-                    name="lastName"
-                    placeholder="Last Name"
-                    value={formData.lastName}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-                  />
-                </div>
+              <div>
+                <label htmlFor="contact-firstName" className="sr-only">First Name</label>
+                <input
+                  id="contact-firstName"
+                  type="text"
+                  name="firstName"
+                  placeholder="First Name"
+                  value={formData.firstName}
+                  onChange={handleChange}
+                  required
+                  data-testid="input-firstName"
+                  className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                />
               </div>
               <div>
                 <label htmlFor="contact-email" className="sr-only">Email Address</label>
@@ -170,6 +143,7 @@ export function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   required
+                  data-testid="input-email"
                   className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
                 />
               </div>
@@ -183,6 +157,7 @@ export function Contact() {
                   value={formData.phone}
                   onChange={handleChange}
                   required
+                  data-testid="input-phone"
                   className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
                 />
               </div>
@@ -192,7 +167,8 @@ export function Contact() {
                   id="contact-industry"
                   name="industry"
                   value={formData.industry}
-                  onChange={handleChange as any}
+                  onChange={handleChange}
+                  data-testid="select-industry"
                   className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
                 >
                   <option value="">Select Your Industry</option>
@@ -209,32 +185,10 @@ export function Contact() {
                   <option value="Other">Other</option>
                 </select>
               </div>
-              <div>
-                <label htmlFor="contact-date" className="block text-sm text-muted-foreground mb-2">Preferred Meeting Date & Time</label>
-                <input
-                  id="contact-date"
-                  type="datetime-local"
-                  name="preferredDate"
-                  value={formData.preferredDate}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-                />
-              </div>
-              <div>
-                <label htmlFor="contact-message" className="sr-only">Tell us about your business</label>
-                <textarea
-                  id="contact-message"
-                  name="message"
-                  placeholder="Tell us about your business (Optional)"
-                  value={formData.message}
-                  onChange={handleChange}
-                  rows={3}
-                  className="w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary resize-none"
-                />
-              </div>
               <button
                 type="submit"
                 disabled={isSubmitting}
+                data-testid="button-submit"
                 className="btn btn-primary w-full justify-center disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? "Sending..." : "Request Meeting"}

@@ -21,8 +21,10 @@ export const insertContactSubmissionSchema = createInsertSchema(contactSubmissio
 }).extend({
   email: z.string().email("Please provide a valid email address"),
   firstName: z.string().min(1, "First name is required"),
-  lastName: z.string().min(1, "Last name is required"),
+  lastName: z.string().optional().default(""),
   phone: z.string().min(1, "Phone number is required"),
+  preferredDate: z.string().optional().nullable(),
+  message: z.string().optional().nullable(),
 });
 
 export type InsertContactSubmission = z.infer<typeof insertContactSubmissionSchema>;
