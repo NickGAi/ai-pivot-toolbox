@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { Menu, X, ShoppingCart, Wrench, ChevronDown, LayoutGrid, MapPin, Phone } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
 import { useCart } from "@/context/CartContext";
@@ -119,8 +118,6 @@ export function Navbar() {
               )}
             </div>
 
-            <ThemeToggle />
-
             <button
               onClick={openCart}
               className="relative p-2 text-muted-foreground hover:text-foreground transition-colors"
@@ -170,7 +167,6 @@ export function Navbar() {
                 </span>
               )}
             </button>
-            <ThemeToggle />
             <button
               className="p-2 text-foreground"
               onClick={() => setMobileOpen(!mobileOpen)}
