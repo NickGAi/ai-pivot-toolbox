@@ -25,8 +25,8 @@ export const servicesData: ServiceData[] = [
     tagline: "Never miss a call again — 24/7, human-like, fully managed.",
     headline: "AI Voice Agents for Australian Businesses",
     painHook: "Every unanswered call is a customer your competitor just picked up. BizCover research found 35% of Australian SMB calls go unanswered after 6pm — and most callers never ring back a second time. If you're relying on staff to handle every inbound call, you're losing leads every evening and every weekend without ever knowing they rang.",
-    intro: "Your phone never sleeps — and neither does your AI voice agent. AI Pivot Toolbox deploys fully managed AI voice agents that answer inbound calls, qualify leads, book appointments, and handle FAQs 24 hours a day. Custom-trained on your business, integrated with your CRM and calendar, for $997/month — compared to $2,500+ at a traditional agency.",
-    ourPrice: "$997",
+    intro: "Your phone never sleeps — and neither does your AI voice agent. AI Pivot Toolbox deploys fully managed AI voice agents that answer inbound calls, qualify leads, book appointments, and handle FAQs 24 hours a day. Custom-trained on your business, integrated with your CRM and calendar. $497 setup + $497/month — compared to $2,500+ at a traditional agency.",
+    ourPrice: "$497/mo",
     agencyPrice: "$2,500",
     billing: "monthly",
     features: [
@@ -58,13 +58,13 @@ export const servicesData: ServiceData[] = [
       { industry: "Finance Broker", result: "Pre-qualifying 200+ loan enquiries monthly on autopilot", detail: "AI captures income, employment, and loan requirements before booking a discovery call" },
     ],
     faqs: [
-      { q: "How much does an AI voice agent cost in Australia?", a: "AI Pivot Toolbox charges $997/month for a fully managed AI voice agent — including setup, training, CRM integration, and ongoing management. Traditional AI agencies in Australia typically charge $2,000–$3,000/month for equivalent services. Our solo operator model removes the agency overhead." },
+      { q: "How much does an AI voice agent cost in Australia?", a: "AI Pivot Toolbox charges $497/month + a one-time $497 setup fee for a fully managed AI voice agent — including training, CRM integration, and ongoing management. Traditional AI agencies in Australia typically charge $2,000–$3,000/month for equivalent services. Our solo operator model removes the agency overhead." },
       { q: "How long does it take to set up an AI voice agent?", a: "Most AI voice agents go live within 7–14 days. The first week covers onboarding and training; the second week covers integration testing and a supervised go-live. Simpler deployments can be live within 3–5 days." },
       { q: "Can the AI voice agent integrate with my existing systems?", a: "Yes. We integrate with HubSpot, Salesforce, Zoho, Go High Level, Google Calendar, Calendly, and most major CRM and booking systems via API. We also support custom integrations for industry-specific software." },
     ],
     relatedSlugs: ["ai-chatbot-australia", "ai-integrations", "workflow-automation"],
-    metaTitle: "AI Voice Agents Australia | 24/7 Calls from $997/mo | AI Pivot Toolbox",
-    metaDescription: "Fully managed AI voice agents for Australian businesses. Inbound calls, lead qualification, appointment booking — 24/7. From $997/month. 40–60% below agency rates. Free strategy call.",
+    metaTitle: "AI Voice Agents Australia | 24/7 Calls from $497/mo | AI Pivot Toolbox",
+    metaDescription: "Fully managed AI voice agents for Australian businesses. Inbound calls, lead qualification, appointment booking — 24/7. From $497/month + $497 setup. 40–60% below agency rates. Free strategy call.",
   },
   {
     slug: "workflow-automation",
@@ -72,8 +72,8 @@ export const servicesData: ServiceData[] = [
     tagline: "Eliminate the manual work eating your team's time.",
     headline: "Workflow Automation for Australian Businesses",
     painHook: "Your team is spending hours every week on work a machine could do in seconds. MYOB's 2024 Business Monitor found Australian small business owners spend an average of 6.8 hours per week on financial administration and manual data entry alone — before counting follow-up emails, reporting, or transfers between systems. Every hour lost to avoidable admin is an hour not spent on the work that actually grows your business.",
-    intro: "The average Australian business wastes 40+ hours per week on manual tasks — data entry, follow-up emails, report generation, invoice processing, and handoffs between systems. AI Pivot Toolbox builds custom workflow automations that eliminate this entirely. At $1,497/month — versus $3,500+ at a traditional agency — you get fully managed automation that runs while you sleep.",
-    ourPrice: "$1,497",
+    intro: "The average Australian business wastes 40+ hours per week on manual tasks — data entry, follow-up emails, report generation, invoice processing, and handoffs between systems. AI Pivot Toolbox builds custom workflow automations that eliminate this entirely. $1,497 setup + $997/month — versus $3,500+ at a traditional agency — fully managed automation that runs while you sleep.",
+    ourPrice: "$997/mo",
     agencyPrice: "$3,500",
     billing: "monthly",
     features: [
@@ -107,11 +107,11 @@ export const servicesData: ServiceData[] = [
     faqs: [
       { q: "What kinds of workflows can you automate?", a: "Almost any repeatable business process — invoice processing, client onboarding, lead follow-up, appointment reminders, reporting, CRM data entry, document processing, compliance checklists, payroll prep, and more. If your team does it repeatedly, it can almost certainly be automated." },
       { q: "What tools do you use for workflow automation?", a: "We build automations using Make (formerly Integromat), Zapier, n8n, and direct API integrations depending on your stack and requirements. For document processing, we use AI-powered OCR. All automations are documented and handed over to you if you ever want to manage them in-house." },
-      { q: "How much does workflow automation cost compared to hiring staff?", a: "AI Pivot Toolbox's workflow automation service starts at $1,497/month — less than 10% of the cost of a full-time admin employee. Most clients see full ROI within the first 30 days through time savings alone, before even accounting for error reduction and faster turnaround." },
+      { q: "How much does workflow automation cost compared to hiring staff?", a: "AI Pivot Toolbox's workflow automation service is $997/month + a one-time $1,497 setup fee — less than 10% of the cost of a full-time admin employee. Most clients see full ROI within the first 30–60 days through time savings alone, before even accounting for error reduction and faster turnaround." },
     ],
     relatedSlugs: ["ai-voice-agents", "ai-integrations", "ai-chatbot-australia"],
-    metaTitle: "Workflow Automation Australia | From $1,497/mo | AI Pivot Toolbox",
-    metaDescription: "Custom workflow automation for Australian businesses. Eliminate manual tasks, integrate your systems, save 40+ hours per week. From $1,497/month. Free strategy call.",
+    metaTitle: "Workflow Automation Australia | From $997/mo | AI Pivot Toolbox",
+    metaDescription: "Custom workflow automation for Australian businesses. Eliminate manual tasks, integrate your systems, save 40+ hours per week. From $997/month + $1,497 setup. Free strategy call.",
   },
   {
     slug: "ai-seo-australia",
@@ -119,8 +119,8 @@ export const servicesData: ServiceData[] = [
     tagline: "Australia's AI SEO agency — ranking on Google AND every AI search engine.",
     headline: "Australia's AI SEO Agency — Google Rankings, GEO & AEO",
     painHook: "Right now, someone in your city is asking ChatGPT which service provider to use — and your business is not in the answer. auDA's 2025 Digital Lives report found 39% of Australian searches now show AI-generated answers first, above every organic result. If your SEO strategy was built before 2024, it was built for a search landscape that no longer exists.",
-    intro: "AI Pivot Toolbox is an AI SEO agency built for 2026 search — where 39% of Australian queries now show AI-generated answers. Unlike a traditional SEO agency or SEO marketing agency, we don't just chase Google's blue links. We combine technical SEO with GEO (Generative Engine Optimisation) and AEO (Answer Engine Optimisation) to get your business ranking on Google AND cited by ChatGPT, Perplexity, and AI Overviews. Fully managed, at $1,497/month versus $3,000+ at a Brisbane or Sydney SEO agency.",
-    ourPrice: "$1,497",
+    intro: "AI Pivot Toolbox is an AI SEO agency built for 2026 search — where 39% of Australian queries now show AI-generated answers. Unlike a traditional SEO agency or SEO marketing agency, we don't just chase Google's blue links. We combine technical SEO with GEO (Generative Engine Optimisation) and AEO (Answer Engine Optimisation) to get your business ranking on Google AND cited by ChatGPT, Perplexity, and AI Overviews. Fully managed, at $797/month — no setup fee — versus $3,000+ at a Brisbane or Sydney SEO agency.",
+    ourPrice: "$797/mo",
     agencyPrice: "$3,000",
     billing: "monthly",
     features: [
@@ -158,7 +158,7 @@ export const servicesData: ServiceData[] = [
     ],
     relatedSlugs: ["aeo-answer-engine-optimisation", "geo-generative-engine-optimisation", "ai-content-machine"],
     metaTitle: "AI SEO Agency Australia | GEO, AEO & Rankings | AI Pivot Toolbox",
-    metaDescription: "AI SEO for Australian businesses. Rank on Google AND get cited by ChatGPT, Perplexity & AI Overviews. GEO, AEO, technical SEO — fully managed from $1,497/month.",
+    metaDescription: "AI SEO for Australian businesses. Rank on Google AND get cited by ChatGPT, Perplexity & AI Overviews. GEO, AEO, technical SEO — fully managed from $797/month. No setup fee.",
   },
   {
     slug: "aeo-answer-engine-optimisation",
@@ -167,7 +167,7 @@ export const servicesData: ServiceData[] = [
     headline: "Answer Engine Optimisation (AEO) for Australian Businesses",
     painHook: "When a potential client asks ChatGPT or Perplexity for the best service provider in your industry, the answer they get is not random — it's the business with the most AI-credible content. auDA's 2025 Digital Lives report found AI-influenced search results appear in 39% of Australian queries — and Semrush data shows traffic from those answers converts at 4.4 times the rate of traditional organic clicks. Right now, that advantage belongs to a competitor.",
     intro: "When someone asks ChatGPT, Perplexity, or Google's AI Overview a question in your industry, whose business gets cited? AEO (Answer Engine Optimisation) is the discipline of structuring your content so AI systems select you as the authoritative answer source. AI Pivot Toolbox implements AEO as part of a full AI SEO strategy — making your business the default recommendation for your industry's most important questions.",
-    ourPrice: "$1,497",
+    ourPrice: "$797/mo",
     agencyPrice: "$3,000",
     billing: "monthly",
     features: [
@@ -214,7 +214,7 @@ export const servicesData: ServiceData[] = [
     headline: "Australia's GEO Agency — Generative Engine Optimisation for AI Search",
     painHook: "Google AI Overviews now appear at the top of 30% of Australian searches — above every ad, every map pack, and every blue link — according to auDA's 2025 Digital Lives report. If your business isn't featured in those AI-generated answers, you're invisible to the fastest-growing traffic source in Australian search. The competitors being cited there are taking those customers instead.",
     intro: "AI Pivot Toolbox is Australia's specialist GEO agency. As Google AI Overviews, ChatGPT search, and Perplexity handle an increasing share of Australian search queries, the businesses who appear in AI-generated answers will dominate their industries. Our GEO agency service applies the latest research-backed techniques — from Princeton and IIT Delhi — to make your business the source AI engines cite for the most valuable queries in your industry.",
-    ourPrice: "$1,497",
+    ourPrice: "$797/mo",
     agencyPrice: "$3,000",
     billing: "monthly",
     features: [
@@ -252,7 +252,7 @@ export const servicesData: ServiceData[] = [
     ],
     relatedSlugs: ["ai-seo-australia", "aeo-answer-engine-optimisation"],
     metaTitle: "GEO Agency Australia | Get Cited by AI Search | AI Pivot Toolbox",
-    metaDescription: "GEO services for Australian businesses. Get cited by Google AI Overviews, ChatGPT, and Perplexity. Research-backed generative engine optimisation from $1,497/month.",
+    metaDescription: "GEO services for Australian businesses. Get cited by Google AI Overviews, ChatGPT, and Perplexity. Research-backed generative engine optimisation from $797/month. No setup fee.",
   },
   {
     slug: "ai-chatbot-australia",
@@ -260,8 +260,8 @@ export const servicesData: ServiceData[] = [
     tagline: "Capture leads and answer questions 24/7 — without lifting a finger.",
     headline: "AI Chatbot for Australian Business Websites",
     painHook: "Most Australian business websites lose the vast majority of visitors without capturing a name, number, or email. Sensis's 2024 Yellow Pages Digital Report found 74% of Australians research a business online before making contact — yet the average Australian business website converts fewer than 3 in every 100 visitors into an enquiry. They browse, decide you look acceptable, then check your competitor's site and book with them instead.",
-    intro: "Most business websites lose 70–80% of visitors without capturing their details. An AI chatbot changes that — engaging visitors instantly, answering their questions, qualifying their needs, and booking appointments while you sleep. AI Pivot Toolbox builds and manages custom-trained AI chatbots for Australian business websites from $597/month — less than half the cost of a traditional agency.",
-    ourPrice: "$597",
+    intro: "Most business websites lose 70–80% of visitors without capturing their details. An AI chatbot changes that — engaging visitors instantly, answering their questions, qualifying their needs, and booking appointments while you sleep. AI Pivot Toolbox builds and manages custom-trained AI chatbots for Australian business websites. $497 setup + $297/month — less than half the cost of a traditional agency.",
+    ourPrice: "$297/mo",
     agencyPrice: "$1,200",
     billing: "monthly",
     features: [
@@ -298,8 +298,8 @@ export const servicesData: ServiceData[] = [
       { q: "What happens when the chatbot can't answer a question?", a: "The chatbot is configured with handoff logic — when it encounters a question outside its training or when a user requests human assistance, it collects their details and either transfers to live chat, sends an email notification to your team, or books a callback. No visitor falls through the cracks." },
     ],
     relatedSlugs: ["ai-voice-agents", "ai-integrations", "workflow-automation"],
-    metaTitle: "AI Chatbot Australia | Website Chatbot from $597/mo | AI Pivot Toolbox",
-    metaDescription: "Custom AI chatbots for Australian business websites. Capture leads, answer questions, and book appointments 24/7. Trained on your business. From $597/month. Free strategy call.",
+    metaTitle: "AI Chatbot Australia | Website Chatbot from $297/mo | AI Pivot Toolbox",
+    metaDescription: "Custom AI chatbots for Australian business websites. Capture leads, answer questions, and book appointments 24/7. Trained on your business. From $297/month + $497 setup. Free strategy call.",
   },
   {
     slug: "website-design-ai",
@@ -401,8 +401,8 @@ export const servicesData: ServiceData[] = [
     tagline: "Connect your tools. Eliminate the gaps. Make everything work together.",
     headline: "CRM & AI Integrations for Australian Businesses",
     painHook: "Your team is the integration. Every time data needs to move between your CRM, your accounting software, and your project management tool, a person does it manually. Deloitte's 2025 research found Australian SMBs use an average of 12 software tools — and most of them don't talk to each other. That gap between your tools is costing you hours of productive time, and introducing errors, every single week.",
-    intro: "The average Australian business uses 12+ software tools — and most of them don't talk to each other. Data falls through the cracks, staff duplicate work across systems, and reporting is a manual nightmare. AI Pivot Toolbox builds the integrations that make your tools work as one — connecting your CRM, accounting software, calendar, phone system, and marketing tools. From $997/month, fully managed.",
-    ourPrice: "$997",
+    intro: "The average Australian business uses 12+ software tools — and most of them don't talk to each other. Data falls through the cracks, staff duplicate work across systems, and reporting is a manual nightmare. AI Pivot Toolbox builds the integrations that make your tools work as one — connecting your CRM, accounting software, calendar, phone system, and marketing tools. $997 setup + $397/month, fully managed.",
+    ourPrice: "$397/mo",
     agencyPrice: "$2,000",
     billing: "monthly",
     features: [
@@ -439,8 +439,8 @@ export const servicesData: ServiceData[] = [
       { q: "How is this different from just using Zapier myself?", a: "Zapier and Make are excellent tools, but they have limitations — they struggle with complex data transformations, break when APIs update, have per-task pricing that adds up fast, and require ongoing maintenance that most businesses don't prioritise. AI Pivot Toolbox builds more robust integrations, handles the maintenance, monitors for failures, and includes error alerting. You focus on your business; we make sure the systems keep talking." },
     ],
     relatedSlugs: ["workflow-automation", "ai-chatbot-australia", "ai-voice-agents"],
-    metaTitle: "CRM & AI Integrations Australia | From $997/mo | AI Pivot Toolbox",
-    metaDescription: "Custom CRM and software integrations for Australian businesses. Connect Xero, Salesforce, HubSpot, and 100+ tools. Fully managed from $997/month. Free strategy call.",
+    metaTitle: "CRM & AI Integrations Australia | From $397/mo | AI Pivot Toolbox",
+    metaDescription: "Custom CRM and software integrations for Australian businesses. Connect Xero, Salesforce, HubSpot, and 100+ tools. Fully managed from $397/month + $997 setup. Free strategy call.",
   },
 ];
 
