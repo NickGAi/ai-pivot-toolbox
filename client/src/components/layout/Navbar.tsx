@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { Menu, X, ShoppingCart, Wrench, ChevronDown, LayoutGrid, MapPin, Phone } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
 import { useCart } from "@/context/CartContext";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { ContactCallbackModal } from "@/components/ContactCallbackModal";
 
 const toolboxItems = [
@@ -18,6 +18,23 @@ export function Navbar() {
   const [callbackOpen, setCallbackOpen] = useState(false);
   const toolboxRef = useRef<HTMLDivElement>(null);
   const { totalItems, openCart } = useCart();
+  const [location, navigate] = useLocation();
+
+  const scrollToContact = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setMobileOpen(false);
+    const poll = () => {
+      const el = document.getElementById('contact');
+      if (el) { el.scrollIntoView({ behavior: 'smooth' }); return; }
+      setTimeout(poll, 80);
+    };
+    if (location === '/') {
+      poll();
+    } else {
+      navigate('/');
+      setTimeout(poll, 200);
+    }
+  };
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -145,6 +162,7 @@ export function Navbar() {
 
             <a
               href="/#contact"
+              onClick={scrollToContact}
               className="btn btn-primary"
               data-testid="nav-cta-consultation"
               aria-label="Book your free AI growth map call"
@@ -228,7 +246,7 @@ export function Navbar() {
               Talk to Us
             </button>
 
-            <a href="/#contact" className="btn btn-primary mt-1" onClick={() => setMobileOpen(false)}
+            <a href="/#contact" className="btn btn-primary mt-1" onClick={scrollToContact}
               aria-label="Book your free AI growth map call"
             >
               Book Your Free Growth Map Call
