@@ -9,7 +9,7 @@ interface PageMeta {
 
 const BASE_URL = "https://aipivot.com.au";
 
-const PAGE_META: Record<string, PageMeta> = {
+export const PAGE_META: Record<string, PageMeta> = {
   "/": {
     title: "AI Pivot Toolbox | AI Automation Agency for Australian Businesses",
     description: "AI Pivot Toolbox is an AI SEO agency and automation agency serving Australian businesses. AI voice agents, workflow automation, AI SEO, GEO, AEO, and custom AI tools — 40–60% below agency rates because we're a solo AI-powered operator.",
@@ -246,8 +246,8 @@ export function injectMeta(distPath: string) {
       );
 
       html = html.replace(
-        /<link rel="canonical" href="[^"]*"/,
-        `<link rel="canonical" href="${canonicalUrl}"`
+        "<!--CANONICAL_PLACEHOLDER-->",
+        `<link rel="canonical" href="${canonicalUrl}">`
       );
 
       html = html.replace(

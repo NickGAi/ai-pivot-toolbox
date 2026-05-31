@@ -1,6 +1,9 @@
 import { build as esbuild } from "esbuild";
 import { build as viteBuild } from "vite";
 import { rm, readFile } from "fs/promises";
+import { execSync } from "child_process";
+import { resolve } from "path";
+import react from "@vitejs/plugin-react";
 
 // server deps to bundle to reduce openat(2) syscalls
 // which helps cold start times
@@ -35,10 +38,34 @@ const allowlist = [
 async function buildAll() {
   await rm("dist", { recursive: true, force: true });
 
-  console.log("building client...");
+  console.log("building client…");
   await viteBuild();
 
-  console.log("building server...");
+  console.log("building ssr bundle…");
+  await viteBuild({
+    root: resolve("client"),
+    plugins: [react()],
+    resolve: {
+      alias: {
+        "@": resolve("client/src"),
+        "@shared": resolve("shared"),
+      },
+    },
+    build: {
+      ssr: "src/entry-server.tsx",
+      outDir: resolve("dist/server"),
+      emptyOutDir: true,
+      rollupOptions: {
+        output: { format: "esm" },
+      },
+    },
+    logLevel: "warn",
+  });
+
+  console.log("prerendering routes…");
+  execSync("tsx scripts/prerender.ts", { stdio: "inherit" });
+
+  console.log("building server…");
   const pkg = JSON.parse(await readFile("package.json", "utf-8"));
   const allDeps = [
     ...Object.keys(pkg.dependencies || {}),

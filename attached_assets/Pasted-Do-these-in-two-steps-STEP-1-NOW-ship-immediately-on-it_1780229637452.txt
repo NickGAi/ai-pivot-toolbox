@@ -1,0 +1,40 @@
+Do these in two steps.
+
+STEP 1 — NOW (ship immediately, on its own):
+Remove the hardcoded <link rel="canonical" href="https://aipivot.com.au/"> 
+from client/index.html entirely. Do NOT replace it with another hardcoded 
+canonical. Confirm the existing runtime JS sets a correct self-referencing 
+per-route canonical, and leave that as the interim. Deploy.
+
+STEP 2 — THEN the prerender:
+Proceed with the build-time prerender plan as you proposed (renderToString 
+after vite build, Wouter staticLocation, inject per-page title/description/
+self-referencing canonical into the index.html template, write per-route 
+static files, hydrate on the client). Additional requirements:
+
+1. Express serving: after prerendering, serve dist/<route>/index.html for each 
+   real route. The static files must take precedence over the catch-all. Only 
+   fall through to the SPA shell for genuinely unknown paths. Verify Express 
+   isn't still handing back the root index.html for everything.
+
+2. Trailing slash: live URLs have NO trailing slash (e.g. /ai-automation-brisbane). 
+   Serve the prerendered file at the non-slash URL with no redirect, make the 
+   injected canonical match that exact form, and 301 the slash variant to it.
+
+3. Enumerate data-driven routes, not just the routes registered in App.tsx. 
+   Expand blog posts from blog-data.ts (and any other :slug/parametric routes) 
+   into concrete URLs and prerender each one.
+
+4. Client must use hydrateRoot (not createRoot().render) on the prerendered HTML.
+
+5. Guard browser-only globals (window, document, localStorage, matchMedia, 
+   IntersectionObserver) so they don't crash during renderToString.
+
+6. In the same prerender pass, generate sitemap.xml from the full route list, 
+   and return a real 404 status for unknown routes instead of 200 + shell.
+
+ACCEPTANCE TEST:
+For the homepage, one city page, and /real-estate-pipeline-growth-map, run 
+curl -s <url> (no JS) and show me the output. Each must contain that page's 
+unique body content AND a self-referencing canonical to its own URL. Then 
+re-run with JS still disabled and confirm full content renders for all three.

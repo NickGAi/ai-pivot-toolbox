@@ -1,0 +1,1 @@
+- [SSR prerender pipeline](ssr-prerender.md) — wouter static hook must not use useSyncExternalStore; express.static must come AFTER the prerendered file handler.
