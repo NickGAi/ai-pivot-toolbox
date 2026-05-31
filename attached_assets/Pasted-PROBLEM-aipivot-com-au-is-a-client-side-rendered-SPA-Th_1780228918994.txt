@@ -1,0 +1,43 @@
+PROBLEM
+aipivot.com.au is a client-side-rendered SPA. The initial HTML served to 
+crawlers contains only the app shell (nav, footer, boilerplate meta) — about 
+150 words — and all real page content is painted by JavaScript after load. 
+Proof: a Semrush crawl with JS rendering disabled flagged 45 pages as "low 
+word count" (150–154 words each, nearly identical across totally different 
+pages). Google renders JS slowly and unreliably; the AI crawlers (GPTBot, 
+PerplexityBot, ClaudeBot) mostly don't run JS at all, so they see nothing.
+Separately: every page is currently emitting the canonical tag 
+<link rel="canonical" href="https://aipivot.com.au/"> — pointing at the 
+homepage instead of the page's own URL. That's a second, independent bug.
+
+GOAL
+For EVERY route, the HTML delivered on first byte (before any JS runs) must 
+already contain that page's full unique content, its correct <title>, 
+meta description, and a self-referencing canonical pointing at that page's 
+own URL. No JavaScript execution should be required to read the content.
+
+BEFORE YOU CHANGE ANYTHING
+1. Tell me the exact framework, build tool, and how the app is currently 
+   served (e.g. React + Vite SPA, served as static files / via a Node server).
+2. Tell me how routing and meta tags are currently handled.
+3. Confirm whether page content is static marketing copy or fetched at runtime.
+
+PREFERRED FIX (static prerendering at build time)
+The marketing routes are a known, finite list. At build time, prerender each 
+route to a real static HTML file containing its full content and correct 
+per-page meta/canonical. This serves real HTML to ALL visitors and bots — no 
+bot-sniffing, no cloaking risk, no runtime dependency. Implement with the 
+right tool for the detected stack (e.g. vite-plugin-ssr / vite SSG, or 
+react-snap for a Vite/CRA SPA). Keep the existing client-side routing working 
+for in-app navigation after first load.
+
+DO NOT
+- Do not use user-agent sniffing to serve crawlers different HTML unless 
+  static prerendering is genuinely not feasible — and flag it if so.
+- Do not change the visual design or client behaviour.
+
+ACCEPTANCE TEST
+For at least 3 different routes, run: curl -s <url> | (no JS) and confirm the 
+output contains that page's unique body content AND a canonical tag pointing 
+to that same URL. Show me the curl output for the homepage, one city page, 
+and /real-estate-pipeline-growth-map.
