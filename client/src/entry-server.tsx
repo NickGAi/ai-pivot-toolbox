@@ -112,7 +112,7 @@ function ServerRoutes() {
 }
 
 export function render(urlPath: string): string {
-  const hook = () => [urlPath, (_to: string) => {}] as const;
+  const hook = () => [urlPath, (_to: string) => {}] as [string, (_to: string) => void];
   const ssrQueryClient = new QueryClient({
     defaultOptions: { queries: { retry: false } },
   });

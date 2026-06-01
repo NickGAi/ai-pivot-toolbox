@@ -237,12 +237,12 @@ interface RealEstateFunnelData {
 
 export async function sendRealEstateFunnelNotification(data: RealEstateFunnelData): Promise<void> {
   const fullName = `${data.firstName} ${data.lastName}`;
-  const subject = `🏠 Growth Map Application: ${fullName} — ${data.agency} (${data.suburb})`;
+  const subject = `🏠 Pipeline Leak Audit Booking: ${fullName} — ${data.agency} (${data.suburb})`;
   const utmInfo = [data.utm_source, data.utm_medium, data.utm_campaign].filter(Boolean).join(" / ");
   const htmlBody = `
     <div style="font-family:sans-serif;max-width:600px;margin:0 auto">
       <div style="background:#0a0f1e;padding:24px 32px;border-radius:8px 8px 0 0">
-        <h2 style="color:#0ea5e9;margin:0;font-size:20px">New 90-Day Pipeline Growth Map Application</h2>
+        <h2 style="color:#0ea5e9;margin:0;font-size:20px">New $497 Pipeline Leak Audit Booking</h2>
         <p style="color:#94a3b8;margin:4px 0 0;font-size:14px">aipivot.com.au/real-estate-pipeline-growth-map</p>
       </div>
       <div style="background:#ffffff;padding:32px;border-radius:0 0 8px 8px;border:1px solid #e2e8f0">
@@ -285,7 +285,7 @@ export async function sendRealEstateFunnelNotification(data: RealEstateFunnelDat
           </tr>` : ""}
         </table>
         <div style="margin-top:24px;padding:16px;background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:4px">
-          <p style="margin:0;color:#0369a1;font-size:13px;font-weight:600">Next step: Call ${data.mobile} or reply to send the booking link if this is a fit.</p>
+          <p style="margin:0;color:#0369a1;font-size:13px;font-weight:600">Next step: Deliver the audit within 24 hours. Call ${data.mobile} to walk through findings.</p>
         </div>
       </div>
     </div>
@@ -295,23 +295,22 @@ export async function sendRealEstateFunnelNotification(data: RealEstateFunnelDat
 }
 
 export async function sendRealEstateFunnelConfirmation(data: RealEstateFunnelData): Promise<void> {
-  const subject = `Your 90-Day Pipeline Growth Map — Application Received`;
+  const subject = `Your Pipeline Leak Audit — Booking Confirmed`;
   const htmlBody = `
     <div style="font-family:sans-serif;max-width:600px;margin:0 auto">
       <div style="background:#141413;padding:24px 32px;border-radius:8px 8px 0 0">
-        <h2 style="color:#FF4500;margin:0;font-size:20px">Application Received ✓</h2>
-        <p style="color:#94a3b8;margin:6px 0 0;font-size:14px">90-Day Pipeline Growth Map</p>
+        <h2 style="color:#FF4500;margin:0;font-size:20px">Audit Booked ✓</h2>
+        <p style="color:#94a3b8;margin:6px 0 0;font-size:14px">$497 Pipeline Leak Audit</p>
       </div>
       <div style="background:#ffffff;padding:32px;border-radius:0 0 8px 8px;border:1px solid #e2e8f0">
         <p style="font-size:16px;color:#0f172a;margin:0 0 16px">Hi ${data.firstName},</p>
-        <p style="font-size:15px;color:#334155;margin:0 0 16px">Thanks for applying — I've received your Growth Map application for <strong>${data.agency}</strong> in <strong>${data.suburb}</strong>.</p>
-        <p style="font-size:15px;color:#334155;margin:0 0 16px">I review every application personally. If it looks like a strong fit, I'll reach out within <strong>24 hours</strong> to lock in a time.</p>
+        <p style="font-size:15px;color:#334155;margin:0 0 16px">Thanks for booking your Pipeline Leak Audit for <strong>${data.agency}</strong> in <strong>${data.suburb}</strong>. I'll deliver your full audit within 24 hours.</p>
         <div style="margin:24px 0;padding:20px;background:#fff7f5;border-left:4px solid #FF4500;border-radius:4px">
           <p style="margin:0;color:#7c2d12;font-size:14px;font-weight:600">What happens next</p>
           <ol style="margin:8px 0 0;padding-left:20px;color:#334155;font-size:14px;line-height:1.8">
-            <li>I review your application (usually within a few hours)</li>
-            <li>If it's a fit, you'll get a call or booking link from me</li>
-            <li>We map out your 90-day pipeline strategy together — no cost, no obligation</li>
+            <li>I review your pipeline data and lead sources (within 24 hours)</li>
+            <li>You receive your full Pipeline Leak Audit report</li>
+            <li>We jump on a short call to walk through findings — if you want to proceed with the 14-Day Sprint, your $497 is credited in full</li>
           </ol>
         </div>
         <p style="font-size:14px;color:#64748b;margin:0">Questions in the meantime? Reply to this email or call <a href="tel:0415685544" style="color:#FF4500">0415 685 544</a>.</p>

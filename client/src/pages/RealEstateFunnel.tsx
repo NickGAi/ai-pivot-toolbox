@@ -13,17 +13,17 @@ const CONFIG = {
 const COPY = {
   badge: "For Australian Real Estate Agents Only",
   heroHeadline: ["Stop Torching", "Your Portal Leads."],
-  heroSub: "Find out how many extra listings are sitting in your existing database — and get a 90-day AI-powered plan to pull them out.",
+  heroSub: "Find out exactly where your REA & Domain leads are leaking — and what it's costing you in lost GCI every month.",
   heroBullets: [
     "See exactly where your pipeline is leaking",
-    "Find out how many extra listings you could squeeze from your current leads",
-    "Get a 90-day AI-powered follow-up plan built around your business",
+    "Get a dollar estimate of the GCI you're losing to poor follow-up",
+    "Walk away with a prioritised fix list — even if you don't proceed",
   ],
-  heroCta: "Get My Free Growth Map",
+  heroCta: "Book My $497 Pipeline Leak Audit",
   heroSecondaryCta: "Watch The 60-Second Breakdown",
-  heroTrust: "Built for agents who are sick of wasting portal spend, missing follow-up, and leaving GCI on the table.",
-  formCta: "Apply For My Free Growth Map",
-  smallPrint: "No fluff. No obligation. If it looks like a fit, we'll invite you to book a short strategy call and walk you through the map.",
+  heroTrust: "Built for agents who are sick of wasting portal spend, missing follow-up, and leaving GCI on the table. $497 credited toward your 14-Day AI Follow-Up Sprint.",
+  formCta: "Reserve My Pipeline Leak Audit — $497",
+  smallPrint: "$497 paid at booking. Delivered within 24 hours. Credited in full toward the $2,997 14-Day AI Follow-Up Sprint if you proceed.",
 };
 
 const LEAD_SOURCES = [
@@ -258,9 +258,9 @@ export default function RealEstateFunnel() {
 
   // Page title + meta
   useEffect(() => {
-    document.title = "Free 90-Day Pipeline Growth Map | Australian Real Estate Agents | AiPivot";
+    document.title = "$497 Pipeline Leak Audit | Australian Real Estate Agents | AI Pivot";
     const desc = document.querySelector('meta[name="description"]');
-    if (desc) desc.setAttribute("content", "Stop leaking listing appointments. Get a free 90-Day Pipeline Growth Map — a personalised AI-powered follow-up plan built around your real estate pipeline, your leads, and your market.");
+    if (desc) desc.setAttribute("content", "Find out where your REA and Domain leads are leaking and what it's costing you. $497 Pipeline Leak Audit for Australian real estate agents — delivered in 24 hours.");
     let robots = document.querySelector('meta[name="robots"]');
     if (!robots) {
       robots = document.createElement("meta");
@@ -295,7 +295,7 @@ export default function RealEstateFunnel() {
 
   const mutation = useMutation({
     mutationFn: (data: FormData) => apiRequest("POST", CONFIG.apiEndpoint, data),
-    onSuccess: () => { pixelTrack("Lead", { content_name: "Pipeline Growth Map" }); setSubmitted(true); },
+    onSuccess: () => { pixelTrack("Lead", { content_name: "Pipeline Leak Audit" }); setSubmitted(true); },
   });
 
   function set(field: keyof FormData, value: string) {
@@ -336,12 +336,12 @@ export default function RealEstateFunnel() {
             </svg>
           </div>
 
-          <p className="text-[#FF4500] text-xs font-bold uppercase tracking-[0.2em] mb-4">Application Received</p>
+          <p className="text-[#FF4500] text-xs font-bold uppercase tracking-[0.2em] mb-4">Audit Booked</p>
           <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6 leading-tight">
-            Application Received.<br />Nice.
+            Audit Booked.<br />Nice.
           </h1>
           <p className="text-slate-300 text-lg leading-relaxed mb-4">
-            Now lock in a short call so we can sanity-check your numbers, look at how your pipeline works today, and build your 90-Day Growth Map properly.
+            Your Pipeline Leak Audit is locked in. I'll deliver your full audit within 24 hours — including where your leads are leaking, what it's likely costing you, and the fastest fixes.
           </p>
           <p className="text-slate-500 text-sm mb-10">
             Check your inbox — we'll also send confirmation within a few minutes.
@@ -355,9 +355,9 @@ export default function RealEstateFunnel() {
               boxShadow: "0 4px 24px rgba(255,69,0,0.4)",
             }}
           >
-            Book My Strategy Call →
+            Book My Audit Call →
           </a>
-          <p className="text-slate-600 text-xs mt-4">Short call. No obligation. We look at your numbers together.</p>
+          <p className="text-slate-600 text-xs mt-4">Short call to walk through your audit findings. No obligation beyond the $497 you've already invested.</p>
         </div>
       </div>
     );
@@ -547,7 +547,7 @@ export default function RealEstateFunnel() {
           </div>
 
           <div className="mt-12 text-center">
-            <CtaButton href="#apply" size="md">Get My Free Growth Map</CtaButton>
+            <CtaButton href="#apply" size="md">Book My $497 Pipeline Leak Audit</CtaButton>
           </div>
         </div>
       </section>
@@ -660,10 +660,10 @@ export default function RealEstateFunnel() {
         <div className="relative max-w-4xl mx-auto">
           <SectionLabel>What's Included</SectionLabel>
           <h2 className="text-3xl sm:text-5xl font-bold leading-tight mb-6">
-            What You Get In The<br />90-Day Pipeline Growth Map
+            What You Get In The<br />$497 Pipeline Leak Audit
           </h2>
           <p className="text-slate-400 text-lg mb-16 max-w-2xl">
-            This is not fluff, theory, or another "marketing audit" that tells you to post more on Instagram. This is a personalised growth map built around your numbers, your lead sources and your current pipeline.
+            This is not fluff, theory, or another "marketing audit" that tells you to post more on Instagram. This is a forensic look at where your leads are dying — delivered within 24 hours.
           </p>
 
           <div className="space-y-5 mb-16">
@@ -682,9 +682,9 @@ export default function RealEstateFunnel() {
               },
               {
                 step: "03",
-                title: "We Build The 90-Day Plan",
-                body: "We outline a practical AI-powered follow-up and nurture system built around your specific business — so you can convert more of your existing leads into conversations, appointments and listings.",
-                items: ["Days 0–3: rapid-fire follow-up", "Days 4–30: nurture and appraisal push", "Days 31–90: light-touch, top-of-mind", "Fully automated inside AiPivot"],
+                title: "We Deliver The Fix Plan",
+                body: "Within 24 hours, you get a clear report showing your leaks, estimated lost GCI, and a prioritised action plan. If you want AI Pivot to implement the fix, the $497 is credited toward the $2,997 14-Day AI Follow-Up Sprint.",
+                items: ["Your top 3-5 pipeline leaks ranked by cost", "Estimated monthly GCI being lost", "Prioritised 14-day fix plan", "$497 credited if you proceed to implementation"],
               },
             ].map(({ step, title, body, items }) => (
               <div key={step} className="flex gap-6 rounded-2xl p-8"
@@ -718,10 +718,10 @@ export default function RealEstateFunnel() {
             <p className="text-white font-semibold text-lg mb-4">You also walk away knowing:</p>
             <ul className="grid sm:grid-cols-2 gap-3">
               {[
-                "How many extra listings may be sitting in your current database",
-                "What messages to send and when",
-                "How to follow up faster without more manual work",
-                "What AiPivot would automate if you want us to build it",
+                "How much GCI is likely leaking from your current pipeline",
+                "Which leads to chase first for fastest results",
+                "What a proper AI follow-up system looks like for your agency",
+                "Whether the 14-Day Sprint is worth it for your situation",
               ].map(o => (
                 <li key={o} className="flex items-start gap-3 text-slate-300 text-sm">
                   <span className="text-[#FF4500] mt-0.5 flex-shrink-0">✓</span>
@@ -732,7 +732,7 @@ export default function RealEstateFunnel() {
           </div>
 
           <div className="text-center">
-            <CtaButton href="#apply" size="lg">Yes, I Want My Pipeline Growth Map</CtaButton>
+            <CtaButton href="#apply" size="lg">Book My $497 Pipeline Leak Audit</CtaButton>
           </div>
         </div>
       </section>
@@ -818,8 +818,8 @@ export default function RealEstateFunnel() {
           {/* VIDEO 3 */}
           <VideoCinematic
             id="video3"
-            label="What Happens In A 90-Day Growth Map?"
-            sublabel="Walkthrough of the session and what you'll walk away with"
+            label="What Happens In A Pipeline Leak Audit?"
+            sublabel="Walkthrough of the audit and what you'll walk away with"
             youtubeId="ckDfcXFRuA4"
           />
         </div>
@@ -839,19 +839,18 @@ export default function RealEstateFunnel() {
               style={{ background: "linear-gradient(90deg, transparent, #FF4500, transparent)" }} />
             <p className="text-[#FF4500] text-xs font-bold uppercase tracking-[0.2em] mb-5">The AiPivot Promise</p>
             <h2 className="text-2xl sm:text-4xl font-bold text-white mb-6 leading-tight">
-              If You Don't Walk Away With At Least<br />
-              <span style={{ color: "#FF4500" }}>One Clear, Actionable Insight</span> From<br />
-              Your Growth Map Session —<br />
-              We'll Give You Back The Hour.
+              If I Can't Find At Least One Clear Leak<br />
+              <span style={{ color: "#FF4500" }}>Worth More Than $497</span> —<br />
+              You Don't Pay.
             </h2>
             <p className="text-slate-400 text-lg max-w-xl mx-auto mb-8 leading-relaxed">
-              No upsell pressure. No templated advice. If we can't find at least one specific place where your pipeline is leaking money — the call is on us and you owe us nothing.
+              No upsell pressure. No templated advice. If the audit doesn't reveal at least one specific leak costing you more than the $497 fee — I'll refund you in full.
             </p>
             <div className="flex flex-wrap justify-center gap-6 text-sm">
               {[
-                "Free. No hidden cost.",
-                "No lock-in commitment.",
-                "Real numbers, not theory.",
+                "$497 — credited toward implementation",
+                "Delivered within 24 hours",
+                "Real numbers, not theory",
               ].map(p => (
                 <div key={p} className="flex items-center gap-2 text-slate-300">
                   <span className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
@@ -876,14 +875,14 @@ export default function RealEstateFunnel() {
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest mb-6"
               style={{ background: "rgba(239,68,68,0.1)", border: "1px solid rgba(239,68,68,0.25)", color: "#f87171" }}>
               <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse" />
-              Only 8 Growth Maps available this month
+              Only 5 audit slots available this week
             </div>
             <SectionLabel>Apply Now</SectionLabel>
             <h2 className="text-3xl sm:text-5xl font-bold leading-tight mb-5">
-              Ready To Stop<br />Leaking Listings?
+              Book Your<br />Pipeline Leak Audit
             </h2>
             <p className="text-slate-400 text-lg max-w-lg mx-auto">
-              Fill out the form. We review every application personally. If it's a fit, we'll send you a booking link for your free Growth Map session.
+              Complete the form below to reserve your audit slot. $497 — delivered within 24 hours.
             </p>
           </div>
 
@@ -1002,7 +1001,7 @@ export default function RealEstateFunnel() {
         <a href="#apply"
           className="block w-full text-center font-bold text-[#141413] py-4 rounded-xl hover:opacity-90 transition-all"
           style={{ background: "#FF4500", boxShadow: "0 4px 20px rgba(255,69,0,0.4)" }}>
-          Get My Free Growth Map
+          Book My $497 Audit
         </a>
       </div>
 
