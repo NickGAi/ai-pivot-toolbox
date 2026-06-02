@@ -545,6 +545,104 @@ export default function TradiesFunnel() {
         </div>
       </section>
 
+      {/* ── PRICING TIERS ─────────────────────────────────────────────── */}
+      <section className="py-24 px-4 relative overflow-hidden">
+        <img src="/images/features-bg-circuit.webp" alt="" className="absolute inset-0 w-full h-full object-cover opacity-15 pointer-events-none" />
+        <div className="relative max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <SectionLabel>Choose Your Plan</SectionLabel>
+            <h2 className="text-3xl sm:text-5xl font-bold leading-tight mb-4">
+              Pick The System<br />
+              <span style={{ color: "#FF4500" }}>That Fits Your Business</span>
+            </h2>
+            <p className="text-slate-400 text-lg">New financial year starts July 1 — setup fees are tax-deductible business expenses.</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {/* STARTER */}
+            <div className="rounded-2xl p-8 flex flex-col" style={{ background: "#0c1018", border: "1px solid rgba(255,255,255,0.08)" }}>
+              <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-3">Starter</p>
+              <div className="mb-6">
+                <span className="text-4xl font-bold text-white">$195</span>
+                <span className="text-slate-400 text-lg">/mo</span>
+              </div>
+              <p className="text-slate-500 text-xs mb-6">(no credits)</p>
+              <ul className="space-y-3 mb-8 flex-grow">
+                {["Missed call text-back", "Up to 100 texts/mo", "Basic dashboard", "Email support"].map(i => (
+                  <li key={i} className="flex items-start gap-3 text-slate-300 text-sm">
+                    <svg className="w-4 h-4 text-[#FF4500] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                    </svg>
+                    {i}
+                  </li>
+                ))}
+              </ul>
+              <p className="text-slate-600 text-xs mb-4 italic">For sole tradies who just want to stop losing calls.</p>
+              <a href="#apply" className="block w-full text-center font-bold py-4 rounded-xl transition-all hover:opacity-90"
+                style={{ background: "transparent", color: "#FF4500", border: "2px solid #FF4500" }}>
+                Get Started Now
+              </a>
+            </div>
+
+            {/* GROWTH — MOST POPULAR */}
+            <div className="rounded-2xl p-8 flex flex-col relative" style={{ background: "#0c1018", border: "2px solid #FF4500", boxShadow: "0 0 40px rgba(255,69,0,0.15)" }}>
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest"
+                style={{ background: "#FF4500", color: "#141413" }}>
+                Most Popular
+              </div>
+              <p className="text-[#FF4500] text-xs font-bold uppercase tracking-widest mb-3">Growth</p>
+              <div className="mb-2">
+                <span className="text-4xl font-bold text-white">$295</span>
+                <span className="text-slate-400 text-lg">/mo</span>
+              </div>
+              <p className="text-slate-400 text-sm mb-6">+ $395 one-time setup <span className="text-[#FF4500]">(tax deductible)</span></p>
+              <ul className="space-y-3 mb-8 flex-grow">
+                {["Missed call text-back", "Automated quote follow-up", "Review request automation", "CRM setup", "Up to 500 texts/mo", "Priority support"].map(i => (
+                  <li key={i} className="flex items-start gap-3 text-slate-300 text-sm">
+                    <svg className="w-4 h-4 text-[#FF4500] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                    </svg>
+                    {i}
+                  </li>
+                ))}
+              </ul>
+              <p className="text-slate-600 text-xs mb-4 italic">For trade businesses ready to capture every job.</p>
+              <a href="#apply" className="block w-full text-center font-bold text-[#141413] py-4 rounded-xl transition-all hover:opacity-90"
+                style={{ background: "#FF4500", boxShadow: "0 4px 24px rgba(255,69,0,0.35)" }}>
+                Get Setup Now
+              </a>
+            </div>
+
+            {/* SCALE */}
+            <div className="rounded-2xl p-8 flex flex-col" style={{ background: "#0c1018", border: "1px solid rgba(255,255,255,0.08)" }}>
+              <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-3">Scale</p>
+              <div className="mb-2">
+                <span className="text-4xl font-bold text-white">$395</span>
+                <span className="text-slate-400 text-lg">/mo</span>
+              </div>
+              <p className="text-slate-400 text-sm mb-6">+ $795 one-time setup <span className="text-[#FF4500]">(tax deductible)</span></p>
+              <ul className="space-y-3 mb-8 flex-grow">
+                {["Everything in Growth", "AI chatbot on website", "Booking automation", "Monthly optimisation", "Unlimited texts", "Dedicated account manager"].map(i => (
+                  <li key={i} className="flex items-start gap-3 text-slate-300 text-sm">
+                    <svg className="w-4 h-4 text-[#FF4500] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                    </svg>
+                    {i}
+                  </li>
+                ))}
+              </ul>
+              <p className="text-slate-600 text-xs mb-4 italic">For growing teams who want the full system.</p>
+              <a href="#apply" className="block w-full text-center font-bold py-4 rounded-xl transition-all hover:opacity-90"
+                style={{ background: "transparent", color: "#FF4500", border: "2px solid #FF4500" }}>
+                Get Setup Now
+              </a>
+            </div>
+          </div>
+
+          <p className="text-center text-slate-500 text-sm mt-8">All plans: no lock-in contracts. Cancel anytime. EOFY — claim setup fees before June 30.</p>
+        </div>
+      </section>
+
       {/* ── WHO IT'S FOR ─────────────────────────────────────────────────── */}
       <section className="py-24 px-4 relative overflow-hidden">
         <img src="/images/features-bg-circuit.webp" alt="" className="absolute inset-0 w-full h-full object-cover opacity-15 pointer-events-none" />
