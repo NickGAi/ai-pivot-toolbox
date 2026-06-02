@@ -13,16 +13,16 @@ const CONFIG = {
 const COPY = {
   badge: "FOR AUSTRALIAN TRADE BUSINESSES",
   heroHeadline: ["Stop Losing Jobs", "To Missed Calls."],
-  heroSub: "Find out how many jobs are going to your competitor because you can't answer the phone on the tools.",
+  heroSub: "Get a system that catches every missed call, texts back instantly, follows up your quotes, and gets you 5-star reviews — all on autopilot.",
   heroBullets: [
     "Catch every missed call with instant text-back",
     "Automate follow-up on quotes that haven't converted",
     "Get more 5-star reviews on autopilot",
   ],
-  heroCta: "Get My Missed Revenue Report — $497",
-  heroTrust: "Built for tradies who are sick of losing jobs to the bloke who answers his phone. $497 credited toward your Revenue Capture System.",
-  formCta: "Reserve My Missed Revenue Report — $497",
-  smallPrint: "$497 paid at booking. Delivered within 24 hours. Credited in full toward the $2,997 Revenue Capture System if you proceed.",
+  heroCta: "Get My Missed Call System — $295/mo",
+  heroTrust: "Built for tradies who are sick of losing jobs to the bloke who answers his phone. No lock-in contracts. Cancel anytime.",
+  formCta: "Start My Missed Call System — $295/mo",
+  smallPrint: "$295/mo. No lock-in contracts. Cancel anytime. System installed within 7 days of sign-up.",
 };
 
 const TRADE_TYPES = ["Plumber", "Electrician", "Builder", "HVAC", "Painter", "Landscaper", "Other"];
@@ -132,9 +132,9 @@ export default function TradiesFunnel() {
 
   // Page title + meta
   useEffect(() => {
-    document.title = "$497 Missed Revenue Report | Australian Trade Businesses | AI Pivot";
+    document.title = "Missed Call System for Tradies — $295/mo | AI Pivot";
     const desc = document.querySelector('meta[name="description"]');
-    if (desc) desc.setAttribute("content", "Find out how many jobs your trade business is losing to missed calls, slow quote follow-up, and weak review systems. $497 Missed Revenue Report for Australian tradies.");
+    if (desc) desc.setAttribute("content", "Stop losing jobs to missed calls. AI Pivot installs a system that texts back missed callers instantly, follows up quotes, and gets you 5-star reviews. $295/mo for Australian tradies.");
     let robots = document.querySelector('meta[name="robots"]');
     if (!robots) {
       robots = document.createElement("meta");
@@ -169,7 +169,7 @@ export default function TradiesFunnel() {
 
   const mutation = useMutation({
     mutationFn: (data: FormData) => apiRequest("POST", CONFIG.apiEndpoint, data),
-    onSuccess: () => { pixelTrack("Lead", { content_name: "Missed Revenue Report" }); setSubmitted(true); },
+    onSuccess: () => { pixelTrack("Lead", { content_name: "Missed Call System" }); setSubmitted(true); },
   });
 
   function set(field: keyof FormData, value: string) {
@@ -212,12 +212,12 @@ export default function TradiesFunnel() {
             </svg>
           </div>
 
-          <p className="text-[#FF4500] text-xs font-bold uppercase tracking-[0.2em] mb-4">Report Booked</p>
+          <p className="text-[#FF4500] text-xs font-bold uppercase tracking-[0.2em] mb-4">System Locked In</p>
           <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6 leading-tight">
-            You&apos;re In.<br />Report Locked.
+            You&apos;re In.<br />System Locked.
           </h1>
           <p className="text-slate-300 text-lg leading-relaxed mb-4">
-            Your Missed Revenue Report is booked. I&apos;ll review where jobs are leaking from missed calls, slow quote follow-up, reviews, and bookings — then deliver your report within 24 hours.
+            Your Missed Call System is locked in. I&apos;ll have your system installed within 7 days — missed call text-back, quote follow-up, and review automation all running on autopilot.
           </p>
           <p className="text-slate-500 text-sm mb-10">
             Check your inbox — we&apos;ll also send confirmation within a few minutes.
@@ -231,9 +231,9 @@ export default function TradiesFunnel() {
               boxShadow: "0 4px 24px rgba(255,69,0,0.4)",
             }}
           >
-            Book My Audit Call →
+            Book My Setup Call →
           </a>
-          <p className="text-slate-600 text-xs mt-4">Short call to walk through your report findings. No obligation beyond the $497 you&apos;ve already invested.</p>
+          <p className="text-slate-600 text-xs mt-4">Short call to get your system configured. We&apos;ll map your workflow and have everything running within 7 days.</p>
         </div>
       </div>
     );
@@ -402,7 +402,7 @@ export default function TradiesFunnel() {
           </div>
 
           <div className="mt-12 text-center">
-            <CtaButton href="#apply" size="md">Get My Missed Revenue Report — $497</CtaButton>
+            <CtaButton href="#apply" size="md">Get My Missed Call System — $295/mo</CtaButton>
           </div>
         </div>
       </section>
@@ -468,17 +468,17 @@ export default function TradiesFunnel() {
         <div className="relative max-w-4xl mx-auto">
           <SectionLabel>What&apos;s Included</SectionLabel>
           <h2 className="text-3xl sm:text-5xl font-bold leading-tight mb-6">
-            What You Get In The<br />$497 Missed Revenue Report
+            What You Get In The<br />$295/mo Missed Call System
           </h2>
           <p className="text-slate-400 text-lg mb-16 max-w-2xl">
-            This is not a generic marketing audit. It is a practical look at where your trade business is leaking jobs — and what those leaks are likely costing you.
+            This is not another marketing tool you won’t use. It’s a done-for-you system that catches missed calls, follows up quotes, and gets you reviews — running on autopilot from day one.
           </p>
 
           <div className="space-y-5 mb-16">
             {[
               {
                 step: "01",
-                title: "We Audit Your Missed Revenue",
+                title: "We Map Your Workflow",
                 body: "We look at missed calls, quote conversion, review count, and the steps between enquiry and booked job.",
                 items: ["Missed calls reviewed", "Quote follow-up gaps identified", "Review collection checked", "Booking friction mapped"],
               },
@@ -491,8 +491,8 @@ export default function TradiesFunnel() {
               {
                 step: "03",
                 title: "We Build The Fix",
-                body: "Within 14 days, your full Revenue Capture System can be installed. The $497 report fee is credited toward the $2,997 build.",
-                items: ["Instant missed-call text-back", "Automated quote follow-up", "Review request automation", "$497 credited toward the $2,997 build"],
+                body: "Within 7 days, your full Missed Call System is installed and running. $295/mo, no lock-in contracts.",
+                items: ["Instant missed-call text-back", "Automated quote follow-up", "Review request automation", "Running within 7 days"],
               },
             ].map(({ step, title, body, items }) => (
               <div key={step} className="flex gap-6 rounded-2xl p-8"
@@ -540,7 +540,7 @@ export default function TradiesFunnel() {
           </div>
 
           <div className="text-center">
-            <CtaButton href="#apply" size="lg">Get My Missed Revenue Report — $497</CtaButton>
+            <CtaButton href="#apply" size="lg">Get My Missed Call System — $295/mo</CtaButton>
           </div>
         </div>
       </section>
@@ -610,17 +610,17 @@ export default function TradiesFunnel() {
             <p className="text-[#FF4500] text-xs font-bold uppercase tracking-[0.2em] mb-5">The AI Pivot Promise</p>
             <h2 className="text-2xl sm:text-4xl font-bold text-white mb-6 leading-tight">
               If I Can&apos;t Find At Least One Leak<br />
-              <span style={{ color: "#FF4500" }}>Worth More Than $497</span> —<br />
-              You Don&apos;t Pay.
+              <span style={{ color: "#FF4500" }}>Worth More Than $295</span> —<br />
+              You Get Your First Month Free.
             </h2>
             <p className="text-slate-400 text-lg max-w-xl mx-auto mb-8 leading-relaxed">
-              No vague advice. No templated audit. If the report does not reveal at least one specific revenue leak worth more than the $497 fee, you do not pay.
+              If your Missed Call System doesn’t pay for itself within the first month, your first month is on us. No questions asked.
             </p>
             <div className="flex flex-wrap justify-center gap-6 text-sm">
               {[
-                "$497 — credited toward implementation",
-                "Delivered within 24 hours",
-                "Practical fixes, not theory",
+                "$295/mo — no lock-in contracts",
+                "Installed within 7 days",
+                "Done-for-you, not DIY",
               ].map(p => (
                 <div key={p} className="flex items-center gap-2 text-slate-300">
                   <span className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
@@ -645,14 +645,14 @@ export default function TradiesFunnel() {
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest mb-6"
               style={{ background: "rgba(239,68,68,0.1)", border: "1px solid rgba(239,68,68,0.25)", color: "#f87171" }}>
               <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse" />
-              Only 5 audit slots available this week
+              Only 5 setup slots available this week
             </div>
             <SectionLabel>Apply Now</SectionLabel>
             <h2 className="text-3xl sm:text-5xl font-bold leading-tight mb-5">
-              Book Your<br />Missed Revenue Report
+              Start Your<br />Missed Call System
             </h2>
             <p className="text-slate-400 text-lg max-w-lg mx-auto">
-              Complete the form below to reserve your report slot. $497 — delivered within 24 hours.
+              Complete the form below to lock in your setup slot. $295/mo — system installed within 7 days.
             </p>
           </div>
 
@@ -772,7 +772,7 @@ export default function TradiesFunnel() {
         <a href="#apply"
           className="block w-full text-center font-bold text-[#141413] py-4 rounded-xl hover:opacity-90 transition-all"
           style={{ background: "#FF4500", boxShadow: "0 4px 20px rgba(255,69,0,0.4)" }}>
-          Book My $497 Report
+          Start My $295/mo System
         </a>
       </div>
 
