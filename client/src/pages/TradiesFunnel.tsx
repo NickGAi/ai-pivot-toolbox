@@ -13,16 +13,16 @@ const CONFIG = {
 const COPY = {
   badge: "FOR AUSTRALIAN TRADE BUSINESSES",
   heroHeadline: ["Stop Losing Jobs", "To Missed Calls."],
-  heroSub: "Get a system that catches every missed call, texts back instantly, follows up your quotes, and gets you 5-star reviews — all on autopilot.",
+  heroSub: "Get a system that catches every missed call, texts back instantly, follows up your quotes, and gets you 5-star reviews — all on autopilot. Claim the setup before June 30.",
   heroBullets: [
     "Catch every missed call with instant text-back",
     "Automate follow-up on quotes that haven't converted",
     "Get more 5-star reviews on autopilot",
   ],
-  heroCta: "Get My Missed Call System — $295/mo",
-  heroTrust: "Built for tradies who are sick of losing jobs to the bloke who answers his phone. No lock-in contracts. Cancel anytime.",
-  formCta: "Start My Missed Call System — $295/mo",
-  smallPrint: "$295/mo. No lock-in contracts. Cancel anytime. System installed within 7 days of sign-up.",
+  heroCta: "Get My Missed Call Recovery System",
+  heroTrust: "$395 one-time setup + $295/mo. No lock-in contracts. New financial year starts July 1 — claim the setup fee and never miss a job again.",
+  formCta: "Start My Missed Call Recovery System",
+  smallPrint: "$395 one-time setup + $295/mo ongoing. No lock-in contracts. Cancel anytime. System installed within 7 days. Setup fee is a tax-deductible business expense.",
 };
 
 const TRADE_TYPES = ["Plumber", "Electrician", "Builder", "HVAC", "Painter", "Landscaper", "Other"];
@@ -132,9 +132,9 @@ export default function TradiesFunnel() {
 
   // Page title + meta
   useEffect(() => {
-    document.title = "Missed Call System for Tradies — $295/mo | AI Pivot";
+    document.title = "Missed Call Recovery System for Tradies | $395 Setup + $295/mo | AI Pivot";
     const desc = document.querySelector('meta[name="description"]');
-    if (desc) desc.setAttribute("content", "Stop losing jobs to missed calls. AI Pivot installs a system that texts back missed callers instantly, follows up quotes, and gets you 5-star reviews. $295/mo for Australian tradies.");
+    if (desc) desc.setAttribute("content", "Stop losing jobs to missed calls. AI Pivot installs a Missed Call Recovery System that texts back instantly, follows up quotes, and gets you reviews. $395 setup + $295/mo. Claim the setup before EOFY.");
     let robots = document.querySelector('meta[name="robots"]');
     if (!robots) {
       robots = document.createElement("meta");
@@ -169,7 +169,7 @@ export default function TradiesFunnel() {
 
   const mutation = useMutation({
     mutationFn: (data: FormData) => apiRequest("POST", CONFIG.apiEndpoint, data),
-    onSuccess: () => { pixelTrack("Lead", { content_name: "Missed Call System" }); setSubmitted(true); },
+    onSuccess: () => { pixelTrack("Lead", { content_name: "Missed Call Recovery System" }); setSubmitted(true); },
   });
 
   function set(field: keyof FormData, value: string) {
@@ -217,7 +217,7 @@ export default function TradiesFunnel() {
             You&apos;re In.<br />System Locked.
           </h1>
           <p className="text-slate-300 text-lg leading-relaxed mb-4">
-            Your Missed Call System is locked in. I&apos;ll have your system installed within 7 days — missed call text-back, quote follow-up, and review automation all running on autopilot.
+            Your Missed Call Recovery System is locked in. I&apos;ll have your system installed within 7 days — missed call text-back, quote follow-up, and review automation all running on autopilot.
           </p>
           <p className="text-slate-500 text-sm mb-10">
             Check your inbox — we&apos;ll also send confirmation within a few minutes.
@@ -402,7 +402,7 @@ export default function TradiesFunnel() {
           </div>
 
           <div className="mt-12 text-center">
-            <CtaButton href="#apply" size="md">Get My Missed Call System — $295/mo</CtaButton>
+            <CtaButton href="#apply" size="md">Get My Missed Call Recovery System</CtaButton>
           </div>
         </div>
       </section>
@@ -468,7 +468,7 @@ export default function TradiesFunnel() {
         <div className="relative max-w-4xl mx-auto">
           <SectionLabel>What&apos;s Included</SectionLabel>
           <h2 className="text-3xl sm:text-5xl font-bold leading-tight mb-6">
-            What You Get In The<br />$295/mo Missed Call System
+            What You Get In The<br />Missed Call Recovery System
           </h2>
           <p className="text-slate-400 text-lg mb-16 max-w-2xl">
             This is not another marketing tool you won’t use. It’s a done-for-you system that catches missed calls, follows up quotes, and gets you reviews — running on autopilot from day one.
@@ -491,7 +491,7 @@ export default function TradiesFunnel() {
               {
                 step: "03",
                 title: "We Build The Fix",
-                body: "Within 7 days, your full Missed Call System is installed and running. $295/mo, no lock-in contracts.",
+                body: "Within 7 days, your full Missed Call Recovery System is installed and running. $395 setup + $295/mo, no lock-in contracts.",
                 items: ["Instant missed-call text-back", "Automated quote follow-up", "Review request automation", "Running within 7 days"],
               },
             ].map(({ step, title, body, items }) => (
@@ -540,7 +540,7 @@ export default function TradiesFunnel() {
           </div>
 
           <div className="text-center">
-            <CtaButton href="#apply" size="lg">Get My Missed Call System — $295/mo</CtaButton>
+            <CtaButton href="#apply" size="lg">Get My Missed Call Recovery System</CtaButton>
           </div>
         </div>
       </section>
@@ -610,15 +610,15 @@ export default function TradiesFunnel() {
             <p className="text-[#FF4500] text-xs font-bold uppercase tracking-[0.2em] mb-5">The AI Pivot Promise</p>
             <h2 className="text-2xl sm:text-4xl font-bold text-white mb-6 leading-tight">
               If I Can&apos;t Find At Least One Leak<br />
-              <span style={{ color: "#FF4500" }}>Worth More Than $295</span> —<br />
-              You Get Your First Month Free.
+              <span style={{ color: "#FF4500" }}>Worth More Than $395</span> —<br />
+              You Get Your Setup Fee Back.
             </h2>
             <p className="text-slate-400 text-lg max-w-xl mx-auto mb-8 leading-relaxed">
-              If your Missed Call System doesn’t pay for itself within the first month, your first month is on us. No questions asked.
+              If your Missed Call Recovery System doesn’t pay for itself within the first month, we refund your $395 setup fee. No questions asked.
             </p>
             <div className="flex flex-wrap justify-center gap-6 text-sm">
               {[
-                "$295/mo — no lock-in contracts",
+                "$395 setup + $295/mo — no lock-in",
                 "Installed within 7 days",
                 "Done-for-you, not DIY",
               ].map(p => (
@@ -645,14 +645,14 @@ export default function TradiesFunnel() {
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest mb-6"
               style={{ background: "rgba(239,68,68,0.1)", border: "1px solid rgba(239,68,68,0.25)", color: "#f87171" }}>
               <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse" />
-              Only 5 setup slots available this week
+              EOFY — Claim your setup fee before June 30
             </div>
             <SectionLabel>Apply Now</SectionLabel>
             <h2 className="text-3xl sm:text-5xl font-bold leading-tight mb-5">
-              Start Your<br />Missed Call System
+              Start Your<br />Missed Call Recovery System
             </h2>
             <p className="text-slate-400 text-lg max-w-lg mx-auto">
-              Complete the form below to lock in your setup slot. $295/mo — system installed within 7 days.
+              $395 one-time setup + $295/mo. Claim the setup as a tax deduction before June 30. System installed within 7 days.
             </p>
           </div>
 
@@ -772,7 +772,7 @@ export default function TradiesFunnel() {
         <a href="#apply"
           className="block w-full text-center font-bold text-[#141413] py-4 rounded-xl hover:opacity-90 transition-all"
           style={{ background: "#FF4500", boxShadow: "0 4px 20px rgba(255,69,0,0.4)" }}>
-          Start My $295/mo System
+          Start My Recovery System
         </a>
       </div>
 
