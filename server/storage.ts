@@ -2,6 +2,7 @@ import {
   type ContactSubmission, type InsertContactSubmission, contactSubmissions,
   type LeadMagnetSubmission, type InsertLeadMagnet, leadMagnetSubmissions,
   type RealEstateFunnelSubmission, type InsertRealEstateFunnel, realEstateFunnelSubmissions,
+  type TradiesFunnelSubmission, type InsertTradiesFunnel, tradiesFunnelSubmissions,
 } from "@shared/schema";
 import { db } from "./db";
 import { lte, and, eq } from "drizzle-orm";
@@ -13,6 +14,7 @@ export interface IStorage {
   getLeadMagnetSubmissionsDueForSequence(step: number, daysAfterSignup: number): Promise<LeadMagnetSubmission[]>;
   advanceLeadMagnetSequenceStep(id: string, nextStep: number): Promise<void>;
   createRealEstateFunnelSubmission(submission: InsertRealEstateFunnel): Promise<RealEstateFunnelSubmission>;
+  createTradiesFunnelSubmission(submission: InsertTradiesFunnel): Promise<TradiesFunnelSubmission>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -50,6 +52,12 @@ export class DatabaseStorage implements IStorage {
   async createRealEstateFunnelSubmission(insertSubmission: InsertRealEstateFunnel): Promise<RealEstateFunnelSubmission> {
     const [submission] = await db.insert(realEstateFunnelSubmissions).values(insertSubmission).returning();
     console.log("Real estate funnel submission saved to database:", submission.id);
+    return submission;
+  }
+
+  async createTradiesFunnelSubmission(insertSubmission: InsertTradiesFunnel): Promise<TradiesFunnelSubmission> {
+    const [submission] = await db.insert(tradiesFunnelSubmissions).values(insertSubmission).returning();
+    console.log("Tradies funnel submission saved to database:", submission.id);
     return submission;
   }
 }

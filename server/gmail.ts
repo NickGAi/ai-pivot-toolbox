@@ -321,6 +321,113 @@ export async function sendRealEstateFunnelConfirmation(data: RealEstateFunnelDat
   await sendGmail(data.email, subject, htmlBody);
 }
 
+interface TradiesFunnelData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  mobile: string;
+  businessName: string;
+  tradeType: string;
+  suburb: string;
+  jobsPerMonth: string;
+  leadSource: string;
+  biggestProblem: string;
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
+  referrer?: string;
+}
+
+export async function sendTradiesFunnelNotification(data: TradiesFunnelData): Promise<void> {
+  const fullName = `${data.firstName} ${data.lastName}`;
+  const subject = `🔧 Missed Revenue Report Booking: ${fullName} — ${data.businessName} (${data.tradeType})`;
+  const utmInfo = [data.utm_source, data.utm_medium, data.utm_campaign].filter(Boolean).join(" / ");
+  const htmlBody = `
+    <div style="font-family:sans-serif;max-width:600px;margin:0 auto">
+      <div style="background:#141413;padding:24px 32px;border-radius:8px 8px 0 0">
+        <h2 style="color:#FF4500;margin:0;font-size:20px">New $497 Missed Revenue Report Booking</h2>
+        <p style="color:#94a3b8;margin:4px 0 0;font-size:14px">aipivot.com.au/tradies-missed-revenue-report</p>
+      </div>
+      <div style="background:#ffffff;padding:32px;border-radius:0 0 8px 8px;border:1px solid #e2e8f0">
+        <table style="width:100%;border-collapse:collapse;font-size:15px">
+          <tr style="border-bottom:1px solid #f1f5f9">
+            <td style="padding:10px 0;color:#64748b;width:180px;font-weight:600">Name</td>
+            <td style="padding:10px 0;color:#0f172a;font-weight:700">${fullName}</td>
+          </tr>
+          <tr style="border-bottom:1px solid #f1f5f9">
+            <td style="padding:10px 0;color:#64748b;font-weight:600">Mobile</td>
+            <td style="padding:10px 0;color:#0f172a"><a href="tel:${data.mobile}" style="color:#0369a1">${data.mobile}</a></td>
+          </tr>
+          <tr style="border-bottom:1px solid #f1f5f9">
+            <td style="padding:10px 0;color:#64748b;font-weight:600">Email</td>
+            <td style="padding:10px 0"><a href="mailto:${data.email}" style="color:#0ea5e9">${data.email}</a></td>
+          </tr>
+          <tr style="border-bottom:1px solid #f1f5f9">
+            <td style="padding:10px 0;color:#64748b;font-weight:600">Business</td>
+            <td style="padding:10px 0;color:#0f172a">${data.businessName}</td>
+          </tr>
+          <tr style="border-bottom:1px solid #f1f5f9">
+            <td style="padding:10px 0;color:#64748b;font-weight:600">Trade Type</td>
+            <td style="padding:10px 0;color:#0f172a">${data.tradeType}</td>
+          </tr>
+          <tr style="border-bottom:1px solid #f1f5f9">
+            <td style="padding:10px 0;color:#64748b;font-weight:600">Suburb</td>
+            <td style="padding:10px 0;color:#0f172a">${data.suburb}</td>
+          </tr>
+          <tr style="border-bottom:1px solid #f1f5f9">
+            <td style="padding:10px 0;color:#64748b;font-weight:600">Jobs / Month</td>
+            <td style="padding:10px 0;color:#0f172a">${data.jobsPerMonth}</td>
+          </tr>
+          <tr style="border-bottom:1px solid #f1f5f9">
+            <td style="padding:10px 0;color:#64748b;font-weight:600">Main Lead Source</td>
+            <td style="padding:10px 0;color:#0f172a">${data.leadSource || "Not specified"}</td>
+          </tr>
+          <tr style="border-bottom:1px solid #f1f5f9">
+            <td style="padding:10px 0;color:#64748b;font-weight:600;vertical-align:top">Biggest Problem</td>
+            <td style="padding:10px 0;color:#0f172a">${data.biggestProblem || "Not provided"}</td>
+          </tr>
+          ${utmInfo ? `<tr>
+            <td style="padding:10px 0;color:#64748b;font-weight:600">UTM / Source</td>
+            <td style="padding:10px 0;color:#94a3b8;font-size:13px">${utmInfo}${data.referrer ? ` · ${data.referrer}` : ""}</td>
+          </tr>` : ""}
+        </table>
+        <div style="margin-top:24px;padding:16px;background:#fff7f5;border-left:4px solid #FF4500;border-radius:4px">
+          <p style="margin:0;color:#7c2d12;font-size:13px;font-weight:600">Next step: Deliver the Missed Revenue Report within 24 hours. Call ${data.mobile} to walk through findings.</p>
+        </div>
+      </div>
+    </div>
+  `;
+  await sendGmail("nick@avaire.com.au, nick@nickgriffiths.com.au, info@aivare.com.au", subject, htmlBody);
+  console.log(`Tradies funnel application: ${fullName} (${data.email}) — ${data.businessName}, ${data.tradeType}, ${data.suburb}`);
+}
+
+export async function sendTradiesFunnelConfirmation(data: TradiesFunnelData): Promise<void> {
+  const subject = `Your Missed Revenue Report — Booking Confirmed`;
+  const htmlBody = `
+    <div style="font-family:sans-serif;max-width:600px;margin:0 auto">
+      <div style="background:#141413;padding:24px 32px;border-radius:8px 8px 0 0">
+        <h2 style="color:#FF4500;margin:0;font-size:20px">Report Booked ✓</h2>
+        <p style="color:#94a3b8;margin:6px 0 0;font-size:14px">$497 Missed Revenue Report</p>
+      </div>
+      <div style="background:#ffffff;padding:32px;border-radius:0 0 8px 8px;border:1px solid #e2e8f0">
+        <p style="font-size:16px;color:#0f172a;margin:0 0 16px">Hi ${data.firstName},</p>
+        <p style="font-size:15px;color:#334155;margin:0 0 16px">Thanks for booking your Missed Revenue Report for <strong>${data.businessName}</strong> in <strong>${data.suburb}</strong>. I'll deliver your full report within 24 hours.</p>
+        <div style="margin:24px 0;padding:20px;background:#fff7f5;border-left:4px solid #FF4500;border-radius:4px">
+          <p style="margin:0;color:#7c2d12;font-size:14px;font-weight:600">What happens next</p>
+          <ol style="margin:8px 0 0;padding-left:20px;color:#334155;font-size:14px;line-height:1.8">
+            <li>I review your missed calls, quote follow-up, reviews, booking flow, and lead sources within 24 hours</li>
+            <li>You receive your Missed Revenue Report showing where jobs are leaking and what it is likely costing you</li>
+            <li>If you proceed with the Revenue Capture System, your $497 is credited in full toward the $2,997 build</li>
+          </ol>
+        </div>
+        <p style="font-size:14px;color:#64748b;margin:0">Questions in the meantime? Reply to this email or call <a href="tel:0415685544" style="color:#FF4500">0415 685 544</a>.</p>
+        <p style="font-size:14px;color:#64748b;margin:16px 0 0">— Nick<br><span style="color:#94a3b8">AI Pivot Toolbox</span></p>
+      </div>
+    </div>
+  `;
+  await sendGmail(data.email, subject, htmlBody);
+}
+
 interface CallbackRequestData {
   name: string;
   email: string;

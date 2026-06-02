@@ -27,6 +27,7 @@ const Checkout = lazy(() => import("@/pages/Checkout"));
 const VsMarketingAgency = lazy(() => import("@/pages/VsMarketingAgency"));
 const StrategyCall = lazy(() => import("@/pages/StrategyCall"));
 const RealEstateFunnel = lazy(() => import("@/pages/RealEstateFunnel"));
+const TradiesFunnel = lazy(() => import("@/pages/TradiesFunnel"));
 const Pipeline = lazy(() => import("@/pages/Pipeline"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 const CookieConsent = lazy(() => import("@/components/CookieConsent").then(m => ({ default: m.CookieConsent })));
@@ -81,6 +82,7 @@ function Router() {
         <Route path="/free-strategy-call" component={StrategyCall} />
         <Route path="/book" component={StrategyCall} />
         <Route path="/real-estate-pipeline-growth-map" component={RealEstateFunnel} />
+        <Route path="/tradies-missed-revenue-report" component={TradiesFunnel} />
         <Route path="/pipeline" component={Pipeline} />
 
         <Route path="/blog/:slug" component={({ params }) => {

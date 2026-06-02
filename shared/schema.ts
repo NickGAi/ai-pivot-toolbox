@@ -56,6 +56,33 @@ export const insertRealEstateFunnelSchema = createInsertSchema(realEstateFunnelS
 export type InsertRealEstateFunnel = z.infer<typeof insertRealEstateFunnelSchema>;
 export type RealEstateFunnelSubmission = typeof realEstateFunnelSubmissions.$inferSelect;
 
+export const tradiesFunnelSubmissions = pgTable("tradies_funnel_submissions", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  firstName: text("first_name").notNull(),
+  lastName: text("last_name").notNull(),
+  email: text("email").notNull(),
+  mobile: text("mobile").notNull(),
+  businessName: text("business_name").notNull(),
+  tradeType: text("trade_type").notNull(),
+  suburb: text("suburb").notNull(),
+  jobsPerMonth: text("jobs_per_month").notNull(),
+  leadSource: text("lead_source"),
+  biggestProblem: text("biggest_problem"),
+  utmSource: text("utm_source"),
+  utmMedium: text("utm_medium"),
+  utmCampaign: text("utm_campaign"),
+  referrer: text("referrer"),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const insertTradiesFunnelSchema = createInsertSchema(tradiesFunnelSubmissions).omit({
+  id: true,
+  createdAt: true,
+});
+
+export type InsertTradiesFunnel = z.infer<typeof insertTradiesFunnelSchema>;
+export type TradiesFunnelSubmission = typeof tradiesFunnelSubmissions.$inferSelect;
+
 export const leadMagnetSubmissions = pgTable("lead_magnet_submissions", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   firstName: text("first_name").notNull(),

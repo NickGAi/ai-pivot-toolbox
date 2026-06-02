@@ -20,6 +20,7 @@ import Checkout from "@/pages/Checkout";
 import VsMarketingAgency from "@/pages/VsMarketingAgency";
 import StrategyCall from "@/pages/StrategyCall";
 import RealEstateFunnel from "@/pages/RealEstateFunnel";
+import TradiesFunnel from "@/pages/TradiesFunnel";
 import Pipeline from "@/pages/Pipeline";
 
 import { getLocationBySlug } from "@/data/locations";
@@ -76,6 +77,7 @@ function ServerRoutes() {
       <Route path="/free-strategy-call" component={StrategyCall} />
       <Route path="/book" component={StrategyCall} />
       <Route path="/real-estate-pipeline-growth-map" component={RealEstateFunnel} />
+      <Route path="/tradies-missed-revenue-report" component={TradiesFunnel} />
       <Route path="/pipeline" component={Pipeline} />
 
       <Route path="/blog/:slug" component={({ params }) => {

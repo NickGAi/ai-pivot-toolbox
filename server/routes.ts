@@ -3,7 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertContactSubmissionSchema, insertLeadMagnetSchema } from "@shared/schema";
 import { fromError } from "zod-validation-error";
-import { sendContactNotification, sendLeadMagnetNotification, sendLeadMagnetDelivery, sendRealEstateFunnelNotification, sendRealEstateFunnelConfirmation, sendCallbackNotification, sendCallbackConfirmation } from "./gmail";
+import { sendContactNotification, sendLeadMagnetNotification, sendLeadMagnetDelivery, sendRealEstateFunnelNotification, sendRealEstateFunnelConfirmation, sendTradiesFunnelNotification, sendTradiesFunnelConfirmation, sendCallbackNotification, sendCallbackConfirmation } from "./gmail";
 import { addToSendGridList } from "./sendgrid";
 import { enrolInNurture } from "./nurture-sequence";
 import { legacyCreateProxyMiddleware } from "http-proxy-middleware";
@@ -58,6 +58,11 @@ export async function registerRoutes(
   // 301 redirect: /map → /real-estate-pipeline-growth-map
   app.get("/map", (_req, res) => {
     res.redirect(301, "/real-estate-pipeline-growth-map");
+  });
+
+  // 301 redirect: /tradies → /tradies-missed-revenue-report
+  app.get("/tradies", (_req, res) => {
+    res.redirect(301, "/tradies-missed-revenue-report");
   });
   // Proxy /__mockup/* to the mockup sandbox dev server (port 23636)
   app.use(
@@ -203,6 +208,38 @@ export async function registerRoutes(
       res.json({ success: true, message: "Application received. We'll be in touch within 24 hours." });
     } catch (error) {
       console.error("Real estate funnel error:", error);
+      res.status(500).json({ success: false, error: "An error occurred. Please try again." });
+    }
+  });
+
+  app.post("/api/tradies-funnel", async (req, res) => {
+    try {
+      const { firstName, lastName, email, mobile, businessName, tradeType, suburb, jobsPerMonth, leadSource, biggestProblem, utm_source, utm_medium, utm_campaign, referrer } = req.body;
+      if (!firstName || !lastName || !mobile || !email || !businessName || !tradeType || !suburb || !jobsPerMonth) {
+        return res.status(400).json({ success: false, error: "Missing required fields." });
+      }
+      await storage.createTradiesFunnelSubmission({
+        firstName, lastName, email, mobile, businessName, tradeType, suburb, jobsPerMonth,
+        leadSource: leadSource || null,
+        biggestProblem: biggestProblem || null,
+        utmSource: utm_source || null,
+        utmMedium: utm_medium || null,
+        utmCampaign: utm_campaign || null,
+        referrer: referrer || null,
+      });
+      try {
+        await sendTradiesFunnelNotification({ firstName, lastName, email, mobile, businessName, tradeType, suburb, jobsPerMonth, leadSource: leadSource || "", biggestProblem: biggestProblem || "", utm_source, utm_medium, utm_campaign, referrer });
+      } catch (emailError) {
+        console.error("Failed to send tradies funnel notification:", emailError);
+      }
+      try {
+        await sendTradiesFunnelConfirmation({ firstName, lastName, email, mobile, businessName, tradeType, suburb, jobsPerMonth, leadSource: leadSource || "", biggestProblem: biggestProblem || "", utm_source, utm_medium, utm_campaign, referrer });
+      } catch (confirmError) {
+        console.error("Failed to send tradies funnel confirmation:", confirmError);
+      }
+      res.json({ success: true, message: "Application received. We'll be in touch within 24 hours." });
+    } catch (error) {
+      console.error("Tradies funnel error:", error);
       res.status(500).json({ success: false, error: "An error occurred. Please try again." });
     }
   });
